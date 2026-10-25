@@ -1,0 +1,215 @@
+import '../errors.dart';
+import '../numbers/rational.dart';
+import 'expression.dart';
+
+/// Parses the prototype's limited linear grammar, without executing code.
+Expression parseExpression(String source) => _Parser(source).parse();
+
+enum _Kind { number, plus, minus, times, divide, power, left, right, end }
+
+final class _Token {
+  final _Kind kind;
+  final String text;
+  final int position;
+  const _Token(this.kind, this.text, this.position);
+}
+
+final class _Parser {
+  final String source;
+  final List<_Token> tokens = [];
+  int cursor = 0;
+  int depth = 0;
+  static final _number = RegExp(
+    r'(?:[0-9]+(?:[.,][0-9]*)?|[.,][0-9]+)(?:[eE][+-]?[0-9]+)?',
+  );
+  static final _space = RegExp(r'\s');
+  _Parser(this.source);
+
+  CalculatorException _syntax(String message, int position) =>
+      CalculatorException(
+        CalculatorErrorCode.syntax,
+        message,
+        position: position,
+      );
+
+  Expression parse() {
+    if (source.length > 2048) {
+      throw const CalculatorException(
+        CalculatorErrorCode.limit,
+        'Input too long',
+      );
+    }
+    _tokenize();
+    final result = _sum();
+    if (_current.kind != _Kind.end) {
+      throw _syntax('Unexpected token', _current.position);
+    }
+    return result;
+  }
+
+  void _tokenize() {
+    var position = 0;
+    while (position < source.length) {
+      final char = source[position];
+      if (_space.hasMatch(char)) {
+        position++;
+        continue;
+      }
+      if (tokens.length >= 512) {
+        throw CalculatorException(
+          CalculatorErrorCode.limit,
+          'Too many tokens',
+          position: position,
+        );
+      }
+      final match = _number.matchAsPrefix(source, position);
+      if (match != null) {
+        final text = match.group(0)!;
+        tokens.add(_Token(_Kind.number, text, position));
+        position += text.length;
+        if (position < source.length &&
+            (source[position] == 'e' || source[position] == 'E')) {
+          throw _syntax('Incomplete decimal exponent', position);
+        }
+        continue;
+      }
+      final kind = switch (char) {
+        '+' => _Kind.plus,
+        '-' || '−' => _Kind.minus,
+        '*' || '×' => _Kind.times,
+        '/' || '÷' => _Kind.divide,
+        '^' => _Kind.power,
+        '(' => _Kind.left,
+        ')' => _Kind.right,
+        _ => null,
+      };
+      if (kind == null) {
+        final unsupported = RegExp(r'[A-Za-z%√]').hasMatch(char);
+        throw CalculatorException(
+          unsupported
+              ? CalculatorErrorCode.unsupported
+              : CalculatorErrorCode.syntax,
+          unsupported ? 'Feature not implemented' : 'Invalid character',
+          position: position,
+        );
+      }
+      tokens.add(_Token(kind, char, position));
+      position++;
+    }
+    tokens.add(_Token(_Kind.end, '', source.length));
+  }
+
+  _Token get _current => tokens[cursor];
+  _Token _take() => tokens[cursor++];
+
+  Expression _sum() {
+    var result = _product();
+    while (_current.kind == _Kind.plus || _current.kind == _Kind.minus) {
+      final token = _take();
+      result = BinaryExpression(
+        token.kind == _Kind.plus ? BinaryOperator.add : BinaryOperator.subtract,
+        result,
+        _product(),
+        token.position,
+      );
+    }
+    return result;
+  }
+
+  Expression _product() {
+    var result = _implicitProduct();
+    while (_current.kind == _Kind.times || _current.kind == _Kind.divide) {
+      final token = _take();
+      result = BinaryExpression(
+        token.kind == _Kind.times
+            ? BinaryOperator.multiply
+            : BinaryOperator.divide,
+        result,
+        _implicitProduct(),
+        token.position,
+      );
+    }
+    return result;
+  }
+
+  // Restricted implicit multiplication binds more strongly than explicit / or *.
+  // At this stage only an opening parenthesis can introduce the implicit factor.
+  Expression _implicitProduct() {
+    var result = _unary();
+    while (_current.kind == _Kind.left) {
+      final position = _current.position;
+      result = BinaryExpression(
+        BinaryOperator.multiply,
+        result,
+        _unary(),
+        position,
+      );
+    }
+    return result;
+  }
+
+  Expression _unary() {
+    depth++;
+    if (depth > 64) {
+      throw CalculatorException(
+        CalculatorErrorCode.limit,
+        'Expression too deeply nested',
+        position: _current.position,
+      );
+    }
+    try {
+      if (_current.kind == _Kind.plus || _current.kind == _Kind.minus) {
+        final token = _take();
+        return UnaryExpression(
+          token.kind == _Kind.plus ? UnaryOperator.plus : UnaryOperator.negate,
+          _unary(),
+          token.position,
+        );
+      }
+      final result = _primary();
+      if (_current.kind == _Kind.power) {
+        final token = _take();
+        return BinaryExpression(
+          BinaryOperator.power,
+          result,
+          _unary(),
+          token.position,
+        );
+      }
+      return result;
+    } finally {
+      depth--;
+    }
+  }
+
+  Expression _primary() {
+    final token = _current;
+    if (token.kind == _Kind.number) {
+      _take();
+      try {
+        return NumberExpression(
+          Rational.parseDecimal(token.text),
+          token.position,
+        );
+      } on RangeError {
+        throw CalculatorException(
+          CalculatorErrorCode.limit,
+          'Numeric literal too large',
+          position: token.position,
+        );
+      } on FormatException {
+        throw _syntax('Invalid number', token.position);
+      }
+    }
+    if (token.kind == _Kind.left) {
+      _take();
+      final result = _sum();
+      if (_current.kind != _Kind.right) {
+        throw _syntax('Missing closing parenthesis', _current.position);
+      }
+      _take();
+      return result;
+    }
+    throw _syntax('Expected a number or parenthesis', token.position);
+  }
+}

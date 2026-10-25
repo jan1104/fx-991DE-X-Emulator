@@ -2,13 +2,15 @@
 
 Stand: 25.10.2026. Dies ist ein Entwurf, keine bereits vorhandene Implementierung.
 
+Fortschreibung vom 26.10.2026: Ein unabhängiger Dart-Core-Prototyp ist jetzt implementiert und auf Windows getestet; Flutter und weitere Zieltests sind offen. Der aktuelle verbindliche Prüf-/Arbeitsstand steht in [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md). Die untenstehende Architektur bleibt das Zielbild.
+
 ## Ziel und Grenzen
 
 Eine unabhängige Verhaltensnachbildung soll Eingabe, Anzeige, Zustände und mathematische Ergebnisse des fx-991DE X möglichst weit abdecken. Eine CPU-/Firmwareemulation ist durch die bisherigen Quellen weder notwendig noch technisch belegt. Die PDF-Anleitungen reichen für eine erste Funktionsspezifikation; sie belegen keine interne Architektur des früheren PC-Emulators.
 
 ## Vorgeschlagene Bausteine
 
-Die konkrete Ordneraufteilung, Schnittstellen und Reihenfolge ohne Original-Programmdateien sind in [PROJEKTSTRUKTUR.md](PROJEKTSTRUKTUR.md) festgelegt. Vorbereitet sind ein Flutter-App-Bereich, ein reiner Dart-Core-Bereich und ein Referenztestbereich; ausführbarer Emulatorcode existiert noch nicht.
+Die konkrete Ordneraufteilung, Schnittstellen und Reihenfolge ohne Original-Programmdateien sind in [PROJEKTSTRUKTUR.md](PROJEKTSTRUKTUR.md) festgelegt. Der Dart-Core-Bereich enthält den ersten exakten linearen Rechenprototyp; die Flutter-App und der natürliche Formeleditor sind noch nicht umgesetzt.
 
 | Baustein | Verantwortung |
 |---|---|
@@ -30,9 +32,9 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 |---|---|---|---|
 | P0 | Originale sichern, Quelleninventar, Modi und Tasten katalogisieren | Identität geprüft, Seitenbelege und offene Punkte dokumentiert | In dieser Analyse bearbeitet |
 | P0 | Original-Programmdateien statisch untersuchen | Dateitypen, Abhängigkeiten und Laufzeitplan belegt | Wartet auf Programmdateien |
-| P0 | Flutter/Dart-Machbarkeitstest für fünf Zielsysteme | Gemeinsamer Kern und UI-Ansatz geprüft; tatsächlich erreichbare Windows-/Android-Builds und übrige offene Zieltests dokumentiert | Nächstes unabhängiges Paket |
+| P0 | Flutter/Dart-Machbarkeitstest für fünf Zielsysteme | Gemeinsamer Kern und UI-Ansatz geprüft; tatsächlich erreichbare Windows-/Android-Builds und übrige offene Zieltests dokumentiert | Dart-Core auf Windows geprüft; Flutter/UI/App-Builds offen |
 | P1 | Minimaler Zustandskern und strukturierter Editor | ON/AC/DEL, Cursor, SHIFT/ALPHA, MENU/SETUP und Ergebniszustand geprüft | Offen |
-| P1 | Grundrechnen mit Prioritäten, Brüchen, Ans und Winkeln | Geplante Referenzfälle samt Fehlern und Anzeigewechsel bestehen | Offen |
+| P1 | Grundrechnen mit Prioritäten, Brüchen, Ans und Winkeln | Geplante Referenzfälle samt Fehlern und Anzeigewechsel bestehen | Exaktes lineares Grundrechnen/Potenzen als Prototyp geprüft; Ans/Winkel/Anzeige offen |
 | P2 | Wissenschaftliche Funktionen, CALC, numerische Ableitung/Integral/SOLVE | Genauigkeit und problematische Eingaben reproduzierbar geprüft | Offen |
 | P2 | Gleichungen, komplexe Zahlen, Basis-N | Grenzen und Modusunterschiede geprüft | Offen |
 | P3 | Matrizen, Vektoren, Statistik, Verteilungen | Pro Modul typische und ungültige Eingaben geprüft | Offen |
@@ -40,7 +42,7 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P4 | Konstanten, Umrechnungen, QR und PC-Komfortfunktionen | Historische Datenstände und externe Schnittstellen entschieden | Offen |
 | P4 | Reproduzierbarer Build und Paketierung | Saubere lokale Installation und Testlauf reproduzierbar | Offen |
 
-Es werden jetzt noch keine Emulatorfunktionen behauptet oder ungeprüft implementiert. Der nächste eigenständig mögliche Entwicklungsschritt ist die Spezifikation des minimalen Zustandskerns aus dem Tasten- und Testkatalog. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien.
+Der nächste abgegrenzte Schritt ist ein minimaler testbarer Bedienzustand auf dem vorhandenen Core. Danach folgen Flutter-Grundgerüst und Formeleditor-Prototyp. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien.
 
 ## Risiken und offene Entscheidungen
 
@@ -50,8 +52,8 @@ Es werden jetzt noch keine Emulatorfunktionen behauptet oder ungeprüft implemen
 - **Offen:** Originalsoftware könnte zusätzliche PC-Funktionen besitzen; aus den Rechnerhandbüchern nicht ableitbar.
 - **Offen:** QR-Erzeugung und historische Webdienste sind für den lokalen Kern unabhängig zu spezifizieren. Aktuelle Erreichbarkeit wurde nicht untersucht.
 - **Entscheidungsvorschlag:** Historische Konstantenstände für Kompatibilität festhalten; eine spätere Aktualisierung als eigene Option behandeln.
-- **Bestätigt:** Originale sind lokal gespeichert und ignoriert; eine spätere Veröffentlichung braucht gesonderte Prüfung und ausdrückliche Nutzerfreigabe. Es erfolgte kein Push.
+- **Bestätigt:** Der damalige vollständige Referenzstand wurde am 25.10.2026 mit ausdrücklicher Freigabe gepusht. Später gelieferte Originalsoftware und neue Entwicklungen sind dadurch nicht automatisch zur Veröffentlichung freigegeben.
 
 ## Prüfstand
 
-In dieser Phase sind Dateiidentität, Lesbarkeit, lokale Extraktion und Git-Ausschluss prüfbar. Referenztests beschreiben künftige Prüfungen; es gibt noch keinen Emulator, keinen Build und keine bestandenen mathematischen Implementierungstests.
+Die früheren Quellen-/Katalogprüfungen werden durch tatsächliche Coretests ergänzt. Die genaue Ausführung und Grenzen stehen in [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md); ein App-Build und Originalvergleich fehlen weiterhin.

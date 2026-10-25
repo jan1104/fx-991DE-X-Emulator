@@ -2,6 +2,8 @@
 
 Stand: 25.10.2026. Flutter/Dart ist die vom Nutzer gewählte Richtung; langfristige Stabilität und fünf Zielplattformen sind Anforderungen. Die Original-Programmdateien werden später geliefert. Sie sind für die Planung und eine erste eigene Implementierung nach Handbuch keine Voraussetzung.
 
+Fortschreibung 26.10.2026: Der Core-Bereich enthält jetzt die ersten Dart-Quellen und Tests; der folgende Strukturentwurf dokumentiert den ursprünglichen Plan. Aktueller Umsetzungs- und Prüfstand: [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
+
 ## Was jetzt angelegt ist
 
 Die beiden künftigen Entwicklungsbereiche `apps/calculator/` und `packages/calculator_core/` sind mit eigenen README-Dateien vorbereitet. `tests/reference/` beschreibt die geplante Referenzprüfung. Dort liegt noch kein ausführbarer Emulatorcode. Die im nächsten Abschnitt dargestellten `lib/`, `test/`, Plattformordner und Paketdateien sind das Zielbild; sie werden erst beim jeweiligen Arbeitspaket angelegt. Flutter und Dart wurden bei der lokalen Befehlsprüfung nicht im PATH gefunden. Eine vollständige Suche nach anderen Installationen wurde nicht durchgeführt.

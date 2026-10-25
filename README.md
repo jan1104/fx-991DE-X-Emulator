@@ -2,9 +2,9 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 25.10.2026
+## Stand am 26.10.2026
 
-Analysephase: Drei bereitgestellte PDF-Anleitungen wurden lokal gesichert und ausgewertet. Ein Emulator ist noch nicht implementiert. Original-Programmdateien liegen im Repository noch nicht vor; über dessen Technologie oder Abhängigkeiten gibt es deshalb noch keine Befunde.
+Ein erster unabhängiger Dart-Rechenkern ist ausführbar: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern und ganzzahlige Potenzen mit strukturierten Fehlern. Flutter-Oberfläche und vollständige Rechnerbedienung fehlen noch. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen, tatsächlich ausgeführte Tests und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 
@@ -19,7 +19,7 @@ Analysephase: Drei bereitgestellte PDF-Anleitungen wurden lokal gesichert und au
 
 Zielplattformen sind Android, iPhone/iPad, Windows, macOS und Linux. Empfohlen wird Flutter mit gemeinsamem Dart-Rechenkern; ein begrenzter Machbarkeitstest steht noch aus. Plattformübergreifende Builds wurden noch nicht ausgeführt.
 
-Die Entwicklungsbereiche `apps/calculator/`, `packages/calculator_core/` und `tests/reference/` sind mit Strukturhinweisen vorbereitet. Sie enthalten noch keinen ausführbaren Emulatorcode. Original-Programmdateien werden später ergänzt; eigene Entwicklung nach Handbuch kann unabhängig davon beginnen.
+`packages/calculator_core/` enthält den ausführbaren Core-Prototyp und seine Tests. `apps/calculator/` ist weiterhin für das spätere Flutter-Grundgerüst vorbereitet. Die umfangreichen Inventare unter `tests/reference/` bleiben Planungsdaten; sie sind nicht vollständig implementiert oder bestanden.
 
 ## Referenzen
 

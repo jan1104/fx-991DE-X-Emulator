@@ -1,0 +1,7 @@
+# Default for new references; the user-approved 2026-10-25 snapshot is tracked.
+/reference/originals/
+/tmp/
+__pycache__/
+.dart_tool/
+build/
+.flutter-plugins-dependencies

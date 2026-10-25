@@ -1,0 +1,54 @@
+{
+  "format_version": 1,
+  "status": "format_proposal",
+  "cases": [
+    {
+      "id": "K03-math",
+      "reference_case_id": "K03",
+      "kind": "math",
+      "status": "planned",
+      "initial": {"mode": "calculate", "settings": {"input_output": "math_math", "fraction_result": "improper"}},
+      "input": {"expression": "2/3 + mixed(1,1,2)", "notation": "human_math_not_parser_syntax"},
+      "expected": {"value": {"kind": "rational", "numerator": "13", "denominator": "6"}, "display_form": "fraction"},
+      "oracle": {"kind": "manual_example", "document": "H", "pdf_page": 13, "verification": "text_reference"}
+    },
+    {
+      "id": "K02-negative-square",
+      "reference_case_id": "K02",
+      "kind": "math",
+      "status": "planned",
+      "initial": {"mode": "calculate", "settings": {"input_output": "math_math"}},
+      "input": {"expression": "-2^2", "notation": "human_math_not_parser_syntax"},
+      "expected": {"value": {"kind": "integer", "value": "-4"}},
+      "oracle": {"kind": "derived_from_manual_rule", "document": "H", "pdf_page": 11, "verification": "rule_reference"}
+    },
+    {
+      "id": "G07-key-division-zero",
+      "reference_case_id": "G07",
+      "kind": "keys",
+      "status": "planned",
+      "initial": {"mode": "calculate", "screen": "editing", "expression": "empty", "modifiers": "none", "settings": {"input_output": "math_math"}},
+      "steps": [{"press": "KEY_1"}, {"press": "KEY_DIVIDE"}, {"press": "KEY_0"}, {"press": "KEY_EQUALS"}],
+      "expected": {"screen": "error", "error": {"category": "math_error", "localized_label": "Mathem. Fehler"}},
+      "oracle": {"kind": "manual_example_and_rule", "document": "H", "pdf_pages": [47, 48], "verification": "text_reference"}
+    },
+    {
+      "id": "UI-setup-consumes-shift",
+      "kind": "keys",
+      "status": "planned",
+      "initial": {"mode": "calculate", "screen": "editing", "expression": "empty", "modifiers": "none", "settings": {"input_output": "math_math"}},
+      "steps": [{"press": "KEY_SHIFT"}, {"press": "KEY_MENU"}],
+      "expected": {"screen": "setup", "shift_active": false},
+      "oracle": {"kind": "derived_from_manual_rule", "document": "H", "pdf_pages": [4, 5, 8], "verification": "rule_reference"}
+    },
+    {
+      "id": "UI-alpha-variable-a",
+      "kind": "keys",
+      "status": "planned",
+      "initial": {"mode": "calculate", "screen": "editing", "expression": "empty", "modifiers": "none", "settings": {"input_output": "math_math"}},
+      "steps": [{"press": "KEY_ALPHA"}, {"press": "KEY_NEGATE"}],
+      "expected": {"screen": "editing", "expression": {"kind": "variable", "name": "A"}, "alpha_active": false},
+      "oracle": {"kind": "derived_from_key_mapping", "document": "K", "pdf_page": 1, "verification": "keyboard_image_previously_checked"}
+    }
+  ]
+}

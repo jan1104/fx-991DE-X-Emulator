@@ -1,0 +1,2834 @@
+
+--- PDF-SEITE 1 ---
+DE
+http://edu.casio.com
+Bedienungsanleitung
+RJA532713-001V01
+CASIO Weltweite Schulungs-Website
+http://world.casio.com/manual/calc
+Bedienungsanleitungen sind in diversen Sprachen 
+verfügbar unter
+Bitte bewahren Sie die gesamte Benutzerdokumentation für späteres 
+Nachschlagen auf.
+fx-991DE X
+fx-87DE X
+
+--- PDF-SEITE 2 ---
+INHALT 
+Informationen zu dieser Bedienungsanleitung..........................................2
+Initialisierung des Rechners...................................................................... 2
+Vorsichtsmaßregeln................................................................................... 2
+Erste Schritte............................................................................................. 3
+Rechenmodus........................................................................................... 5
+Eingabe- und Ausgabeformate................................................................. 6
+Konﬁgurieren des Rechner-Setups........................................................... 7
+Eingabe von Ausdrücken und Werten.......................................................9
+Umschalten der Rechenergebnisse........................................................11
+Elementare Berechnungen......................................................................12
+Berechnungen mit periodischen Dezimalzahlen.....................................14
+Berechnungsverlauf und Wiederholungsfunktion................................... 16
+Verwenden von Speicherfunktionen........................................................16
+Berechnungen von Funktionen................................................................17
+„QR Code“-Funktion................................................................................ 21
+Berechnungen mit komplexen Zahlen (nur fx-991DE X)......................... 22
+Verwenden von CALC............................................................................. 23
+Verwenden von SOLVE (nur fx-991DE X)................................................ 24
+Statistische Berechnungen......................................................................25
+Basis-n-Berechnungen............................................................................ 28
+Berechnung von Gleichungen (nur fx-991DE X)..................................... 30
+Berechnung von Matrizen (nur fx-991DE X)............................................31
+Erstellen einer Wertetabelle.....................................................................33
+Berechnung von Vektoren (nur fx-991DE X)............................................34
+Berechnung von Ungleichheiten (nur fx-991DE X)................................. 36
+Berechnung von Verhältnissen (nur fx-991DE X).................................... 37
+Verwenden der Nachprüfung.................................................................. 37
+Berechnungen von Verteilungen............................................................. 38
+Verwenden der Tabellenkalkulation......................................................... 41
+Wissenschaftliche Konstanten.................................................................45
+Metrische Umwandlung...........................................................................46
+Fehlermeldungen.....................................................................................46
+Bevor Sie auf Fehlbetrieb des Rechners schließen.................................48
+Austauschen der Batterie........................................................................48
+Technische Informationen........................................................................49
+■■ Häuﬁg gestellte Fragen ■■................................................................ 51
+Referenzblatt........................................................................................... 53
+• CASIO Computer Co., Ltd. übernimmt keine Gewähr für etwaige
+spezielle, mittelbare oder beiläuﬁge Schäden oder Folgeschäden, die
+aus dem Kauf oder der Verwendung dieses Produkts und der
+mitgelieferten Artikel resultieren.
+• Weiterhin übernimmt CASIO Computer Co., Ltd. keine Gewähr für aus
+der Verwendung dieses Produkts und der mitgelieferten Artikel
+resultierende Ansprüche gleich welcher Art von dritten Personen.
+1
+
+--- PDF-SEITE 3 ---
+Informationen zu dieser
+Bedienungsanleitung 
+• Wenn nicht gesondert angegeben, wird bei allen Bedienungsbeispielen
+in dieser Bedienungsanleitung davon ausgegangen, dass sich der
+Rechner in seiner ursprünglichen Vorgabe-Einstellung beﬁndet. Zum
+Zurücksetzen des Rechners auf die ursprüngliche Vorgabe-Einstellung
+führen Sie bitte die unter „Initialisierung des Rechners“ beschriebenen
+Schritte aus.
+• Änderungen des Inhalts dieser Anleitung ohne vorausgehende
+Ankündigung vorbehalten.
+• Die in dieser Bedienungsanleitung enthaltenen Anzeigen und
+Illustrationen (z. B. Tastenbeschriftungen) dienen nur der
+Veranschaulichung und können etwas vom tatsächlichen Aussehen
+abweichen.
+• In dieser Bedienungsanleitung verwendete Firmen- und Produktnamen
+sind möglicherweise eingetragene Marken oder Marken der jeweiligen
+Eigner.
+Initialisierung des Rechners 
+Führen Sie den folgenden Bedienungsvorgang aus, wenn Sie den Rechner
+initialisieren sowie den Rechenmodus und das Setup (außer die Einstellung
+Kontrast) auf ihre anfänglichen Standardeinstellungen zurücksetzen
+möchten. Achten Sie darauf, dass durch diesen Vorgang auch alle
+gegenwärtig im Rechnungsspeicher abgelegten Daten gelöscht werden.
+(RESET)(Alle initialis.)(Ja)
+Vorsichtsmaßregeln 
+Sicherheitsmaßregeln
+Batterie
+• Batterien außer Reichweite von Kindern aufbewahren!
+• Verwenden Sie ausschließlich den in dieser Bedienungsanleitung für
+den Rechner genannten Batterietyp.
+Vorsichtsmaßregeln für die Handhabung
+• Selbst wenn der Rechner normal arbeitet, sollten Sie die Batterie
+mindestens alle drei Jahre austauschen. Eine leere Batterie kann
+auslaufen und den Rechner beschädigen oder zu Fehlfunktionen führen.
+Lassen Sie eine leere Batterie nie im Rechner. Verwenden Sie den
+Rechner nicht, wenn die Batterie vollständig leer ist.
+• Die mit dem Rechner mitgelieferte Batterie ist durch Transport und
+Lagerung bereits etwas entladen. Dadurch kann das Auswechseln früher
+als bei der normalerweise zu erwartenden Batterielebensdauer
+erforderlich werden.
+• Vermeiden Sie die Benutzung und Lagerung des Rechners an sehr
+feuchten oder staubigen Orten oder in Räumen mit extremen
+Temperaturen.
+• Lassen Sie den Rechner niemals fallen und setzen Sie ihn niemals
+starken Stößen aus oder versuchen Sie niemals ihn zu verdrehen oder zu
+verbiegen.
+2
+
+--- PDF-SEITE 4 ---
+• Versuchen Sie auf keinen Fall, den Rechner zu zerlegen.
+• Verwenden Sie zum Säubern des Rechnergehäuses einen weichen,
+trockenen Lappen.
+• Immer wenn Sie den Rechner oder die Batterien entsorgen möchten,
+stellen Sie sicher, dass dieses gemäß den örtlichen Gesetzen und
+Reglementierungen erfolgt.
+Erste Schritte 
+Bevor Sie den Rechner verwenden, schieben Sie
+sein Schutzgehäuse nach unten, um dieses
+abzunehmen, und bringen Sie danach das
+Schutzgehäuse an der Rückseite des Rechners
+an, wie es in der nachfolgenden Abbildung
+dargestellt ist.
+Ein- und Ausschalten der
+Stromversorgung
+Drücken Sie , um den Rechner einzuschalten.
+Drücken Sie (OFF), um den Rechner
+auszuschalten.
+Hinweis: Der Rechner schaltet sich auch automatisch aus, wenn er
+ungefähr 10 Minuten oder 60 Minuten nicht verwendet wurde. Drücken Sie
+die -Taste, um den Rechner wieder einzuschalten.
+Einstellen des Anzeigekontrastes
+Zeigen Sie den Kontrast-Bildschirm durch Drücken der folgenden Tasten
+an:  (SETUP)
+*1 oder  *2 (Kontrast). Verwenden Sie dann
+ und , um den Kontrast anzupassen. Drücken Sie nach erfolgter
+Anpassung .
+*1: fx-87DE X   *2: fx-991DE X
+Wichtig: Falls durch die Einstellung des Anzeigekontrastes das Display
+nicht besser abgelesen werden kann, dann liegt wahrscheinlich eine
+niedrige Batteriespannung vor. Tauschen Sie die Batterie aus.
+Tastenbeschriftungen
+Durch Drücken der Taste  oder  gefolgt von der
+betreffenden Taste erfolgt der Zugriff auf die Zweit- bzw.
+Drittbelegungen. Die zusätzlichen Belegungen sind über der
+Taste angegeben.
+(1) Tastenbelegung  (2) Zusätzliche Belegung
+Diese Farbe: Bedeutet Folgendes:
+Gelb Drücken Sie die Taste  und danach die Taste
+der betreffenden Funktion.
+Rot
+Drücken Sie die Taste  und danach die
+Taste, um die entsprechende Variable,
+Konstante, Funktion oder das Symbol
+einzugeben.
+Violett (oder in violetten
+ Klammern)
+Wechseln Sie in den „Komplexe Zahlen“-Modus,
+um auf die Funktion zuzugreifen. (nur fx-991DE
+X)
+3
+
+--- PDF-SEITE 5 ---
+Blau (oder in blauen 
+Klammern)
+Wechseln Sie in den Basis-N-Modus, um auf die
+Funktion zuzugreifen.
+Über das Display
+(1) Eingegebener Ausdruck  (2) Rechenergebnis (3) Indikatoren
+• Wenn ein - oder -Indikator entweder rechts von der Zeile mit dem
+eingegebenen Ausdruck oder rechts von der Zeile mit dem
+Rechenergebnis erscheint, bedeutet dies, dass die angezeigte Zeile
+weiter rechts fortgesetzt wird. Verwenden Sie  und , um die
+Anzeige der Zeile entsprechend zu verschieben. Bitte beachten Sie,
+dass wenn Sie den eingegebenen Ausdruck verschieben möchten und
+sowohl der - als auch der -Indikator angezeigt werden, Sie zuerst die
+Taste  und danach die Tasten  und  zum Verschieben drücken
+müssen.
+• Die Tabelle unten beschreibt einige der typischen Indikatoren, die oben
+im Bildschirm erscheinen.
+
+Die Tastatur wurde durch das Drücken der -Taste
+umgeschaltet. Die Umschaltung wird wieder freigegeben
+und dieser Indikator verschwindet, sobald Sie eine Taste
+drücken.
+
+Der alphabetische Eingabemodus wurde durch das Drücken
+der -Taste aufgerufen. Der alphabetische Eingabemodus
+wird wieder freigegeben und dieser Indikator verschwindet,
+sobald Sie eine Taste drücken.
+// Zeigt die aktuelle Winkeleinheit-Einstellung (: Gradmaß
+(D), : Bogenmaß (R) oder : Gon (G)) im Setup-Menü an.
+FIX Eine feste Anzahl an Dezimalstellen ist wirksam.
+SCI Eine feste Anzahl von signiﬁkanten Stellen ist wirksam.
+M In dem unabhängigen Speicher ist ein Wert gespeichert.
+
+Der Rechner ist auf Bereitschaft für die Eingabe eines
+Variablennamens geschaltet, um der Variablen einen Wert
+zuzuordnen. Dieser Indikator erscheint, nachdem Sie die
+Taste  gedrückt haben.
+ Zeigt an, dass Math --> Math oder Math --> Dezim. für
+Eingabe/Ausgabe im Setup-Menü ausgewählt ist.
+ Das Display zeigt gegenwärtig ein Zwischenergebnis einer
+Rechnung mit Mehrfachanweisung an.
+
+Dieser Indikator wird angezeigt, wenn der Rechner direkt
+durch seine Solarzelle mit Strom versorgt wird, entweder
+ausschließlich durch sie oder durch eine Kombination von
+Solarzelle und Batterie.
+4
+
+--- PDF-SEITE 6 ---
+Benutzen der Menüs
+Einige Operationen dieses Rechners werden mithilfe von Menüs ausgeführt.
+Menüs werden angezeigt, indem Sie  oder  und dann (SETUP)
+drücken. Die allgemeine Bedienung von Menüs wird unten beschrieben.
+• Sie können eine Menüposition durch Drücken der Zifferntaste, welche
+der Nummer links von der Menüposition auf der Menüanzeige entspricht,
+auswählen.
+• Eine vertikale Bildlauﬂeiste (1) zeigt an, dass das Menü über den
+Bildschirm hinaus verläuft. In diesem Fall können Sie  und 
+verwenden, um das Menü nach oben und nach unten zu verschieben.
+Ein Pfeil nach links (2) zeigt an, dass es sich beim gegenwärtig
+angezeigten Menü um ein Untermenü handelt. Um von einem Untermenü
+zum übergeordneten Menü zurückzukehren, drücken Sie .
+• Um ein Menü zu schließen, ohne etwas auszuwählen, drücken Sie die
+Taste .
+Rechenmodus 
+Geben Sie den Rechenmodus an, der zu der auszuführenden
+Berechnungsart passt.
+1. Drücken Sie , um das Hauptmenü
+anzuzeigen.
+2. Verwenden Sie die Cursortasten, um die
+Hervorhebung zum gewünschten Symbol
+zu verschieben.
+(Beispiel: fx-991DE X)
+Hierzu: Wählen Sie dieses Symbol:
+Allgemeine Berechnungen
+ (Berechnungen)
+Berechnungen mit komplexen Zahlen
+ (Komplexe
+Zahlen)*
+Berechnungen in speziellen
+Zahlensystemen (binär, oktal, dezimal,
+hexadezimal)
+(Basis-N)
+Matrix-Berechnungen
+ (Matrizen)*
+Vektor-Berechnungen
+ (Vektorrechnung)*
+Statistische Berechnungen und
+Regressionsberechnungen
+(Statistik)
+Berechnungen von Verteilungen
+ (Verteilungsfkt.)
+5
+
+--- PDF-SEITE 7 ---
+Tabellenkalkulation-Berechnungen
+ (Tabellenkalk.)
+Erzeugen einer Wertetabelle auf
+Grundlage von ein oder zwei
+Funktionen
+(Tabellen)
+Berechnungen von Gleichungen und
+Funktionen
+(Gleichung/Funkt)*
+Berechnungen von Ungleichheiten
+ (Ungleichungen)*
+Nachprüfen einer Berechnung
+ (Berechn prüf)
+Verhältnis-Berechnungen
+ (Verhältnisse)*
+* nur fx-991DE X
+3. Drücken Sie , um den Anfangsbildschirm des Modus anzuzeigen,
+dessen Symbol Sie ausgewählt haben.
+Hinweis: Als Vorgabe ist der allgemeine Rechenmodus (Berechnungen)
+eingestellt.
+Eingabe- und Ausgabeformate 
+Bevor Sie eine Berechnung auf dem Rechner starten, müssen Sie zuerst die
+Operationen in der Tabelle unten verwenden, um die Formate festzulegen,
+die zur Eingabe der Berechnungsformeln und zur Ausgabe der
+Rechenergebnisse angewendet werden sollen.
+Zum Festlegen dieses Eingabe- und
+Ausgabetyps:
+Drücken Sie
+(SETUP)
+
+(Eingabe/Ausgabe) und
+drücken Sie dann:
+Eingabe: Natürliche Darstellung; Ausgabe:
+Format mit einem Bruch, √ oder π*1 (Math --> Math)
+Eingabe: Natürliche Darstellung; Ausgabe:
+In Dezimalwert konvertiert (Math --> Dezim.)
+Eingabe: Linear*2; Ausgabe: Dezimal oder
+Bruch (Lin. --> Linear)
+Eingabe: Linear*2; Ausgabe: In Dezimalwert
+konvertiert (Lin. --> Dezim.)
+*1 Die Dezimalausgabe wird angewendet, wenn diese Formate aus
+irgendeinem Grund nicht ausgegeben werden können.
+*2 Alle Berechnungen, einschließlich Brüche und Funktionen, werden in
+einer einzigen Zeile eingegeben. Das Ausgabeformat ist das Gleiche
+wie für Modelle ohne natürliche Darstellung (S-V.P.A.M.-Modelle usw.)
+Anzeige-Beispiele für die Eingabe/Ausgabe-Formate
+Math --> Math
+6
+
+--- PDF-SEITE 8 ---
+Math --> Dezim.
+Lin. --> Linear
+Lin. --> Dezim.
+Hinweis: Die Vorgabe-Einstellung für das Eingabe-/Ausgabe-Format lautet
+Math --> Math.
+Konﬁgurieren des Rechner-Setups 
+Ändern des Rechner-Setups
+1. Drücken Sie (SETUP), um das Setup-Menü anzuzeigen.
+2. Verwenden Sie  und , um das Setup-Menü zu verschieben, und
+geben Sie dann die Nummer ein, die links neben dem Element, dessen
+Einstellung geändert werden soll, angezeigt wird.
+Elemente und verfügbare Einstellungsoptionen
+„◆“ zeigt die anfängliche Standardeinstellung an.
+Eingabe/Ausgabe   Math --> Math◆;  Math --> Dezim.;  Lin. -->
+Linear;  Lin. --> Dezim.    Legt das Format fest, das vom Rechner für die
+Eingabe der Formeln und die Ausgabe des Rechenergebnisses verwendet
+wird.
+Winkeleinheit  
+Gradmaß (D) ◆;  Bogenmaß (R);  Gon (G)    Legt
+Altgrad, Bogenmaß oder Gon als Winkeleinheit für die Eingabe der Werte
+und die Anzeige des Rechenergebnisses fest.
+Zahlenformat    Legt die Anzahl der Stellen für die Anzeige eines
+Rechenergebnisses fest.
+ Fix: Der von Ihnen speziﬁzierte Wert (von 0 bis 9) steuert die Anzahl der
+Dezimalstellen für die Anzeige der Rechenergebnisse. Die
+Rechenergebnisse werden auf die speziﬁzierte Anzahl von Stellen
+gerundet, bevor sie angezeigt werden.
+Beispiel: 1007(≈)*    14,286  (Fix 3)
+
+Sci: Der von Ihnen speziﬁzierte Wert (von 0 bis 9) steuert die Anzahl der
+signiﬁkanten Stellen für die Anzeige der Rechenergebnisse. Die
+Rechenergebnisse werden auf die speziﬁzierte Anzahl von Stellen
+gerundet, bevor sie angezeigt werden.
+Beispiel: 17(≈)*    1,4286 × 10
+-1  (Sci 5)
+ Norm: Zeigt Rechenergebnisse im Exponentialformat an, wenn sie sich
+innerhalb der nachstehenden Bereiche beﬁnden.
+ Norm 1◆: 10-2 > |x|, |x| ≧ 1010,  Norm 2: 10-9 > |x|, |x| ≧ 1010
+Beispiel: 1200(≈)* 5 × 10-3 (Norm 1), 0,005 (Norm 2)
+7
+
+--- PDF-SEITE 9 ---
+* Wenn Sie nach der Eingabe einer Berechnung die Tasten (≈)
+anstelle von  drücken, wird das Rechenergebnis in Dezimalform
+angezeigt.
+Dezimalpräfixe   Ein;  Aus◆    Legt fest, ob die Rechenergebnisse mit
+Dezimalpräﬁxen angezeigt werden.
+Hinweis: Ein Indikator (E) wird oben im Bildschirm angezeigt, wenn für
+diese Einstellung Ein ausgewählt ist.
+Bruchergebnis   ab/c;  d/c◆    Legt entweder einen gemischten Bruch
+oder einen unechten Bruch für die Anzeige von Brüchen in
+Rechenergebnissen fest.
+Komplexe Zahlen (nur fx-991DE X)   a+bi◆;  r∠θ    Legt entweder
+kartesische Koordinaten oder Polarkoordinaten für die Rechenergebnisse
+im „Komplexe Zahlen“-Modus und die Lösungen im Gleichung/Funkt-
+Modus fest.
+Hinweis: Der Indikator i wird oben im Bildschirm angezeigt, wenn a+bi für
+die „Komplexe Zahlen“-Einstellung ausgewählt ist. ∠ wird angezeigt, wenn
+r∠θ ausgewählt ist.
+Statistik  
+Ein;  Aus◆    Legt fest, ob eine Häuﬁgkeitsspalte (Freq) im
+Statistik-Editor des Statistik-Modus angezeigt wird.
+Tabellenkalk.    Zum Konﬁgurieren der Tabellenkalk.-Modus-Einstellungen.
+ Autom. Berechn.: Legt fest, ob Formeln automatisch neu berechnet
+werden.
+ Ein◆;  Aus    Aktiviert oder deaktiviert die automatische
+Neuberechnung.
+ Zelle anzeigen: Legt fest, ob eine Formel im Bearbeitungsfeld so, wie
+sie ist, oder als ihr Rechenergebnis-Wert angezeigt wird.
+ Formel◆: Zeigt eine Formel so an, wie sie ist.
+ Wert: Zeigt den Rechenergebnis-Wert der Formel an.
+Gleichung/Funkt (nur fx-991DE X)   Ein◆;  Aus    Legt fest, ob im
+Gleichung/Funkt-Modus komplexe Zahlen in den Lösungen verwendet
+werden.
+Tabellen   f(x);  f(x),g(x)◆    Legt fest, ob nur die Funktion f(x) oder die
+beiden Funktionen f(x) und g(x) im Tabellen-Modus verwendet werden.
+Period. Darst.   Ein◆;  Aus    Legt fest, ob die Rechenergebnisse mit
+periodischer Darstellung angezeigt werden.
+1000er-Trennung  
+Ein;  Aus◆    Legt fest, ob in Rechenergebnissen
+1000er-Trennzeichen verwendet werden.
+Mehrzeilengröße   
+Normale Schrift◆;  Kleine Schrift    Legt die
+Schriftgröße für die Anzeige fest, wenn Lin. --> Linear oder Lin. --> Dezim.
+für Eingabe/Ausgabe ausgewählt ist. Bei der Auswahl von Normale Schrift
+können bis zu vier Zeilen angezeigt werden, bei Kleine Schrift bis zu sechs
+Zeilen.
+QR Code    Legt die Version des QR Code fest, der angezeigt wird, wenn
+(QR) gedrückt wird.
+
+Version 3: Steht für QR Code Version 3.
+ Version 11◆: Steht für QR Code Version 11.
+Automat Aus   10 Min◆;  60 Min    Geben Sie die Zeitspanne an, bis
+„Automat Aus“ (automatische Abschaltung) ausgelöst wird.
+8
+
+--- PDF-SEITE 10 ---
+Zum Initialisieren der Einstellungen des Rechners (außer der Kontrast-
+Einstellung)
+(RESET)(Setupdaten)(Ja)
+Eingabe von Ausdrücken und Werten 
+Allgemeine Eingaberegeln
+Wenn Sie die -Taste drücken, wird die Berechnung automatisch in der
+entsprechenden Reihenfolge ausgeführt und das Ergebnis wird im Display
+angezeigt.
+4 × sin 30 × (30 + 10 × 3) = 120
+*1 Für die Funktion sin und andere Funktionen, die Klammern beinhalten,
+muss die schließende Klammer eingegeben werden.
+*2 Dieses Multiplikationszeichen (×) kann weggelassen werden.
+*3 Die schließende Klammer direkt vor der Operation  kann
+weggelassen werden.
+Hinweis
+• Wenn nur noch 10 Byte oder weniger für die Eingabe verbleiben, ändert
+der Cursor seine Form in . Wenn dieses eintritt, beenden Sie die
+Eingabe der Berechnung und drücken Sie die Taste .
+• Wenn Sie eine Berechnung ausführen, die sowohl Division als auch
+Multiplikation enthält, wobei das Multiplikationszeichen weggelassen
+wurde, werden automatisch Klammern eingefügt, wie in den Beispielen
+unten gezeigt.
+- Wenn ein Multiplikationszeichen direkt vor einer öffnenden Klammer
+oder nach einer schließenden Klammer weggelassen wird.
+Beispiel: 6 ÷  2
+1 +  2  6 ÷ 2 1 +  2
+- Wenn ein Multiplikationszeichen direkt vor einer Variablen, einer
+Konstante usw. weggelassen wird.
+Beispiel: 2÷2 2  2 ÷ 2 2
+Prioritäten für die Ausführung von Berechnungen
+Die Reihenfolge der Ausführung der Berechnungen entspricht den unten
+aufgeführten Regeln. Wenn die Priorität von zwei Ausdrücken gleich ist,
+erfolgt die Berechnung von links nach rechts.
+1 Klammerausdrücke
+2
+Funktionen mit Klammern (sin(, log( usw.; Funktionen mit einem
+Argument rechts; Funktionen, die eine schließende Klammer nach
+dem Argument benötigen)
+3
+Funktionen nach dem eingegebenen Wert (𝑥
+2, 𝑥3, 𝑥-1, 𝑥!,  °’ ”, °, r, g,
+%, 𝑡 (fx-991DE X)), Dezimalpräﬁxe (m, μ, n, p, f, k, M, G, T, P, E),
+Potenzen ( ), Wurzeln ()
+4 Brüche
+5 Negative Vorzeichen ((-)), Basis-n-Symbole (d, h, b, o)
+9
+
+--- PDF-SEITE 11 ---
+6 Metrische Umwandlungsbefehle (cmin usw.), Schätzwerte im
+Statistik-Modus (𝑥, 𝑦, 𝑥1, 𝑥2)
+7 Multiplikationen mit weggelassenem Multiplikationszeichen
+8 Permutation (nPr), Kombination (nCr)
+Polarkoordinatensymbol für komplexe Zahlen (∠) (fx-991DE X)
+9 Skalarprodukt (•) (fx-991DE X)
+10 Multiplikation (×), Division (÷), Berechnungen mit Rest (÷R)
+11 Addition (+), Subtraktion (−)
+12 and (logischer Operator)
+13 or, xor, xnor (logische Operatoren)
+Hinweis: Beim Quadrieren eines negativen Wertes (wie -2), muss der zu
+quadrierende Wert von Klammern umgeben sein (2). Da x 2
+eine höhere Priorität als das negative Vorzeichen hat, würde bei Eingabe
+von 2 die Zahl 2 quadriert und das Ergebnis dann mit einem
+negativen Vorzeichen versehen. Beachten Sie deshalb immer die
+Prioritätenreihenfolge und schließen Sie negative Werte mit Klammern ein,
+wenn erforderlich.
+Eingeben eines Ausdrucks mit natürlicher
+Darstellung (nur Math --> Math oder Math --> Dezim.)
+Formeln und Ausdrücke mit Brüchen und/oder speziellen Funktionen wie z.
+B. √ können mithilfe von Vorlagen in natürlicher Darstellung eingegeben
+werden. Diese Vorlagen erscheinen, wenn bestimmte Tasten gedrückt
+werden.
+Beispiel: 3
+1
+2 +5
+3
+2
+1. Drücken Sie ().
+• Dadurch wird eine Vorlage für gemischte
+Brüche eingegeben.
+2. Geben Sie Werte in die Ganzzahl-, Zähler- und Nenner-Bereiche der
+Vorlage ein.
+312
+3. Geben Sie den Rest des Ausdrucks auf die gleiche Weise ein.
+() 532
+Tipp: Während sich der Eingabecursor innerhalb des Eingabebereichs
+einer Vorlage beﬁndet (gemischte Brüche, Integration (∫)*, Produkt (Π) und
+Summe (Σ)), springt er durch Drücken von  zur Position direkt nach
+der Vorlage (rechts davon), während er durch Drücken von  zur
+Position direkt davor (links davon) springt.
+*nur fx-991DE X
+10
+
+--- PDF-SEITE 12 ---
+Hinweis
+• Wenn Sie  drücken und ein Rechenergebnis erhalten, kann es sein,
+dass ein Teil Ihres eingegebenen Ausdruckes abgeschnitten wird. Wenn
+Sie den vollständigen eingegebenen Ausdruck wieder sehen möchten,
+drücken Sie  und verwenden Sie dann  und , um den
+eingegebenen Ausdruck zu verschieben.
+• Verschachteln von Funktionen und runden Klammern ist zulässig. Bei
+Verschachteln von zu vielen Funktionen und/oder runden Klammern sind
+weitere Eingaben nicht mehr möglich.
+Zum Rückgängigmachen von Operationen (nur Math --> Math oder
+Math --> Dezim.): Um die letzte Tastenbetätigung rückgängig zu machen,
+drücken Sie (UNDO). Um eine soeben rückgängig gemachte
+Tastenbetätigung wiederherzustellen, drücken Sie noch einmal
+(UNDO).
+Verwenden von Werten und Ausdrücken als
+Argumente (nur Math --> Math oder Math --> Dezim.)
+Beispiel: Eingabe von 1+ 7
+6 und anschließende Änderung in 1+ 7
+6
+176(INS)
+
+Durch das Drücken von (INS) im obigen Beispiel wird 7
+6 zum
+Argument der Funktion, die durch die nächste Tastenbetätigung
+eingegeben wird (√).
+Eingabemodus zum Überschreiben (nur Lin. -->
+Linear oder Lin. --> Dezim.)
+Im Modus Überschreiben ersetzt der Text, den Sie eingeben, den
+vorhandenen Text an der aktuellen Cursorposition. Sie können zwischen
+den Modi Einfügen und Überschreiben durch Ausführung von folgender
+Bedienungsfolge umschalten: (INS). Der Cursor erscheint im Modus
+Einfügen als „“ und im Modus Überschreiben als „“.
+Umschalten der Rechenergebnisse 
+Wenn im Setup-Menü für Eingabe/Ausgabe die Option Math --> Math oder
+Math --> Dezim. ausgewählt wurde, wird jedes Drücken von  das aktuell
+angezeigte Rechenergebnis zwischen Bruchdarstellung und
+Dezimaldarstellung, √-Form und Dezimalform oder π-Form und
+Dezimalform umschalten.
+𝜋÷6= 1
+6 𝜋 = 0,5235987756  (Math --> Math)
+(π )6
+1
+6 π ←→ 0,5235987756
+2+2 × 3 = 5,913591358 = 6+2 3 (Math --> Dezim.)
+223 5,913591358 ←→ 6+2 3
+Unabhängig davon, welche Option im Setup-Menü für Eingabe/Ausgabe
+ausgewählt wurde, wird jedes Drücken von  das aktuell angezeigte
+11
+
+--- PDF-SEITE 13 ---
+Rechenergebnis zwischen Dezimaldarstellung und Bruchdarstellung
+umschalten.
+Wichtig
+• Bei bestimmten Rechenergebnissen ist das Konvertieren des
+angezeigten Wertes mit der Taste  nicht möglich.
+• Sie können nicht von der Dezimalform zur Darstellung mit gemischten
+Brüchen umschalten, wenn die Gesamtanzahl der Stellen im gemischten
+Bruch (einschließlich Ganzzahl, Zähler, Nenner und Trennzeichen) größer
+ist als 10.
+• Wenn für Period. Darst. im Setup-Menü Ein ausgewählt ist, wird durch
+das Drücken von  das Rechenergebnis in die periodische
+Darstellung umgeschaltet. Für ausführliche Informationen siehe
+„Berechnungen mit periodischen Dezimalzahlen“.
+Um ein Rechenergebnis als Dezimalwert zu erhalten, wenn Math -->
+Math oder Lin. --> Linear ausgewählt ist
+Drücken Sie nach der Eingabe einer Berechnung die Tasten (≈)
+anstelle von .
+Elementare Berechnungen 
+Bruchrechnung
+Beachten Sie, dass die Eingabemethode für Brüche von der aktuellen
+Eingabe/Ausgabe-Einstellung im Setup-Menü abhängt.
+2
+3 +1
+1
+2 =
+13
+6 (Math --> Math) 23()
+112
+13
+6
+(Lin. --> Linear) 23112 136
+Hinweis
+• Das Ergebnis einer Rechnung, in der sowohl Brüche als auch
+Dezimalwerte vorkommen, wird als Dezimalwert angezeigt, wenn eine
+andere Darstellung als Math --> Math ausgewählt wurde.
+• Die Ergebnisse von Bruchrechnungen werden immer gekürzt, bevor sie
+angezeigt werden.
+• Um die Anzeige eines Rechenergebnisses zwischen unechtem Bruch
+und gemischtem Bruch umzuschalten, drücken Sie ().
+Prozentrechnungen
+Falls Sie einen Wert eingeben und die Tasten (%) drücken, wird der
+Eingabewert zu einem Prozentsatz.
+150 × 20% = 30 15020(%) 30
+Berechnen Sie, wieviel Prozent 660 von 880 ist. (75%)
+660880(%) 75
+Verringern Sie 3500 um 25%. (2625)
+3500350025(%) 2625
+Berechnungen in Grad, Minuten und Sekunden
+(Sexagesimal-Rechnung)
+Die nachstehende Syntax dient zur Eingabe eines Sexagesimal-Werts:
+{Grad}  {Minuten}  {Sekunden} . Beachten Sie, dass Sie für Grad
+und Minuten immer eine Eingabe tätigen müssen, auch wenn diese Null ist.
+2°20’30” + 9’30” = 2°30’00”
+220300930 2°30’0”
+12
+
+--- PDF-SEITE 14 ---
+Wandeln Sie 2°30’0” in sein Dezimaläquivalent
+um.  2,5
+(Wandelt Dezimal in Sexagesimal um.)    2°30’0”
+Mehrfachanweisungen
+Sie können den Doppelpunkt (:) verwenden, um zwei oder mehr Ausdrücke
+zu verbinden und von links nach rechts zu berechnen, wenn Sie die -
+Taste drücken.
+3 + 3 : 3 × 3 33
+(:) *1 oder (:) *2 33 6
+ 9
+*1: fx-87DE X   *2: fx-991DE X
+Hinweis: Die Eingabe eines Doppelpunkts (:), während Lin. --> Linear oder 
+Lin. --> Dezim. für die Einstellung Eingabe/Ausgabe im Setup-Menü
+ausgewählt ist, verursacht die Ausführung der Berechnung in einer neuen
+Zeile.
+Verwendung der technischen Notation
+Wandeln Sie den Wert 1234 in die
+technische Notation um, wobei das
+Dezimaltrennzeichen erst nach rechts und
+dann nach links verschoben wird.
+1234 1234
+ 1,234×10
+3
+ 1234×100
+(←) 1,234×103
+(←) 0,001234×106
+Hinweis: Das oben gezeigte Rechenergebnis erscheint, wenn Aus für die
+Einstellung Dezimalpräﬁxe im Setup-Menü ausgewählt ist.
+Verwenden von Dezimalpräfixen
+Ihr Rechner unterstützt die Verwendung von 11 Dezimalpräﬁxen (m, μ, n, p,
+f, k, M, G, T, P, E), die Sie zur Eingabe von Werten oder zur Anzeige von
+Rechenergebnissen verwenden können.
+Zur Anzeige von Rechenergebnissen mit Dezimalpräfixen
+Ändern Sie im Setup-Menü die Einstellung Dezimalpräﬁxe in Ein.
+Beispiele für Eingabe und Berechnungen mit Dezimalpräfixen
+Zum Eingeben von 500k
+500(Dezimalpräﬁxe)
+(k) 500k
+Zum Berechnen von 999k (Kilo) + 25k (Kilo) = 1,024M (Mega) = 1024k
+(Kilo) = 1024000
+999(Dezimalpräﬁxe)(k)
+25(Dezimalpräﬁxe)(k) 1,024M
+ 1024k
+ 1024000
+(←) 1024k
+Berechnungen mit Rest
+Sie können die Funktion ÷R verwenden, um den Quotienten und den Rest in
+einer Divisionsberechnung zu erhalten.
+Zum Berechnen des Quotienten und des Restes von 5 ÷ 2 (Quotient = 2,
+Rest = 1)
+13
+
+--- PDF-SEITE 15 ---
+5(÷R) 2
+Hinweis
+• Nur der Quotient einer Berechnung mit Rest (÷R) wird im Ans-Speicher
+gespeichert.
+• Das Rechenergebnis wird wie rechts im
+Bildschirm ersichtlich angezeigt, wenn Lin.
+--> Linear oder Lin. --> Dezim. für die
+Eingabe/Ausgabe-Einstellung im Setup-
+Menü ausgewählt wurde.
+Fälle, in denen die Division mit Rest zu einer Division ohne Rest wird
+Falls eine der folgenden Bedingungen zutrifft, wenn Sie eine Division mit
+Rest durchführen, wird die Berechnung als normale Division (ohne Rest)
+behandelt.
+• Wenn entweder der Dividend oder der Divisor ein sehr großer Wert ist
+• Wenn der Quotient keine positive Ganzzahl ist bzw. wenn der Rest keine
+positive Ganzzahl oder kein positiver Bruchwert ist
+Primfaktorzerlegung
+Im Berechnungen-Modus kann eine positive Ganzzahl mit nicht mehr als 10
+Stellen in Primfaktoren zerlegt werden.
+Zum Zerlegen von 1014 in Primfaktoren
+1014 1014
+(FACT) 2×3×13
+2
+Um den unzerlegten Wert wieder anzuzeigen, drücken Sie (FACT)
+oder .
+Hinweis: Die unten beschriebenen Arten von Werten können nicht zerlegt
+werden, selbst wenn sie 10 oder weniger Stellen haben.
+• Einer der Primfaktoren des Wertes ist 1018081 oder größer.
+• Zwei oder mehr der Primfaktoren des Wertes haben mehr als drei Stellen
+Der Teil, der nicht zerlegt werden kann, wird in der Anzeige mit Klammern
+eingeschlossen.
+Berechnungen mit periodischen
+Dezimalzahlen 
+Ihr Rechner verwendet eine periodische Dezimalzahl, wenn Sie einen Wert
+eingeben. Rechenergebnisse können ebenfalls in der periodischen
+Dezimalform angezeigt werden, falls zutreffend.
+Eingeben einer periodischen Dezimalzahl
+Drücken Sie bei der Eingabe einer periodischen Dezimalzahl (),
+bevor Sie ihre Periode (die wiederholten Ziffern) eingeben, und geben Sie
+dann die Periode bis zur letzten Stelle ein. Um die periodische Dezimalzahl
+0,909090.... (0, 90
+) einzugeben, führen Sie folgende Schritte aus:
+0() 90.
+Wichtig
+• Falls der Wert mit einem ganzzahligen Teil (wie: 12,3123123…) beginnt,
+geben Sie den ganzzahligen Teil nicht mit an, wenn Sie die Periode
+eingeben (12, 312).
+14
+
+--- PDF-SEITE 16 ---
+• Die Eingabe einer periodischen Dezimalzahl ist nur im Format Math -->
+Math oder im Format Math --> Dezim. möglich.
+1, 021 +  2, 312
+(SETUP) *1 oder  *2 (Period. Darst.)(Ein)
+*1: fx-87DE X   *2: fx-991DE X
+1() 021
+2() 312
+Als periodische Dezimalzahl angezeigtes
+Ergebnis:  3, 3
+Hinweis: Die Eingabe einer periodischen Dezimalzahl kann unabhängig
+von der Einstellung Period. Darst. im Setup-Menü vorgenommen werden.
+Anzeigen eines Rechenergebnisses als periodischer
+Dezimalwert
+Wenn Ein für die Setup-Einstellung Period. Darst. ausgewählt ist, schaltet
+jedes Drücken von  das Format des angezeigten Rechenergebnisses
+zyklisch in einer der unten gezeigten Reihenfolgen um.
+Periodische Dezimalzahl
+Dezimalwert entsprechend der Einstellungen für die Anzeige (Norm, Fix, Sci)
+Bruch
+oder
+Periodische Dezimalzahl
+Dezimalwert entsprechend der Einstellungen für die Anzeige (Norm, Fix, Sci)
+Bruch
+1
+7 = 0, 142857 = 0,1428571429
+17 1
+7
+Anzeige als periodische Dezimalzahl:  0, 142857
+Dezimalwert entsprechend der Einstellung
+für Norm 1:  0,1428571429
+Zurückkehren zum ursprünglichen
+Anzeigeformat (Bruch): 
+1
+7
+Nur ein Rechenergebnis, das die nachfolgenden Bedingungen erfüllt, kann
+als periodische Dezimalzahl angezeigt werden.
+• Die Gesamtanzahl der Stellen in einem gemischten Bruch (einschließlich
+Ganzzahl, Zähler, Nenner und Trennzeichen) muss 10 oder weniger sein.
+• Bei der Anzeige als periodische Dezimalzahl darf die Datengröße des
+Wertes nicht mehr als 99 Bytes betragen. Sie wird wie folgt berechnet:
+[Anzahl der Stellen (je 1 Byte)] + [1 Byte für den Dezimalpunkt] + [3
+Bytes für den Verwaltungscode für periodische Dezimalzahlen]. Zum
+Beispiel würde die Datengröße von 0, 1
+23 4 Bytes für die Stellen, 1 Byte
+für den Dezimalpunkt und 3 Bytes für den Verwaltungscode für
+periodische Dezimalzahlen betragen, also insgesamt 8 Bytes.
+15
+
+--- PDF-SEITE 17 ---
+Berechnungsverlauf und
+Wiederholungsfunktion 
+Berechnungsverlauf
+Ein  und/oder  oben im Display zeigt an, dass der Berechnungsverlauf
+nach oben und/oder unten über den angezeigten Bildschirm hinaus geht.
+Sie können durch den Inhalt des Berechnungsverlaufs durch Drücken der
+Tasten   und  blättern.
+2 + 2 = 4 22 4
+3 + 3 = 6 33 6
+(Blättert zurück.)   4
+Hinweis: Sämtliche Daten des Berechnungsverlaufs werden gelöscht,
+wenn Sie die -Taste drücken, den Rechenmodus ändern, die Eingabe/
+Ausgabe-Einstellung ändern oder einen RESET-Vorgang („Alle initialis.
+“ oder „Setupdaten“) ausführen.
+Wiederholungsfunktion
+Während ein Rechenergebnis auf dem Display angezeigt wird, können Sie
+die - oder -Taste drücken, um den für die vorhergehende
+Berechnung verwendeten Ausdruck zu bearbeiten.
+4 × 3 + 2 = 14 432 14
+4 × 3 − 7 = 5 (Fortsetzung)  7 5
+Verwenden von Speicherfunktionen 
+Antwortspeicher (Ans)
+Das zuletzt erhaltene Rechenergebnis wird im Antwortspeicher (Ans)
+gespeichert.
+Das Ergebnis von 14 × 13 ist durch 7 zu teilen
+1413 182
+(Fortsetzung)  7
+123 + 456 = 579
+789 − 579 = 210
+123456
+(Fortsetzung)  789
+579
+210
+Variablen (A, B, C, D, E, F, M, x, y)
+Sie können einer Variablen einen bestimmten Wert zuordnen und sie in den
+Rechnungen verwenden.
+Das Ergebnis von 3 + 5 ist der Variablen A zuzuordnen
+35(A) 8
+Der Inhalt der Variablen A ist mit 10 zu multiplizieren
+(Fortsetzung)  (A)10*
+1 80
+Aufrufen des Inhalts der Variablen A
+(Fortsetzung)  (RECALL)* 2
+(A) 8
+16
+
+--- PDF-SEITE 18 ---
+Löschen des Inhalts der Variablen A
+0(A) 0
+*1 Geben Sie eine Variable ein, wie hier gezeigt: Drücken Sie  und
+drücken Sie dann die Taste, die dem gewünschten Variablennamen
+entspricht. Zum Eingeben von x als Variablennamen können Sie
+(x) oder  drücken.
+*2 Durch das Drücken von (RECALL) wird ein Bildschirm
+angezeigt, der die momentan den Variablen A, B, C, D, E, F, M, x und y
+zugewiesenen Werte zeigt. Auf diesem Bildschirm werden Werte immer
+mit dem Zahlenformat „Norm 1“ angezeigt. Um den Bildschirm zu
+schließen, ohne einen Variablenwert aufzurufen, drücken Sie .
+Unabhängiger Speicher (M)
+Sie können Rechenergebnisse zu dem Inhalt des unabhängigen Speichers
+addieren bzw. von diesem subtrahieren. Das „M“ erscheint auf dem Display,
+wenn der unabhängige Speicher einen Wert ungleich 0 enthält.
+Löschen des Inhalts von M
+0(M) 0
+Das Ergebnis von 10 × 5 ist zu M zu addieren
+(Fortsetzung)  105 50
+Das Ergebnis von 10 + 5 ist von M zu subtrahieren
+(Fortsetzung) 105(M−) 15
+Aufrufen des Inhalts von M
+(Fortsetzung) (RECALL)(M) 35
+Hinweis: Für den unabhängigen Speicher wird die Variable M verwendet.
+Sie können M auch aufrufen und in einer Berechnung verwenden, die Sie
+eingeben.
+Löschen des Inhalts aller Speicher
+Der Inhalt des Antwortspeichers, des unabhängigen Speichers und von
+Variablen bleibt erhalten, auch wenn Sie die -Taste drücken, den
+Rechenmodus ändern oder den Rechner ausschalten. Verwenden Sie den
+nachstehenden Vorgang, um den Inhalt aller Speicher zu löschen.
+(RESET)(Speicher)(Ja)
+Berechnungen von Funktionen 
+Hinweis: Um eine laufende Rechnung abzubrechen, bevor das Ergebnis
+erscheint, drücken Sie die Taste .
+Pi π: π wird als 3,141592654 angezeigt, aber für interne Berechnungen wird
+π = 3,14159265358980 verwendet.
+Natürlicher Logarithmus mit der Basis e: e wird als 2,718281828
+angezeigt, aber für interne Berechnungen wird e = 2,71828182845904
+verwendet.
+sin, cos, tan, sin
+-1, cos-1, tan-1: Speziﬁzieren Sie die Winkeleinheit, bevor
+Sie Rechnungen ausführen.
+sin 30° = 1
+2 (Winkeleinheit: Gradmaß (D))  30 1
+2
+sinh, cosh, tanh, sinh
+-1, cosh-1, tanh-1: Geben Sie eine Funktion über das
+Menü ein, das durch Drücken von (Hyperbol. Fkt.)* 1 eingeblendet
+wird. Die Einstellung der Winkeleinheit hat keinen Einﬂuss auf die
+Berechnungen.
+17
+
+--- PDF-SEITE 19 ---
+*1 Abhängig vom Rechenmodus müssen Sie  drücken.
+∘, r, g : Diese Funktionen legen die Winkeleinheit fest. ° steht für Altgrad, r
+für Bogenmaß und g für Gon. Geben Sie eine Funktion aus dem Menü ein,
+welches erscheint, wenn Sie die folgende Tastenbedienung ausführen:
+(Winkeleinheit)* 2.
+π/2 Bogenmaß = 90°  (Winkeleinheit: Gradmaß (D))
+(π)2(Winkeleinheit)( r) 90
+*2 Abhängig vom Rechenmodus müssen Sie  drücken.
+, : Exponentialfunktionen.
+e5 × 2 = 296,8263182
+(Math --> Math) () 52 296,8263182
+(Lin. --> Linear) () 52 296,8263182
+log: Logarithmische Funktion. Verwenden Sie (log), um log ab als
+log (a; b) einzugeben. Die Basis 10 wird verwendet, wenn Sie keinen Wert
+für a eingeben.
+log
+101000 = log 1000 = 3 (log) 1000 3
+log216 = 4 (log) 2(;) 16 4
+Die -Taste kann auch zur Eingabe verwendet werden, aber nur, wenn
+im Setup-Menü für Eingabe/Ausgabe die Option Math --> Math oder Math --
+> Dezim. ausgewählt wurde. In diesem Fall müssen Sie einen Wert für die
+Basis eingeben.
+log
+216 = 4 216 4
+ln: Natürlicher Logarithmus mit der Basis e.
+ln 90 (= loge 90) = 4,49980967 90 4,49980967
+x2, x3,  ,  ,  ,  , x-1: Potenzen, Wurzeln und Kehrwerte.
+(1 + 1)2+2 = 16 1122 16
+(52)3 = 15625 5(x 3) 15625
+32
+5
+ = 2
+(Math --> Math) ( ) 532 2
+(Lin. --> Linear) 5() 32 2
+2×3  =3 2 = 4,242640687...
+(Math --> Math) 23 3 2
+(Lin. --> Linear) 23 4,242640687
+,  (nur fx-991DE X):  Funktion zum Ausführen der numerischen
+Integration mithilfe der Gauß-Kronrod-Methode sowie Funktion zur
+Approximation der Ableitung anhand der zentralen Differenzmethode.
+Eingabe-Syntax
+(1) Wenn Math --> Math oder Math --> Dezim. ausgewählt ist
+(2) Wenn Lin. --> Linear oder Lin. --> Dezim. ausgewählt ist
+*
+1 * 2
+(1) ∫𝑎
+𝑏
+𝑓 𝑥 𝑑𝑥 𝑑
+𝑑𝑥 𝑓 𝑥
+𝑥=𝑎
+(2) ∫ 𝑓 𝑥 ; 𝑎 ; 𝑏 ; 𝑡 𝑜 𝑙 𝑑
+𝑑𝑥 𝑓 𝑥 ; 𝑎 ; 𝑡 𝑜 𝑙
+*1 tol gibt die Toleranz an. Wenn für tol nichts eingegeben wird, wird der
+Wert 1 × 10-5 verwendet.
+*2 tol gibt die Toleranz an. Wenn für tol nichts eingegeben wird, wird der
+Wert 1 × 10-10 verwendet.
+18
+
+--- PDF-SEITE 20 ---
+Was bei der Integral- und Differentialrechnung zu beachten ist
+• Wenn Sie in f(x) eine trigonometrische Funktion verwenden, geben Sie
+„Bogenmaß (R)“ als Winkeleinheit an.
+• Ein kleinerer Wert für tol erhöht zwar die Genauigkeit, die
+Berechnungszeit nimmt aber ebenfalls zu. Verwenden Sie für tol
+mindestens 1 × 10-14.
+• Die Integration nimmt normalerweise viel Zeit in Anspruch.
+• Abhängig vom Inhalt der Funktion f(x), positiven und negativen Werten
+im Integrationsbereich oder dem Integrationsbereich kann ein
+Rechenfehler erzeugt werden, der die Toleranz übersteigt, wodurch eine
+Fehlermeldung angezeigt wird.
+• Bei Berechnungen von Ableitungen können nicht aufeinander folgende
+Punkte, abrupte Schwankungen, Punkte mit äußerst hohen oder
+niedrigen Werten, Wendepunkte oder die Einbeziehung von Punkten, an
+denen eine Ableitung unmöglich ist, oder ein Differentialpunkt oder ein
+Differentialrechnungsergebnis in der Nähe von 0 zu einer niedrigen
+Genauigkeit oder einem Fehler führen.
+∫1
+𝑒
+ln 𝑥 𝑑𝑥
+(Math --> Math) (x)1(e) 1
+(Lin. --> Linear) (x)(;)
+1(;)(e) 1
+Bestimmen Sie die Ableitung am Punkt x = π/2 für die Funktion y = sin(x)
+(Winkeleinheit: Bogenmaß (R))
+()(x) …(1)
+(Math --> Math)
+(Fortsetzung nach (1)) (π)2 0
+(Lin. --> Linear)
+(Fortsetzung nach (1)) (;)(π)2 0
+, :  Funktion, die die Summe eines speziﬁschen Bereichs von f(x )
+bestimmt, und Funktion, die das Produkt eines speziﬁschen Bereichs von
+f(x) bestimmt.
+Eingabe-Syntax
+(1) Wenn Math --> Math oder Math --> Dezim. ausgewählt ist
+(2) Wenn Lin. --> Linear oder Lin. --> Dezim. ausgewählt ist
+*
+1  *2
+(1) ∑
+𝑥=𝑎
+𝑏
+𝑓 𝑥 ∏
+𝑥=𝑎
+𝑏
+𝑓 𝑥
+(2) ∑ 𝑓 𝑥 ;𝑎 ;𝑏 ∏ 𝑓 𝑥 ;𝑎 ;𝑏
+*1 a und b sind Ganzzahlen, die im Bereich -1 × 1010 < a ≦ b < 1 × 1010
+festgelegt werden können.
+*2 a und b sind Ganzzahlen, die im Bereich a < 1 × 1010, b < 1 × 1010, a ≦
+b festgelegt werden können.
+∑
+𝑥=1
+5
+𝑥+1 = 20
+(Math --> Math)  *1 oder () *2
+(x)115 20
+(Lin. --> Linear)  *1 oder () *2
+(x)1(;) 1(;) 5 20
+19
+
+--- PDF-SEITE 21 ---
+∏
+𝑥=1
+5
+𝑥+1 = 720
+(Math --> Math) () *1 oder () *2
+(x)115 720
+(Lin. --> Linear) () *1 oder () *2
+(x)1(;) 1(;) 5 720
+*1: fx-87DE X   *2: fx-991DE X
+Pol, Rec: Pol wandelt rechtwinklige Koordinaten in Polarkoordinaten um,
+während Rec Polarkoordinaten in rechtwinklige Koordinaten umwandelt.
+• Speziﬁzieren Sie die
+Winkeleinheit, bevor Sie
+Rechnungen ausführen.
+• Das Rechenergebnis für r und θ
+sowie für x und y werden jeweils
+den Variablen x und y
+zugewiesen.
+• Rechenergebnis θ wird im
+Bereich -180° < θ ≦ 180°
+angezeigt.
+Umwandeln der rechtwinkligen Koordinaten 2;  2  in Polarkoordinaten
+(Winkeleinheit: Gradmaß (D))
+(Math --> Math) (Pol)2(;)2 r=2; θ=45
+Umwandeln der Polarkoordinaten 2;  45°  in rechtwinklige Koordinaten
+(Winkeleinheit: Gradmaß (D))
+(Math --> Math) (Rec)2(;) 45 x=1; y=1
+x!: Faktorielle Funktion.
+(5 + 3) ! = 40320 53(x!) 40320
+Abs: Absolutwert.
+|2 − 7| × 2 = 10
+(Math --> Math) (Abs) 272 10
+(Lin. --> Linear) (Abs) 272 10
+Ran#: Funktion zum Erzeugen einer Pseudo-Zufallszahl im Bereich von
+0,000 bis 0,999. Das Ergebnis wird als Bruch dargestellt, wenn Math -->
+Math für Eingabe/Ausgabe im Setup-Menü ausgewählt ist.
+Um zufällige dreistellige Ganzzahlen zu erhalten
+1000(Ran#) 459
+(Das Ergebnis ist bei jeder Ausführung unterschiedlich.)
+RanInt#: Funktion zum Erzeugen einer Pseudo-Zufallsganzzahl zwischen
+festgelegten Start- und Endwerten.
+Generieren von zufälligen Ganzzahlen im Bereich von 1 bis 6
+(RanInt)1(;) 6 2
+(Das Ergebnis ist bei jeder Ausführung unterschiedlich.)
+nPr, nCr: Permutations- (nPr) und Kombinations- (nCr) Funktionen.
+Bestimmen der Anzahl möglicher Permutationen und Kombinationen bei
+Auswahl von vier Personen aus einer Gruppe von 10 Personen
+Permutationen: 10(nPr) 4 5040
+Kombinationen: 10(nCr) 4 210
+Rnd: Mit der Rnd-Funktion wer
+den die Werte der Dezimalbrüche im
+Argument entsprechend der aktuellen Zahlenformat-Einstellung gerundet.
+20
+
+--- PDF-SEITE 22 ---
+Zum Beispiel ist das interne und angezeigte Ergebnis von Rnd(10 ÷ 3)
+gleich 3,333, wenn die Zahlenformat-Einstellung Fix 3 lautet. Durch die
+Verwendung der Einstellung Norm 1 oder Norm 2 wird das Argument an
+der 11. Stelle der Mantisse gerundet.
+Ausführen der folgenden Rechnungen, wenn Fix 3 für die Anzahl der
+anzuzeigenden Dezimalstellen gewählt wurde: 10 ÷ 3 × 3 und Rnd(10 ÷ 3)
+× 3      (Math --> Dezim.)
+(SETUP)(Zahlenformat)(Fix)
+1033
+(Rnd) 1033
+10,000
+9,999
+RndFix: Funktion, die einen Wert auf eine bestimmte Anzahl von
+Dezimalstellen (0 bis 9) rundet.
+RndFix(1,23456;4) = 1,2346
+(RndFix) 1,23456(;)4 1,2346
+GCD, LCM: GCD bestimmt den größten gemeinsamen Teiler von zwei
+Werten, während LCM das kleinste gemeinsame Vielfache bestimmt.
+Bestimmen des größten gemeinsamen Teilers von 28 und 35
+(GCD) 28(;) 35 7
+Bestimmen des kleinsten gemeinsamen Vielfachen von 9 und 15
+(LCM) 9(;) 15 45
+Int: Extrahiert den ganzzahligen Teil eines Wertes.
+Extrahieren des ganzzahligen Teils von -3,5
+(Int)3,5 -3
+Intg: Bestimmt die größte Ganzzahl, die einen Wert nicht übersteigt.
+Bestimmen der größten Ganzzahl, die -3,5 nicht übersteigt
+(Intg)3,5 -4
+„QR Code“-Funktion 
+Ihr Rechner kann „QR Code“*-Symbole anzeigen, die von einem Smart-
+Gerät gelesen werden können.
+* QR Code ist eine eingetragene Marke von DENSO WAVE
+INCORPORATED in Japan und in anderen Ländern.
+Wichtig
+• Die Operationen in diesem Abschnitt gehen davon aus, dass auf dem
+verwendeten Smart-Gerät ein „QR Code“-Leser installiert ist, der
+verschiedene „QR Code“-Symbole lesen kann, und dass das Gerät mit
+dem Internet verbunden werden kann.
+• Beim Lesen eines auf diesem Rechner angezeigten QR Code mit einem
+Smart-Gerät greift das Smart-Gerät auf die CASIO-Website zu.
+Hinweis: Ein QR Code kann durch Drücken von (QR) angezeigt
+werden, während der Setup-Bildschirm, ein Menübildschirm, ein
+Fehlerbildschirm, ein Rechenergebnis-Bildschirm in irgendeinem
+Rechenmodus oder ein Tabellenbildschirm angezeigt wird. Nähere
+Informationen dazu ﬁnden Sie auf der CASIO-Website (wes.casio.com).
+Anzeigen eines QR Code
+Beispiel: Zeigen Sie den QR Code für ein Rechenergebnis im
+Berechnungen-Modus des Rechners an und lesen sie ihn mit einem Smart-
+Gerät aus
+1. Führen Sie eine Berechnung im Berechnungen-Modus aus.
+2. Drücken Sie (QR), um den QR Code anzuzeigen.
+21
+
+--- PDF-SEITE 23 ---
+• Die Zahlen in der unteren rechten Ecke des
+Displays zeigen die aktuelle „QR Code“-
+Nummer und die Gesamtanzahl der „QR
+Code“-Symbole. Um den nächsten QR
+Code anzuzeigen, drücken Sie  oder
+.
+Hinweis
+• Der Indikator  wird oben im Bildschirm angezeigt, wenn der
+Rechner einen QR Code erzeugt.
+• Um zu einem vorherigen QR Code zurückzukehren, drücken Sie 
+oder  so oft wie nötig um vorzublättern, bis er erscheint.
+3. Verwenden Sie ein Smart-Gerät zum Lesen des QR Code auf dem
+Rechner-Display.
+• Informationen zum Lesen eines QR Code ﬁnden Sie in der
+Benutzerdokumentation des verwendeten „QR Code“-Lesers.
+Falls Sie Schwierigkeiten beim Lesen eines QR Code haben: Verwenden
+Sie  und , während der QR Code angezeigt wird, um den
+Anzeigekontrast des QR Code anzupassen. Diese Anpassung des
+Kontrastes betrifft nur die Anzeige des QR Code.
+Wichtig
+• Je nach verwendetem Smart-Gerät und/oder „QR Code“-Leser-App
+können eventuell Probleme beim Lesen des mit diesem Rechner
+erzeugten „QR Code“-Symbols auftreten.
+• Wenn die „QR Code“-Setup-Einstellung „Version 3“ lautet, sind die
+Rechner-Modi, die „QR Code“-Symbole anzeigen können, limitiert. Wenn
+Sie versuchen, einen QR Code in einem Modus anzuzeigen, der die
+Anzeige des QR Code nicht unterstützt, erscheint die Meldung „Nicht
+unterstützt (Version 3)“. Der mit dieser Einstellung erzeugte QR Code ist
+jedoch einfacher zu lesen mit einem Smart-Gerät.
+• Weitere Informationen dazu ﬁnden Sie auf der CASIO-Website
+(wes.casio.com).
+Zum Beenden der Anzeige des QR Code: Drücken Sie  oder
+(QR).
+Berechnungen mit komplexen Zahlen
+(nur fx-991DE X) 
+Um Berechnungen mit komplexen Zahlen durchzuführen, wechseln Sie
+zuerst in den „Komplexe Zahlen“-Modus. Sie können entweder kartesische
+Koordinaten (a+bi) oder Polarkoordinaten (r∠θ) zur Eingabe komplexer
+Zahlen verwenden. Die Ergebnisse der Berechnungen mit komplexen
+Zahlen werden in Übereinstimmung mit der „Komplexe Zahlen“-Einstellung
+im Setup-Menü angezeigt.
+(1 + i)
+4 + (1 − i)2 = -4 − 2i (Komplexe Zahlen: a+bi)*
+1(i)41(i) -4 − 2i
+2∠45 = 2+ 2𝒊  (Winkeleinheit: Gradmaß (D), Komplexe Zahlen: a+bi)
+2(∠) 45 2+ 2𝒊
+2+ 2𝒊 = 2∠45  (Winkeleinheit: Gradmaß (D), Komplexe Zahlen: r∠θ)
+22(i) 2∠45
+* Beim Potenzieren einer komplexen Zahl mit einem ganzzahligen
+Exponenten mithilfe der Syntax (a+bi)n kann der Wert des Exponenten
+innerhalb des folgenden Bereichs liegen: -1 × 1010 < n < 1 × 1010.
+22
+
+--- PDF-SEITE 24 ---
+Hinweis
+• Wenn die Eingabe der Zahlen und die Anzeige des Rechenergebnisses
+in Polarkoordinaten erfolgen sollen, geben Sie die Winkeleinheit ganz am
+Anfang an.
+• Der θ-Wert des Rechenergebnisses wird im Bereich –180°< θ ≦ 180°
+angezeigt.
+• Bei Auswahl von Lin. --> Linear oder Lin. --> Dezim. werden im
+Rechenergebnis a und bi (oder r und θ) in verschiedenen Zeilen
+angezeigt.
+Berechnungsbeispiele für den „Komplexe Zahlen“-
+Modus
+Bestimmen Sie die konjugiert komplexe Zahl (Conjg) von 2 + 3i  (Komplexe
+Zahlen: a+bi)
+(Konjugierte) 23(i ) 2−3i
+Bestimmen Sie den Absolutwert (Abs) und das Argument (Arg) von 1 + i
+(Winkeleinheit: Gradmaß (D))
+(Abs) 1(i )
+(Argument/ Phase) 1(i )
+2
+45
+Extrahieren Sie den Realteil (ReP) und den Imaginärteil (ImP) von 2 + 3i
+(Realteil) 23(i)
+(Imaginärteil) 23(i)
+2
+3
+Verwenden eines Befehls zum Festlegen des
+Rechenausgabeformats
+2+ 2𝒊 = 2∠45;  2∠45 = 2+ 2𝒊  (Winkeleinheit: Gradmaß (D))
+22(i )(r ∠θ)
+2(∠) 45(a+bi)
+2∠45
+2+ 2𝒊
+Verwenden von CALC 
+CALC ermöglicht es Ihnen, Rechenausdrücke mit einer oder mehreren
+Variablen einzugeben, den Variablen Werte zuzuweisen und das Ergebnis
+zu berechnen. CALC kann im Berechnungen-Modus und im „Komplexe
+Zahlen“-Modus (fx-991DE X) verwendet werden.
+Sie können CALC verwenden, um die folgenden Arten von Ausdrücken zu
+speichern.
+•2 x + 3y; 2Ax + 3By + C; A + Bi usw.
+• x + y : x (x + y) usw.
+• y = x
+2 + x + 3 usw.
+Hinweis: Nach dem Drücken von  bis zum Beenden der CALC-
+Funktion durch Drücken von  sollten Sie die linearen Eingabeverfahren
+zur Eingabe verwenden.
+Speichern Sie 3A + B und geben Sie dann die folgenden Werte für die
+Berechnung ein: A = 5, B = 10
+3(A)(B)
+510
+ →
+23
+
+--- PDF-SEITE 25 ---
+Verwenden von SOLVE (nur fx-991DE X) 
+SOLVE verwendet das Newton’sche Näherungsverfahren zum Lösen von
+Gleichungen. Beachten Sie, dass SOLVE nur im Berechnungen-Modus
+verwendet werden kann. SOLVE unterstützt die Eingabe von Gleichungen in
+den folgenden Formaten.
+Beispiele: y = x + 5; x = sin(M); xy + C (Behandelt wie xy + C = 0)
+Hinweis
+• Wenn eine Gleichung Eingabefunktionen mit einer öffnenden Klammer
+(wie z. B. bei sin und log) enthält, dürfen Sie die schließende Klammer
+nicht weglassen.
+• Nach dem Drücken von (SOLVE) bis zum Beenden der SOLVE-
+Funktion durch Drücken von  sollten Sie die linearen
+Eingabeverfahren zur Eingabe verwenden.
+Zum Lösen von x
+2 + b = 0 in Bezug auf x, wenn b = -2
+(x)(B)(=) 0
+(SOLVE)
+Geben Sie einen Anfangswert
+für x ein (in diesem Fall 1): 1
+Weisen Sie B den Wert -2 zu: 2
+Legen Sie die zu lösende Variable fest
+(Hier möchten wir x lösen, also
+verschieben Sie die Hervorhebung auf x.):
+
+Lösen Sie die Gleichung:
+
+(1) Lösungsvariable
+(2) Lösung
+(3) Ergebnis für (Linke Seite) –
+(Rechte Seite)
+• Lösungen werden immer in der Dezimalform angezeigt.
+• Je näher das Ergebnis für (Linke Seite) – (Rechte Seite) bei 0 liegt, desto
+genauer ist die Lösung.
+Wichtig
+• Bei Verwendung der Funktion SOLVE wird versucht, mit einer bestimmten
+Anzahl von Schritten eine Lösung zu ﬁnden. Wenn keine Lösung
+bestimmt werden kann, wird der Bestätigungsbildschirm „Fortfahren:[=]
+“ angezeigt, der nachfragt, ob Sie fortfahren möchten. Drücken Sie ,
+um den Vorgang fortzusetzen, oder , um die SOLVE-Operation
+abzubrechen.
+• Je nach der Eingabe für den Anfangswert für x (Lösungsvariable)
+können mit SOLVE möglicherweise keine Lösungen bestimmt werden.
+Wählen Sie in diesem Fall einen Anfangswert, der näher bei der Lösung
+liegt.
+• Mit SOLVE kann nicht in jedem Fall die korrekte Lösung ermittelt werden,
+auch wenn eine existiert.
+• Da bei der Funktion SOLVE das Newton’sche Verfahren verwendet wird,
+wird selbst dann, wenn mehrere Lösungen vorhanden sind, nur eine
+Lösung ermittelt.
+24
+
+--- PDF-SEITE 26 ---
+• Aufgrund von Beschränkungen des Newton’schen Verfahrens sind
+Lösungen für Gleichungen wie die folgenden in der Regel schwer zu
+bestimmen: 𝑦=s i n 𝑥 ;  𝑦=𝑒 𝑥; 𝑦 = 𝑥.
+Statistische Berechnungen 
+Führen Sie die nachstehenden Schritte aus, um eine statistische
+Berechnung zu starten.
+1. Drücken Sie , wählen Sie das Symbol für den Statistik-Modus und
+drücken Sie dann .
+2. Wählen Sie im eingeblendeten „Typ auswählen“-Bildschirm einen
+statistischen Berechnungstyp aus.
+Zur Wahl dieses statistischen
+Berechnungstyps:
+Drücken Sie diese
+Taste:
+Einzelvariable (x) (1 Variable)
+Variablenpaar (x; y), lineare Regression (y=a+bx)
+Variablenpaar (x; y), quadratische Regression (y=a+bx+cx
+2)
+Variablenpaar (x; y), logarithmische Regression (y=a+b･ln(x))
+Variablenpaar (x; y), exponentielle Regression
+mit e (y=a･e^(bx))
+Variablenpaar (x; y), exponentielle Regression
+mit ab (y=a･b^x)
+Variablenpaar (x; y), Potenzregression (y=a･x^b)
+Variablenpaar (x; y), inverse Regression (y=a+b/x)
+• Verwenden Sie eine der oben genannten Tastenoperationen, um den
+Statistik-Editor anzuzeigen.
+Hinweis: Wenn Sie den Berechnungstyp ändern möchten, nachdem Sie
+den Statistik-Modus aufgerufen haben, drücken Sie die Tasten (Typ
+auswählen), um den Auswahlbildschirm für den Berechnungstyp
+aufzurufen.
+Eingeben von Daten mit dem Statistik-Editor
+Der Statistik-Editor zeigt eine, zwei oder drei Spalten an: Einzelvariable (x),
+Einzelvariable und Häuﬁgkeit (x; Freq), Variablenpaar (x; y), Variablenpaar
+und Häuﬁgkeit (x; y; Freq). Die Anzahl der Datenzeilen, die eingegeben
+werden kann, hängt von der Anzahl der Spalten ab: 160 Zeilen für eine
+Spalte, 80 Zeilen für zwei Spalten, 53 Zeilen für drei Spalten.
+Hinweis
+• Sie können die Freq-Spalte (Häuﬁgkeit) verwenden, um die Anzahl
+(Häuﬁgkeit) von identischen Datenelementen einzugeben. Die Anzeige
+der Freq-Spalte kann in der Statistik-Einstellung im Setup-Menü
+eingeschaltet (angezeigt) oder ausgeschaltet (nicht angezeigt) werden.
+• Wenn Sie während der Anzeige des Statistik-Editors die Taste 
+drücken, wird ein Bildschirm für statistische Berechnungen zur
+Durchführung von Berechnungen auf Grundlage der eingegebenen
+Daten angezeigt. Was Sie zum Zurückkehren vom Bildschirm für
+statistische Berechnungen zum Statistik-Editor tun müssen, hängt vom
+gewählten Berechnungstyp ab. Drücken Sie (Daten), falls Sie
+25
+
+--- PDF-SEITE 27 ---
+Einzelvariable gewählt haben, oder (Daten), falls Sie
+Variablenpaar gewählt haben.
+Bsp. 1: Auswahl von logarithmischer Regression und Eingabe der
+folgenden Daten: (170; 66), (173; 68), (179; 75)
+(Typ auswählen)(y=a+b･ln(x))
+170173179
+666875
+Wichtig: Alle aktuell in den Statistik-Editor eingegebenen Daten werden
+gelöscht, wenn Sie den Statistik-Modus verlassen, zwischen der
+statistischen Rechnungsart mit einer Variablen oder einem Variablenpaar
+umschalten oder die Statistik-Einstellung im Setup-Menü ändern.
+Eine Zeile löschen: Stellen Sie den Cursor im Statistik-Editor auf die zu
+löschende Zeile und drücken Sie dann .
+Eine Zeile einfügen: Stellen Sie den Cursor im Statistik-Editor auf die
+Position, an der Sie eine Zeile einfügen möchten, und drücken Sie die
+folgenden Tasten: (Editor)(Zeile einfügen).
+Den kompletten Inhalt im Statistik-Editor löschen: Verwenden Sie hierzu
+im Statistik-Editor die folgenden Tasten: (Editor)(Alles löschen).
+Anzeigen von statistischen Werten auf Grundlage
+eingegebener Daten
+Vom Statistik-Editor aus:
+(1-Variab-Berech oder 2-Variab-
+Berech)
+Vom Bildschirm für statistische
+Berechnungen aus:
+(1-Variab-Berech oder 2-Variab-
+Berech)
+Anzeigen der Ergebnisse von
+Regressionsberechnungen auf Grundlage
+eingegebener Daten (nur Variablenpaar-Daten)
+Vom Statistik-Editor aus:
+(Regression)
+Vom Bildschirm für statistische
+Berechnungen aus: (Regression)
+Berechnen statistischer Werte aus den eingegebenen
+Daten
+Sie können die Operationen in diesem Abschnitt verwenden, um statistische
+Werte aufzurufen, die den Variablen (σx, Σx2 usw.) auf Grundlage der mit
+dem Statistik-Editor eingegebenen Daten zugewiesen wurden. Sie können
+die Variablen auch in Berechnungen verwenden. Die Operationen in diesem
+Abschnitt werden auf dem Bildschirm für statistische Berechnungen
+ausgeführt, der erscheint, wenn Sie während der Anzeige des Statistik-
+Editors  drücken.
+Nachfolgend werden die unterstützten statistischen Variablen und die für
+ihren Aufruf zu drückenden Tasten dargestellt. Für statistische Rechnungen
+mit einer Variablen sind die mit einem Sternchen (*) gekennzeichneten
+Variablen verfügbar.
+Summierung: Σx*, Σx
+2*, Σy, Σy2, Σxy, Σx3, Σx2y, Σx4
+26
+
+--- PDF-SEITE 28 ---
+(Addition)  bis 
+Anzahl der Stichproben: n* / Mittelwert: 𝑥−*, 𝑦− / Varianz der
+Grundgesamtheit: σ2
+x*, σ2
+y / Grundgesamtheits-Standardabweichung:
+σx*, σy / Stichprobenvarianz: s2
+x*, s2
+y / Stichproben-Standardabweichung:
+sx*, sy
+(Variable)  bis ,  bis 
+Minimalwert: min(x)*, min(y) / Maximalwert: max(x)*, max(y)
+Wenn die statistische Berechnung mit Einzelvariable ausgewählt ist:
+(Minimum/Maximum) , 
+Wenn die statistische Berechnung mit Variablenpaar ausgewählt ist:
+(Minimum/Maximum)  bis 
+Erstes Quartil: Q1* / Median: Med* / Drittes Quartil: Q3* (Nur bei
+statistischen Berechnungen mit Einzelvariable)
+(Minimum/Maximum)  bis 
+Regressionskoeffizienten: a, b / Korrelationskoeffizient: r / Schätzwerte:
+𝑥, 𝑦
+(Regressionen)  bis 
+Regressionskoeffizienten für quadratische Regression: a, b, c /
+Schätzwerte: 𝑥1, 𝑥2, 𝑦
+(Regressionen)  bis 
+• 𝑥, 𝑥1, 𝑥2 und 𝑦 sind Befehle mit einem Argument unmittelbar davor.
+Bsp. 2: Geben Sie die Daten x = {1; 2; 2; 3; 3; 3; 4; 4; 5} für eine einzelne
+Variable ein, verwenden Sie dabei die Freq-Spalte, um die Anzahl der
+Wiederholungen für jedes Element anzugeben {xn; freqn} = {1;1, 2;2, 3;3,
+4;2, 5;1} und berechnen Sie den Mittelwert.
+(SETUP) *1 oder  *2 (Statistik)(Ein)
+*1: fx-87DE X   *2: fx-991DE X
+(Typ auswählen)(1 Variable)
+12345
+1232
+(Variable)( 𝑥−) 3
+Bsp. 3: Berechnen Sie die Korrelationskoefﬁzienten für die logarithmische
+Regression für folgende Variablenpaar-Daten und bestimmen Sie die
+Regressionsformel: (x; y) = (20; 3150), (110; 7310), (200; 8800), (290;
+9310). Legen Sie Fix 3 (drei Dezimalstellen) für die Ergebnisse fest.
+(SETUP) *1 oder  *2 (Statistik)(Aus)
+*1: fx-87DE X   *2: fx-991DE X
+(SETUP)(Zahlenformat)(Fix)
+(Typ auswählen)(y=a+b･ln(x))
+20110200290
+3150731088009310
+(Regressionen)(r) 0,998
+(Regressionen)(a) -3857,984
+(Regressionen)(b) 2357,532
+Schätzwerte berechnen
+Anhand der mit einer statistischen Berechnung mit Variablenpaar
+erhaltenen Regressionsformel kann der Schätzwert von y für einen
+gegebenen x-Wert berechnet werden. Der entsprechende x-Wert (zwei
+27
+
+--- PDF-SEITE 29 ---
+Werte, x1 und x2, im Fall einer quadratischen Regression) kann ebenfalls für
+einen Wert von y mit der Regressionsformel berechnet werden.
+Bsp. 4: Bestimmen Sie den Schätzwert für y, wenn in der durch
+logarithmische Regression der Daten in Bsp. 3 erzeugten
+Regressionsformel x = 160 ist. Speziﬁzieren Sie Fix 3 für das Ergebnis.
+(Führen Sie folgende Schritte aus, nachdem Sie die Operationen in Bsp. 3
+abgeschlossen haben.)
+160(Regressionen)(𝑦
+) 8106,898
+Wichtig: Berechnungen von Regressionskoefﬁzient, Korrelationskoefﬁzient
+und Schätzwert können beträchtliche Zeit in Anspruch nehmen, wenn sie
+eine große Anzahl von Datenelementen enthalten.
+Berechnungen von Normalverteilungen (nur fx-991DE
+X)
+Bei Auswahl von statistischen Berechnungen mit einer einzelnen Variablen
+können Sie die Normalverteilung mit den unten angezeigten Funktionen und
+dem Menü berechnen, das bei Verwendung der folgenden Tasten
+eingeblendet wird: (Normal-Vert.).
+P, Q, R: Bei diesen Funktionen wird die
+Wahrscheinlichkeit der
+Standardnormalverteilung mit dem
+Argument t bestimmt, wie in der
+beigefügten Abbildung gezeigt.
+t: Dieser Funktion geht das Argument x voraus. Sie berechnet die
+Standard-Zufallsvariable für den Datenwert x unter Verwendung des
+Mittelwerts ( 𝑥−) und der Grundgesamtheits-Standardabweichung (σ
+x) der mit
+dem Statistik-Editor eingegebenen Daten.
+x t = 𝑥− 𝑥−
+𝜎𝑥
+Bsp. 5: Bestimmen Sie für die Einzelvariablendaten in Bsp. 2 die
+normalisierte Zufallsvariable für x = 2, und P(t) an diesem Punkt.
+2(Normal-Vert.)(t)
+(Normal-Vert.)(P()
+Basis-n-Berechnungen 
+Wenn Sie Berechnungen mit Dezimal-, Hexadezimal-, Binär- und/oder
+Oktalwerten ausführen möchten, starten Sie den Basis-N-Modus. Nachdem
+Sie den Basis-N-Modus gestartet haben, drücken Sie eine der folgenden
+Tasten, um den Zahlenmodus zu wechseln: (DEC) für dezimal, (HEX)
+für hexadezimal, (BIN) für binär oder (OCT) für oktal.
+Zum Berechnen von 11
+2 + 12
+(BIN)111
+Hinweis
+• Verwenden Sie die folgenden Tasten zur Eingabe der Buchstaben A bis
+F für Hexadezimalwerte: (A), (B), (C), (D), (E), (F).
+28
+
+--- PDF-SEITE 30 ---
+• Im Basis-N-Modus wird die Eingabe von (Dezimal-)Brüchen und
+Exponenten nicht unterstützt. Ein Bruch in einem Rechenergebnis wird
+abgeschnitten.
+• Einzelheiten zu den Eingabe- und Ausgabebereichen (32 Bit) werden
+nachfolgend gezeigt.
+Binär
+Positiv: 00000000000000000000000000000000 ≦ x ≦
+01111111111111111111111111111111
+Negativ: 10000000000000000000000000000000 ≦ x ≦
+11111111111111111111111111111111
+Oktal Positiv:
+Negativ:
+00000000000 ≦ x ≦ 17777777777
+20000000000 ≦ x ≦ 37777777777
+Dezimal -2147483648 ≦ x ≦ 2147483647
+Hexadezimal Positiv:
+Negativ:
+00000000 ≦ x ≦ 7FFFFFFF
+80000000 ≦ x ≦ FFFFFFFF
+Angeben des Zahlenmodus eines bestimmten
+Eingabewertes
+Durch Eingabe eines bestimmten Befehls unmittelbar nach dem Wert
+können Sie den Zahlenmodus dieses Wertes festlegen. Die bestimmten
+Befehle sind: d (dezimal), h (hexadezimal), b (binär) und o (oktal).
+Zum Berechnen von 10
+10 + 1016 + 102 + 108 und zum Anzeigen des
+Ergebnisses als Dezimalwert
+(DEC)(d) 10(h) 10
+ (b) 10(o) 10 36
+Umwandlung eines Rechenergebnisses in einen
+anderen Zahlentyp
+Mit den folgenden Tasten können Sie das aktuell angezeigte
+Rechenergebnis in einen anderen Zahlentyp umwandeln: (DEC),
+(HEX), (BIN), (OCT).
+Zum Berechnen von 1510 × 3710 im Dezimalmodus und zum anschließenden
+Umwandeln des Ergebnisses in das Hexadezimalformat
+(DEC) 1537
+(HEX)
+555
+0000022B
+Logische und Negations-Operationen
+Logische und Negations-Operationen werden ausgeführt, indem Sie 
+drücken und dann den gewünschten Befehl (and, or, xor, xnor, Not, Neg)
+aus dem eingeblendeten Menü auswählen. Die folgenden Beispiele werden
+alle im Binär-Modus ((BIN)) ausgeführt.
+Bestimmen Sie das logische AND von 1010
+2 und 11002 (10102 and 11002)
+1010(and) 1100 0000 0000 0000 0000
+0000 0000 0000 1000
+Bestimmen Sie das bitweise Komplement von 10102 (Not(10102))
+(Not) 1010 1111 1111 1111 1111
+1111 1111 1111 0101
+Hinweis: Bei einem negativen Binär-, Oktal- oder Hexadezimalwert wandelt
+der Rechner den Wert in einen Binärwert um, bestimmt das
+Zweierkomplement und wandelt das Ergebnis dann wieder in den
+ursprünglichen Zahlentyp um. Bei Dezimalwerten fügt der Rechner einfach
+ein Minuszeichen hinzu.
+29
+
+--- PDF-SEITE 31 ---
+Berechnung von Gleichungen (nur
+fx-991DE X) 
+Führen Sie die nachstehenden Schritte aus, um eine Gleichung im
+Gleichung/Funkt-Modus zu lösen.
+1. Drücken Sie , wählen Sie das Symbol für den Gleichung/Funkt-
+Modus und drücken Sie dann .
+2. Wählen Sie den Berechnungstyp aus, den Sie ausführen möchten.
+Zum Wählen dieses
+Rechnungstyps: Vorgehensweise:
+Lineares Gleichungssystem mit
+zwei, drei oder vier
+Unbekannten
+Drücken Sie (Gleichungssyst.)
+und verwenden Sie dann eine
+Zifferntaste ( bis ), um die
+Anzahl der Unbekannten
+festzulegen.
+Quadratische Gleichungen,
+kubische Gleichungen oder
+biquadratische Gleichungen
+Drücken Sie (Polynom-Gleich.)
+und verwenden Sie dann eine
+Zifferntaste ( bis ), um den
+Grad des Polynoms festzulegen.
+3. Benutzen Sie den eingeblendeten Koefﬁzienten-Editor zur Eingabe der
+Werte der Koefﬁzienten.
+• Zum Lösen von 2x2 + x − 3 = 0 beispielsweise drücken Sie
+(Polynom-Gleich.) in Schritt 2. Benutzen Sie den
+eingeblendeten Koefﬁzienten-Editor zur Eingabe von
+213.
+• Durch Drücken von  werden alle Koefﬁzienten auf Null
+zurückgesetzt.
+4. Drücken Sie nach erfolgter Eingabe der Werte .
+• Dadurch wird eine Lösung angezeigt. Jedes Drücken von  zeigt
+eine andere Lösung an. Wenn Sie bei Anzeige der letzten Lösung 
+drücken, kehren Sie zum Koefﬁzienten-Editor zurück.
+• Wenn es keine Lösung oder unendlich viele Lösungen gibt, wird eine
+Meldung angezeigt. Durch das Drücken von  oder  kehren Sie
+zum Koefﬁzienten-Editor zurück.
+• Sie können die aktuell angezeigte Lösung einer Variablen zuweisen.
+Drücken Sie bei angezeigter Lösung  und dann die Taste mit dem
+Namen der Variable, der Sie die Lösung zuweisen möchten.
+• Zum Zurückschalten von der Anzeige einer Lösung zum
+Koefﬁzienten-Editor drücken Sie .
+Hinweis: Lösungen mit √ werden nur angezeigt, wenn der ausgewählte
+Berechnungstyp „Polynom-Gleich.“ lautet.
+Zum Ändern der Einstellung des aktuellen Gleichungstyps: Drücken Sie
+(Gleichungssyst.) oder (Polynom-Gleich.) und drücken Sie
+dann ,  oder . Beim Ändern des Gleichungstyps werden die Werte
+aller Koefﬁzienten im Koefﬁzienten-Editor auf Null zurückgesetzt.
+Berechnungsbeispiele für den Gleichung/Funkt-
+Modus
+x + 2y = 3; 2x + 3y = 4
+30
+
+--- PDF-SEITE 32 ---
+(Gleichungssyst.)
+123234
+
+
+(x=)
+(y=)
+-1
+2
+x2 + 2x − 2 = 0
+(Polynom-Gleich.)
+122
+
+(x1=)
+(x2=)
+-1 + 3
+-1 − 3
+(Zeigt die x-Koordinate des lokalen Minimums von y = x2 + 2x − 2 an.*)
+ (x=) -1
+(Zeigt die y-Koordinate des lokalen Minimums von y = x2 + 2x − 2 an.*)
+ (y=) -3
+* Die x- und y-Koordinaten des lokalen Minimums (oder lokalen Maximums)
+der Funktion y = ax2 + bx + c werden ebenfalls angezeigt, aber nur, wenn
+eine quadratische Gleichung als Berechnungstyp ausgewählt wurde.
+Berechnung von Matrizen (nur fx-991DE
+X) 
+Verwenden Sie den Matrizen-Modus für Berechnungen mit Matrizen mit bis
+zu 4 Zeilen und 4 Spalten. Verwenden Sie für eine Matrix-Berechnung die
+speziellen Matrixvariablen (MatA, MatB, MatC, MatD), wie im Beispiel unten
+gezeigt.
+Beispiel: 
+21
+11  × 2- 1
+-1 2
+1. Drücken Sie , wählen Sie das Symbol für den Matrizen-Modus und
+drücken Sie dann .
+2. Drücken Sie (MatA)(2 Zeilen)(2 Spalten).
+• Dadurch wird der Matrix-Editor für die
+Eingabe der Elemente der 2 × 2-
+Matrix, die Sie für MatA festgelegt
+haben, angezeigt.
+3. Geben Sie die Elemente von MatA ein: 2111.
+4. Drücken Sie die Tasten: (Mat. deﬁnieren)(MatB)(2
+Zeilen)(2 Spalten).
+5. Geben Sie die Elemente von MatB ein: 2112.
+6. Drücken Sie , um zum Rechnungsbildschirm zu gehen, und
+berechnen Sie (MatA × MatB): (MatA)(MatB).
+• Damit wird der MatAns-Bildschirm
+(Matrix-Antwortspeicher) mit dem
+Rechenergebnis angezeigt.
+Matrix-Antwortspeicher (MatAns)
+Wenn das Ergebnis einer im Matrizen-Modus ausgeführten Berechnung
+eine Matrix ist, wird der MatAns-Bildschirm mit dem Ergebnis angezeigt.
+Das Ergebnis wird auch der Variablen „MatAns“ zugewiesen.
+Die Variable MatAns kann wie folgt in Berechnungen verwendet werden.
+• Um die Variable MatAns in eine Berechnung einzufügen, drücken Sie die
+folgenden Tasten: (MatAns).
+31
+
+--- PDF-SEITE 33 ---
+• Wenn Sie irgendeine der folgenden Tasten drücken, während der
+MatAns-Bildschirm angezeigt wird, erfolgt ein automatischer Wechsel
+zum Rechnungsbildschirm: , , , , , , (x 3).
+Zuweisen und Bearbeiten von Matrixvariablendaten
+Zuweisen von neuen Daten zu einer Matrixvariablen
+1. Drücken Sie (Mat. deﬁnieren) und wählen Sie dann im
+eingeblendeten Menü die Matrixvariable aus, der Sie Daten zuweisen
+möchten.
+2. Verwenden Sie im eingeblendeten Dialogfeld eine Zifferntaste ( bis
+), um die Anzahl der Zeilen anzugeben.
+3. Verwenden Sie im nächsten eingeblendeten Dialogfeld eine Zifferntaste
+( bis ), um die Anzahl der Spalten anzugeben.
+4. Verwenden Sie den eingeblendeten Matrix-Editor zur Eingabe der
+Elemente der Matrix.
+Bearbeiten der Elemente einer Matrixvariablen
+Drücken Sie (Mat. bearbeiten) und wählen Sie dann im
+eingeblendeten Menü die Matrixvariable aus, die Sie bearbeiten möchten.
+Kopieren des Inhalts der Matrixvariablen (oder von MatAns)
+1. Verwenden Sie den Matrix-Editor zur Anzeige der Matrix, die Sie
+kopieren möchten.
+• Wenn Sie den Inhalt von MatAns kopieren möchten, drücken Sie die
+folgenden Tasten, um den Bildschirm MatAns einzublenden:
+(MatAns).
+2. Drücken Sie  und führen Sie dann eine der folgenden
+Tastenoperationen aus, um das Kopierziel anzugeben: (MatA),
+(MatB), (MatC) oder (MatD).
+• Damit wird der Matrix-Editor mit dem Inhalt des Kopierziels
+angezeigt.
+Rechenbeispiele mit Matrizen
+Die folgenden Beispiele verwenden MatA = 21
+11 , MatB = 10- 1
+0- 1 1
+, MatC =
+123
+456
+789
+.
+Bestimmen der Determinante von MatA (Det(MatA))
+(Determinante) MatA  1
+Erstellen einer 2 × 2 Einheitsmatrix und Addieren zu MatA (Identity(2) +
+MatA)
+(Einheitsmatrix) MatA 
+Hinweis: Sie können einen Wert von 1 bis 4 als Argument des
+Einheitsmatrix-Befehls (Anzahl der Dimensionen) festlegen.
+Bestimmen der Transponierten von MatB (Trn(MatB))
+(Transponierte) MatB 
+Invertieren, Quadrieren und Kubieren von MatA (MatA-1, MatA2, MatA3)
+Hinweis: Sie können nicht  für diese Eingabe verwenden. Verwenden
+Sie  zur Eingabe von „
+-1
+“,  zum Quadrieren und (x 3) zum
+Kubieren.
+32
+
+--- PDF-SEITE 34 ---
+ MatA 
+ MatA 
+ MatA (x 3)
+Bestimmen des Absolutwerts jedes Elements von MatB (Abs(MatB))
+(Abs) MatB 
+Bestimmen der Stufenform von MatC (Ref(MatC))
+(Stufenform REF) MatC
+
+Bestimmen der reduzierten Stufenform von MatC (Rref(MatC))
+(Stufenform RREF) MatC
+
+Erstellen einer Wertetabelle 
+Der Tabellen-Modus erzeugt eine Wertetabelle auf Grundlage von ein oder
+zwei Funktionen.
+Beispiel: Erzeugen einer Wertetabelle für die Funktionen 𝑓 𝑥 =𝑥 2 + 1
+2 und
+g
+𝑥 =𝑥 2 − 1
+2 für den Bereich -1 ≦  𝑥 ≦  1, erhöht in Schritten von 0,5
+1. Drücken Sie , wählen Sie das Symbol für den Tabellen-Modus und
+drücken Sie dann .
+2. Konﬁgurieren Sie die Einstellungen zum Erzeugen einer Wertetabelle
+aus zwei Funktionen. (SETUP)*
+1 oder * 2
+(Tabellen)(f (x),g(x))
+*1: fx-87DE X   *2: fx-991DE X
+3. Geben Sie 𝑥2 + 1
+2 ein.
+( x)12
+4. Geben Sie 𝑥2 − 1
+2 ein.
+( x)12
+5. Drücken Sie . Geben Sie im eingeblendeten Tabellenbereich-
+Dialogfeld Werte für Start (Standardwert: 1), Ende (Standardwert: 5) und
+Inkre (Standardwert: 1) ein.
+110,5
+6. Drücken Sie , um eine Wertetabelle
+zu erzeugen.
+• Drücken Sie , um zum Bildschirm
+in Schritt 3 zurückzukehren.
+33
+
+--- PDF-SEITE 35 ---
+Tipp
+• In der in Schritt 6 gezeigten Wertetabelle können Sie den Wert in der
+aktuell hervorgehobenen x-Zelle ändern. Durch das Ändern des x-Werts
+werden die Werte für f(x) und g(x) in derselben Zeile entsprechend
+aktualisiert.
+• Wenn die x-Zelle oberhalb der aktuell hervorgehobenen x-Zelle einen
+Wert enthält, wird durch das Drücken von  oder  in die
+hervorgehobene Zelle automatisch der Wert eingegeben, der dem Wert
+in der Zelle darüber plus dem Schrittwert entspricht. Auf die gleiche
+Weise wird durch das Drücken von  automatisch der Wert
+eingegeben, der dem Wert in der Zelle darüber minus dem Schrittwert
+entspricht. Die Werte für f(x) und g(x) in derselben Zeile werden
+entsprechend aktualisiert.
+Hinweis
+• Wenn Sie oben in Schritt 4  drücken und von Schritt 5 an fortfahren,
+ohne irgendetwas für g(x) einzugeben, wird nur eine Wertetabelle für f(x)
+erzeugt.
+• Die maximale Anzahl an Zeilen in der erzeugten Wertetabelle hängt von
+der Tabelleneinstellung im Setup-Menü ab. Bis zu 45 Zeilen werden für
+die Einstellung „f(x)“ unterstützt, während 30 Zeilen werden für die
+Einstellung „f(x),g(x)“ unterstützt werden.
+• Die Erzeugung der Wertetabelle bewirkt, dass der Inhalt der Variablen x
+geändert wird.
+Wichtig: Funktionen, die in diesem Modus eingegeben werden, werden
+beim Ändern der Eingabe/Ausgabe-Einstellungen im Tabellen-Modus
+gelöscht.
+Berechnung von Vektoren (nur fx-991DE
+X) 
+Verwenden Sie den Vektorrechnung-Modus für Berechnungen mit 2-
+dimensionalen und 3-dimensionalen Vektoren. Verwenden Sie für eine
+Vektor-Berechnung die speziellen Vektorvariablen (VctA, VctB, VctC, VctD),
+wie im Beispiel unten gezeigt.
+Beispiel: (1, 2) + (3, 4)
+1. Drücken Sie , wählen Sie das Symbol für den Vektorrechnung-
+Modus und drücken Sie dann .
+2. Drücken Sie (VctA)(2 Dimensionen).
+• Dadurch wird der Vektor-Editor zur
+Eingabe des 2-dimensionalen Vektors
+für VctA eingeblendet.
+3. Geben Sie die Elemente von VctA ein: 12.
+4. Drücken Sie die Tasten: (Vek. deﬁnieren)(VctB)(2
+Dimensionen).
+5. Geben Sie die Elemente von VctB ein: 34.
+6. Drücken Sie , um zum Rechnungsbildschirm zu gehen, und
+berechnen Sie (VctA + VctB): (VctA)(VctB).
+• Dadurch wird der VctAns-Bildschirm
+(Vektor-Antwortspeicher) mit dem
+Rechenergebnis angezeigt.
+34
+
+--- PDF-SEITE 36 ---
+Vektor-Antwortspeicher
+Wenn das Ergebnis einer im Vektorrechnung-Modus ausgeführten
+Berechnung ein Vektor ist, wird der VctAns-Bildschirm mit dem Ergebnis
+angezeigt. Das Ergebnis wird auch der Variablen „VctAns“ zugewiesen.
+Die Variable VctAns kann wie folgt in Berechnungen verwendet werden.
+• Um die Variable VctAns in eine Berechnung einzufügen, drücken Sie die
+folgenden Tasten: (VctAns).
+• Wenn Sie irgendeine der folgenden Tasten drücken, während der
+VctAns-Bildschirm angezeigt wird, erfolgt ein automatischer Wechsel
+zum Rechnungsbildschirm: , , , .
+Zuweisen und Bearbeiten von Vektorvariablendaten
+Zuweisen von neuen Daten zu einer Vektorvariablen
+1. Drücken Sie (Vek. deﬁnieren) und wählen Sie dann im
+eingeblendeten Menü die Vektorvariable aus, der Sie Daten zuweisen
+möchten.
+2. Drücken Sie im eingeblendeten Dialogfeld  oder , um die
+Vektordimension anzugeben.
+3. Verwenden Sie den eingeblendeten Vektor-Editor zur Eingabe der
+Elemente des Vektors.
+Bearbeiten der Elemente einer Vektorvariablen
+Drücken Sie (Vek. bearbeiten) und wählen Sie dann im
+eingeblendeten Menü die Vektorvariable aus, die Sie bearbeiten möchten.
+Kopieren des Inhalts der Vektorvariablen (oder von VctAns)
+1. Verwenden Sie den Vektor-Editor zur Anzeige des Vektors, den Sie
+kopieren möchten.
+• Wenn Sie den Inhalt von VctAns kopieren möchten, drücken Sie die
+folgenden Tasten, um den Bildschirm VctAns einzublenden:
+(VctAns).
+2. Drücken Sie  und führen Sie dann eine der folgenden
+Tastenoperationen aus, um das Kopierziel anzugeben: (VctA),
+(VctB), (VctC) oder (VctD).
+• Damit wird der Vektor-Editor mit dem Inhalt des Kopierziels
+angezeigt.
+Beispiele für Berechnungen mit Vektoren
+Die nachfolgenden Beispiele verwenden VctA = (1, 2), VctB = (3, 4) und
+VctC = (2, -1, 2).
+VctA • VctB (Vektor-Skalarprodukt)
+ VctA (Skalarprodukt) VctB 
+VctA × VctB (Vektor-Kreuzprodukt)
+ VctA  VctB 
+Bestimmen der Absolutwerte von VctC (Abs(VctC))
+(Abs) VctC 
+Bestimmen des durch VctA und VctB gebildeten Winkels
+(Angle(VctA;VctB)) auf drei Dezimalstellen genau (Fix 3). (Winkeleinheit:
+Gradmaß (D))
+(SETUP)(Zahlenformat)(Fix)
+35
+
+--- PDF-SEITE 37 ---
+(Winkel) VctA (;)
+VctB 
+Normieren von VctB (UnitV(VctB))
+(Einheitsvektor) VctB 
+Berechnung von Ungleichheiten (nur
+fx-991DE X) 
+Sie können das nachfolgende Verfahren verwenden, um eine Ungleichheit
+des 2., 3. oder 4. Grades zu lösen.
+1. Drücken Sie , wählen Sie das Symbol für den Ungleichungen-
+Modus und drücken Sie dann .
+2. Verwenden Sie im eingeblendeten Dialogfeld eine Zifferntaste ( bis
+), um den Grad der Ungleichheit anzugeben.
+3. Verwenden Sie im eingeblendeten Menü die Tasten  bis , um den
+Typ des Ungleichheitssymbols und seine Ausrichtung auszuwählen.
+4. Benutzen Sie den eingeblendeten Koefﬁzienten-Editor zur Eingabe der
+Werte der Koefﬁzienten.
+• Um beispielsweise x2 + 2x − 3 < 0 zu lösen, geben Sie Folgendes für
+die Koefﬁzienten ein (a = 1, b = 2, c = -3): 123.
+• Durch Drücken von  werden alle Koefﬁzienten auf Null
+zurückgesetzt.
+5. Drücken Sie nach erfolgter Eingabe der Werte .
+• Dadurch werden die Lösungen angezeigt.
+• Zum Zurückschalten von der Anzeige der Lösungen zum
+Koefﬁzienten-Editor drücken Sie .
+Ändern des Typs der Ungleichheit: Durch das Drücken von
+(Polyn.-Ungleich) wird ein Dialogfeld angezeigt, das Sie verwenden
+können, um den Grad der Ungleichheit anzugeben. Beim Ändern des
+Grads der Ungleichheit werden die Werte aller Koefﬁzienten im
+Koefﬁzienten-Editor auf Null gesetzt.
+Berechnungsbeispiele für den Ungleichungen-Modus
+3x3 + 3x2 − x > 0
+ (Polyn.-Ungleich)(Ungleichheit des 3. Grades)(ax 3+bx2+cx
++d>0)
+331
+
+
+Hinweis
+• Lösungen werden wie im beigefügten
+Screenshot ersichtlich angezeigt, wenn
+eine andere Darstellung als Math -->
+Math für die Eingabe/Ausgabe-
+Einstellung im Setup-Menü ausgewählt
+wurde.
+• „Alle reell Zahlen“ erscheint auf dem Lösungsbildschirm, wenn die
+Lösung einer Ungleichheit gänzlich aus Zahlen besteht (wie z. B. x2 ≧ 0).
+36
+
+--- PDF-SEITE 38 ---
+• „Keine Lösung“ erscheint auf dem Lösungsbildschirm, wenn es für eine
+Ungleichheit keine Lösung gibt (wie z. B. x2 < 0).
+Berechnung von Verhältnissen (nur
+fx-991DE X) 
+Im Verhältnisse-Modus können Sie den Wert von X im Verhältnis-Ausdruck
+A / B = X / D (oder A / B = C / X) bestimmen, wenn die Werte von A, B, C
+und D bekannt sind. Im Folgenden wird das allgemeine Verfahren für die
+Verwendung von „Verhältnisse“ gezeigt.
+1. Drücken Sie , wählen Sie das Symbol für den Verhältnisse-Modus
+und drücken Sie dann .
+2. Wählen Sie im eingeblendeten Menü (A/B=X/D) oder (A/B=C/X).
+3. Geben Sie im eingeblendeten Koefﬁzienten-Editor-Bildschirm bis zu 10
+Stellen für jeden der erforderlichen Werte (A; B; C; D) ein.
+• Zum Lösen von 3 / 8 = X / 12 in Bezug auf X beispielsweise drücken
+Sie  in Schritt 1 und geben Sie Folgendes für die Koefﬁzienten ein
+(A = 3; B = 8; D = 12): 3812.
+• Durch Drücken von  werden alle Koefﬁzienten auf Eins
+zurückgesetzt.
+4. Drücken Sie nach erfolgter Eingabe der Werte .
+• Dadurch wird die Lösung (Wert von X) angezeigt. Durch das erneute
+Drücken von  kehren Sie zum Koefﬁzienten-Editor zurück.
+Wichtig: Ein Mathem. Fehler tritt auf, wenn Sie eine Berechnung ausführen,
+während für einen Koefﬁzienten 0 eingegeben ist.
+Zum Berechnen von X im Verhältnis 1 / 2 = X / 10
+(Typ auswählen)(A/B=X/D)
+1210
+ (X=) 5
+Ändern des Verhältnis-Ausdruckstyps
+Drücken Sie (Typ auswählen) und wählen Sie dann den
+gewünschten Verhältnis-Ausdruckstyp aus dem eingeblendeten Menü.
+Verwenden der Nachprüfung 
+„Berechn prüf“ ist eine Funktion, mit der Sie nachprüfen können, ob eine
+eingegebene Gleichheit oder Ungleichheit wahr (angezeigt durch Wahr)
+oder falsch (angezeigt durch Falsch) ist.
+Sie können im „Berechn prüf“-Modus die folgenden Ausdrücke zum
+Nachprüfen eingeben.
+• Gleichheiten oder Ungleichheiten mit einem Vergleichszeichen
+4=
+16; 4≠3 ; 𝜋>3 ; 1+2  ≦5 ; 3×6 < 2+6 ×2  usw.
+• Gleichheiten oder Ungleichheiten mit mehreren Vergleichszeichen
+1 ≦ 1 < 1 + 1 ; 3<𝜋<4 ; 22 =2+2=4 ; 2+3=5≠2+5=8  usw.
+Berechnungsbeispiel für den „Berechn prüf“-Modus
+Hinweis: Wenn das Ergebnis einer Wahr/Falsch-Beurteilung einer
+Gleichheit oder Ungleichheit mit einem Vergleichszeichen Wahr ist, wird
+durch das Drücken von  die rechte Seite des beurteilten Ausdrucks als
+nächste Zeile eingefügt. Diese Funktion kann verwendet werden, um eine
+fortlaufende Wahr/Falsch-Beurteilung von Gleichheiten oder Ungleichheiten
+durchzuführen.
+37
+
+--- PDF-SEITE 39 ---
+Durchführen der fortlaufenden Wahr/Falsch-Beurteilung von
+𝑥+1 𝑥+5 =𝑥 2 +𝑥+5 𝑥+5  und 𝑥2 +𝑥+5 𝑥+5=𝑥 2 +6 𝑥+5
+1. Drücken Sie , wählen Sie das Symbol für den „Berechn prüf“-Modus
+und drücken Sie dann .
+2. Geben Sie 𝑥+1 𝑥+5 =𝑥 2 +𝑥+5 𝑥+5   ein und führen Sie dann
+eine Wahr/Falsch-Beurteilung durch.
+1
+5(=)*
+55
+3. Drücken Sie .
+• Dadurch wird die rechte Seite der
+in Schritt 2 beurteilten Gleichheit
+automatisch eingegeben.
+4. Geben Sie die rechte Seite der neuen Gleichheit (𝑥2 +6 𝑥+5 ) ein, um
+eine Wahr/Falsch-Beurteilung durchzuführen.
+65
+* Sie können das Gleichheitszeichen oder Ungleichheitszeichen aus dem
+Menü auswählen, das durch Drücken von  erscheint.
+Hinweis
+• Wenn das Ergebnis der Nachprüfung Wahr ist, wird dem Ans-Speicher
+der Wert 1 zugewiesen, wenn es Falsch ist, wird der Wert 0 zugewiesen.
+• Im „Berechn prüf“-Modus führt der Rechner eine mathematische
+Operation am eingegebenen Ausdruck durch und zeigt dann auf
+Grundlage des Ergebnisses Wahr oder Falsch an. Daher kann ein
+Rechenfehler auftreten oder ein mathematisch korrektes Ergebnis kann
+eventuell nicht angezeigt werden, wenn der eingegebene
+Berechnungsausdruck eine Berechnung in der Nähe des singulären
+Punktes oder des Wendepunkts einer Funktion beinhaltet, oder wenn der
+eingegebene Ausdruck mehrere Rechenoperationen enthält.
+Wichtig
+• Einige Ausdrücke verursachen einen Syntaxfehler und können nicht
+nachgeprüft werden.
+• Ein Ausdruck mit mehreren Vergleichszeichen, die nicht in dieselbe
+Richtung weisen (Beispiel: 5≦6≧4 ), verursacht einen Syntaxfehler.
+• Ein Ausdruck, der ≠ zusammen mit irgendeinem der folgenden Zeichen:
+<, >, ≦, ≧ (Beispiel: 4<6≠8 ) enthält, verursacht einen Syntaxfehler.
+Berechnungen von Verteilungen 
+Sie können die folgenden Verfahren verwenden, um sieben verschiedene
+Berechnungstypen für Verteilungen auszuführen.
+1. Drücken Sie , wählen Sie das Symbol für den Verteilungsfkt.-Modus
+und drücken Sie dann .
+2. Wählen Sie im eingeblendeten Menü einen Gleichungstyp aus.
+Zum Wählen dieses Rechnungstyps: Drücken Sie diese
+Taste:
+Normale Wahrscheinlichkeitsdichte (Normal-Dichte)
+Kumulative Normalverteilung (Kumul. Normal-V)
+38
+
+--- PDF-SEITE 40 ---
+Inverse kumulative Normalverteilung (Inv. Normal-V.)
+Binomial-Wahrscheinlichkeitsdichte (Binomial-Dichte)
+Kumulative Binomial-Verteilung (Kumul. Binom.-V)
+Poisson-Wahrscheinlichkeitsdichte (Poisson-Dichte)
+Kumulative Poisson-Verteilung (Kumul.Poisson-V)
+• Falls Sie Normal-Dichte, Kumul. Normal-V oder Inv. Normal-V. als
+Berechnungstyp ausgewählt haben, gehen Sie zu Schritt 4 dieses
+Verfahrens. Für jeden anderen Berechnungstyp gehen Sie zu Schritt
+3.
+3. Wählen Sie im eingeblendeten Dialogfeld eine Eingabemethode für die
+Daten (k).
+• Zum gleichzeitigen Eingeben mehrerer k-Datenelemente drücken Sie
+(Liste). Zum Eingeben eines einzelnen Datenelements drücken
+Sie (Variable).
+• Wenn Sie oben (Liste) ausgewählt haben, erscheint daraufhin ein
+Listenbildschirm zur Eingabe der k-Datenelemente.
+4. Geben Sie Werte für die Variablen ein.
+• Die Variablen, die eine Dateneingabe erfordern, hängen vom
+Berechnungstyp ab, den Sie in Schritt 2 dieses Verfahrens
+ausgewählt haben.
+5. Drücken Sie nach der Eingabe von Werten für alle Variablen .
+• Dadurch werden die Rechenergebnisse angezeigt.
+• Wenn Sie während der Anzeige eines Rechenergebnisses 
+drücken, kehren Sie zum Eingabebildschirm für Variablen zurück.
+Hinweis
+• Wenn in Schritt 3 dieses Verfahrens eine andere Einstellung als
+„Liste“ ausgewählt wurde, wird das Rechenergebnis im Ans-Speicher
+gespeichert.
+• Die Berechnung von Verteilungen ist bis auf sechs signiﬁkante Stellen
+genau.
+Zum Ändern des Berechnungstyps für die Verteilung: Drücken Sie
+(Typ auswählen) und wählen Sie dann den gewünschten
+Verteilungstyp.
+Variablen mit Eingabemöglichkeit
+Die Variablen in Berechnungen von Verteilungen, für die eine Eingabe
+möglich ist, sind nachfolgend aufgeführt.
+Normal-Dichte: x, σ, μ
+Kumul. Normal-V: Untere, Obere, σ, μ
+Inv. Normal-V.: Fläche, σ, μ (Schwanz-Einstellung immer links.)
+Binomial-Dichte, Kumul. Binom.-V: k, n, p
+Poisson-Dichte, Kumul.Poisson-V: k, μ
+x und k: Daten, σ: Standardabweichung (σ > 0), μ: Mittelwert, Untere: untere
+Grenze, Obere: obere Grenze, Fläche: Wahrscheinlichkeitswert (0 ≦ Fläche
+≦ 1), n: Anzahl der Versuche, p: Erfolgswahrscheinlichkeit (0 ≦ p ≦ 1)
+Listenbildschirm
+Für jede Variable können Sie bis zu 45 Daten-Stichproben eingeben.
+Rechenergebnisse werden ebenfalls auf dem Listenbildschirm angezeigt.
+39
+
+--- PDF-SEITE 41 ---
+(1) Berechnungstyp für die Verteilung
+(2) Wert an der aktuellen Cursorposition
+(3) Daten (k)
+(4) Rechenergebnisse (P)
+Zum Bearbeiten von Daten: Verschieben Sie den Cursor zu der Zelle mit
+den Daten, die Sie bearbeiten möchten, geben Sie die neuen Daten ein und
+drücken Sie dann .
+Zum Löschen von Daten: Verschieben Sie den Cursor zu den Daten, die
+Sie löschen möchten, und drücken Sie dann .
+Zum Einfügen von Daten: Verschieben Sie den Cursor an die Position, an
+der Sie die Daten einfügen möchten, drücken Sie (Editor)(Zeile
+einfügen) und geben Sie dann die Daten ein.
+Zum Löschen aller Daten: Drücken Sie (Editor)(Alles löschen).
+Berechnungsbeispiele für den Verteilungsfkt.-Modus
+Berechnen der normalen Wahrscheinlichkeitsdichte für x = 36; σ = 2; μ = 35
+1. Führen Sie die folgende Tastenoperation aus, um Normal-Dichte
+auszuwählen.
+(Typ auswählen)(Normal-Dichte)
+• Dadurch wird der Variablen-
+Eingabebildschirm angezeigt.
+2. Geben Sie Werte für x, σ und μ ein.   36235
+3. Drücken Sie .
+• Dadurch werden die Rechenergebnisse
+angezeigt. (f=) 0,1760326634
+• Durch das erneute Drücken von  oder das Drücken von 
+kehren Sie zum Variablen-Eingabebildschirm in Schritt 1 dieses
+Verfahrens zurück.
+Hinweis: Sie können die aktuell angezeigte Lösung einer Variablen
+zuweisen. Drücken Sie bei angezeigter Lösung  und dann die Taste mit
+dem Namen der Variable, der Sie die Lösung zuweisen möchten.
+Berechnen der Binomial-Wahrscheinlichkeitsdichte der Daten {10, 11, 12,
+13} für n = 15 und p = 0,6
+1. Führen Sie die folgende Tastenoperation aus, um Binomial-Dichte
+auszuwählen.
+(Typ auswählen)(Binomial-Dichte)
+2. Da Sie Werte für vier Daten  (k) eingeben möchten, drücken Sie hier
+(Liste).
+• Dadurch wird der Listenbildschirm angezeigt.
+3. Geben Sie einen Wert für k ein.  10111213
+4. Drücken Sie nach der Eingabe aller Werte .
+• Dadurch wird der Variablen-Eingabebildschirm angezeigt.
+5. Geben Sie Werte für n und p ein.  150,6
+6. Drücken Sie .
+• Dadurch kehren Sie zum
+Listenbildschirm zurück, wobei das
+Rechenergebnis für jeden k-Wert in
+der P-Spalte angezeigt wird.
+40
+
+--- PDF-SEITE 42 ---
+Durch das Drücken von  kehren Sie zum Variablen-Eingabebildschirm in
+Schritt 4 dieses Verfahrens zurück.
+Hinweis
+• Wenn Sie in Schritt 6 des obigen Verfahrens einen k-Wert ändern,
+werden alle Rechenergebnisse gelöscht und Sie kehren zu Schritt 2
+zurück. In diesem Fall bleiben alle anderen k-Werte (außer dem
+geänderten Wert) und die den Variablen n und p zugewiesenen Werte
+gleich. Dies bedeutet, dass Sie eine Berechnung wiederholen können,
+wobei Sie nur einen bestimmten Wert ändern.
+• Im Listenbildschirm können Sie den Wert in einer Zelle einer Variablen
+zuweisen. Verschieben Sie den Zellencursor zu der Zelle, die den
+zuzuweisenden Wert enthält, drücken Sie  und drücken Sie dann die
+Taste, die dem gewünschten Variablennamen entspricht.
+• Eine Fehlermeldung erscheint, falls sich der eingegebene Wert
+außerhalb des zulässigen Bereichs beﬁndet. „ERROR“ erscheint in der
+P-Spalte des Ergebnisbildschirms, wenn sich der für die
+entsprechenden Daten eingegebene Wert außerhalb des zulässigen
+Bereichs beﬁndet.
+Verwenden der Tabellenkalkulation 
+Um die Operationen in diesem Abschnitt auszuführen, wechseln Sie zuerst
+in den Tabellenkalk.-Modus.
+Der Tabellenkalk.-Modus ermöglicht es,
+Berechnungen anhand einer
+Tabellenkalkulation mit 45 Zeilen × 5 Spalten
+(Zelle A1 bis E45) auszuführen.
+(1) Zeilennummern (1 bis 45)
+(2) Spaltenbuchstaben (A bis E)
+(3) Zellencursor: Zeigt die aktuell
+ausgewählte Zelle an.
+(4) Bearbeitungsfeld: Zeigt den Inhalt der
+Zelle an, in der sich der Zellencursor aktuell
+beﬁndet.
+Wichtig: Bei jedem Verlassen des Tabellenkalk.-Modus, Ausschalten des
+Rechners oder Drücken der Taste  werden alle in die Tabellenkalkulation
+eingegebenen Daten gelöscht.
+Eingeben und Bearbeiten von Zelleninhalten
+Sie können in jede Zelle eine Konstante oder eine Formel eingeben.
+Konstanten: Bei einer Konstante ist der Wert fest eingegeben, sobald Sie
+seine Eingabe ﬁnalisieren. Eine Konstante kann entweder ein numerischer
+Wert sein oder eine Berechnungsformel (wie z. B. 7+3, sin30, A1×2 usw.)
+ohne Gleichheitszeichen (=) davor.
+Formel: Eine Formel, die mit einem Gleichheitszeichen (=) beginnt (wie z.
+B. =A1×2), wird so ausgeführt, wie Sie geschrieben ist.
+Hinweis: Im Fall einer Konstante können bis zu 10 Bytes in jede Zelle
+eingegeben werden. Im Fall einer Formel können Sie bis zu 49 Bytes in jede
+Zelle eingeben. Zum Eingeben einer Formel in eine Zelle werden 11 Bytes
+zuzüglich der Anzahl von Bytes für die tatsächlichen Formeldaten benötigt.
+Zum Anzeigen der verbleibenden Eingabekapazität: Drücken Sie
+(Freier Speicher).
+41
+
+--- PDF-SEITE 43 ---
+Eingeben einer Konstante und/oder Formel in eine Zelle
+Bsp. 1: Geben Sie die Konstanten 7×5, 7×6 und A2+7 nacheinander in die
+Zellen A1, A2 und A3 ein. Und geben Sie dann die folgende Formel in Zelle
+B1 ein: =A1+7.
+1. Verschieben Sie den Zellencursor zu Zelle A1.
+2. Führen Sie die folgende Tastenoperation aus.
+7576(A)7
+3. Verschieben Sie den Zellencursor zu Zelle B1 und führen Sie dann die
+folgende Tastenoperation aus.
+(=)
+*1 oder (=) *2
+(A)7
+*1: fx-87DE X   *2: fx-991DE X
+Hinweis: Sie können festlegen, ob eine Formel im Bearbeitungsfeld so, wie
+sie ist, oder als ihr Rechenergebnis-Wert angezeigt wird.
+Bearbeiten vorhandener Zellendaten
+1. Verschieben Sie den Zellencursor zu der Zelle, deren Inhalt Sie
+bearbeiten möchten, und drücken Sie dann (Zelle bearbeit.).
+• Der Inhalt der Zelle im Bearbeitungsfeld ändert sich von
+rechtsbündig ausgerichtet in linksbündig ausgerichtet. Ein Textcursor
+erscheint im Bearbeitungsfeld, so dass Sie seinen Inhalt bearbeiten
+können.
+2. Verwenden Sie  und , um den Cursor innerhalb des Inhalts der
+Zelle zu verschieben, und bearbeiten Sie den Inhalt wie erforderlich.
+3. Zum Finalisieren und Anwenden Ihrer Bearbeitungen drücken Sie .
+Eingeben eines Zellenreferenznamens mit dem Zell-Auswahl-Befehl
+Der Zell-Auswahl-Befehl kann anstelle der manuellen Eingabe eines
+Referenznamens (wie z. B. A1) verwendet werden, indem Sie eine
+Tastenoperation zum Auswählen und Eingeben einer als Referenz
+gewünschten Zelle verwenden.
+Bsp. 2: Geben Sie (als Fortsetzung von Bsp. 1) die folgende Formel in Zelle
+B2 ein: =A2+7.
+1. Verschieben Sie den Zellencursor zu Zelle B2.
+2. Führen Sie die folgende Tastenoperation aus.
+(=)
+*1 oder (=) *2
+(Zell-Auswahl)
+*1: fx-87DE X   *2: fx-991DE X
+7
+Relative und absolute Zellenreferenzen
+Es gibt zwei Arten von Zellenreferenzen: relative und absolute.
+Relative Zellenreferenz: Die Zellenreferenz (A1) in einer Formel wie =A1+7
+ist eine relative Zellenreferenz, das heißt, dass sie sich abhängig von der
+Zelle verändert, in der sich die Formel beﬁndet. Wenn sich beispielsweise
+die Formel =A1+7 ursprünglich in der Zelle B1 beﬁndet, wird durch das
+Kopieren und anschließende Einfügen in Zelle C3 die Formel =B3+7 in die
+Zelle C3 eingefügt. Da das Kopieren und Einfügen die Formel um eine
+Spalte (von B nach C) und um zwei Zeilen (von 1 nach 3) verschiebt, ändert
+sich die relative Zellenreferenz A1 in der Formel in B3. Falls das Ergebnis
+eines Kopieren-und-Einfügen-Vorgangs den Namen einer relativen
+42
+
+--- PDF-SEITE 44 ---
+Zellenreferenz dahingehend ändert, dass er sich außerhalb des Bereichs
+der Tabellenkalkulationszellen beﬁndet, wird der entsprechende
+Spaltenbuchstabe und/oder die entsprechende Zeilennummer durch ein
+Fragezeichen (?) ersetzt und „ERROR“ wird als Zellendaten angezeigt.
+Absolute Zellenreferenz: Falls die Angabe der Zeile oder der Spalte oder
+sowohl der Zeile als auch der Spalte in einem Zellenreferenznamen gleich
+bleiben sollen, egal wo sie eingefügt werden, müssen Sie einen absoluten
+Zellenreferenznamen erstellen. Um eine absolute Zellenreferenz zu
+erstellen, geben Sie ein Dollarzeichen () vor dem Spaltennamen und/oder
+der Zeilennummer ein. Sie können eine von drei verschiedenen absoluten
+Zellenreferenzen verwenden: absolute Spalte mit relativer Zeile (A1),
+relative Spalte mit absoluter Zeile (A1) oder absolute Zeile und Spalte
+(A1).
+Eingeben des Symbols für die absolute Zellenreferenz (
+)
+Drücken Sie beim Eingeben einer Formel in eine Zelle ().
+Ausschneiden und Einfügen von Tabellenkalkulationsdaten
+1. Verschieben Sie den Cursor zu der Zelle, deren Daten Sie
+ausschneiden möchten, und drücken Sie dann (Ausschn.&
+Einf.).
+• Dadurch aktivieren Sie den Bereitschaftsmodus für das Einfügen. Um
+den Bereitschaftsmodus für das Einfügen abzubrechen, drücken Sie
+.
+2. Verschieben Sie den Cursor zu der Zelle, in die Sie die soeben
+ausgeschnittenen Daten einfügen möchten, und drücken Sie dann .
+• Durch das Einfügen der Daten werden gleichzeitig die Daten aus der
+Zelle gelöscht, in der Sie das Ausschneiden durchgeführt haben, und
+der Bereitschaftsmodus für das Einfügen wird automatisch
+abgebrochen.
+Hinweis: Wenn Sie Inhalte ausschneiden und einfügen, ändern sich die
+Zellenreferenzen nicht beim Einfügen, unabhängig davon, ob es sich um
+relative oder absolute Zellenreferenzen handelt.
+Kopieren und Einfügen von Tabellenkalkulationsdaten
+1. Verschieben Sie den Cursor zu der Zelle, deren Daten Sie kopieren
+möchten, und drücken Sie dann (Kopier & Einfüg).
+• Dadurch aktivieren Sie den Bereitschaftsmodus für das Einfügen. Um
+den Bereitschaftsmodus für das Einfügen abzubrechen, drücken Sie
+.
+2. Verschieben Sie den Cursor zu der Zelle, in die Sie die soeben
+kopierten Daten einfügen möchten, und drücken Sie dann .
+• Der Bereitschaftsmodus für das Einfügen bleibt solange aktiviert, bis
+Sie  drücken. Daher können Sie die kopierten Daten auch in
+andere Zellen einfügen, falls gewünscht.
+Hinweis: Wenn Sie den Inhalt einer Zelle kopieren, die eine Formel mit einer
+relativen Referenz enthält, wird sich die relative Referenz entsprechend der
+Lage der Zelle, in die der Inhalt eingefügt wird, ändern.
+Löschen von eingegebenen Daten aus einer bestimmten Zelle
+Verschieben Sie den Zellencursor zu der Zelle, deren Inhalt Sie löschen
+möchten, und drücken Sie dann .
+Löschen der Inhalte aller Zellen in einer Tabellenkalkulation
+Drücken Sie (Alles löschen).
+43
+
+--- PDF-SEITE 45 ---
+Verwenden der Variablen (A, B, C, D, E, F, M, x, y)
+Sie können  verwenden, um den Wert einer Zelle einer Variablen
+zuzuweisen. Sie können auch (RECALL) verwenden, um den einer
+Variablen zugewiesenen Wert in eine Zelle einzufügen.
+Verwenden spezieller Befehle im Tabellenkalk.-
+Modus
+Im Tabellenkalk.-Modus können die folgenden Befehle innerhalb von
+Formeln und Konstanten verwendet werden. Diese Befehle stehen im Menü,
+das beim Drücken von  erscheint.
+Min(
+Gibt das Minimum der Werte in einem bestimmten Zellenbereich
+aus.
+Syntax: Min(Startzelle:Endzelle)
+Max(
+Gibt das Maximum der Werte in einem bestimmten Zellenbereich
+aus.
+Syntax: Max(Startzelle:Endzelle)
+Mean(
+Gibt den Mittelwert der Werte in einem bestimmten Zellenbereich
+aus.
+Syntax: Mean(Startzelle:Endzelle)
+Sum( Gibt die Summe der Werte in einem bestimmten Zellenbereich aus.
+Syntax: Sum(Startzelle:Endzelle)
+Bsp. 3: Geben Sie (als Fortsetzung von Bsp. 1) die Formel =Sum(A1:A3),
+die die Summe der Zellen A1, A2 und A3 berechnet, in die Zelle A4 ein.
+1. Verschieben Sie den Zellencursor zu Zelle A4.
+2. Geben Sie =Sum(A1:A3) ein.
+(=)
+*1 oder (=) *2
+(Summe)(A)
+(:) *1 oder (:) *2
+(A)
+*1: fx-87DE X   *2: fx-991DE X
+3. Drücken Sie .
+Listenweises Eingeben der gleichen Formel oder
+Konstante in mehrere Zellen
+Sie können die Verfahren in diesem Abschnitt verwenden, um die gleiche
+Formel oder Konstante in eine bestimmte Reihe von Zellen einzugeben.
+Verwenden Sie den Befehl „Formel füllen“, um eine Formel listenweise
+einzugeben, oder „Wert füllen“, um eine Konstante listenweise einzugeben.
+Hinweis: Falls die eingegebene Formel oder Konstante eine relative
+Referenz beinhaltet, wird die relative Referenz entsprechend der Zelle oben
+links im angegebenen Bereich eingegeben. Falls die eingegebene Formel
+oder Konstante eine absolute Referenz beinhaltet, wird die absolute
+Referenz in alle Zellen im angegebenen Bereich eingegeben.
+Listenweises Eingeben der gleichen Formel in eine Reihe von Zellen
+Bsp. 4: Geben Sie (als Fortsetzung von Bsp. 1) listenweise eine Formel in
+die Zellen B1, B2 und B3 ein, die den Wert der Zelle links davon verdoppelt
+und dann davon 3 subtrahiert.
+1. Verschieben Sie den Zellencursor zu Zelle B1.
+44
+
+--- PDF-SEITE 46 ---
+2. Drücken Sie (Formel füllen).
+• Dadurch wird das „Formel füllen“-Dialogfeld angezeigt.
+3. Geben Sie in die Zeile „Formel“ die Formel „=2A1–3“ ein: 2
+(A)3.
+• Die Eingabe des Gleichheitszeichens (=) am Anfang ist nicht nötig.
+4. Verschieben Sie die Hervorhebung in die Zeile „Zellen“ und legen Sie
+B1:B3 als Bereich für das listenweise Eingeben fest.
+
+5. Um die Eingabe anzuwenden, drücken
+Sie .
+• Dadurch wird =2A1–3 in Zelle B1,
+=2A2–3 in Zelle B2 und =2A3–3 in
+Zelle B3 eingegeben.
+Listenweises Eingeben der gleichen Konstante in eine Reihe von Zellen
+Bsp. 5: Geben Sie (als Fortsetzung von Bsp. 4) listenweise die Werte in die
+Zellen C1, C2 und C3 ein, die dem Dreifachen der Werte der Zellen links
+davon entsprechen.
+1. Verschieben Sie den Zellencursor zu Zelle C1.
+2. Drücken Sie (Wert füllen).
+• Dadurch wird das „Wert füllen“-Dialogfeld angezeigt.
+3. Geben Sie in die Zeile „Wert“ die Konstante B1×3 ein:
+(B)3.
+4. Verschieben Sie die Hervorhebung in die Zeile „Zellen“ und legen Sie
+C1:C3 als Bereich für das listenweise Eingeben fest.
+
+5. Um die Eingabe anzuwenden, drücken
+Sie .
+• Dadurch werden die Werte jedes
+Rechenergebnisses entsprechend
+in die Zellen C1, C2 und C3
+eingegeben.
+Neuberechnung
+„Autom. Berechn.“ ist ein Einstellungselement. Abhängig vom Inhalt der
+Tabellenkalkulation kann die Neuberechnung bis zur Fertigstellung eine
+lange Zeit in Anspruch nehmen. Wenn „Autom. Berechn.“ deaktiviert (Aus)
+ist, müssen Sie die Neuberechnung falls nötig manuell ausführen.
+Zur manuellen Ausführung der Neuberechnung: Drücken Sie
+(Neu berechnen).
+Wissenschaftliche Konstanten 
+Ihr Rechner wird mit 47 vorprogrammierten wissenschaftlichen Konstanten
+ausgeliefert.
+Beispiel: Geben Sie die wissenschaftliche Konstante c0
+(Lichtgeschwindigkeit im Vakuum) ein und zeigen Sie ihren Wert an
+45
+
+--- PDF-SEITE 47 ---
+1. Drücken Sie (CONST), um ein
+Menü mit Kategorien wissenschaftlicher
+Konstanten anzuzeigen.
+2. Drücken Sie (Univers. Konst.), um ein
+Menü wissenschaftlicher Konstanten in
+der Kategorie für universelle Konstanten
+anzuzeigen.
+3. Drücken Sie (c 0). 299792458
+• Die Werte basieren auf den von CODATA (2010) empfohlenen Werten.
+Metrische Umwandlung 
+Sie können die metrischen Umwandlungsbefehle verwenden, um Werte von
+einer Maßeinheit in eine andere umzuwandeln.
+Beispiel: Umwandeln von 5 cm in Zoll  (Lin. --> Linear)
+1. Geben Sie den Wert ein, der umgewandelt werden soll, und zeigen Sie
+das metrische Umwandlungsmenü an.
+5(CONV)
+2. Wählen Sie im eingeblendeten Umwandlungskategorie-Menü „Länge“.
+(Länge)
+3. Wählen Sie den Zentimeter-in-Zoll-Umwandlungsbefehl und führen Sie
+dann die Umwandlung durch.
+(cmin)
+Hinweis
+• Die in den Umwandlungsformeln verwendeten Daten beruhen auf der
+„NIST Special Publication 811 (2008)“.
+• Bei der Umwandlung mit dem Befehl Jcal wird von einer Temperatur
+von 15 °C ausgegangen.
+Fehlermeldungen 
+Der Rechner zeigt eine Fehlermeldung an, wenn während der Rechnung
+ein Fehler, aus welchem Grund auch immer, auftritt. Drücken Sie während
+der Anzeige einer Fehlermeldung  oder , um zum
+Rechnungsbildschirm zurückzukehren. Der Cursor beﬁndet sich an der
+fehlerhaften Stelle.
+Zum Löschen der Fehlermeldung: Drücken Sie während der Anzeige
+einer Fehlermeldung , um zum Rechnungsbildschirm zurückzukehren.
+Beachten Sie, dass damit auch die Berechnung, die den Fehler enthält,
+gelöscht wird.
+Fehlermeldungen
+Mathem. Fehler
+46
+
+--- PDF-SEITE 48 ---
+• Das Zwischen- oder Endergebnis der Berechnung geht über den
+zulässigen Rechenbereich hinaus.
+• Ihre Eingabe geht über den zulässigen Eingabebereich hinaus
+(besonders bei der Verwendung von Funktionen).
+• Ihre Berechnung enthält eine unzulässige mathematische Operation
+(zum Beispiel eine Division durch 0).
+→ Prüfen Sie die Eingabewerte, reduzieren Sie die Anzahl der Ziffern und
+versuchen Sie es erneut.
+→ Wenn Sie den unabhängigen Speicher oder eine Variable als
+Argument einer Funktion verwenden, achten Sie darauf, dass sich der
+Speicher- oder Variablenwert innerhalb des zulässigen Bereichs für
+die Funktion beﬁndet.
+Stapelfehler
+• Bei der Berechnung wurde die Kapazität des numerischen Stapels oder
+des Befehlsstapels überschritten.
+• Bei der Berechnung wurde die Kapazität des Matrix- oder Vektorstapels
+überschritten. (nur fx-991DE X)
+→ Vereinfachen Sie den Rechenausdruck, so dass die Kapazität des
+Stapels nicht mehr überschritten wird.
+→ Versuchen Sie, die Berechnung in zwei oder mehr Teile aufzuteilen.
+Syntaxfehler
+• Das Format der Berechnung ist nicht korrekt.
+Argumentfehler
+• Das Argument der Berechnung ist nicht korrekt.
+Dimensionsfehler (nur im Matrizen-Modus und im Vektorrechnung-
+Modus) (fx-991DE X)
+• Die Matrix oder der Vektor, die/den Sie in einer Berechnung verwenden,
+wurde ohne Angabe der Dimension eingegeben.
+• Sie führen eine Berechnung mit Matrizen oder Vektoren aus, für deren
+Dimensionen eine solche Art von Berechnung nicht zulässig ist.
+→ Geben Sie die Dimension der Matrix bzw. des Vektors an und führen
+Sie dann die Berechnung erneut aus.
+→ Stellen Sie sicher, dass die für die Matrizen oder Vektoren
+angegebenen Dimensionen für die Berechnung zulässig sind.
+Variablenfehler (nur bei SOLVE-Funktion) (fx-991DE X)
+• Sie haben versucht, SOLVE für einen Ausdruck ohne Variable
+auszuführen.
+→ Geben Sie einen Ausdruck ein, der eine Variable enthält.
+Keine Lösung gef (nur bei SOLVE-Funktion) (fx-991DE X)
+• Der Rechner konnte keine Lösung bestimmen.
+→ Prüfen Sie, ob die Gleichung, die Sie eingeben, Fehler enthält.
+→ Geben Sie für die Lösungsvariable einen Wert ein, der nahe bei der
+erwarteten Lösung liegt, und versuchen Sie es erneut.
+Bereichsfehler
+• Sie haben versucht, im Tabellen-Modus eine Wertetabelle zu erstellen,
+deren Bedingungen dazu führen, dass die maximale Anzahl zulässiger
+Zeilen überschritten wird.
+→ Verkleinern Sie den Tabellenberechnungsbereich durch Ändern der
+Werte für Start, Ende und Inkre, und versuchen Sie es erneut.
+• Während der listenweisen Eingabe im Tabellenkalk.-Modus beﬁndet sich
+der Eintrag für „Zellen“ außerhalb des zulässigen Bereichs oder ist ein
+nicht existierender Zellenname.
+→ Geben Sie mit der folgenden Syntax für „Zellen“ einen Zellennamen
+innerhalb des Bereichs von A1 bis E45 ein: „A1:A1“
+47
+
+--- PDF-SEITE 49 ---
+Zeitüberschreit (fx-991DE X)
+• Die aktuelle Differential- oder Integralrechnung endet, ohne dass die
+Endbedingung erfüllt ist.
+→ Versuchen Sie, den tol-Wert zu erhöhen. Beachten Sie, dass damit
+auch die Lösungsgenauigkeit abnimmt.
+Zirkelbezug (nur im Tabellenkalk.-Modus)
+• Es gibt einen Zirkelbezug (wie z. B. „=A1“ in Zelle A1) in der
+Tabellenkalkulation.
+→ Ändern Sie die Zelleninhalte, um die Zirkelbezüge zu entfernen.
+Speicherfehler (nur im Tabellenkalk.-Modus)
+• Sie versuchen, Daten einzugeben, die die zulässige Eingabekapazität
+(1700 Bytes) überschreiten.
+• Ihr Versuch, Daten einzugeben, resultiert in einer Kette aufeinander
+folgender Zellenreferenzen (wie z. B. Verweis von Zelle A1 auf Zelle A2,
+Verweis von Zelle A2 auf Zelle A3… usw.). Durch diese Art der Eingabe
+wird immer dieser Fehler verursacht, selbst wenn die Speicherkapazität
+(1700 Bytes) nicht überschritten wird.
+→ Löschen Sie nicht benötigte Daten und geben Sie die Daten erneut
+ein.
+→ Minimieren Sie die Eingabe, die eine Kette aufeinander folgender
+Zellenreferenzen verursacht.
+• Die Speicherkapazität wurde überschritten, da eine Formel mit einer
+relativen Zellenreferenz kopiert wurde oder wegen der listenweisen
+Eingabe von Formeln mit relativen Zellenreferenzen.
+→ Kürzen Sie die zu kopierende Formel oder die Formeln für die
+listenweise Eingabe.
+Bevor Sie auf Fehlbetrieb des Rechners
+schließen... 
+Kopieren Sie wichtige Daten, bevor Sie diese Schritte ausführen.
+1. Stellen Sie sicher, dass der Rechenausdruck keine Fehler enthält.
+2. Achten Sie darauf, dass Sie den richtigen Modus für die Art der
+Berechnung, die Sie ausführen möchten, verwenden.
+3. Wenn das Problem mit den obigen Schritten nicht behoben wird,
+drücken Sie die Taste .
+• Dies bewirkt, dass der Rechner prüft, ob die Rechenfunktionen
+ordnungsgemäß funktionieren. Wenn ein fehlerhaftes Verhalten
+erkannt wird, wird der Rechenmodus automatisch initialisiert und der
+Speicherinhalt gelöscht.
+4. Setzen Sie den Rechenmodus und das Setup (außer die Einstellung
+Kontrast) auf ihre anfänglichen Standardeinstellungen zurück, indem Sie
+den folgenden Bedienungsvorgang ausführen:
+(RESET)(Setupdaten)(Ja).
+Austauschen der Batterie 
+Eine blasse Anzeige selbst bei angepasstem Kontrast oder eine zeitlich
+verzögerte Anzeige auf dem Display unmittelbar nach dem Einschalten des
+Rechners weist darauf hin, dass die Spannung der Batterie sehr niedrig ist.
+Falls eines dieser Symptome auftritt, tauschen Sie die Batterie aus.
+Wichtig: Wenn Sie die Batterie aus dem Rechner entfernen, wird der
+gesamte Inhalt des Rechnerspeichers gelöscht.
+48
+
+--- PDF-SEITE 50 ---
+1. Drücken Sie (OFF), um den Rechner
+auszuschalten.
+• Um sicherzustellen, dass Sie nicht versehentlich die
+Stromversorgung einschalten, während Sie die
+Batterie austauschen, schieben Sie das
+Schutzgehäuse über die Vorderseite des Rechners.
+2. Nehmen Sie den Batteriefachdeckel ab, entfernen Sie
+die Batterie und legen Sie dann eine neue Batterie mit
+korrekter Ausrichtung des Pluspols (+) und des
+Minuspols (−) ein, wie in der Abbildung gezeigt.
+3. Bringen Sie den Batteriefachdeckel wieder an.
+4. Initialisieren Sie den Rechner:
+(RESET)(Alle initialis.)(Ja).
+• Überspringen Sie den obigen Schritt nicht!
+Schraube
+Technische Informationen 
+Rechnungsbereich und Genauigkeit
+Rechnungsbereich ±1 × 10-99 bis ±9,999999999 × 1099 oder 0
+Anzahl der Stellen für
+interne Berechnungen 15 Stellen
+Genauigkeit
+Normalerweise beträgt die Genauigkeit ±1 an
+der 10. Stelle für eine einzelne Rechnung. Die
+Genauigkeit für die Exponentialanzeige beträgt
+±1 an der am wenigsten signiﬁkanten Stelle. Die
+Fehler summieren sich im Falle von
+fortlaufenden Berechnungen.
+Eingabebereiche und Genauigkeit von
+Funktionsrechnungen
+Funktion Eingabebereich
+sinx
+cosx
+Gradma
+ß (D) 0 ≦ |x| < 9 × 109
+Bogenm
+aß (R) 0 ≦ |x| < 157079632,7
+Gon (G) 0 ≦ |x| < 1 × 10
+10
+tanx
+Gradma
+ß (D) Genau wie sinx, außer bei |x| = (2n−1) × 90.
+Bogenm
+aß (R) Genau wie sinx, außer bei |x| = (2n−1) × π/2.
+Gon (G) Genau wie sinx, außer bei |x| = (2n−1) × 100.
+sin
+-1x, cos-1x 0 ≦ |x| ≦ 1
+tan-1x 0 ≦ |x| ≦ 9,999999999 × 1099
+sinhx, coshx 0 ≦ |x| ≦ 230,2585092
+49
+
+--- PDF-SEITE 51 ---
+sinh-1x 0 ≦ |x| ≦ 4,999999999 × 1099
+cosh-1x 1 ≦ x ≦ 4,999999999 × 1099
+tanhx 0 ≦ |x| ≦ 9,999999999 × 1099
+tanh-1x 0 ≦ |x| ≦ 9,999999999 × 10-1
+logx, lnx 0 < x ≦ 9,999999999 × 1099
+10x -9,999999999 × 1099 ≦ x ≦ 99,99999999
+ex -9,999999999 × 1099 ≦ x ≦ 230,2585092
+𝑥 0 ≦ x < 1 × 10100
+x2 |x| < 1 × 1050
+x-1 |x| < 1 × 10100 ; x ≠ 0
+𝑥
+3 |x| < 1 × 10100
+x!0  ≦ x ≦ 69 (x ist eine Ganzzahl)
+nPr 0 ≦ n < 1 × 1010, 0 ≦ r ≦ n (n, r sind Ganzzahlen)
+1 ≦ {n!/(n−r)!} < 1 × 10100
+nCr 0 ≦ n < 1 × 1010, 0 ≦ r ≦ n (n, r sind Ganzzahlen)
+1 ≦ n!/r! < 1 × 10100 oder 1 ≦ n!/(n−r)! < 1 × 10100
+Pol(x; y) |x|, |y| ≦ 9,999999999 × 1099
+𝑥2 +𝑦 2 ≦ 9,999999999 × 1099
+Rec(r; θ) 0 ≦ r ≦ 9,999999999 × 1099
+θ: Genau wie sinx
+°’ ”
+|a|, b, c < 1 × 10100 ; 0 ≦ b, c
+Der angezeigte Sekundenwert unterliegt einem Fehler
+von ±1 an der zweiten Dezimalstelle.
+°’ ”
+|x| < 1 × 10100
+Dezimal ↔ Sexagesimal-Umwandlung
+0°0’0” ≦ |x| ≦ 9999999°59’59”
+xy
+x > 0: -1 × 10100 < ylogx < 100
+x = 0: y > 0
+x < 0: y = n, 𝑚
+2𝑛 + 1 (m, n sind Ganzzahlen)
+Jedoch: -1 × 10100 < ylog |x| < 100
+𝑦
+𝑥
+y > 0: x ≠ 0, -1 × 10100 < 1/x logy < 100
+y = 0: x > 0
+y < 0: x = 2n+1, 2𝑛 + 1
+𝑚  (m ≠ 0; m, n sind Ganzzahlen)
+Jedoch: -1 × 10100 < 1/x log |y| < 100
+a b/c
+Ganzzahl, Zähler und Nenner dürfen insgesamt maximal
+10 Stellen haben (einschließlich Trennzeichen).
+50
+
+--- PDF-SEITE 52 ---
+RanInt#(a; b) a < b; |a|, |b| < 1 × 1010; b − a < 1 × 1010
+GCD(a; b)| a|, |b| < 1 × 1010 (a, b sind Ganzzahlen)
+LCM(a; b)0  ≦ a, b < 1 × 1010 (a, b sind Ganzzahlen)
+• Die Genauigkeit ist grundsätzlich gleich wie unter „Rechnungsbereich
+und Genauigkeit“ weiter oben beschrieben.
+• Funktionen des Typs xy, 𝑦
+𝑥
+,    
+3
+, x!, nPr, nCr erfordern fortlaufende interne
+Berechnungen, so dass sich die in jeder Berechnung auftretenden
+Fehler summieren können.
+• Die Fehler summieren sich und sind in der Nähe des singulären Punktes
+und des Wendepunkts einer Funktion besonders groß.
+• Der Bereich der Rechenergebnisse, die in der π-Form angezeigt werden
+können, wenn Math --> Math für Eingabe/Ausgabe im Setup-Menü
+ausgewählt wurde, ist |x| < 106. Beachten Sie allerdings, dass durch
+interne Rechenfehler manche Rechenergebnisse möglicherweise nicht in
+der π-Form angezeigt werden können. Möglicherweise werden auch
+Rechenergebnisse, die in Dezimalform angezeigt werden sollten, in der
+π-Form angezeigt.
+Technische Daten
+Spannungsversorgung:
+Eingebaute Solarzelle; Knopfbatterie LR44 × 1
+Batterielebensdauer:
+2 Jahre (bei einer Stunde Betrieb pro Tag)
+Zulässige Betriebstemperatur: 0°C bis 40°C
+Abmessungen: 11,1 (H) × 77 (B) × 165,5 (T) mm
+Gewicht: Ca. 90 g einschließlich Batterie
+■■ Häuﬁg gestellte Fragen ■■ 
+Wie kann ich ein Ergebnis in Bruchform, erzeugt durch eine Division, in
+Dezimalform ändern?
+→ Drücken Sie während der Anzeige eines Rechenergebnisses in
+Bruchform . Um Rechenergebnisse von vornherein als
+Dezimalwerte anzuzeigen, ändern Sie die Einstellung Eingabe/
+Ausgabe im Setup-Menü zu Math --> Dezim.
+Was ist der Unterschied zwischen Ans-Speicher, unabhängigem
+Speicher und Variablenspeicher?
+→ Jeder dieser Speichertypen ist ein temporärer Speicher für einen
+einzigen Wert.
+Ans-Speicher: Speichert das Ergebnis der zuletzt ausgeführten
+Berechnung. Verwenden Sie diesen Speicher, um das Ergebnis einer
+Berechnung zur nächsten zu übertragen.
+Unabhängiger Speicher: Verwenden Sie diesen Speicher, um die
+Ergebnisse von mehreren Berechnungen zusammenzufassen.
+Variablen: Dieser Speicher ist hilfreich, wenn Sie den gleichen Wert
+mehrmals in einer oder mehreren Berechnungen verwenden müssen.
+Welche Tasten muss ich drücken, um vom Statistik-Modus oder
+Tabellen-Modus in einen Modus zu wechseln, in dem ich arithmetische
+Berechnungen ausführen kann?
+→ Drücken Sie (Berechnungen).
+51
+
+--- PDF-SEITE 53 ---
+Wie kann ich den Rechner auf seine anfänglichen
+Standardeinstellungen zurückstellen?
+→ Führen Sie folgende Schritte zum Initialisieren der Einstellungen des
+Rechners (außer der Kontrast-Einstellung) aus:
+(RESET)(Setupdaten)(Ja).
+Wenn ich eine Berechnung mit Funktionen ausführe, warum erhalte ich
+ein ganz anderes Ergebnis als auf älteren CASIO-Rechnermodellen?
+→ Bei einem Modell mit natürlicher Darstellung muss dem Argument
+einer Funktion mit Klammern immer eine schließende Klammer folgen.
+Nicht die Taste  nach dem Argument zu drücken, um die Klammern
+zu schließen, führt zu unerwünschten Werten oder Ausdrücken, welche
+als Teil in das Argument eingeschlossen werden.
+Beispiel: (sin 30) + 15  (Winkeleinheit: Gradmaß (D))
+Älteres (S-V.P.A.M.) Modell: 3015 15,5
+Modell mit natürlicher Darstellung:
+(Lin. --> Linear) 3015  15,5
+Hier nicht die Taste  zu drücken, wie unten dargestellt, führt zur
+Berechnung von sin 45.
+3015 0,7071067812
+52
+
+--- PDF-SEITE 54 ---
+Referenzblatt 
+Wissenschaftliche Konstanten   (CONST)
+(Univers. Konst.) : h : : c 0
+: ε 0 : μ 0 : Z 0
+: G : l P : t P
+(E-magn. Konst.) : μ N : μ B : e
+: Φ0 : G 0 : K J
+: R K
+(Atom./Nuk.Konst) : m p : m n : m e
+: m μ : a 0 : α
+: r e : λ C : γ p
+: λ Cp : λ Cn : R ∞
+: μ p : μ e : μ n
+: μ μ : m τ
+(Phys/Chem.Konst) : u : F : N A
+: k : V m : R
+: c 1 : c 2 : σ
+(Übernomm. Werte) : g : atm : R K-90
+: K J-90
+(Andere) : t
+Metrische Umwandlung   (CONV)
+(Länge) : in cm : cm in
+: ftm : m ft
+: ydm : m yd
+: mile km : km mile
+: n mile m : m n mile
+: pckm : km pc
+ : Åm : m Å
+: fmm : m fm
+: chm : m ch
+: uam :  mua
+: l.y
+.m : m l.y.
+: mil m : m mil
+ : fath m : m fath
+(Fläche) : acre m2 : m 2acre
+: bm 2 : m 2b
+: am 2 : m 2a
+: ham 2 : m 2ha
+: ft 2m2 : m 2ft2
+: in 2cm2 : cm 2in2
+ : mile 2km2 : km 2mile2
+53
+
+--- PDF-SEITE 55 ---
+(Volumen) : gal(US)L : Lgal(US)
+: gal(UK)L : Lgal(UK)
+: Lm 3 : m 3L
+: buL : Lbu
+: bblL : Lbbl
+: tonm 3 : m 3ton
+ : fl oz(US)mL : mLfl oz(US)
+: fl oz(UK)mL : mLfl oz(UK)
+: ft 3m3 : m 3ft3
+: in 3m3 : m 3in3
+(Winkel) : rrad : radr
+(Masse) : ozg : goz
+: lbkg : kglb
+: mtonkg : kgmton
+: ton(long)kg : kgton(long)
+: ton(short)kg : kgton(short)
+: mcarat g : gmcarat
+(Zeit) : t-yrs : st-yr
+: min s : smin
+: hs : sh
+: days : sday
+(Geschwindigkeit) : km/hm/s : m/s km/h
+: mile/h m/s : m/s mile/h
+: knotm/s : m/s knot
+(Beschleunigung) : Galm/s 2 : m/s 2Gal
+(Drehmoment) : N・mdyn・cm : dyn・cmN・m
+(Kraft) : dynN : Ndyn
+: lbfN : Nlbf
+: kgfN : Nkgf
+(Druck) : atm Pa : Paatm
+: mmHgPa : PammHg
+: kgf/cm 2Pa : Pakgf/cm 2
+: lbf/in 2kPa : kPalbf/in 2
+: barPa : Pabar
+: dyn/cm 2Pa : Padyn/cm 2
+ : lbf/in 2Pa : Palbf/in 2
+: mmH 2OPa : PammH 2O
+: inHgPa : PainHg
+54
+
+--- PDF-SEITE 56 ---
+(Energie) : kgf・mJ : Jkgf・m
+: Jcal : cal J
+: ergJ : Jerg
+: eVJ : JeV
+: BtuJ : JBtu
+: cal ITJ : Jcal IT
+ : cal thJ : Jcal th
+: kW・hJ : J kW・h
+(Leistung) : hpkW : kWhp
+(Wärmedurchﬂuss) : Btu/min W : WBtu/min
+(Temperatur) : °F°C : °C°F
+(Spezif. Wärme) : cal th/(g•K)
+J/(kg•K)
+: J/(kg•K) 
+calth/(g•K)
+(Viskosität) : PPa・s : Pa・sP
+(Kinem.
+Viskosit)
+: Stm 2/s : m 2/sSt
+(Magnetismus) : GT : TG
+: OeA/m : A/mOe
+: MxWb : WbMx
+: γT : Tγ
+(Lichtstärke) : sbcd/m 2 : cd/m 2sb
+: phlx : lxph
+
+(Radioaktivität)
+: CiBq : BqCi
+: radGy : Gyrad
+: remSv : Svrem
+: RC/kg : C/kgR
+55
+
+--- PDF-SEITE 57 ---
+Entsorgung von Altbatterien
+(Anzuwenden nur in den Ländern der Europäischen Union)
+Dieses Symbol (ausgekreuzte Mülltonne) auf der Batterie
+bezeichnet, dass die Batterie nicht unsortiert in den
+Müll gegeben werden darf, sondern nach Ende ihrer
+Lebensdauer zum Recycling an einer hierfür vorgesehenen
+Annahmestelle der örtlichen Gemeinde oder bei einer
+anderen entsprechenden Einrichtung abzugeben ist.
+Falls unter dem Symbol ein chemisches Zeichen angegeben ist, zeigt dies
+an, dass in der Batterie die entsprechenden chemischen Substanzen (Hg =
+Quecksilber, Cd = Cadmium, Pb = Blei) enthalten sind.
+Bei unsachgemäßer Entsorgung besteht das Risiko nachteiliger Auswirkungen
+auf Umwelt und Gesundheit durch potentiell gefährliche Substanzen. Ihre
+Kooperation zur ordnungsgemäßen Entsorgung dieser Batterie fördert die
+Wiederverwendung, das Recycling und die Rückgewinnung von Stoffen und
+trägt zum Schutz der Umwelt bei.
+Für nähere Informationen wenden Sie sich bitte an die für Müllentsorgung
+zuständigen örtlichen Behörden oder das Geschäft, in dem die Batterie
+gekauft wurde.
+Entsorgung von elektrischen & elektronischen
+Produkten für den Haushaltsgebrauch
+(anzuwenden nur in den Ländern der Europäischen Union)
+Dieses Symbol (ausgekreuzte Mülltonne) auf dem Produkt
+bezeichnet, dass Altgeräte usw. nicht wie normaler
+Haushaltsabfall in den Müll gegeben werden dürfen,
+sondern zum Recycling an einer hierfür vorgesehenen
+Annahmestelle abzugeben ist.
+Für nähere Informationen wenden Sie sich bitte an die für
+Müllentsorgung zuständigen örtlichen Behörden.
+Bei unsachgemäßer Entsorgung besteht das Risiko nachteiliger
+Auswirkungen auf Umwelt und Gesundheit durch potentiell gefährliche
+Substanzen. Durch Ihre Kooperation zur ordnungsgemäßen Entsorgung
+fördern Sie die Wiederverwendung, das Recycling und die Rückgewinnung
+von Stoffen und tragen zum Umweltschutz bei.
+Entsorgung von elektrischen & elektronischen Produkten durch
+gewerbliche Benutzer
+(anzuwenden nur in den Ländern der Europäischen Union)
+Für nähere Informationen zur Entsorgung durch gewerbliche Benutzer
+wenden Sie sich bitte an Ihren Händler oder den zuständigen Vertrieb.
+Das Produkt darf nicht in den normalen Gewerbemüll gegeben werden.
+
+--- PDF-SEITE 58 ---
+© 2015 CASIO COMPUTER CO., LTD.
+Printed in ChinaSA1501-A
+Manufacturer:
+CASIO  COMPUTER CO., LTD.
+6-2, Hon-machi 1-chome 
+Shibuya-ku, Tokyo 151-8543, Japan
+Responsible within the European Union:
+CASIO EUROPE GmbH
+Casio-Platz 1 
+22848 Norderstedt, Germany
+www.casio-europe.com

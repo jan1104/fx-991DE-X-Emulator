@@ -1,0 +1,2 @@
+# Nur für die lokale PDF-Analyse; keine Emulator-Laufzeitabhängigkeit.
+pypdf==6.10.0

@@ -1,0 +1,45 @@
+[
+  {
+    "file": "fx-87_991DEX_DE.pdf",
+    "bytes": 951982,
+    "sha256": "24c832d5fc335f691e86d60c28b64323da8942ba42800687d1cfab419ec5531d",
+    "pages": 58,
+    "metadata": {
+      "/Author": "CASIO COMPUTER CO., LTD.",
+      "/CreationDate": "D:20150402185032+09'00'",
+      "/Creator": "Adobe InDesign CC 2014 (Windows)",
+      "/GTS_PDFXConformance": "PDF/X-1a:2001",
+      "/GTS_PDFXVersion": "PDF/X-1:2001",
+      "/ModDate": "D:20150402193939+09'00'",
+      "/Producer": "Acrobat Distiller 11.0 (Windows)",
+      "/Title": "fx87DEX_fx991DEX",
+      "/Trapped": "/False"
+    }
+  },
+  {
+    "file": "FX-991DE X Bedienung und Aufgabenbeispiele.pdf",
+    "bytes": 1751372,
+    "sha256": "13e48fc6cffd7bcb806151cb9982a30d51e6c18cc4bc3630e8052c08c52ce68c",
+    "pages": 47,
+    "metadata": {
+      "/Title": "PowerPoint-Präsentation",
+      "/Author": "Herwig, Tom",
+      "/CreationDate": "D:20180606173628+02'00'",
+      "/ModDate": "D:20180606173628+02'00'",
+      "/Producer": "Microsoft® PowerPoint® 2010",
+      "/Creator": "Microsoft® PowerPoint® 2010"
+    }
+  },
+  {
+    "file": "Kurzanleitung_FX-991DE X.pdf",
+    "bytes": 1780497,
+    "sha256": "538acbe953cdad8306a5fa4172f180d893f28eda89bd014efb8e0407772f64b7",
+    "pages": 16,
+    "metadata": {
+      "/CreationDate": "D:20150327142644Z",
+      "/Creator": "Nitro Reader 3  (3. 5. 6. 5)",
+      "/ModDate": "D:20150327142648Z",
+      "/Producer": "Nitro Reader 3  (3. 5. 6. 5)"
+    }
+  }
+]

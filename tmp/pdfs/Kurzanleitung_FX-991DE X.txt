@@ -1,0 +1,542 @@
+
+--- PDF-SEITE 1 ---
+Kurzanleitung zur Bedienung des
+CASIO FX-991DE X
+
+
+--- PDF-SEITE 2 ---
+2 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+Das Auswahlmenü - die Anwendungsmodi
+Anwendungsmodi
+ Vergewissern Sie sich, dass sie immer im korrekten Modus arbeiten
+ Modus 1 (Berechnungen) für normale Berechnungen
+Anwendungsmodi
+Im „Menü“ des FX-991DE X können Sie die verschiedenen
+Anwendungen bzw. Modi des Rechners auswählen.
+Die Taste [MENU] führt immer ins Auswahlmenü des
+FX-991DE X
+1. Berechnungen Normaler Rechenbereich
+2. Komplexe Zahlen Berechnungen und spezielle Befehle für komplexe Berechnungen
+3. Basis-N Rechnen in verschiedenen Zahlensystemen (z.B. Binär)
+4. Matritzen Matritzenrechnung
+5. Vektorrechnung Rechnen mit Vektoren
+6. Statistik Regressionen, Rechnen mit Listen
+7. Verteilungsfunkt. Wertetabellen für Verteilungen
+8. Tabellenkalkulation Werte, Zellbezüge, Formeln
+9. Tabellen Wertetabellen für zwei Funktionen; f(x) & g(x)
+A. Gleichung/ Funkt. Lösen von Gleichungssystemen und Polynomgleichungen
+B. Ungleichungen Lösen von Ungleichungen (Polynomen)
+C. Berechn. prüfen Terme eingeben und auf Richtigkeit prüfen
+D. Verhältnisse Verhältnisse überprüfen
+
+--- PDF-SEITE 3 ---
+EDUCATIONAL PROJECTS 3
+Grundlegende  Bedienung
+Grundlegende Bedienung
+ Standardrechenmodus: 1. Berechnungen
+ Natürliche Ein– und Ausgabe sind voreingestellt
+ Konstanten und Einheiten mit q7 & q8
+Eingabe und natürliche Darstellung
+Der FX-991DE X arbeitet in der Standardeinstellung mit na-
+türlicher Eingabe und natürlicher Ausgabe. Wenn möglich
+wird das Ergebnis immer exakt, also als Bruch, Wurzel, etc.
+ausgegeben. Die Darstellung lässt sich im SETUP des Rech-
+ners ändern (siehe Seite X).
+Brüche, Wurzeln, Integrale oder andere Berechnungen wer-
+den in der Standardeinstellung über Schablonen eingegeben.
+Mit den Cursortasten gelangt man zum nächsten Eingabe-
+feld.
+Gemischter Bruch: qa
+Potenzen: x2: d
+x3: qd
+x4: f4
+Wissenschaftliche Konstanten:
+Mit q7(CONST) können die wissenschaftlichen Konstan-
+ten ausgewählt werden. Diese sind nach Bereichen sortiert.
+Einheiten-Umrechnung:
+Mit q8(CONV) gelangen Sie zu den Einheiten, die der
+FX-991DE X umrechnen kann. Geben Sie zu erst den Wert
+ein und wählen dann die Umrechnung
+Weitere Funktionen:
+Weitere Funktionen erhalten Sie mit der Taste [OPTN]
+(Option). Im Bereich „Berechnungen“ sind das:
+1. Hyperbolische Funktionen
+2. Winkeleinheiten
+3. Dezimalpräfixe
+Wissenschaftliche Konstanten
+Weitere Funktionen mit [OPTN]
+Einheiten umrechnen mit [SHIFT][8]
+
+--- PDF-SEITE 4 ---
+4 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+Grundlegende Bedienung - Ein und Ausgabe
+Ein– und Ausgabe
+ Vergewissern Sie sich, dass sie immer im korrekten Modus arbeiten
+ Modus 1 (Berechnungen) für normale Berechnungen
+ Variablen werden mit der [STO]-Taste gespeichert
+Exaktes Ergebnis oder Näherung (Dezimalzahlen)
+Ergebnisse werden in der Standardeinstellung wenn möglich
+exakt angegeben.
+Zum Umwandeln des Ergebnisses drücken Sie n.
+Um sofort die Dezimalzahl zu erhalten: qpstatt p.
+Ergebnis als gemischten Bruch darstellen: pn.
+Tippfehler und Variation der Eingabe
+Eingaben können mithilfe der Cursortasten (Pfeiltasten) vari-
+iert und mit der o-Taste (engl. Delete) gelöscht werden.
+Gelöscht wird links vom Cursor.
+Mit der Cursortaste E wird jeweils ein Schritt im Inhalt des
+Ablaufspeichers zurückgeschaltet.
+C löscht den Bildschirm. Wenn nun mit E die letzten Be-
+rechnungen durchgeschaltet werden, können diese mit den
+Cursortasten !$ verändert und neu berechnet werden.
+Hinweis: Der Inhalt des Ablaufspeichers wird gelöscht, wenn
+der Rechner ausgeschaltet oder der Modus geändert wird!
+Ein Reset ist nicht erforderlich!
+Die Cursortasten des
+FX-991DE X
+Variablen
+Acht Variablen mit der Bezeichnung A, B, C, D, E, F, X, Y
+können zur Speicherung individueller Werte verwendet und in
+Rechnungen als Variable wieder aufgerufen werden.
+- Abspeichern eines Wertes: Wert STO A ([STO] z)
+- Variable verwenden: A (Qz)
+- Aufrufen des Variablenwertes: q[STO] A
+(Hierbei wird nicht die Alpha-Taste verwendet, sondern A
+direkt angesteuert.)
+- Variable löschen: 0 STO A (0[STO]z )
+
+--- PDF-SEITE 5 ---
+EDUCATIONAL PROJECTS 5
+Geräteeinstellungen - Setup
+Setup
+ Einstellungen für die Ein- und Ausgabe können verändert werden
+ Ändern des Winkelmaßes
+ Zurücksetzen der Einstellungen mit RESET
+Setup
+Der FX-991DE X hat einen SETUP-Bereich in dem grundle-
+gende Einstellungen des Rechners geändert werden können.
+Rufen Sie das Setup auf mit: [SHIFT] [MENU]
+Innerhalb des Setups gibt es 4 Menüseiten, die Sie mit den
+Cursortasten ansteuern können.
+Die wichtigsten Einstellungen im Setup
+Eingabe / Ausgabe
+Hier können Sie einstellen, wie sich der Rechner bei der Ein–
+und Ausgabe verhalten soll. Auf der linken Seite steht die
+Eingabe, auf der rechten Seite die Ausgabe. „Linear“ bedeu-
+tet den Verzicht auf die natürliche Darstellung
+Winkelmaß
+Hier stellen Sie das Winkelmaß um. Die Standardeinstellung
+des Rechners ist das Gradmaß.
+Zahlenformate
+Fix: Festlegen der Nachkommastellen auf die gerundet wer-
+den soll
+Sci: Exponentenschreibweise, das Ergebnis wird auf die
+Anzahl der festgelegten Stellen gerundet und in der soge-
+nannten wissenschaftlichen Schreibweise (mit Zehnerpotenz)
+ausgegeben.
+Bruchergebnis
+Echter oder gemischter Bruch als Ergebnis.
+Zurücksetzen der Einstellungen (Reset)
+Sämtliche Einstellungen des FX-991DE X lassen sich zurück-
+setzen (Reset).
+Reset: q9
+
+
+--- PDF-SEITE 6 ---
+6 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+Gleichungen und Gleichungssysteme lösen
+Gleichungen und Gleichungssysteme
+ Im Menü - Anwendung A: Gleichungenzum lösen von Gleichungen und
+Gleichungssystemen
+ Koeffizienten immer mit p bestätigen. RE zum Anzeigen der Ergebnisse
+Gleichungen
+Für Polynome und Gleichungssysteme gibt es die Anwen-
+dung A:Gleichungen.
+Im Modus „Gleichungen“ können gelöst werden:
+Polynome bis 4. Grades
+Gleichungssysteme bis zur 4. Ordnung
+Polynomgleichungen
+Nach dem Start der Anwendung wählen Sie
+„Polynomgleichungen“ und dann den Grad.
+Geben Sie nun die Koeffizienten ein.
+Bestätigen Sie alle Eingaben mit p.
+Die weiteren Lösungen können mit den Cursortasten RE
+aufgerufen werden.
+Bei Polynomen 2. Grades wird zusätzlich zu den Nullstellen
+auch der Scheitelpunkt berechnet.
+Hinweis: Im EQN-Modus werden alle Lösungen und - wenn
+vorhanden - auch komplexe Lösungen angegeben.
+Aber: Doppelte Lösungen werden nur einmal angezeigt.
+Eine neue Berechnung starten Sie mit p. (evtl. öfter drü-
+cken um die Ergebnisse durchzuschalten)
+Gleichungssysteme
+In der Anwendung A:Gleichungen können auch Gleichungs-
+systeme berechnet werden.
+Nach dem Start der Anwendung wählen Sie
+„Gleichungssysteme“  und geben die Anzahl der Unbekann-
+ten an (2-4).
+Die Koeffizienten tragen Sie ein und bestätigen diese mit p.
+Die Ergebnisse werden möglichst exakt dargestellt.  Bei nicht
+eindeutig lösbaren Gleichungssystemen bekommen Sie eine
+Rückmeldung: „Unendlich viele Lösungen“ oder auch „Keine
+Lösung“.
+
+
+--- PDF-SEITE 7 ---
+EDUCATIONAL PROJECTS 7
+Gleichungen und Gleichungssysteme lösen
+SOLVE-Befehl
+ Der SOLVE-Befehl findet immer EINE Lösung ausgehend vom Startwert
+ Der SOLVE-Befehl löst Gleichungen verschiedenster Art
+Beliebige Gleichungen lösen: SOLVE
+SOLVE liefert eine Lösung mit dem Newtonschen Nähe-
+rungsverfahren.
+Beispiel:
+Im Modus „Berechnungen“ (w1) die Gleichung eingeben
+und mit SOLVE (qr) lösen. Dann wird der Startwert
+eingegeben.
+L-R gibt die Genauigkeit der Lösung an (0 ist optimal!).
+Hinweise zur Eingabe:
+„=„ Qr
+Startwert: Das Newtonsche Iterationsverfahren funktioniert
+am besten, wenn der Startwert nahe am tatsächlichen Wert
+liegt. Solch einen Startwert kann man z.B. der vorher erstell-
+ten Wertetabelle entnehmen.
+SOLVE, dann Startwert angeben
+Eine weitere Lösung mit dem Startwert x=8
+Gleichungen lösen: SOLVE
+Gegeben sei die Funktion:
+Bestimmen Sie die Lösungen der Gleichung
+Lösungen: x1=1 ;  x2=-0,62 ;  x3=1,62
+Weitere Lösungen erhalten Sie mit p
+ SOLVE, dann Wert für y eingeben (2)
+SOLVE, dann Wert für X eingeben (1)
+Gleichungen mit Ableitungen lösen: SOLVE
+Der Solve-Befehl kann nicht nur mit mehreren Variablen
+umgehen, sondern kann auch mit der Ableitung und der In-
+tegration rechnen. (Siehe Abb. Rechts)
+Abbildung: Startwert x=1
+
+--- PDF-SEITE 8 ---
+8 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+Wertetabellen & Funktionen (Funktionswerte)
+Wertetabelle und Funktionen
+ Wertetabellen können zwei Funktionen enthalten: f(x); g(x)
+ Wertetabellen können mit +- einfach erweitert werden
+ Einträge der X-Werte für Wertetabellen können überschrieben werden
+Wertetabellen
+Zur Erstellung von Wertetabellen dient die
+Anwendung #9: Tabellen.
+Sie können zwei Funktionen eingeben ; f(x) und g(x).
+Nach Eingabe der Funktionen können Start– und Endwert
+der Wertetabelle so wie die Schrittweite eingestellt werden.
+Wenn die Wertetabelle angezeigt wird, kann mit
+[SHIFT] [OPTN] ein QR-Code erzeugt werden, der eine grafi-
+sche Darstellung auf dem Browser des Smartphones, Tablet
+oder PCs ermöglicht.
+Wertetabelle erweitern:
+Die Wertetabelle kann erweitert werden mit +-. Ausser-
+dem kann jeder Tabelleneintrag beliebig verändert werden.
+Gehen Sie dazu mit dem Cursor auf einen Eintrag und än-
+dern Sie den Wert für x.
+Funktionswert berechnen - CALC
+Soll nur ein einzelner Funktionswert berechnet werden, so
+kann dies in der Anwendung #1: Berechnungen erfolgen.
+Geben Sie einen beliebigen Term in der Form y= ein.
+Dann kann mit r gelöst werden und der x-Wert eingege-
+ben werden.
+Mit der r-Funktion können allerdings auch weitere Para-
+meter, wie A, B, usw. eingegeben werden. Diese werden bei
+der Berechnung mit r nacheinander abgefragt.
+Eine erneute Berechnung des Terms erfolgt durch nochmali-
+ges Drücken der r Taste. Soll nur ein bestimmter Para-
+meter bei einer erneuten Berechnung verändert werden, so
+lassen sich die Parameter mit den Cursortasten ER aus-
+wählen.
+
+
+--- PDF-SEITE 9 ---
+EDUCATIONAL PROJECTS 9
+Bestimmte Integrale und Ableitungen
+Soll für einen Funktionswert die Ableitung bestimmt werden,
+oder das bestimmte Integral zwischen vorgegebenen Gren-
+zen, so kann das ebenfalls in der Anwendung #1 erfolgen.
+Die Schablonen für die Integration finden Sie direkt auf der
+Tastatur. Die Integration unter qy.
+Mit der Cursortaste nach rechts gelangen Sie immer zum
+nächsten Feld der Schablone.
+Die Grenzen für die Integration erhalten Sie beispielsweise
+durch die Nullstellenbestimmung.
+Ableitung & Integrale // Kombinatorik und Zufallszahlen
+Kombinatorik & Zufallszahlen
+ Berechnungen in der Anwendung #1: Berechungen
+ Ganzzahlige Zufallszahl (Würfel) mit RanINT
+Kombinatorik und Zufallszahlen (Anwendung #1)
+Fakultät: Eingabe mit X!
+qu
+Permutation: Eingabe mit nPr, mit n, rZ/ 0 ≤ r ≤ n < 1·1010 .
+Beispiel: Wie viele Möglichkeiten gibt es, aus 10 verschiede-
+nen Pflanzen 4 nebeneinander in ein Beet zu pflanzen?
+qO
+Kombination: Eingabe mit nCr (n, rZ/ 0 ≤ r ≤ n < 1·1010 )
+Beispiel: Wie viele Möglichkeiten gibt es, aus 10 verschiede-
+nen Pflanzen 4 auszuwählen?
+=? (Binomialkoeffizient)
+qP
+Zufallszahl: Erzeugen einer dreistelligen Zufallszahl
+(zwischen 0 und 1) mit Ran# (engl. random).
+q [,]
+Ganzzahlige Zufallszahl: Mit RanInterzeugen Sie eine ganz-
+zahlige Zufallszahl. Beispiel: Münzwurf, Würfel, etc.
+Q [,]
+
+
+--- PDF-SEITE 10 ---
+10 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+Regressionen - Statistik
+Regressionen
+ Regressionen erfolgen in der Anwendung #6: Statistik
+ Alle Operatoren unter [OPTN]
+Regressionen - Anwendung #6: Statistik
+Regressionen können in der Anwendung #6: Statistik durch-
+geführt werden.
+Nach Start der Anwendung können die verschiedenen For-
+men der Regressionen ausgewählt werden.
+Die Werte für x und y können nun in die Tabelle eingetragen
+werden. Beenden Sie die Eingabe mit C!!
+Nun können Sie mit [OPTN]  diverse Operationen auswählen,
+unter Anderem die Regression [3]. Anschließend werden
+Ihnen die Werte für die Konstanten ausgegeben.
+Mit [OPTN] gelangen Sie auch an die eingegebenen Daten
+[4] oder andere Werte. Verwenden Sie die Cursortasten
+hoch/runter um durch das Menü zu scrollen.
+
+
+--- PDF-SEITE 11 ---
+EDUCATIONAL PROJECTS 11
+Verteilungsfunktionen
+Verteilungsfunktionen
+ Verteilungen in der Anwendung #7: Verteilungsfunktionen
+ Eingabe der k-Werte als Liste oder als Variable
+ Ergebnisse der Verteilungsfunktionen lassen sich in die Variablen speichern
+Verteilungsfunktionen - Anwendung #7: Verteilungsfkt.
+Rufen Sie die Anwendung #7 auf und wählen den Funktions-
+typ: Es stehen die Binomial-, Normal– und Poissonverteilung
+zur Auswahl.
+Eingabe der Werte:
+Nach Auswahl der Verteilung (z.B. Binomial-Dichte 4) wird
+entschieden, ob die Wahrscheinlichkeit eines Einzelwertes
+oder einer ganzen Liste von Werten berechnet werden soll.
+Die Parameter der Binomialverteilung für die Anzahl der
+Treffer: x, die Anzahl der Versuche: n und die
+Wahrscheinlichkeit eines Treffers pro Versuch: p  werden
+nacheinander abgefragt und daraus die Wahrscheinlichkeit
+von x Treffern in n Versuchen berechnet.
+Alternativ kann für x nicht nur ein Wert, sondern eine Liste
+von Werten eingegeben werden. Nach Eingabe der Werte die
+Eingabe mit = abschließen.
+Übernahme der Werte:
+Beim Berechnen einer einzelnen Wahrscheinlichkeit können
+die Werte mit [STO] direkt in eine Variable gespeichert
+werden und stehen dann auch in den anderen Anwendungen
+zur Verfügung.
+Sollen die Werte aus einer Liste übernommen werden, gehen
+Sie mit dem Cursor auf den entsprechenden Wert für p (siehe
+Abbildung rechts) und drücken [STO]. Der Wert kann nun
+einer Variable zugewiesen werden.
+
+
+--- PDF-SEITE 12 ---
+12 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+Matrizen
+Matrizen
+ Anwendung #4: Matrizen bis zur Größe 4 x 4
+ Matrizenaddition, Matrizenmultiplikation, Inverse Matrix, Matrizenpotenzen,
+Determinante, Obere Dreieckmatrix, Reduzierte Zeilenstufenform
+Matrizen - Anwendung #4: Matrizen
+In der Matrizen-Anwendung lassen sich Matrizen bis 4x4
+erstellen und berechnen.
+Eingabe der Matrix:
+Nach dem Start der Anwendung wählen Sie einen der 4 Mat-
+rizenspeicher aus und anschließend die Dimension.
+Die Werte geben Sie ein und bestätigen mit p. Beenden
+Sie die Eingabe mit C.
+Rechnen mit Matrizen:
+Mit [OPTN] können Sie die Rechenbefehle der Anwendung
+auswählen. Auf der ersten Seite des Menüs können Sie neue
+Matrizen erstellen, oder vorhandene abändern. Navigieren
+Sie mit den Cursortasten hoch/runter.
+Auf der nächsten Seite finden Sie typische Matrizenbefehle,
+wie Determinante etc. Nach dem Befehl folgt immer die Mat-
+rix als Variable, z.B., MatA.
+Matrizen potenzieren:
+Um Matrizen höher als 2 oder 3 zu potenzieren drücken Sie
+die entsprechende Taste mehrfach.
+Z.B. MatA222 = MatA8
+Matrix invertieren:
+Verwenden Sie u zum Invertieren der Matrix.
+Untersuchen von Gleichungssystemen:
+1. Ref Obere Dreiecksmatrix
+(gaußsches Eliminationsverfahren)
+2. Rref Reduzierte Zeilenstufenform
+(Gauß-Jordan Algorithmus)
+
+
+--- PDF-SEITE 13 ---
+EDUCATIONAL PROJECTS 13
+Vektoren
+ Anwndung #5: Vektoren bis zur 3. Dimension
+ Skalarprodukt, Kreuzprodukt, Winkel, Einheitsvektor, etc.
+Vektoren - Anwendung #5: Vektorrechunng
+Die Anwendung zur Vektorrechnung verläuft analog zu der
+Matrizenanwendung
+Eingabe des Vektors:
+Nach dem Start der Anwendung wählen Sie einen der 4 Vek-
+torenspeicher aus und anschließend die Dimension.
+Die Werte geben Sie ein und bestätigen mit p. Beenden
+Sie die Eingabe mit C.
+Rechnen mit Vektoren:
+Mit [OPTN] können Sie die Rechenbefehle der Anwendung
+auswählen. Auf der ersten Seite des Menüs können Sie neue
+Vektoren erstellen, oder vorhandene abändern. Navigieren
+Sie mit den Cursortasten hoch/runter.
+Auf der nächsten Seite finden Sie typische Vektorenbefehle,
+wie Skalarprodukt etc. Nach dem Befehl folgt immer der Vek-
+tor als Variable, z.B., VctA.
+Skalarprodukt:
+VctA [PUNKT] VctB
+Kreuzprodukt:
+VctA O VctB
+Weitere Befehle mit [OPTN]
+Vektoren
+
+--- PDF-SEITE 14 ---
+14 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+Tabellenkalkulation
+Tabellenkalkulation
+ Befehle ähnlich zu einer handelsüblichen Tabellenkalkulation
+ QR-Code für eine große Tabelle im Browser des Smartphones oder PCs
+Tabellenkalkulation - Anwendung #8: Tabellenkalk.
+Anwendung #8 ist eine einfache Tabellenkalkulation. Beach-
+ten Sie bitte, das aufgrund des Speichers die Dimensionen
+der Tabellen begrenzt ist.
+OPTN:
+Mit der Taste [OPTN] gelangen Sie an die Befehle für die
+Tabellenkalkulation. Diese entsprechen den üblichen Befeh-
+len von Tabellenkalkulationen.
+Insbesondere finden Sie hier auch die Befehle für Minimum,
+Maximum, Mittelwert und Summe!
+Mit Formel füllen:
+Wenn Sie eine Spalte aufsteigend füllen wollen dann geben
+Sie zu erst den Startwert in die erste Zelle ein. Z.B. 1.
+Dann mit [OPTN] [1] auf Formel füllen.
+Nun beziehen Sie sich in der Formel auf die erste Zelle A1
+(siehe Screenshot rechts).
+Weitere Funktionen unter [OPTN] wie Kopieren, Einfügen, $
+(fester Zellenbezug), etc.
+Verwenden Sie stets „Formel füllen“ zum erstellen einer
+Formel, egal ob diese kopiert werden soll oder nicht!
+QR-Code:
+Mit q [OPTN] kann ein QR-Code erzeugt werden, der die
+Tabelle im Internetbrowser des Smartphones oder auf dem
+PC anzeigt (wenn der Emulator verwendet wird.)
+Tipp: Formeln kopieren (runterziehen)
+In den bekannten Tabellenkalkulationen können Zellen mit
+der Maus „heruntergezogen“ werden um die Formeln zu
+kopieren und automatisch die Zellbezüge anzupassen. Das
+geht auch im FX-87DE X.
+1. Markieren Sie die Zelle mit der zu kopierenden For-
+mel
+2. Drücken Sie [OPTN] R2 (Kopieren & Einfügen)
+3. Wählen Sie nun die Zellen, in denen kopiert werden
+soll und bestätigen Sie das Einfügen mit p.
+Befehle für die Zellen mit [OPTN]
+
+
+--- PDF-SEITE 15 ---
+EDUCATIONAL PROJECTS 15
+QR-Code
+QR-Code
+ qi für den QR-Code
+ Der QR-Code wird vorzugsweise in den Ausgabefenstern des FX-991DE X
+erzeugt
+QR-Code
+In vielen Anwendungen des FX-991DE X kann ein QR-Code
+erzeugt werden, der dann z.B. von einem Smartphone oder
+Tablet ausgelesen werden kann.
+Der QR-Code dient als Ergänzung zum Einsatz im Unterricht
+und ist eine schnelle, unkomplizierte Möglichkeit zum
+Visualisieren von Graphen, etc.
+Einen QR-Code können Sie beispielsweise in der
+Wertetabellen-Anwendung erzeugen. Aber auch in der
+Anwendung #1 (Berechungen) können Sie die Daten
+übertragen. Wenn nichts eingegeben wird, dann erhalten Sie
+mit dem QR-Code eine Hilfestellung zur jeweiligen
+Anwendung. Die Inhalte der Website lassen sich sich als
+Math-XML-Skript exportieren.
+qi = QR
+qi = QR
+
+--- PDF-SEITE 16 ---
+16 Kurzanleitung zur Bedienung des CASIO FX-991DE X
+CASIO Europe GmbH
+Marketing - Educational Projects
+Casio-Platz 1
+22848 Norderstedt
+Tel: 040 - 528 65 0
+Fax: 040 - 528 65 535
+education@casio.de
+www.casio-schulrechner.de
+Stichwortverzeichnis
+Anwendungsmodi ................................ ........... 2
+Ausgabeeinstellungen................................ ..... 5
+Binomialkoeffizient................................ .......... 9
+Binomialverteilung................................ ......... 11
+Bogenmaß................................ ...................... 5
+Brüche ................................ ............................ 3
+CALC................................ .............................. 8
+Determinante ................................ ................ 12
+Dezimalzahl................................ .................... 4
+Differential ................................ ...................... 8
+Eingabe-Einstellungen................................ .... 5
+Eingaben löschen ................................ ........... 4
+Einheiten-Umrechnung ................................ ... 3
+Ergebnisse runden................................ .......... 5
+Exaktes Ergebnis oder Näherung.................... 3
+Fakultät................................ ........................... 9
+Funktionswerte berechnen.............................. 8
+Ganzzahlige Zufallszahlen.............................. 9
+Gemischter Bruch................................ ........... 3
+Gleichungen lösen................................ .......... 7
+Gleichungssysteme................................ ... 6, 12
+Gradmaß ................................ ........................ 5
+Integral................................ ............................ 8
+Kreuzprodukt ................................ ................ 13
+L-R................................ ................................ .. 7
+Matrizen-Rechnung................................ ....... 12
+Natürliches Display ................................ ...... 3,5
+Normalverteilung................................ ........... 11
+Permutation ................................ .................... 9
+Polynomgleichungen................................ ....... 6
+Poisson-Verteilung................................ ........ 11
+Potenzen eingeben................................ ......... 3
+Rechnungsablaufspeicher............................... 4
+Regression ................................ ................... 10
+Runden................................ ........................... 5
+SETUP-Einstellungen ................................ ..... 5
+SETUP-Einstellungen löschen ........................ 5
+SOLVE ................................ ........................ 6, 7
+Speicher löschen................................ .............5
+Statistik Modus................................ ..............10
+Tabellen Modus................................ ...............8
+Tabellenkalkulation................................ ........14
+Tippfehler ................................ ........................ 4
+QR-Code................................ ....................... 15
+Variable................................ ........................... 4
+Vektor-Rechnung................................ ...........13
+Verteilungsfunktionen................................ ....11
+Wertetabelle ................................ .................... 8
+Winkeleinstellungen................................ .........5
+Wissenschaftliche Konstanten......................... 3
+Würfelversuche ................................ ...............9
+Zufallszahlen ................................ ................... 9

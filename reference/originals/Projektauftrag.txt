@@ -1,0 +1,179 @@
+# Projekt: Casio fx-991DE X Emulator
+
+## 1. Projektziel
+
+Wir möchten den nicht mehr verfügbaren beziehungsweise nicht mehr weiterentwickelten Casio fx-991DE X Emulator mittels Reverse Engineering analysieren, seine Funktionsweise verstehen und eine eigenständige, moderne und möglichst funktionsgleiche Implementierung entwickeln.
+
+Die von mir bereitgestellten Originaldateien dienen ausschließlich als Referenz für die Analyse.
+
+Das Ziel ist ein langfristig wartbares, dokumentiertes und quelloffenes Emulator-Projekt.
+
+## 2. Lokales Repository und GitHub
+
+Das GitHub-Repository wurde bereits erstellt und auf Laufwerk D: mittels `git clone` lokal geklont.
+
+Arbeite nach Möglichkeit direkt in diesem bestehenden lokalen Repository.
+
+Regeln:
+
+- Verwende das vorhandene Repository, statt ein zweites anzulegen.
+- Prüfe zuerst den tatsächlichen Repository-Pfad.
+- Alle Änderungen erfolgen zunächst lokal.
+- Lokale Git-Commits sind nach sinnvollen Arbeitsschritten erlaubt.
+- Niemals ohne meine ausdrückliche Zustimmung `git push` ausführen.
+- Keine Originaldateien, proprietären Programmkomponenten oder geschützten Firmwaredateien öffentlich hochladen.
+- Originaldateien getrennt von unserer eigenen Implementierung halten.
+- Bestehende Dateien nicht ohne nachvollziehbaren Grund überschreiben oder löschen.
+
+## 3. Subagent-Architektur
+
+Du bist der Hauptagent und übernimmst die technische Gesamtkoordination.
+
+Nutze Subagents, sofern die Arbeitsumgebung diese unterstützt.
+
+Teile die Arbeit in klar abgegrenzte Teilaufgaben auf.
+
+### Agent A: Reverse Engineering
+
+Zuständigkeiten:
+
+- Originaldateien und Dateiformate analysieren
+- Programmarchitektur und Abhängigkeiten identifizieren
+- Ressourcen, Schnittstellen und Konfigurationen untersuchen
+- Programmverhalten und mathematische Funktionen dokumentieren
+- Technische Erkenntnisse mit nachvollziehbaren Belegen festhalten
+
+### Agent B: Funktionsanalyse und Tests
+
+Zuständigkeiten:
+
+- Bedienelemente und Taschenrechnerfunktionen katalogisieren
+- Erwartetes Verhalten anhand der verfügbaren Referenzen ermitteln
+- Testfälle für mathematische Funktionen entwickeln
+- Eingabe-, Ausgabe- und Anzeigelogik spezifizieren
+- Unterschiede zwischen Original und Nachbau dokumentieren
+
+### Agent C: Softwareentwicklung
+
+Zuständigkeiten:
+
+- Eigenständige Softwarearchitektur entwerfen
+- Emulatorfunktionen implementieren
+- Benutzeroberfläche entwickeln
+- Mathematische Funktionen und Zustandslogik integrieren
+- Quellcode verständlich strukturieren und dokumentieren
+
+### Agent D: Qualitätssicherung
+
+Zuständigkeiten:
+
+- Implementierungen überprüfen
+- Automatisierte Tests erstellen und ausführen
+- Fehler und Regressionen erkennen
+- Abhängigkeiten und Build-Prozesse prüfen
+- Ergebnisse und offene Probleme dokumentieren
+
+Diese Rollen sind logische Zuständigkeiten. Es müssen nicht immer vier Agents gleichzeitig aktiv sein.
+
+## 4. Effiziente Nutzung von Credits
+
+**Oberste Priorität: Möglichst viel nutzbares Ergebnis pro eingesetztem Credit erreichen.**
+
+Beachte folgende Regeln:
+
+1. Starte Subagents ausschließlich, wenn eine Aufgabe sinnvoll unabhängig bearbeitet werden kann.
+2. Bevorzuge maximal zwei gleichzeitig arbeitende Subagents. Einen dritten nur bei erkennbarem Vorteil.
+3. Einfache Aufgaben erledigt der Hauptagent selbst.
+4. Vermeide doppelte Datei- und Codeanalysen.
+5. Bereits vorhandene Erkenntnisse und Dokumentationen wiederverwenden.
+6. Übergib Subagents nur die für ihre Aufgabe relevanten Informationen und Dateien.
+7. Teile große Aufgaben in klar überprüfbare Arbeitspakete auf.
+8. Vermeide wiederholte umfangreiche Ausgaben, wenn sich die Ergebnisse nicht verändert haben.
+9. Bevorzuge gezielte Dateiuntersuchungen gegenüber wiederholten vollständigen Projektscans.
+10. Verwende vorhandene Analysewerkzeuge und Skripte mehrfach.
+11. Beende erfolglose Analyseansätze, wenn keine neuen Erkenntnisse entstehen.
+12. Erstelle keine Subagents nur, um Parallelität zu erzeugen.
+13. Fasse Subagent-Ergebnisse kompakt zusammen und speichere wichtige Erkenntnisse dauerhaft im Projekt.
+14. Wiederhole keine bereits abgeschlossenen Aufgaben ohne konkreten Anlass.
+15. Bei unklaren oder ressourcenintensiven Aufgaben zunächst einen kleinen Machbarkeitstest durchführen.
+
+Es dürfen keine Nutzungsbeschränkungen, Credit-Limits oder Sicherheitsmechanismen umgangen werden.
+
+## 5. Arbeitskoordination
+
+Der Hauptagent:
+
+- Erstellt einen nachvollziehbaren Entwicklungsplan.
+- Legt Prioritäten fest.
+- Delegiert klar begrenzte Aufgaben.
+- Vermeidet konkurrierende Änderungen an denselben Dateien.
+- Überprüft die Ergebnisse der Subagents.
+- Integriert ausschließlich geprüfte Änderungen.
+- Entscheidet anhand der Ergebnisse über die nächsten Schritte.
+
+Subagents sollen nicht eigenständig weitere Subagents starten, sofern dies nicht ausdrücklich erforderlich und unterstützt ist.
+
+## 6. Dokumentation und Entwicklungsstand
+
+Lege im Repository eine sinnvolle Dokumentationsstruktur an.
+
+Dokumentiere insbesondere:
+
+- Projektarchitektur
+- Originalsoftware und Analyseerkenntnisse
+- Erkannte Funktionen
+- Technische Abhängigkeiten
+- Implementierungsfortschritt
+- Testergebnisse
+- Bekannte Fehler
+- Offene Aufgaben
+
+Trenne bestätigte Erkenntnisse, plausible Hypothesen und unbekannte Sachverhalte deutlich voneinander.
+
+Verwende die vorhandene Dokumentation als Wissensbasis, damit zukünftige Arbeitsschritte nicht erneut dieselben Analysen durchführen müssen.
+
+## 7. Rechtliche und technische Grenzen
+
+Implementiere eine eigenständige Nachbildung auf Basis des dokumentierten Programmverhaltens.
+
+Übernehme keine urheberrechtlich geschützten Originalkomponenten ohne entsprechende Berechtigung.
+
+Umgehe keine Lizenzprüfungen oder Schutzmechanismen.
+
+Unbekannte ausführbare Originaldateien zunächst statisch untersuchen und nur nach Sicherheitsprüfung in einer geeigneten isolierten Umgebung ausführen.
+
+## 8. Arbeitsweise
+
+Arbeite möglichst selbstständig und ergebnisorientiert.
+
+Frage mich nur bei wesentlichen Entscheidungen, fehlenden Voraussetzungen oder riskanten beziehungsweise irreversiblen Änderungen.
+
+Vermeide unnötige Rückfragen, wiederholte Planungen und lange Zwischenberichte.
+
+Fasse Ergebnisse übersichtlich zusammen:
+
+- Was wurde untersucht?
+- Was wurde sicher festgestellt?
+- Was wurde implementiert?
+- Welche Tests waren erfolgreich?
+- Welche Probleme bestehen noch?
+- Was ist der nächste sinnvolle Schritt?
+
+Keine Funktionen als erfolgreich implementiert bezeichnen, bevor sie entsprechend getestet wurden.
+
+## 9. Erste Aufgabe
+
+Beginne mit einer Bestandsaufnahme.
+
+1. Untersuche die bereitgestellten Originaldateien.
+2. Identifiziere Dateitypen, Abhängigkeiten und mögliche Technologien.
+3. Prüfe das bestehende lokale Git-Repository.
+4. Schlage eine geeignete Architektur für den Nachbau vor.
+5. Identifiziere die wichtigsten technischen Risiken und offenen Fragen.
+6. Erstelle einen priorisierten Entwicklungsplan.
+
+Nutze Subagents nur für tatsächlich unabhängige Analysen.
+
+Beginne anschließend mit dem ersten technisch sinnvollen Arbeitspaket, ohne bereits abgeschlossene Analysen zu wiederholen.
+
+**Langfristiges Ziel:** Ein möglichst vollständiger, eigenständiger, dokumentierter und moderner Casio fx-991DE X Emulator mit reproduzierbaren Builds und automatisierten Tests.

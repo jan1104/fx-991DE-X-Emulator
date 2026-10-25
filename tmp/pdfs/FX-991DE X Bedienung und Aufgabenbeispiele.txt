@@ -1,0 +1,993 @@
+
+--- PDF-SEITE 1 ---
+Herzlich Willkommen! 
+ 
+ 
+ 
+Bedienung und Aufgabenbeispiele zum FX-991DE X  
+CASIO Europe GmbH 
+
+
+--- PDF-SEITE 2 ---
+2 
+FX-991DE X – besondere Funktionen 
+Deutsche Notation: Komma, Periodenstrich 
+Deutsche Menüführung 
+Funktionswertetabelle – 2 Funktionen, editierbar 
+Regressionen 
+Median, Erwartungswert, Standardabweichung, … 
+Verteilungen (Einzelwerte, Liste) 
+Normalverteilung, kumuliert, invers 
+Binomialverteilung, kumuliert 
+Poissonverteilung , kumuliert 
+Beliebige Gleichungen lösen (Newtonverfahren) 
+Polynomgleichungen lösen (bis 4. Grades / 4 Lösungen) 
+Gleichungssysteme lösen (bis zu 4 Unbekannte und 4 Lösungen) 
+Ableitung (an einer Stelle + Solve + Wertetabelle) 
+Integral (bestimmtes + Solve + Wertetabelle) 
+Vektorrechnung 
+Matrizenrechnung (bis 4x4) 
+40 physikalische Konstanten 
+Einheitenumrechnung von 82 Wertepaaren 
+Tabellenkalkulation 
+Daten an Browser senden (QR-Code) 
+
+
+--- PDF-SEITE 3 ---
+3 
+Anwendung wählen – MENU 
+Über die Taste p 
+gelangen Sie in die 
+Übersicht der Anwendungen 
+des Rechners. 
+Berechnungen 
+ Gleichungen lösen, Physikalische Konstanten, … 
+Matrizen  
+ bis 4 x 4 
+Vektorrechnung 
+ 2D und 3D 
+Statistik 
+ Datenanalyse, Regressionen 
+Verteilungsfunktionen  
+ Erstellen von Wertetabellen für Verteilungen 
+Tabellenkalkulation 
+ Werte, Zellbezüge, Formeln 
+Wertetabellen 
+ f(x), g(x), Bearbeitung der Tabelle 
+Gleichungen 
+ Gleichunssysteme bis 4 x 4, Polynomgleichungen bis 4. Grades 
+Ungleichungen 
+ Polynomungleichungen bis 4. Grades 
+Verhältnisse 
+ A verhält sich zu B, wie X zu D oder wie C zu X 
+Die wichtigsten Anwendungen: 
+
+
+--- PDF-SEITE 4 ---
+4 
+Berechnungen 
+Über die Taste w gelangen Sie in das Hauptmenü des Rechners. Wandern Sie mit den 
+Cursortasten über die Icons und wählen Sie mit = die Berechnungen-Anwendung. 
+ 
+Periodische Dezimalzahlen 
+0 ,     3        [Qs] 
+             (nnn)  
+Werte speichern 
+Store A      [Jz] 
+             (ohne Q) 
+Werte abrufen 
+Fünf über zwei 
+Recall A [qJz] 
+              (ohne Q) 
+5 nCr 2     [qP] 
+Alternativ: A    [Qz] 
+
+
+--- PDF-SEITE 5 ---
+5 
+Setup - Grundeinstellungen 
+In das Setup des Rechners gelangen Sie über die Tasten qw. 
+ 
+Dezimalzahlen ≈ 
+Setup 12 um als 
+erste Anzeige eine 
+Dezimalzahl zu 
+erhalten. (n) 
+Formel oder Zahl anzeigen 
+Tausender Trennung 
+Setup 
+R422(n) 
+Setup 
+RR41 
+Statistik: Einmal die eins, … 
+Setup 
+R32 
+Setup 
+R31 
+w61 
+ w8 
+w1 w1 
+Setup 
+R421 
+oder oder 
+
+
+--- PDF-SEITE 6 ---
+6 
+Gleichungen lösen 
+Newton-Verfahren mit Startwertänderung: w1 
+Finde die Lösungen der Gleichung  x³ – 8x – 8 = 0. 
+Gleichung eingeben 
+Mit Solve Lösen  
+x=-2 ist die erste 
+Lösung. 
+Anderen Startwert 
+eingeben:  
+-5== 
+Startwert ändern: 
+5== 
+= [Qr] 
+[qr] 
+x=… ist noch nicht die Lösung, sondern der 
+Startwert für das Newtonverfahren. 
+L-R=0 bedeutet: rechte Seite der 
+Gleichung gleich linke Seite für x=-2. 
+Erneut mit Solve 
+lösen  [qr] 
+x=3,2… ist die 
+zweite Lösung. 
+
+--- PDF-SEITE 7 ---
+7 
+Weitere Gleichungen 
+Das Newton-Verfahren funktioniert auch mit der Ableitung und dem Integral. 
+Wo sind die Nullstellen der Ableitung? 
+Mit der SOLVE-Funktion können Sie eine Lösung einer beliebigen Gleichung mit Hilfe 
+des Newton-Verfahrens bestimmen. 
+Geben Sie den Term ein: 
+ 
+ Drücken Sie qr und wählen Sie den Startwert für x.  
+Geben Sie den Term ein: 
+ 
+ Drücken Sie qr und wählen Sie den Startwert für x. 
+
+
+--- PDF-SEITE 8 ---
+8 
+Berechnungen mit CALC 
+Mit der CALC-Funktion (rstatt =) setzen Sie beliebige Werte in Variablen ein. 
+Eine erneute Berechnung des Terms mit anderen Werten kann durch erneutes Drücken 
+der CALC-Taste erfolgen. 
+Geben Sie die Mitternachts-
+formel ein.  
+ 
+Anstatt = drücken Sie r. 
+ 
+Geben Sie Werte für A, B und 
+C ein. 
+ 
+Ändern Sie die Formel (!) 
+oder suchen Sie vorherige 
+Formel-Eingaben mit 
+CEE. 
+Wiederholen Sie den 
+Vorgang einfach durch 
+erneutes r. 
+ 
+Überspringen Sie 
+gleichbleibende Variablen 
+mit R. 
+Lösung quadratischer Gleichungen, z.B.  2x² + 9x + 7 = 0 
+A [Qz]  
+B [Qx]  
+C [Qu] 
+
+
+--- PDF-SEITE 9 ---
+9 
+Berechnungen mit ANS 
+Das Heron-Verfahren mit Hilfe der M-Taste 
+Berechne  5  mit Hilfe von Addition und Division. 
+Mit der M-Taste rufen Sie das Ergebnis der letzten Berechnung auf. Dies kann genutzt 
+werden, um das Heron-Verfahren zur Bestimmung von Wurzeln durchzuführen. 
+Berechnen Sie den 
+nächsten Iterations-Schritt 
+einfach durch erneutes =. 
+Geben Sie den Startwert vor: 5 = 
+ 
+Der jeweils nächste Wert 
+errechnet sich durch: 
+ 
+ 
+1
+2 ⋅ 𝑥𝑛 +
+5
+𝑥𝑛
+ 
+Tipp: Der Answer-Speicher [M] enthält das letzte Ergebnis – auch aus anderen Anwendungen. 
+
+
+--- PDF-SEITE 10 ---
+10 
+Euklid’scher Algorithmus 
+Startwerte eingeben: 
+[r]    [23697913 =] 
+              [6235736 =]     [C!] 
+Berechne den größten gem. Teiler der beiden Zahlen 23697913 und 6235736. 
+Der Rest von A:B wird berechnet.  
+Für die Iteration müssen die Variablen 
+entsprechend verschoben werden. 
+… Store C : … […JuC!Qy…] Der ggT ist der zuletzt von 0 
+verschiedene Rest, hier 3527. 
+Algorithmus starten: 
+===… 
+Einstellen der kleinen Schriftgröße, 
+um den ganzen Algorithmus und 
+mehrere Ergebnisse zu sehen: 
+ 
+Setup, Ein/Ausgabe, linear  
+[qw 13] 
+Setup, Mehrzeilen, kleine Schrift 
+[qw RRR12] 
+A [Qz]  
+B [Qx]  
+C [Qu] 
+(A-B)[Qa] 
+Sei B≠0: 1Jx 
+Neustart mit [C!r…C!=]. 
+Kontrolle: 
+QO 
+
+
+--- PDF-SEITE 11 ---
+11 
+Umformungen prüfen 
+Tipps & Tricks: Term-Umformungen mit dem Berechnungsprüfer kontrollieren. 
+Ist ( 2x + 3 ) ² = 4x² + 6x + 9 ? 
+Speichern Sie in x eine Zahl, die keine Nullstelle eines Polynoms mit rationalen Koeffizienten ist. 
+(w1) 
+Einen transzendenten 
+Wert in x speichern:  
+eπ J[ 
+Vorsicht, hier wird nur ein einziger x-
+Wert geprüft. Polynomgleichungen 
+mit rationalen Koeffizienten können 
+so aber sicher getestet werden, denn:  
+ 
+Gleichung umgeformt, ohne die linke 
+Seite auszurechnen:  
+(a-4)x²+(b-6)x+(c-9)=0 
+mit x = eπ  und (a,b,c) ≠ (4,6,9) gilt   
+[(a-4)∙eπ +(b-6)]∙eπ ≠ -(c-9) für 
+                                              a,b,c ϵ ℚ 
+wu (T) 
+Gleichung eingeben 
+und prüfen lassen. 
+Veränderte Gleichung 
+eingeben und prüfen 
+lassen. 
+
+
+--- PDF-SEITE 12 ---
+12 
+Rechnen mit Uhrzeiten 
+Wie viel Zeit ist zwischen 14:17:06 Uhr und 17:05:22 Uhr vergangen? 
+Wie viele Stunden, Minuten und Sekunden sind 3,2543 Stunden ? 
+x 
+17x5x… 
+Umschalt- 
+Tasten: 
+n 
+x 
+ 
+Wie lang ist die Strecke zwischen Stuttgart und Konstanz? (Luftlinie) 
+oder 
+Weitere Umschalt-
+Möglichkeiten:  
+qn , qx ,  
+= ,        q= ,  
+b ,        qb 
+
+--- PDF-SEITE 13 ---
+13 
+Wahrscheinlichkeitsrechnung 
+Mit welcher Wahrscheinlichkeit haben in einer Klasse mit 30 Schülern  
+mindestens zwei am gleichen Tag Geburtstag? 
+Die bekannte Formel für diese Wahrscheinlichkeit 
+  
+𝑃 = 1 − 365⋅ 364⋅ …⋅ (365− 𝑛− 1 )
+365𝑛  
+ 
+lässt sich mit dem WTR leicht berechnen und variieren. 
+Tipp: Mit !! kommt man schnell an die Stelle, an der die Anzahl der Personen berücksichtigt wird. 
+Bei 50 Personen steigt die 
+Wahrscheinlichkeit sogar auf 97%. 
+1–Q[… 
+
+
+--- PDF-SEITE 14 ---
+14 
+Wo ist …? 
+ 
+Unter OPTN 
+Weitere Schritte,  
+weitere Funktionen: 
+In allen Anwendungen  
+finden Sie weitere  
+Möglichkeiten unter T 
+Bildschirm löschen: C ,  Eingaben löschen: W 
+
+--- PDF-SEITE 15 ---
+15 
+Statistik 
+Über die Taste w gelangen Sie in das Hauptmenü des Rechners. Wandern Sie mit den 
+Cursortasten über die Icons und wählen Sie mit = die Statistik-Anwendung. 
+Beispiel: Kennwerte einer eindimensionalen Zufallsvariablen 
+Eingabe mit C beenden Drücken Sie i2 R 
+Auswahl der Berechnung: 
+1 : 1 Variable 
+ER 
+
+
+--- PDF-SEITE 16 ---
+16 
+Minigolfergebnisse 
+ 
+Zu welcher Klasse gehört 
+der jeweilige Boxplot? 
+Begründen Sie. 
+2. Spalte: Setup, Statistik, 
+Häufigkeit ein 
+CT2
+RR 
+Eingabe: Dreimal die eins, … 
+
+
+--- PDF-SEITE 17 ---
+17 
+Statistik 
+Beispiel: Quadratische Regression 
+Funktionsterm: T3 
+w6 Auswahl 3:  
+Quadratische Regression 
+ 
+Werte eingeben 
+Eingabe mit C beenden 
+Eine neue Dachkonstruktion 
+soll ähnliche Maße wie der 
+„Berliner Bogen“ haben:  
+Es soll eine Höhe von 36 m 
+haben und unten doppelt so 
+breit sein, wie es hoch ist.  
+Berliner Bogen 
+y = 0 entspricht x1 = -36 
+Scheitelpunkt bei x = 0 
+y= - 
+1
+36 x² + 36 
+Auswertung: 
+Regressionen 
+iR44 
+x  y 
+ 
+1 
+2 
+3 
+x  y 
+0 36 
+
+--- PDF-SEITE 18 ---
+18 
+Verteilungen: Einzelwahrscheinlichkeit 
+Wählen Sie aus den Verteilungen [w7] die binomiale  
+Einzelwahrscheinlichkeit mit [42]. 
+Eine Münze wird 20-mal geworfen.  
+Berechne die Wahrscheinlichkeit für achtmal „Zahl“. 
+Eingabe von Termen 
+möglich: 1P2 
+Berechnung 
+ausführen: = 
+Eine Übersicht über 
+die Verteilung 
+erhalten Sie über den 
+QR-Code. [qT] 
+
+
+--- PDF-SEITE 19 ---
+19 
+Verteilungen: Kumulierte Wahrscheinlichkeit 
+Wählen Sie aus den Verteilungen [w7] die  
+kummulierte Binomialverteilung [R1]. 
+Berechnung der Wahrscheinlichkeit einer Binomialverteilung für mindestens 20 und 
+höchstens 32 Treffer bei 50 Versuchen mit einer Wahrscheinlichkeit von 0,6. 
+Speichern Sie 
+den ersten Wert 
+unter A: [Jz] 
+Rechnen Sie in 
+der k-Spalte: 
+ A – B  
+Den zweiten 
+unter B: [Jx] 
+Geben Sie die Werte 
+als „1: Liste“ ein:  
+32 = 19 == 
+
+
+--- PDF-SEITE 20 ---
+20 
+Verteilungen: Test (k-Bestimmung) 
+Hier liegt ein linksseitiger Test vor. X ist die Anzahl der Treffer der Stichprobe und 
+im Extremfall binomialverteilt mit n=200 und p=0,3. Es muss gelten: P(X≤g) ≤ 0,05. 
+Gesucht ist der größte Wert für g, der diese Bedingung erfüllt. 
+Der Erwartungswert von X ist μ=200∙0,3=60, also muss g kleiner als 60 sein. 
+Die Nullhypothese H0: p ≥ 0,3 soll mit einem Stichprobenumfang von n = 200 auf 
+einem Signifikanzniveau von 5% getestet werden.  
+Bestimmen Sie die Entscheidungsregel. 
+Versuche und Einzel-
+wahrscheinlichkeit 
+Wahrscheinlich-
+keiten sind noch 
+zu hoch:  
+48=, 49== 
+Liste kumulierter 
+Wahrscheinlichkeiten
+w7R11 
+Hier ist der 
+Sprung über 
+0,05. 
+
+
+--- PDF-SEITE 21 ---
+21 
+Ansatz: P(X≥1)>0,99  P(X≤0)<0,01 
+In den Verteilungsfunktionen: 
+n-Bestimmung 
+Kumulierte 
+Binomiale 
+Verteilung 
+2. Variable 
+Ausprobieren 
+(==) 
+0,75^(A1-x );1;A1) 
+ Wie oft muss man das Glücksrad mindestens drehen, um mit einer Wahrscheinlichkeit von 
+über 99% mindestens einmal die Farbe Blau zu bekommen?  
+Ansatz: P(X≥1)>0,99 
+In der Tabellenkalkulation: 
+Im Rechenbereich mit der CALC-Taste: 
+Tipp: ∑( ) nicht  für )x  )A-x benutzen! 
+
+
+--- PDF-SEITE 22 ---
+22 
+Variation der Aufgabenstellung 
+Die „dreimal mindestens Aufgabe“ ist in den Schulbüchern stets so formuliert, dass mindestens ein Treffer 
+erzielt werden soll. Wenn nach mindestens k Treffern mit k ≥ 2 gefragt wird, dann ergeben sich Gleichungen, 
+deren Lösung nicht mehr in formelmäßig geschlossener Form angegeben werden können. Wird der fx-
+991DEX eingesetzt, können solche Aufgaben unter Verwendung der SOLVE-Taste gelöst werden. 
+ 
+ 
+Beispiel: 
+27% aller PKW sind in Deutschland rot. Bestimme die Anzahl der PKW die mindestens an mir vorbeifahren 
+müssen, damit mit mindestens 90% Wahrscheinlichkeit mindestens zwei rote PKW dabei waren. 
+ 
+Wenn mit   die Anzahl der roten Autos bezeichnet wird, dann ist X binomialverteilt mit p=0,27. Es ist nun n so 
+zu bestimmen, dass 
+ 
+ 
+ 
+ 
+Folgende Umformungen führen zu einer Ungleichung,  
+die mit Hilfe des fx-991DEX gelöst werden kann: 
+ 
+ 
+ 
+ 
+Mittels der SOLVE-Taste findet man, dass für n=12,88 fast Gleichheit gilt.  
+ 
+Da                                                  für n>1 streng monoton fallend ist, ergibt sich die Lösung 
+ 
+2
+( 2) 0, 27 0, 73 0,9
+n
+x n x
+x
+nPX x
+
+
+     
+1
+( 2) 0,9
+1 ( 2) 0,1
+( 1) 0,1
+( 0) ( 1) 0,1
+0, 73 0, 27 0, 73 0,1nn
+PX
+PX
+PX
+P X P X
+n 
+   
+  
+
+   
+   
+1( ) 0,73 0, 27 0,73nnf n n    
+13n 
+
+--- PDF-SEITE 23 ---
+23 
+Arbeiten mit Wertetabellen 
+Über die Taste w gelangen Sie in das Hauptmenü des Rechners. Wandern Sie mit den 
+Cursortasten über die Icons und wählen Sie mit = die Tabellen-Anwendung. 
+Funktionen eingeben 
+ Zwei Funktionen 
+vergleichen 
+Bereich, Schrittweite 
+Eingabe weiterer Werte, 
+um den Schnittpunkt 
+anzunähern 
+Fortsetzen der 
+Wertetabelle mit  
++-Taste und  
+p-Taste 
++ 
+ - 
+Werte editieren 
+
+
+--- PDF-SEITE 24 ---
+24 
+Arbeiten mit Wertetabellen 
+Funktionen eingeben 
+Gleiche Werte entdecken 
+Wie unterscheiden sich die Parabeln f(x) = x² und g(x) = (x – 3)² ? 
+C== 
+Kontrolle 
+
+
+--- PDF-SEITE 25 ---
+25 
+Bestimmung der Zahl e 
+Finde eine Basis für die Exponentialfunktion f, so dass f (0) = 1 und  f ‘(0) = 1. 
+Ansatz: Differenzenquotient für a ≠ 0 an der Stelle x0 = 0 
+Differenzenquotient 
+eingeben 
+Einen kleinen Wert in D 
+speichern:  
+10^-9 Store D [Jj] C== 
+f x = ax ⇒ DQ = f x0 + 𝑑 − f(x0)
+d = ax0+𝑑 − ax0
+d = ax0 ⋅ ad − 1
+d = ad − 1
+d  
+Standard-Bereich 
+DQ=1 zwischen 
+2 und 3 
+DQ=1 zwischen 
+2,7 und 2,8 
+C== 
+C== 
+
+
+--- PDF-SEITE 26 ---
+26 
+5 Summanden: r 
+Berechne näherungsweise die Fläche zwischen der x-Achse und der Funktion f(x) = 3x² im 
+Intervall [0,2] mit Hilfe von 5 (10,15, 20, …) Rechtecken. 
+Integrale annähern 
+Flächensumme 
+10, 15, … Summanden 
+2
+5 ∙ ( 3(
+2
+5)² + 3(
+4
+5)² + 3(
+6
+5)² + 3(
+8
+5)² + 3(
+10
+5 )² ) 
+! : M + 5 Jm 
+====== 
+ :  [Qy] 
+M [Qm] 
+
+
+--- PDF-SEITE 27 ---
+27 
+Über die Taste T erhalten Sie Hilfen, die Tabelle auszufüllen und 
+Tabellenkalkulationsformeln einzufügen. Cursortasten für weitere… 
+1: Formel herunterziehen 
+3: Zelle editieren 
+1: Zellbezug festhalten 
+2: Zelle für Formel 
+   auswählen (=B2²) 
+2: Kopieren & Einfügen 
+Funktionen einfügen 
+Arbeiten in der Tabellenkalkulation 
+
+--- PDF-SEITE 28 ---
+28 
+Ein Kredit über 200.000€ hat eine 
+Laufzeit von 3 Jahren. Die 
+Ratenzahlung in Höhe von 500€ 
+erfolgt monatlich. Der nominale 
+Jahreszins beträgt 1,8%. 
+ 
+a) Wie hoch ist die Restschuld 
+nach Ablauf der drei Jahre? 
+ 
+b) Wie viele Zinsen wurden in den 
+drei Jahren bezahlt? 
+ 
+c) Wie hoch müsste die 
+monatliche Rate sein, damit nach 
+drei Jahren noch eine Restschuld 
+von ca. 180.000€ bleibt? 
+Gegebene Werte 
+eintragen 
+Restschulden 
+errechnen T1 
+Letzte Restschuld Gezahlte Zinsen 
+=1+B2P100P12= A1∙B$3 – B$1=… 
+=A37 =B1∙36 – (A1 – C1) 
+= [Qr] 
+A [Qz]  
+B [Qx]  
+C [Qu] 
+Blick in Tabelle [T2C] 
+$ [T1] 
+Arbeiten in der Tabellenkalkulation 
+
+--- PDF-SEITE 29 ---
+29 
+Rekursive Lösung: 
+Vom Punkt (n,m) gelangt man über den Punkt 
+(n,m-1) oder den Punkt (n-1,m) zum Ziel 
+d.h. 𝑤 𝑛,𝑚 =  1                𝑓ü𝑟 𝑛= 1 𝑜𝑑𝑒𝑟 𝑚 = 1
+𝑤 𝑛,𝑚 − 1 + 𝑤 𝑛− 1,𝑚 𝑠𝑜𝑛𝑠𝑡 
+ 
+Ein kombinatorisches Problem 
+Wie viele direkte Wege gibt es in dem 
+quadratischen Gitter von der Ecke rechts unten 
+zu der Ecke links oben? 
+T1 
+T2 T2 
+Arbeiten in der Tabellenkalkulation 
+
+--- PDF-SEITE 30 ---
+30 
+Thomas würfelt mit zwei Würfeln und bildet die Augensumme, Jürgen mit einen Würfel 
+und verdoppelt die Augenzahl. Wer ist im Vorteil? 
+Die mittlere Augensumme ist bei beiden etwa gleich 
+groß, d.h. beide haben die gleichen Chancen. 
+Wiederholungen: 
+Neu berechnen [TR4] 
+Auswertung der Simulation Simulation in der Tabellenkalkulation  
+T1 
+T1 
+= Sum( B1:B30)P30 
+= [Qr] 
+Sum( [TR4]  
+B  [Qx] 
+:  [Qy] 
+Arbeiten in der Tabellenkalkulation 
+
+--- PDF-SEITE 31 ---
+31 
+Arbeiten in der Tabellenkalkulation 
+Führe ein Zufallsexperiment 30 mal durch: Wie groß ist die relative Häufigkeit des 
+Ereignisses „6“? 
+Wiederholungen: 
+Neu berechnen [TR4] 
+Auswertung der Simulation 
+Simulation in der Tabellenkalkulation  
+T1 
+T1 
+RanInt  [Q#] 
+; [q)] 
+Int  [Q+] 
+A [Qz]  
+ 
+= [Qr] 
+Sum( [TR4]  
+B  [Qx]  
+:  [Qy] 
+C [Qu] 
+Auswertung der Simulation 
+ wenn( A1=6 ; 1 ; 0 ) 
+
+
+--- PDF-SEITE 32 ---
+32 
+Newton-Verfahren Schritt für Schritt 
+Newton-Verfahren mit Startwertänderung in der Tabellenkalkulation: w8 
+Finde die Lösungen der Gleichung  x³ – 8x – 8 = 0. 
+Spalte A: Funktion 
+eingeben mit x=C1 
+Spalte B: Ableitung 
+eingeben mit x=C1 
+Spalte C: Newton-
+Verfahren eingeben mit 
+x=C1, f(x)=A1, f‘(x)=B1 
+Startwert in C1 
+eingeben: -5 
+Lösung in D1 
+holen 
+Startwert in C1 
+ändern: 0 
+Anzeige ändern: 
+Setup, Tabellenk., 
+Zelle anzeigen, 
+Wert 
+Startwert in C1 
+ändern: 5 
+Speichern:J[ 
+T1 
+T1 
+T1 
+
+
+--- PDF-SEITE 33 ---
+33 
+Beispielaufgabe: Füllvorgang 
+Zwei identische Wasserbecken werden über jeweils einen Zulauf gefüllt. Zu 
+Beginn der Füllung befinden sich im Becken 1 schon 50 Liter Wasser und im 
+Becken 2 schon 3 Liter. Das erste Becken wird mit 20 l pro Minute befüllt. Im 
+Becken 2 laufen 30 l pro Minute zu. 
+Bestimme, nach welcher Zeit beide Becken den gleichen Füllstand haben und 
+gib den Füllstand an.  
+Finde verschiedene Lösungswege. 
+Die Tabellenkalkulation kann 
+dabei helfen, sich eine 
+Übersicht zu verschaffen. 
+Kopieren: TR2R=R= 
+In der Statistik-App können aus jeweils mehreren x/y – 
+Paaren die beiden linearen Funktionen erzeugt werden.  
+ 
+
+
+--- PDF-SEITE 34 ---
+34 
+Aufgabe: Füllvorgang 
+Nach Eingabe der Terme in die Wertetabelle werden die 
+Funktionswerte beider Funktionen nebeneinander 
+ausgegeben. Durch sinnvolles Ergänzen neuer x-Werte 
+kann hier schon der Schnittpunkt gefunden werden.  
+Zur Veranschaulichung ist es möglich, die eingegebenen 
+Funktionsterme sowie den Wertebereich mit einem Tastendruck 
+(QR-Code-Funktion) an ein Handy zu übertragen und dort 
+graphisch anzeigen zu lassen: qT 
+Benutzen Sie zum scannen die App „CASIO EDU+“. 
+In Berechnungen können zudem Gleichungen mit Newton-
+Verfahren gelöst und so die gesuchte Anzahl der Stunden zu 
+ermittelt werden. 
+w1 
+ 
+- Gleichung eingeben 
+- Solve [qr] 
+- Startwert eingeben,  
+               z.B. [-5==] 
+
+--- PDF-SEITE 35 ---
+35 
+Daten kombinieren mit CASIO EDU+ 
+Daten mehrerer Schülerrechner zusammenfügen 
+[QR Code] wählen und einen QR Code vom ClassWiz eines Schülers scannen,   
+„Mit einer Class teilen“ wählen, eine bestehende „Class“ auswählen, für diese Berechnungen 
+einen Schülernamen (einmalig) vergeben und mit [Teilen] bestätigen. 
+[Class] wählen, mit [+] (einmalig) eine neue „Class“ erstellen,   
+Class-Name und Beschreibung eingeben [   ], dann auf [Erstellen] drücken. 
+Siri Paula Georg 
+
+--- PDF-SEITE 36 ---
+36 
+http://www.basteln-gestalten.de/frosch-falten 
+Beim Schulfest veranstaltet die Klasse 6c einen Papierfroschsprungwettbewerb. 
+Jede Klasse darf mit genau einem selbstgebastelten Papierfrosch beim Wettbewerb 
+teilnehmen. Jede Klasse darf den gewählten Frosch nur ein einziges Mal springen 
+lassen. Die Klasse, deren Frosch am weitesten springt, hat gewonnen. 
+ 
+1) Bastle einen Papierfrosch. 
+2) Überlege dir mit deiner Gruppe, wie ihr den besten Frosch für den Wettbewerb 
+bestimmen könnt. Testet eure Frösche und wählt einen aus. Dokumentiert dabei 
+euer Vorgehen. 
+Daten 
+Paula 55 33 42 88 36 79 97 70 55 
+Siri 63 57 44 52 58 53 56 44 40 
+Georg 53 84 50 62 23 78 81 46 69 
+Statistik, 1 Variable 
+QR-Code 
+ohne „Class“ 
+Maximum: 
+97 cm 
+Daten kombinieren mit CASIO EDU+ 
+
+
+--- PDF-SEITE 37 ---
+37 
+„Class“ im Browser öffnen, 
+ 
+Alle Schüler auswählen,  
+ 
+gemeinsam anzeigen 
+auswählen, 
+ 
+die Art der gemeinsamen 
+Darstellung wählen. 
+Sprung-Qualitäten der einzelnen Frösche 
+Verhalten eines Durchschnitts-Frosches 
+Daten kombinieren mit CASIO EDU+ 
+
+
+--- PDF-SEITE 38 ---
+38 
+Uhrzeiten 
+Aufgabe: Schifffahrt 
+Die Klasse 9a macht einen Ausflug: 
+7.45   —  8.15  Busfahrt: Schule — Hafen 
+8.15   —  9.05  Schifffahrt zum Schloss Schönfels 
+9.05   —  10.25  Schlossbesichtigung und Fußweg  
+10.25 —  11.35  Schifffahrt zum Grillplatz 
+11.35 —  15.10  Grillen und Mittagspause 
+15.10 —  17.00  Schifffahrt zurück zum Hafen 
+17.00 —  19.00  Stadtrallye und Rückfahrt  
+Marie schätzt, dass sie höchstens 30% der gesamten 
+Ausflugszeit auf dem Schiff verbracht haben.  
+Stimmt ihre Vermutung?  
+= [Qr] 
+A [Qz]  
+B [Qx]  
+C [Qu] 
+9x05x 
+TR2 
+R= … 
+
+
+--- PDF-SEITE 39 ---
+39 
+Welchen jährlich gleichbleibenden 
+Zinssatz hätte eine Bank bieten 
+müssen, um von 2009 bis 2013 den 
+gleichen Wertzuwachs zu erzielen? 
+Kredit 
+w9… w8…TR2 
+
+
+--- PDF-SEITE 40 ---
+40 
+Analysis 
+Ein Medikament kann mithilfe einer Spritze oder durch Tropfinfusion verabreicht werden. 
+ 
+    Bei Verabreichung mithilfe einer Spritze wird die Wirkstoffmenge im Blut des Patienten 
+durch den Graphen der Funktion f(t) (s.u.) beschrieben. Dabei ist t die Zeit seit 
+Verabreichung in Stunden und f(t) die Wirkstoffmenge in mg. Beantworten Sie die 
+folgenden Fragen anhand des Graphen:  
+· Wie groß sind die 
+Wirkstoffmenge und 
+deren momentane 
+Änderungsrate acht 
+Stunden nach 
+Verabreichung? 
+ 
+· In welchem Zeitraum 
+beträgt die 
+Wirkstoffmenge 
+mindestens 35 mg?  
+ 
+· Wie groß ist die mittlere 
+Wirkstoffmenge 
+innerhalb der ersten 
+vier Stunden? 
+
+
+--- PDF-SEITE 41 ---
+41 
+Lösung 
+Die abgelesenen Werte können direkt in die Tabellenkalkulation (w8) in Spalten A und B 
+eingetragen werden. Beim Ausfüllen der Tabelle helfen T und die Cursortasten. Die 
+Zeichen „A, B, C, D, E“ werden mit Q ausgewählt, der Doppelpunkt mit Qy: 
+t-Werte Flächen der Maxima 
+Obersumme/4 Untersumme/4 
+Flächen der Minima 
+T1 
+A1+0,5 
+T1TR2 
+B1:B2)∙0,5 
+T1TR1 
+T1TR4 T1TR4 T1TR3 
+Flächen der Trapeze 
+
+
+--- PDF-SEITE 42 ---
+42 
+Geben Sie Matrix oder Vektor ein und löschen Sie den Bildschirm mit C. Über die Taste 
+T erhalten Sie die Möglichkeiten in der gewählten Anwendung: 
+1: Weitere Vektoren/Matrizen eingeben 
+2: Vektoren/Matrizen ändern 
+3-6: Mit Vektoren/Matrizen rechnen 
+1: Mit letztem Ergebnis rechnen 
+2-4: Besondere Funktionen 
+Eingabe in die Rechenzeile:  
+CT, Winkel, T, VctA ; [q)] … 
+CT, Zeilenstufenform, T, MatA.  
+1: Zeilenstufenform/Gauß-Verfahren 
+2: Reduzierte Zeilenstufenform/ 
+ Gauß-Jordan-Verfahren 
+Arbeiten mit Matrizen und Vektoren 
+
+--- PDF-SEITE 43 ---
+43 
+Arbeiten mit Matrizen und Vektoren 
+Vielfache,  
+Vektoraddition 
+Skalarprodukt 
+CTR2 
+Vektorprodukt 
+O-Taste 
+Länge eines  
+Vektors 
+q( 
+Matrizen-    
+addition 
+Matrizen-  
+multiplikation 
+O-Taste 
+Inverse Matrix 
+u 
+Matrizenpotenzen 
+„Grenzmatrix“ 
+(MatA128) d,D 
+
+
+--- PDF-SEITE 44 ---
+44 
+Arbeiten mit Gleichungen und Ungleichungen 
+Wählen Sie mit wz die „Gleichungen“, mit wx die „Ungleichungen“. 
+Bis zu 4  
+Unbekannte 
+Ausgeschriebene 
+Gleichungen 
+Vier Lösungen/  
+Unendlich viele/ 
+Keine Lösung 
+Polynom- 
+gleichungen  
+bis 4. Grades 
+Bis zu vier  
+Lösungen: 
+x1, x2, x3, x4 
+Ausgeschriebene 
+Gleichungen 
+Lösungsmengen 
+bei Polynom- 
+Ungleichungen 
+
+
+--- PDF-SEITE 45 ---
+45 
+Über pj gelangen Sie zum Verhältnisrechner. Dort können z.B. Streckenlängen beim 
+Strahlensatz oder auch Prozentverhältnisse übersichtlich eingegeben und berechnet 
+werden. 
+Auswahl der  
+Unbekannten 
+Proportionale  
+Verhältnisse 
+Arbeiten mit Verhältnissen 
+Umgekehrt  
+proportionale  
+Verhältnisse 
+
+
+--- PDF-SEITE 46 ---
+46 
+Naturkonstanten (Shift, 7) 
+
+
+--- PDF-SEITE 47 ---
+47 
+Einheitenumrechnung (Shift, 8) 
+: 
+. 

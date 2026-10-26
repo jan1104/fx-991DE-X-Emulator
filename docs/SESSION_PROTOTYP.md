@@ -2,6 +2,8 @@
 
 Stand: 26.10.2026. Implementiert im unabhängigen Dart-Paket, ohne Flutter oder Betriebssystemzugriff in der Bibliothek. Dies ist ein begrenzter Entwicklungsprototyp, kein Nachweis vollständiger fx-991DE-X-Bedienkompatibilität.
 
+Fortschreibung 27.10.2026: Eine erste Flutter-Ansicht bindet diese unveränderte Sitzung inzwischen an. Der folgende Core-Prüfstand bleibt getrennt von den neuen App-Prüfungen; siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
+
 ## Schnittstelle
 
 `CalculatorSession()` hält einen eigenen Rechnerzustand. `press(CalculatorKey)` oder `pressId('KEY_7')` verarbeitet genau eine semantische Taste und liefert den aktuellen `CalculatorSnapshot`. Eine UI kann später dieselbe Aktion für Touch, Maus oder Hardware verwenden. Eingabekanäle und Fokus werden damit noch nicht getestet.

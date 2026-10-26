@@ -1,5 +1,33 @@
 # Entwicklungsstand
 
+## 27.10.2026: erste Flutter-Oberfläche
+
+Begonnen mit dem automatischen Arbeitspaket am späten 26.10.2026, Ausgangsbasis `8ad6abd`, Arbeitskopie zuvor sauber. Das vorhandene Core-/Sessionpaket wurde wiederverwendet und nicht erneut implementiert.
+
+### Neu umgesetzt
+
+- Eigenständige Flutter-Ansicht mit Anzeige für Eingabe, Cursor, Ans, Ergebnis und deutsche Fehlerkategorien.
+- 50 Tastenplätze aus dem bestehenden Inventar; 25 unterstützte Primäraktionen sind aktiv, 25 weitere sichtbar deaktiviert.
+- Verbindung zur geprüften Sitzung, Bildschirmtasten und begrenzter Hardwareadapter; Tab/Space behalten die normale Fokusbedienung.
+- Responsive Breite und vertikaler Bildlauf für kleinere Fenster/Telefone; ausreichend hohe gezeichnete Buttonflächen.
+- Offiziell erzeugte Gerüste für Android, iOS, Windows, macOS und Linux, App-Lockdatei und versionierter Prüfhelfer `tools/test_app.ps1`.
+
+### Werkzeuge und Prüfung
+
+Flutter wurde außerhalb des Repositorys am offiziellen Release-Tag 3.47.8 eingerichtet, Revision `737ba8f885dc774b53b442759999a312c9461e4e`, Dart 3.13.7. Das direkte Archiv-Verzeichnis war nicht verfügbar; der offizielle GitHub-Tag und Bootstrap funktionierten. Analytics aus, kein globaler PATH-Eingriff. Die Tag-Fixierung wird von `flutter doctor` als Git-Kanal `[user-branch]` angezeigt. Details in [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
+
+Abschließender App-Prüflauf: SDK-/Revisionsvergleich, erzwungene Lockdatei, unveränderte Formatierung, statische Analyse ohne Befund und **60 Widget-/Keyboard-Mappingtests bestanden**. Die 181 Coretests des vorherigen Pakets bleiben der unveränderte Core-Nachweis; sie werden nicht als neue Gerätetests umgedeutet. Alle 50 App-IDs wurden zusätzlich mit der Referenz-CSV abgeglichen. Katalog- und Dokumentlinkprüfung ohne Befund.
+
+Ein konkreter Erstlauf-Fehler wurde durch den Subagenten nachgewiesen: Enter-Wiederholung konnte nach Ausführen eine fokussierte Zifferntaste aktivieren. Der Appadapter konsumiert zugeordnete Wiederholungsereignisse jetzt ohne neue Rechneraktion; der Regressionstest besteht. Eine separate visuelle Prüfung deckte zu schmale gezeichnete Tastenflächen auf; die Reihen strecken ihre Buttons jetzt auf die vorgesehene Höhe. Ein geometrischer Regressionstest prüft repräsentative Flächen bei 320 Pixel Breite.
+
+Die explizite visuelle Vorschau wurde bei 420×900 gerendert und nach Korrekturen geprüft. Datei: `build/reports/calculator-prototype.png` (lokal, ignoriert). Sie zeigt die vollständige Tastatur und `1/3+1/6 = 1/2`, lesbare Beschriftungen und Richtungsicons. Die Vorschauerzeugung prüft zusätzlich einen Rechenablauf, wird aber nicht als weiterer allgemeiner Geräte-/Plattformtest gezählt. Native Bildcodierung läuft im QA-Helfer außerhalb der künstlichen Testuhr; Systemfont nur lokal geladen, nicht als Projektasset übernommen.
+
+### Verbleibende Grenzen / nächste Schritte
+
+Die lokale Diagnose fand weder ein Android-SDK noch Visual-Studio-C++-Buildwerkzeuge. Windows-/Android-App-Pakete wurden daher noch nicht gebaut. iOS/macOS und Linux wurden nicht auf den jeweiligen Betriebssystemen geprüft. Plattformgerüste und Widgets im Testengine sind kein Nachweis einer nativen Installation.
+
+Natürlicher Formeleditor, SHIFT/ALPHA, Menüs, Variablen/M-Speicher und weitere Modi bleiben offen. Nächstes unabhängiges Paket ist der natürliche Editor-Prototyp; die fehlenden Windows-/Android-Buildwerkzeuge sind getrennt zu behandeln. Standard-Appicons und Paketkennung sind vor einer Veröffentlichung noch festzulegen. Original-Programmdateien fehlen weiterhin, blockieren diesen Eigenbau aber nicht. Neue Änderungen bleiben lokal; kein Push.
+
 ## 26.10.2026: linearer Bedienzustand und Ans
 
 Ausgangsbasis: lokaler Commit `3e23d37`, Arbeitskopie vor Beginn sauber. Dieses Paket ergänzt die Bedienebene, ohne Flutter/SDKs nachzuinstallieren oder Originalsoftware abzuwarten.

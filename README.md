@@ -2,9 +2,9 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 26.10.2026
+## Stand am 27.10.2026
 
-Ein unabhängiger Dart-Rechenkern ist ausführbar: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern und ganzzahlige Potenzen. Ein linearer Bedienzustand unterstützt 25 Primäraktionen, Cursor, DEL/AC, Ergebnis-/Fehlerphasen und exaktes Ans. Insgesamt 181 Coretests bestehen; Flutter-Oberfläche und vollständige Rechnerbedienung fehlen noch. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
+Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Ansicht zeigt 50 Tastenplätze mit 25 aktiven Primäraktionen. Vollständige Rechnerbedienung und natürliche Formeldarstellung fehlen noch. Zu den bisherigen 181 Coretests kommen 60 bestandene App-/Mappingtests; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 
@@ -16,11 +16,12 @@ Ein unabhängiger Dart-Rechenkern ist ausführbar: exakte Brüche/Dezimalzahlen,
 - [Architekturvorschlag und Entwicklungsplan](docs/ARCHITEKTUR_UND_PLAN.md)
 - [Konkrete Projektstruktur und Schnittstellen](docs/PROJEKTSTRUKTUR.md)
 - [Linearer Bedienprototyp und getestete Übergänge](docs/SESSION_PROTOTYP.md)
+- [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 
-Zielplattformen sind Android, iPhone/iPad, Windows, macOS und Linux. Empfohlen wird Flutter mit gemeinsamem Dart-Rechenkern; ein begrenzter Machbarkeitstest steht noch aus. Plattformübergreifende Builds wurden noch nicht ausgeführt.
+Zielplattformen sind Android, iPhone/iPad, Windows, macOS und Linux. Die gemeinsame Flutter-Ansicht ist im Testengine geprüft und die fünf Plattformgerüste sind erzeugt. Native Builds und Gerätetests stehen aus.
 
-`packages/calculator_core/` enthält den ausführbaren Core-Prototyp und seine Tests. `apps/calculator/` ist weiterhin für das spätere Flutter-Grundgerüst vorbereitet. Die umfangreichen Inventare unter `tests/reference/` bleiben Planungsdaten; sie sind nicht vollständig implementiert oder bestanden.
+`packages/calculator_core/` enthält den unabhängigen Core, `apps/calculator/` dessen Flutter-Oberfläche. Die umfangreichen Inventare unter `tests/reference/` bleiben Planungsdaten; sie sind nicht vollständig implementiert oder bestanden.
 
 ## Referenzen
 

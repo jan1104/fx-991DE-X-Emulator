@@ -1,5 +1,34 @@
 # Entwicklungsstand
 
+## 26.10.2026: linearer Bedienzustand und Ans
+
+Ausgangsbasis: lokaler Commit `3e23d37`, Arbeitskopie vor Beginn sauber. Dieses Paket ergänzt die Bedienebene, ohne Flutter/SDKs nachzuinstallieren oder Originalsoftware abzuwarten.
+
+### Neu umgesetzt
+
+- `CalculatorSession`, semantische `CalculatorKey`-IDs und unveränderliche Snapshots für Eingabe-, Ergebnis- und Fehlerphase.
+- 25 Primäraktionen: alle Ziffern, Grundoperatoren, Potenz/Vorzeichen/Komma/Klammern, Links/Rechts, DEL/AC, `=` und Ans.
+- Linearer Token-Cursor mit atomarem Ans; getrennte Stringoffsets für spätere Anzeige und Fehlerpositionen.
+- Exaktes Ans als ausdrücklich gebundener Zahlenoperand. Erfolgreiche Rechnungen aktualisieren Ans; AC und Fehler erhalten ihn. Operatoren nach Ergebnis setzen mit Ans fort.
+- Explizite Unsupported-Meldung für noch nicht implementierte Tasten-IDs, statt unbekannte Belegungen vorzutäuschen.
+- Ein gemeinsamer JSON-Referenzfall wird als lineare Core-Projektion über KEY_-IDs abgespielt; noch kein vollständiger universeller Referenzadapter.
+
+### Tatsächlich geprüft
+
+67 neue Sessiontests, drei zusätzliche Ans-Evaluatortests und ein JSON-Projektionsfall ergänzen die vorherigen 110 Tests. Abschließender vollständiger Prüfaufruf mit stabilem Dart 3.13.7 auf Windows x64: **181 Tests bestanden**, Lockdatei erzwungen, Formatierung unverändert, statische Analyse ohne Befund. Ein Subagent schrieb die Sessiontests anhand des Schnittstellenvertrags; ein zweiter prüfte Code und Übergänge unabhängig und meldete keine konkreten Fehler. Katalog- und Dokumentlinkprüfungen erfolgen ergänzend vor dem lokalen Commit.
+
+Ein früher gebündelter Aufruf meldete einen Testfehler, dessen Einzelursache durch die damalige gekürzte Ausgabe nicht gesichert wurde. Der direkte vollständige Testlauf und der abschließende vollständige Prüfaufruf bestanden anschließend ohne Quelländerung. Der Prüfhelfer bewahrt Testausgaben nun unter dem ignorierten `build/reports/core-tests.log` auf, um einen möglichen Wiederholungsfall vollständig diagnostizieren zu können. Daraus wird keine bereits erklärte Fehlerursache abgeleitet.
+
+### Umfang und Grenzen
+
+Die 25 Primäraktionen sind keine vollständig getesteten 25 Originaltasten mit allen Zusatzbelegungen. SHIFT/ALPHA, Menüs, ON/OFF, Variablen/M-Speicher, Verlauf, natürlicher Formeleditor, Casio-Formatierung und die Flutter-Oberfläche bleiben offen. Eigene Regeln für DEL/Navigation nach Ergebnis und wiederholtes `=` sind als Prototypentscheidungen in [SESSION_PROTOTYP.md](SESSION_PROTOTYP.md) ausgewiesen. Keine Gerätetests, keine neuen App-Builds, kein Originalvergleich.
+
+Der gemeinsame Fall `G07-key-division-zero` prüft nur die Tastenfolge, lineare Eingabe und mathematische Fehlerklasse. Math→Math-Setup, lokalisierter Text und sichtbarer Fehlercursor sind nicht implementiert. Die übrigen Inventare/JSON-Fälle bleiben Planungsdaten; kein pauschales Hochsetzen der Abdeckungswerte.
+
+### Nächster Schritt
+
+Ein kleines Flutter-Grundgerüst an die vorhandene Sitzung anbinden und Windows-/Android-Buildwerkzeuge gezielt prüfen. Danach Formeleditor-Prototyp und getrennte Modifier-/Menü-/Speicherpakete. Das vollständige Originalprogramm bleibt eine spätere zusätzliche Referenz. Dieser neue Fortschritt bleibt lokal; kein weiterer Push ohne Nutzerfreigabe.
+
 ## 26.10.2026: erstes ausführbares Core-Arbeitspaket
 
 Ausgangsbasis: vollständiger Projektstand `bcd6691` auf `main`, vor Beginn ohne lokale Änderungen. Original-Programmdateien fehlen weiterhin. Die früher freigegebenen und versionierten Referenzen wurden nicht verändert.

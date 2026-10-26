@@ -3,7 +3,8 @@ import '../expressions/expression.dart';
 import '../expressions/parser.dart';
 import '../numbers/rational.dart';
 
-Rational evaluate(String source) => evaluateExpression(parseExpression(source));
+Rational evaluate(String source, {Rational? answer}) =>
+    evaluateExpression(parseExpression(source, answer: answer));
 
 /// Application resource limits; these are not claimed as Casio hardware limits.
 Rational evaluateExpression(Expression expression) =>

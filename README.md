@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 26.10.2026
 
-Ein erster unabhängiger Dart-Rechenkern ist ausführbar: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern und ganzzahlige Potenzen mit strukturierten Fehlern. Flutter-Oberfläche und vollständige Rechnerbedienung fehlen noch. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen, tatsächlich ausgeführte Tests und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
+Ein unabhängiger Dart-Rechenkern ist ausführbar: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern und ganzzahlige Potenzen. Ein linearer Bedienzustand unterstützt 25 Primäraktionen, Cursor, DEL/AC, Ergebnis-/Fehlerphasen und exaktes Ans. Insgesamt 181 Coretests bestehen; Flutter-Oberfläche und vollständige Rechnerbedienung fehlen noch. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 
@@ -15,6 +15,7 @@ Ein erster unabhängiger Dart-Rechenkern ist ausführbar: exakte Brüche/Dezimal
 - [Teststrategie für alle Tasten und Funktionen](docs/TESTSTRATEGIE.md)
 - [Architekturvorschlag und Entwicklungsplan](docs/ARCHITEKTUR_UND_PLAN.md)
 - [Konkrete Projektstruktur und Schnittstellen](docs/PROJEKTSTRUKTUR.md)
+- [Linearer Bedienprototyp und getestete Übergänge](docs/SESSION_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 
 Zielplattformen sind Android, iPhone/iPad, Windows, macOS und Linux. Empfohlen wird Flutter mit gemeinsamem Dart-Rechenkern; ein begrenzter Machbarkeitstest steht noch aus. Plattformübergreifende Builds wurden noch nicht ausgeführt.

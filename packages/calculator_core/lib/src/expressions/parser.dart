@@ -3,9 +3,21 @@ import '../numbers/rational.dart';
 import 'expression.dart';
 
 /// Parses the prototype's limited linear grammar, without executing code.
-Expression parseExpression(String source) => _Parser(source).parse();
+Expression parseExpression(String source, {Rational? answer}) =>
+    _Parser(source, answer).parse();
 
-enum _Kind { number, plus, minus, times, divide, power, left, right, end }
+enum _Kind {
+  number,
+  answer,
+  plus,
+  minus,
+  times,
+  divide,
+  power,
+  left,
+  right,
+  end,
+}
 
 final class _Token {
   final _Kind kind;
@@ -16,6 +28,7 @@ final class _Token {
 
 final class _Parser {
   final String source;
+  final Rational? answer;
   final List<_Token> tokens = [];
   int cursor = 0;
   int depth = 0;
@@ -23,7 +36,7 @@ final class _Parser {
     r'(?:[0-9]+(?:[.,][0-9]*)?|[.,][0-9]+)(?:[eE][+-]?[0-9]+)?',
   );
   static final _space = RegExp(r'\s');
-  _Parser(this.source);
+  _Parser(this.source, this.answer);
 
   CalculatorException _syntax(String message, int position) =>
       CalculatorException(
@@ -61,6 +74,11 @@ final class _Parser {
           'Too many tokens',
           position: position,
         );
+      }
+      if (source.startsWith('Ans', position)) {
+        tokens.add(_Token(_Kind.answer, 'Ans', position));
+        position += 3;
+        continue;
       }
       final match = _number.matchAsPrefix(source, position);
       if (match != null) {
@@ -184,6 +202,17 @@ final class _Parser {
 
   Expression _primary() {
     final token = _current;
+    if (token.kind == _Kind.answer) {
+      if (answer == null) {
+        throw CalculatorException(
+          CalculatorErrorCode.unsupported,
+          'Ans requires an explicit answer context',
+          position: token.position,
+        );
+      }
+      _take();
+      return NumberExpression(answer!, token.position);
+    }
     if (token.kind == _Kind.number) {
       _take();
       try {

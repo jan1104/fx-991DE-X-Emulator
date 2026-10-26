@@ -17,7 +17,9 @@ dart run bin/calculate.dart "2/3 + (1+1/2)"
 
 Alternativ unter PowerShell vom Repository aus: `./tools/test_core.ps1 -DartPath <Pfad-zu-dart.exe>`. Das CLI ist nur ein Demonstrationsadapter; die Bibliothek selbst verwendet kein `dart:io`.
 
-Noch nicht implementiert: Flutter-Oberfläche, physische Tastensequenzen, natürlicher Formeleditor, Variablen/Ans/Speicher, Zustandsmaschine, Rundungs-/Casio-Ausgaberegeln, trigonometrische Funktionen und weitere Modi. Eingabelänge, Verschachtelung und Rechengröße sind mit eigenen Ressourcenbudgets begrenzt; diese sind keine Casio-Hardwaregrenzen. `0^0` und nichtganzzahlige Potenzen werden im Evaluator vorerst als nicht unterstützt gemeldet. Das Zahlenmodell allein verwendet für die nullte Potenz die algebraische Konvention 1.
+Zusätzlich implementiert: `CalculatorSession` mit 25 Primäraktionen, unveränderlichen Snapshots, linearem Cursor und atomarem Ans-Token, AC/DEL sowie Ergebnis- und Fehlerübergängen. Aufruf etwa `session.pressId('KEY_7')`; unterstützte IDs und Prototypregeln stehen im [Bedienprototyp](../../docs/SESSION_PROTOTYP.md). `evaluate('Ans+1', answer: vorherigerWert)` bindet Ans ausdrücklich, ohne globalen Speicher.
+
+Noch nicht implementiert: Flutter-Oberfläche, tatsächliche Maus-/Touch-/Hardwareeingabe, natürlicher Formeleditor, Variablen/M-Speicher, SHIFT/ALPHA, Menüs/Setup, Rundungs-/Casio-Ausgaberegeln, trigonometrische Funktionen und weitere Modi. Eingabelänge, Verschachtelung und Rechengröße sind mit eigenen Ressourcenbudgets begrenzt; diese sind keine Casio-Hardwaregrenzen. `0^0` und nichtganzzahlige Potenzen werden im Evaluator vorerst als nicht unterstützt gemeldet. Das Zahlenmodell allein verwendet für die nullte Potenz die algebraische Konvention 1.
 
 Der tatsächliche Prüfstand steht in [ENTWICKLUNGSSTAND.md](../../docs/ENTWICKLUNGSSTAND.md). Die umfangreichen Referenzkataloge bleiben Planungsdaten; eine bestandene Coreprüfung bedeutet keinen bestandenen UI-/Originalvergleich.
 

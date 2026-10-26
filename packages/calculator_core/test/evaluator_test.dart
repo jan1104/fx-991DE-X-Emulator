@@ -122,4 +122,39 @@ void main() {
     // The budget belongs to one evaluation, not to the process or expression.
     expect(evaluate('2+3'), Rational.fromInt(5));
   });
+  group('explicit answer context', () {
+    test('requires a caller-supplied answer instead of a hidden global', () {
+      expect(
+        () => evaluate('Ans+1'),
+        errorCode(CalculatorErrorCode.unsupported),
+      );
+      expect(
+        evaluate('Ans+1', answer: Rational.fromInt(4)),
+        Rational.fromInt(5),
+      );
+    });
+    test('negative rational Ans remains a single structured operand', () {
+      final answer = Rational(BigInt.from(-1), BigInt.from(2));
+      expect(
+        evaluate('Ans^2', answer: answer),
+        Rational(BigInt.one, BigInt.from(4)),
+      );
+      expect(evaluate('2/Ans', answer: answer), Rational.fromInt(-4));
+    });
+    test(
+      'error positions refer to visible Ans text, not substituted digits',
+      () {
+        expect(
+          () => evaluate('Ans/0', answer: Rational.fromInt(12345)),
+          throwsA(
+            isA<CalculatorException>().having(
+              (error) => error.position,
+              'position',
+              3,
+            ),
+          ),
+        );
+      },
+    );
+  });
 }

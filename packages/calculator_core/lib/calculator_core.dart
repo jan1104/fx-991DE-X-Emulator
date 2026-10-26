@@ -6,3 +6,4 @@ export 'src/expressions/expression.dart';
 export 'src/expressions/parser.dart' show parseExpression;
 export 'src/evaluation/evaluator.dart' show evaluate, evaluateExpression;
 export 'src/numbers/rational.dart';
+export 'src/state/calculator_session.dart';

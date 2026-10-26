@@ -33,8 +33,8 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P0 | Originale sichern, Quelleninventar, Modi und Tasten katalogisieren | Identität geprüft, Seitenbelege und offene Punkte dokumentiert | In dieser Analyse bearbeitet |
 | P0 | Original-Programmdateien statisch untersuchen | Dateitypen, Abhängigkeiten und Laufzeitplan belegt | Wartet auf Programmdateien |
 | P0 | Flutter/Dart-Machbarkeitstest für fünf Zielsysteme | Gemeinsamer Kern und UI-Ansatz geprüft; tatsächlich erreichbare Windows-/Android-Builds und übrige offene Zieltests dokumentiert | Dart-Core auf Windows geprüft; Flutter/UI/App-Builds offen |
-| P1 | Minimaler Zustandskern und strukturierter Editor | ON/AC/DEL, Cursor, SHIFT/ALPHA, MENU/SETUP und Ergebniszustand geprüft | Offen |
-| P1 | Grundrechnen mit Prioritäten, Brüchen, Ans und Winkeln | Geplante Referenzfälle samt Fehlern und Anzeigewechsel bestehen | Exaktes lineares Grundrechnen/Potenzen als Prototyp geprüft; Ans/Winkel/Anzeige offen |
+| P1 | Minimaler Zustandskern und strukturierter Editor | ON/AC/DEL, Cursor, SHIFT/ALPHA, MENU/SETUP und Ergebniszustand geprüft | Linearer Zustand, AC/DEL, Cursor und 25 Primäraktionen geprüft; natürlicher Editor/ON/Modifier/Menüs offen |
+| P1 | Grundrechnen mit Prioritäten, Brüchen, Ans und Winkeln | Geplante Referenzfälle samt Fehlern und Anzeigewechsel bestehen | Exaktes lineares Grundrechnen/Potenzen und Ans als Prototyp geprüft; Winkel/Anzeige offen |
 | P2 | Wissenschaftliche Funktionen, CALC, numerische Ableitung/Integral/SOLVE | Genauigkeit und problematische Eingaben reproduzierbar geprüft | Offen |
 | P2 | Gleichungen, komplexe Zahlen, Basis-N | Grenzen und Modusunterschiede geprüft | Offen |
 | P3 | Matrizen, Vektoren, Statistik, Verteilungen | Pro Modul typische und ungültige Eingaben geprüft | Offen |
@@ -42,7 +42,7 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P4 | Konstanten, Umrechnungen, QR und PC-Komfortfunktionen | Historische Datenstände und externe Schnittstellen entschieden | Offen |
 | P4 | Reproduzierbarer Build und Paketierung | Saubere lokale Installation und Testlauf reproduzierbar | Offen |
 
-Der nächste abgegrenzte Schritt ist ein minimaler testbarer Bedienzustand auf dem vorhandenen Core. Danach folgen Flutter-Grundgerüst und Formeleditor-Prototyp. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien.
+Der minimale lineare Bedienzustand ist geprüft. Als nächstes folgen ein kleines Flutter-Grundgerüst auf dem vorhandenen Core und der Formeleditor-Prototyp. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien.
 
 ## Risiken und offene Entscheidungen
 

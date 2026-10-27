@@ -24,8 +24,18 @@ Der Editor begrenzt sich auf 256 Gesamtknoten und 16 verschachtelte Brüche. Üb
 
 Die lineare Grammatik bleibt begrenzt: Produkte sollten mit `*` eingegeben werden. Zahlen vor einer öffnenden Klammer erlauben die bisherige implizite Multiplikation; unmittelbar nach einer schließenden Klammer folgt eine Zahl/Ans ohne Operator weiterhin als Syntaxfehler. Der Prototyp erweitert die allgemeinen Vorrangregeln des Parsers nicht. Fehlerpositionen sind Offsets der projizierten Zeichenkette und noch keine Zuordnung zu einem Feldpfad.
 
-Nicht enthalten sind gemischte Brüche, Wurzeln, hochgestellte Eingabefelder, Auswahl/Übernahme vorhandener Operanden, vertikale Cursorbewegung, Ergebnisphasen, Modusumschaltung und Flutter-Darstellung. Auch die Taste `KEY_FRACTION` bleibt in der App bis zur gesonderten Anbindung deaktiviert.
+Nicht enthalten sind gemischte Brüche, Wurzeln, hochgestellte Eingabefelder, Auswahl/Übernahme vorhandener Operanden, vertikale Cursorbewegung, Ergebnisphasen und Modusumschaltung. Ein separates Flutter-Widget für die natürliche Anzeige ist inzwischen ergänzt (siehe unten). Die Taste `KEY_FRACTION` bleibt in der Hauptansicht bis zur gesonderten Sitzungsanbindung deaktiviert.
+
+## Lesende Flutter-Formelansicht
+
+`apps/calculator/lib/presentation/editor/fraction_expression_view.dart` stellt einen bestehenden Snapshot als natürliche Formel dar. `FractionExpressionView(snapshot: editor.snapshot)` zeichnet Bruchstriche, verschachtelte Felder, Rahmen für leere Felder und genau einen Pfadcursor. Mit `showCursor: false` lässt sich die Formel ohne Cursor darstellen. Es handelt sich um eine lesende, separat geprüfte Komponente; sie ist noch nicht in die Hauptrechneransicht eingebaut.
+
+Ein eigener Zwei-Kind-Renderbaustein misst Zähler und Nenner, zentriert die Felder und zeichnet den Bruchstrich. Die äußeren mathematischen Achsen bleiben auch bei unterschiedlich hohen Nachbarbrüchen ausgerichtet. Rekursive IntrinsicWidth-Durchläufe werden vermieden. Die Textvergrößerung wird auch auf Cursor und Platzhalter angewendet. Breite Formeln können horizontal, hohe Formeln bei begrenzter Höhe vertikal gescrollt werden. Ein nach Cursorbewegung automatisches Scrollen ist noch nicht enthalten.
+
+Für assistive Ausgabe enthält die Ansicht eine zusammenhängende deutsche Formelbeschreibung mit expliziten Zähler-/Nennergrenzen. Einzelne dekorative Text-/Cursorwidgets werden nicht zusätzlich vorgelesen. Dies ist ein Widget-Semantiknachweis; Prüfung mit echten Screenreadern, Fokussteuerung einzelner Felder und gesprochene Cursorposition bleiben offen.
+
+Die lokale visuelle Prüfung lässt sich im Appordner mit `flutter test tool/render_fraction_preview.dart --no-pub` aufrufen. Sie erzeugt `build/reports/fraction-view.png` im Repository (ignoriert). Wie der bisherige Vorschauhelfer lädt sie ausschließlich lokal eine Systemschrift, ohne sie als Appasset zu verteilen. Die QA-Seite ist kein neuer Appmodus und kein nativer Gerätetest.
 
 ## Nächster Schritt
 
-Ein Flutter-Widget für Baum, Bruchstrich, leere Felder und Pfadcursor ergänzen und geometrisch sowie visuell prüfen. Erst danach die Bruchtaste über eine ausdrücklich getrennte strukturierte Sitzung anbinden; Fehlerpfade, Ans und die bestehenden linearen Übergänge dabei gemeinsam festlegen. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.
+Die Bruchtaste über eine ausdrücklich getrennte strukturierte Sitzung anbinden; Fehlerpfade, Ans und die bestehenden linearen Übergänge dabei gemeinsam festlegen. Anschließend echte Eingabesequenzen über Bildschirmtasten sowie Hardware prüfen und den Cursor beim Verlassen des sichtbaren Bereichs nachführen. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.

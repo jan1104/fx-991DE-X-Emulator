@@ -1,5 +1,32 @@
 # Entwicklungsstand
 
+## 27.10.2026: natürliche Bruchansicht als Flutter-Komponente
+
+Ausgangsbasis `41bafda`, Arbeitskopie vor Beginn sauber. Das im letzten Paket dokumentierte nächste Arbeitspaket ist umgesetzt: eine eigenständige lesende Ansicht für die unveränderlichen Brucheditor-Snapshots. Hauptrechnerroute, aktive Tasten und Core bleiben unverändert.
+
+### Neu umgesetzt
+
+- `FractionExpressionView` zeichnet verschachtelte Brüche mit getrennten Feldern, Bruchstrichen, leeren Platzhaltern und dem aktuellen Pfadcursor. Der Cursor lässt sich für Ergebnis-/Vorschauansichten ausblenden.
+- Ein eigener Zwei-Kind-Renderbaustein misst die Felder ohne rekursive IntrinsicWidth-Durchläufe. Zähler/Nenner sind zentriert; auch verschieden hohe benachbarte Brüche behalten eine gemeinsame mathematische Achse.
+- Horizontales Scrollen für lange Formeln und vertikales Scrollen für hohe Formeln bei begrenztem Platz; Textvergrößerung skaliert Cursor und Platzhalter mit.
+- Zusammenhängende deutsche Formelbeschreibung für assistive Ausgabe, ohne die dekorativen Texte zusätzlich einzeln vorzulesen. Echte Screenreader-/Geräteprüfung ist weiterhin offen.
+
+Die lesende Ansicht verändert weder den Editor noch frühere Snapshots. Details, eigene Darstellungsregeln und Grenzen stehen im [Brucheditor-Prototyp](BRUCHEDITOR_PROTOTYP.md).
+
+### Prüfung und visuelle Kontrolle
+
+Ein Subagent schrieb 13 eigenständige Widgettests anhand des Darstellungsvertrags. Geprüft werden unter anderem Feldgeometrie und tatsächlich gezeichnete Linie, gemeinsame Achse ungleich hoher Nachbarbrüche, Pfadcursorwechsel, leere Felder, alte Snapshots, Semantik, tatsächliches horizontales Scrollen bei 320 Pixel Breite, doppelte Textskalierung und 16 verschachtelte Brüche in einem begrenzten 320×240-Bereich. Ein zweiter Subagent prüfte den Produktionscode einschließlich relevanter lokaler Flutter-Renderdefinitionen ohne konkurrierende Änderungen.
+
+Abschließender vollständiger Lauf von `tools/test_app.ps1` mit dem unveränderten Flutter 3.47.8 / Dart 3.13.7 auf Windows: Versions-/Revisionsvergleich und erzwungene Lockdatei erfolgreich, zehn Dateien ohne Formatänderung, statische Analyse ohne Befund und **73 App-/Mappingtests bestanden**. Log lokal unter `build/reports/flutter-tests.log`. Die 249 Coretests aus dem vorherigen Paket wurden für diesen reinen App-Baustein nicht erneut ausgeführt; der Core wurde nicht verändert. Katalog- und lokale Dokumentlinkprüfung ergänzen die tatsächlichen Tests.
+
+Der erste Analyseaufruf fand eine im verwendeten Flutter abstrakte ParentData-Basisklasse; eine eigene konkrete ParentData-Klasse korrigiert das. Ein anfänglich zu strenger Semantiktest erwartete keine Nachfahren; der notwendige Scroll-Semantikknoten wird jetzt zugelassen, zusätzliche gesprochene Textduplikate bleiben verboten. Es wird daraus kein Produktfehler abgeleitet.
+
+Der explizite QA-Helfer `tool/render_fraction_preview.dart` lief erfolgreich und erzeugte die lokal ignorierte Vorschau `build/reports/fraction-view.png` bei 420×900. Die endgültige Darstellung wurde visuell geprüft: leere Vorlage, `1/3+1/6=1/2`, verschachtelte `1/(2/3)+1/2=2` und Cursor im zweiten Nenner sind lesbar und ohne abgeschnittene Felder. Bei der visuellen Prüfung wurden die Operatorabstände vergrößert. Die Systemschrift wird nur lokal geladen, nicht als Asset verteilt. Die QA-Seite ist kein neuer Appmodus und zählt nicht als zusätzlicher Gerätetest.
+
+### Nächster Schritt
+
+Eine strukturierte Sitzung mit Ergebnis-/Fehlerzuständen und Ans ergänzen, anschließend die Bruchtaste und Formelansicht in der Hauptrechnerseite gemeinsam anbinden. Dabei Umschaltung zur linearen Eingabe, Fehlerpositionen und Cursor-Nachführung ausdrücklich festlegen und über echte UI-Tastenfolgen prüfen. Die Bruchtaste ist bis dahin weiterhin deaktiviert. Wurzeln, gemischte Brüche, Modifier/Menüs, native Builds und echte Plattformtests sind offen. Keine Originaldateien geändert und kein Push.
+
 ## 27.10.2026: strukturierter Brucheditor im Core
 
 Ausgangsbasis `68870aa`, Arbeitskopie vor Beginn sauber. Das nächste abgegrenzte Paket aus dem Entwicklungsplan ist als unabhängiges Editor-Modell umgesetzt; es ersetzt die geprüfte lineare App-Sitzung noch nicht.

@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 27.10.2026
 
-Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Ansicht zeigt 50 Tastenplätze mit 25 aktiven Primäraktionen. Ein separater strukturierter Brucheditor im Core unterstützt jetzt verschachtelte Zähler-/Nennerfelder und einen Pfadcursor; seine Appanbindung und natürliche Formeldarstellung fehlen noch. 249 Coretests und 60 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
+Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Hauptansicht zeigt 50 Tastenplätze mit 25 aktiven Primäraktionen. Ein separater strukturierter Brucheditor und eine natürliche Flutter-Formelansicht unterstützen verschachtelte Bruchfelder, Bruchstriche, Platzhalter und einen Pfadcursor; die gemeinsame Anbindung an die Hauptrechnerseite fehlt noch. 249 Coretests und 73 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 

@@ -15,6 +15,8 @@ Zu jeder Inventarposition werden später konkrete Test-IDs und Ergebnisse verkn�
 
 Vertiefungen: [Tastenprüfplan](TESTPLAN_TASTEN.md), [Funktionsprüfplan](TESTPLAN_FUNKTIONEN.md), [56 Handbuch-Referenzfälle](REFERENZTESTS.md).
 
+Die zusätzliche App-Suite `apps/calculator/test/fraction_expression_view_test.dart` prüft die natürliche Formelanzeige separat vom Rechenkern: Feldgeometrie, gezeichnete Bruchlinie, Pfadcursor, Snapshotwechsel, Semantik, Textskalierung und Scrollen. Diese Komponententests sind noch keine durchgängigen Abläufe über die weiterhin deaktivierte Bruchtaste der Hauptansicht.
+
 ## Vier getrennte Prüfebenen
 
 | Ebene | Was wird geprüft? | Beispiel |

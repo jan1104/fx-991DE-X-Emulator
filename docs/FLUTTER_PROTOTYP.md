@@ -12,6 +12,8 @@ Stand: 27.10.2026, begonnen am 26.10.2026. Ein gemeinsamer Flutter-Einstieg unte
 
 Die Tastenanordnung ist eine eigene, kompakte Prototypansicht und noch keine maßstabsgetreue Nachbildung des Gehäuses. Formeln erscheinen linear; Brüche als n/d. Sichtbar deaktivierte Funktionen werden nicht als implementiert ausgegeben. Header und Fußzeile kennzeichnen den Grundrechen-/Prototypumfang. Native Templates enthalten noch die Flutter-Standardicons.
 
+Ergänzung vom 27.10.2026: Eine separate lesende `FractionExpressionView` zeichnet nun natürliche, verschachtelte Brüche aus Core-Snapshots. Sie ist geometrisch, semantisch und visuell geprüft, aber noch nicht in die Hauptrechnerroute integriert. Zusammen mit 13 zusätzlichen Komponentenprüfungen bestehen jetzt 73 App-/Mappingtests. Die folgenden 60 Tests beschreiben den vorherigen Erststand. Details und nächste Sitzungsanbindung stehen im [Brucheditor-Prototyp](BRUCHEDITOR_PROTOTYP.md) und [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
+
 ## Werkzeugstand
 
 Das SDK wurde auf den offiziellen Flutter-Release-Tag **3.47.8** fixiert: `737ba8f885dc774b53b442759999a312c9461e4e`, Engine `cf636b1dfb818dd6a3ff16e390e93b1a036969c8`, enthaltenes Dart **3.13.7**. Quelle ist ausschließlich [Flutter auf GitHub](https://github.com/flutter/flutter/tree/3.47.8), installiert außerhalb des Repositorys unter `C:\Users\jpohl\.cache\fx991-toolchains\flutter-3.47.8`. Analytics ist deaktiviert; der globale PATH blieb unverändert.

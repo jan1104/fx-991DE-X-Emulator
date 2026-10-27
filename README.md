@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 27.10.2026
 
-Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Hauptansicht zeigt 50 Tastenplätze mit 25 aktiven Primäraktionen. Ein separater strukturierter Brucheditor und eine natürliche Flutter-Formelansicht unterstützen verschachtelte Bruchfelder, Bruchstriche, Platzhalter und einen Pfadcursor; die gemeinsame Anbindung an die Hauptrechnerseite fehlt noch. 249 Coretests und 73 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
+Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Hauptansicht bietet **Linear** mit 25 aktiven Primäraktionen und **Brüche** mit 26, darunter die Bruchvorlage. Verschachtelte Bruchfelder, natürliche Eingabeanzeige, Fehlererholung und Cursor-Nachführung sind angebunden. Beide Eingabearten behalten eigene Entwürfe und Ans; dies ist eine eigene Prototypregel. 285 Coretests und 87 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 
@@ -17,6 +17,7 @@ Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implem
 - [Konkrete Projektstruktur und Schnittstellen](docs/PROJEKTSTRUKTUR.md)
 - [Linearer Bedienprototyp und getestete Übergänge](docs/SESSION_PROTOTYP.md)
 - [Strukturierter Brucheditor im Core](docs/BRUCHEDITOR_PROTOTYP.md)
+- [Bruchtaste, strukturierte Sitzung und App-Bedienung](docs/STRUKTURIERTE_SITZUNG.md)
 - [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 

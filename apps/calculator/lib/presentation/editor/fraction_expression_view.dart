@@ -5,17 +5,126 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 /// Read-only natural fraction view. Editing and calculator phases stay outside.
-class FractionExpressionView extends StatelessWidget {
+class FractionExpressionView extends StatefulWidget {
   final FractionEditorSnapshot snapshot;
   final bool showCursor;
   final double fontSize;
+  final bool followCursor;
 
   const FractionExpressionView({
     super.key,
     required this.snapshot,
     this.showCursor = true,
     this.fontSize = 24,
+    this.followCursor = false,
   }) : assert(fontSize > 0 && fontSize < double.infinity);
+
+  @override
+  State<FractionExpressionView> createState() => _FractionExpressionViewState();
+}
+
+class _FractionExpressionViewState extends State<FractionExpressionView> {
+  final _horizontal = ScrollController();
+  final _vertical = ScrollController();
+  final _cursorKey = GlobalKey();
+  final _horizontalKey = GlobalKey();
+  final _verticalKey = GlobalKey();
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _scheduleReveal();
+  }
+
+  @override
+  void didUpdateWidget(FractionExpressionView oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _scheduleReveal();
+  }
+
+  void _scheduleReveal() {
+    if (!widget.followCursor || !widget.showCursor) return;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || !widget.followCursor || !widget.showCursor) return;
+      final cursor = _cursorKey.currentContext?.findRenderObject();
+      if (cursor is! RenderBox || !cursor.hasSize) return;
+      final rect = cursor.localToGlobal(Offset.zero) & cursor.size;
+      _reveal(_horizontal, _horizontalKey, rect, horizontal: true);
+      _reveal(_vertical, _verticalKey, rect, horizontal: false);
+    });
+  }
+
+  void _reveal(
+    ScrollController controller,
+    GlobalKey viewportKey,
+    Rect cursor, {
+    required bool horizontal,
+  }) {
+    final viewport = viewportKey.currentContext?.findRenderObject();
+    if (!controller.hasClients ||
+        !controller.position.hasContentDimensions ||
+        viewport is! RenderBox ||
+        !viewport.hasSize)
+      return;
+    final visible = viewport.localToGlobal(Offset.zero) & viewport.size;
+    final start = horizontal ? cursor.left : cursor.top;
+    final end = horizontal ? cursor.right : cursor.bottom;
+    final visibleStart = horizontal ? visible.left : visible.top;
+    final visibleEnd = horizontal ? visible.right : visible.bottom;
+    final delta = start < visibleStart
+        ? start - visibleStart - 4
+        : end > visibleEnd
+        ? end - visibleEnd + 4
+        : 0.0;
+    if (delta == 0) return;
+    final position = controller.position;
+    controller.jumpTo(
+      (position.pixels + delta).clamp(
+        position.minScrollExtent,
+        position.maxScrollExtent,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _horizontal.dispose();
+    _vertical.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => _FormulaContent(
+    snapshot: widget.snapshot,
+    showCursor: widget.showCursor,
+    fontSize: widget.fontSize,
+    horizontal: _horizontal,
+    vertical: _vertical,
+    cursorKey: _cursorKey,
+    horizontalKey: _horizontalKey,
+    verticalKey: _verticalKey,
+  );
+}
+
+class _FormulaContent extends StatelessWidget {
+  final FractionEditorSnapshot snapshot;
+  final bool showCursor;
+  final double fontSize;
+  final ScrollController horizontal;
+  final ScrollController vertical;
+  final GlobalKey cursorKey;
+  final GlobalKey horizontalKey;
+  final GlobalKey verticalKey;
+  const _FormulaContent({
+    required this.snapshot,
+    required this.showCursor,
+    required this.fontSize,
+    required this.horizontal,
+    required this.vertical,
+    required this.cursorKey,
+    required this.horizontalKey,
+    required this.verticalKey,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +140,30 @@ class FractionExpressionView extends StatelessWidget {
       container: true,
       label: 'Eingabe: ${_describe(snapshot.root)}',
       child: SingleChildScrollView(
+        key: verticalKey,
+        controller: vertical,
         primary: false,
-        child: SingleChildScrollView(
-          key: const ValueKey('formula-scroll'),
-          scrollDirection: Axis.horizontal,
-          primary: false,
-          child: ExcludeSemantics(
-            child: Directionality(
-              textDirection: TextDirection.ltr,
-              child: DefaultTextStyle.merge(
-                style: TextStyle(fontSize: fontSize, color: color),
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: _sequence(
-                    snapshot.root,
-                    'root',
-                    cursorPath,
-                    scaledSize,
-                    color,
+        child: SizedBox(
+          key: horizontalKey,
+          child: SingleChildScrollView(
+            key: const ValueKey('formula-scroll'),
+            controller: horizontal,
+            scrollDirection: Axis.horizontal,
+            primary: false,
+            child: ExcludeSemantics(
+              child: Directionality(
+                textDirection: TextDirection.ltr,
+                child: DefaultTextStyle.merge(
+                  style: TextStyle(fontSize: fontSize, color: color),
+                  child: Padding(
+                    padding: const EdgeInsets.all(4),
+                    child: _sequence(
+                      snapshot.root,
+                      'root',
+                      cursorPath,
+                      scaledSize,
+                      color,
+                    ),
                   ),
                 ),
               ),
@@ -66,14 +181,16 @@ class FractionExpressionView extends StatelessWidget {
     double scaledSize,
     Color color,
   ) {
-    Widget caret() => Baseline(
+    Widget caret() => _BaselineBox(
       baseline: scaledSize,
-      baselineType: TextBaseline.alphabetic,
-      child: SizedBox(
-        key: const ValueKey('formula-cursor'),
-        width: 3,
-        height: scaledSize * 1.25,
-        child: ColoredBox(color: color),
+      child: KeyedSubtree(
+        key: cursorKey,
+        child: SizedBox(
+          key: const ValueKey('formula-cursor'),
+          width: 3,
+          height: scaledSize * 1.25,
+          child: ColoredBox(color: color),
+        ),
       ),
     );
     final children = <Widget>[];
@@ -120,9 +237,8 @@ class FractionExpressionView extends StatelessWidget {
     }
     if (sequence.nodes.isEmpty) {
       children.add(
-        Baseline(
+        _BaselineBox(
           baseline: scaledSize * .85,
-          baselineType: TextBaseline.alphabetic,
           child: Container(
             key: ValueKey('placeholder-$path'),
             width: scaledSize * .6,
@@ -165,6 +281,45 @@ class FractionExpressionView extends StatelessWidget {
 
 // Two-child layout measures each field once per layout, including deeply nested
 // fractions. No recursive intrinsic-width passes are needed to draw the bar.
+class _BaselineBox extends SingleChildRenderObjectWidget {
+  final double baseline;
+  const _BaselineBox({required this.baseline, required super.child});
+
+  @override
+  RenderObject createRenderObject(BuildContext context) =>
+      _RenderBaselineBox(baseline);
+
+  @override
+  void updateRenderObject(
+    BuildContext context,
+    _RenderBaselineBox renderObject,
+  ) {
+    renderObject.baseline = baseline;
+  }
+}
+
+// Report a baseline inside the full child box. A Baseline widget would shift a
+// baseline-less rectangle upward, leaving part of the caret outside its bounds.
+class _RenderBaselineBox extends RenderProxyBox {
+  double _baseline;
+  _RenderBaselineBox(this._baseline);
+
+  set baseline(double value) {
+    if (value == _baseline) return;
+    _baseline = value;
+    markNeedsLayout();
+  }
+
+  @override
+  double computeDistanceToActualBaseline(TextBaseline baseline) => _baseline;
+
+  @override
+  double computeDryBaseline(
+    BoxConstraints constraints,
+    TextBaseline baseline,
+  ) => _baseline;
+}
+
 class _FractionLayout extends MultiChildRenderObjectWidget {
   final Color color;
   final double gap;

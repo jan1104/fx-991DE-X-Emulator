@@ -1,5 +1,34 @@
 # Entwicklungsstand
 
+## 27.10.2026 abends: Bruchtaste und strukturierte Sitzung in der Hauptansicht
+
+Ausgangsbasis `33b8c24`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Arbeitspaket verbindet die bereits geprüften Core-/Darstellungsbausteine zu durchgängigen Bedienabläufen.
+
+### Neu umgesetzt
+
+- `StructuredCalculatorSession` mit unveränderlichen Snapshots, exaktem Ans, Ergebnis-/Fehlerphasen und den 25 bisherigen Primäraktionen plus `KEY_FRACTION`.
+- Expliziter App-Schalter **Linear / Brüche**. Linear bleibt beim Start aktiv und unverändert bei 25 unterstützten Tasten; Brüche aktiviert 26. Beide Eingabearten erhalten ihre eigenen Entwürfe, Fehler, Ergebnisse und Ans. Die Oberfläche erklärt diese eigene Prototypentscheidung; es gibt noch keine originale Math-/Linear-Setupnachbildung.
+- Natürliche Bruchansicht mit Zähler-/Nennernavigation, DEL/AC, exakter Auswertung, Ans-Fortsetzung und pfadtreuer Wiederaufnahme nach Fehlern. Parseroffsets werden nicht als Editorpositionen fehlinterpretiert.
+- Cursor-Nachführung über zwei interne Scrollcontroller. Lange und hohe Formeln bleiben im 104-Pixel-Display bedienbar, ohne den äußeren Seitenbildlauf automatisch zu verschieben.
+
+Schnittstelle, Bedienfolgen und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md). Die Ergänzung der Editor-API (`fromSnapshot`, `moveToRootEnd`) verändert keine früheren Snapshots und keinen linearen Controller.
+
+### Tatsächliche Prüfung
+
+Ein Subagent implementierte Core-Sitzung und 36 neue Tests, ein zweiter schrieb unabhängig 14 neue durchgängige Widgettests. Der Core-Agent prüfte anschließend die Appänderungen ohne konkurrierende Änderungen. Die UI-Fälle prüfen unter anderem `1/3+1/6=1/2`, `1/(2/3)=3/2`, Moduswechsel mit erhaltenem Zustand, Ans-Fortsetzung, leere Bruchfelder, Division durch null samt Korrektur, Hardwarepfeile, 320×568 sowie horizontale und vertikale Cursor-Nachführung.
+
+Ein neuer Test fand einen konkreten Darstellungsfehler: Nach 80 Hardwareziffern ragte die Cursoroberkante um zwei Pixel aus dem Display, obwohl die Scrollposition bereits am Anfang lag. Ein gewöhnliches Baseline-Widget hatte das rechteckige Kind nach oben aus seinen Layoutgrenzen verschoben. Cursor und Platzhalter melden jetzt ihre Baseline innerhalb der vollständigen Kindgröße über einen kleinen RenderProxyBox-Baustein. Der unveränderte Regressionstest besteht anschließend, einschließlich Rückwärtsnavigation und unverändertem äußeren Scrolloffset.
+
+Abschließender Core-Prüfhelfer mit Dart 3.13.7 auf Windows: Versionsvergleich und erzwungene Lockdatei erfolgreich, 16 Dateien ohne Formatänderung, statische Analyse ohne Befund und **285 Coretests bestanden**. Log lokal unter `build/reports/core-tests.log`. Der vorherige direkte Lauf des Subagenten wird nicht zusätzlich zur Gesamtzahl gezählt.
+
+Abschließender vollständiger App-Prüfhelfer mit Flutter 3.47.8 / Dart 3.13.7: SDK-/Revisionsvergleich und erzwungene Lockdatei erfolgreich, elf Dateien ohne Formatänderung, statische Analyse ohne Befund und **87 App-/Mappingtests bestanden**. Log lokal unter `build/reports/flutter-tests.log`. Die bisherigen 73 Tests bleiben enthalten. Katalog- und lokale Dokumentlinkprüfung erfolgen ergänzend; die ursprünglichen vollständigen Inventare bleiben Planungsdaten.
+
+Der erweiterte explizite Vorschauhelfer lief für beide Hauptansichten erfolgreich. Die Bilder `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png` (lokal ignoriert) wurden bei 420×1100 visuell geprüft: Schalter, Trennungshinweis, jeweils korrektes Ergebnis `1/2`, vollständige Tastatur und natürliche Bruchanzeige sind lesbar. Dies sind zwei QA-Szenarien im Testengine, keine neuen nativen Gerätetests. Die Systemschrift bleibt ausschließlich lokal.
+
+### Nächster Schritt und Grenzen
+
+Fehlerpositionen strukturell auf Felder abbilden und die markierte Stelle gezielt wieder öffnen. Danach vertikale Feldnavigation und Übernahme bestehender Operanden in Vorlagen spezifizieren; weitere Vorlagen/Modifier getrennt behandeln. Die zwei Eingabearten teilen weiterhin kein Ans, ihre Regeln sind noch eigene Prototypregeln. Native Builds, echte Gerätetests und Originalvergleich bleiben offen. Originaldateien wurden nicht verändert, kein Push.
+
 ## 27.10.2026: natürliche Bruchansicht als Flutter-Komponente
 
 Ausgangsbasis `41bafda`, Arbeitskopie vor Beginn sauber. Das im letzten Paket dokumentierte nächste Arbeitspaket ist umgesetzt: eine eigenständige lesende Ansicht für die unveränderlichen Brucheditor-Snapshots. Hauptrechnerroute, aktive Tasten und Core bleiben unverändert.

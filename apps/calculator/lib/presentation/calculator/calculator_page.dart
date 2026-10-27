@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 import '../../application/key_layout.dart';
 import '../../application/keyboard_mapping.dart';
+import '../editor/fraction_expression_view.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
@@ -14,6 +15,8 @@ class CalculatorPage extends StatefulWidget {
 
 class _CalculatorPageState extends State<CalculatorPage> {
   final _session = CalculatorSession();
+  final _structured = StructuredCalculatorSession();
+  bool _fractions = false;
   final _focus = FocusNode(debugLabel: 'calculator input');
 
   @override
@@ -22,8 +25,14 @@ class _CalculatorPageState extends State<CalculatorPage> {
     super.dispose();
   }
 
-  void _press(CalculatorKey key) => setState(() {
-    _session.press(key);
+  void _press(CalculatorKey key) => _pressId(key.id);
+
+  void _pressId(String id) => setState(() {
+    if (_fractions) {
+      _structured.pressId(id);
+    } else {
+      _session.pressId(id);
+    }
   });
 
   KeyEventResult _onKey(FocusNode node, KeyEvent event) {
@@ -52,7 +61,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
         onKeyEvent: _onKey,
         child: LayoutBuilder(
           builder: (context, constraints) {
-            final keyHeight = ((constraints.maxHeight - 220) / 9).clamp(
+            final keyHeight = ((constraints.maxHeight - 272) / 9).clamp(
               48.0,
               56.0,
             );
@@ -79,6 +88,43 @@ class _CalculatorPageState extends State<CalculatorPage> {
                               style: TextStyle(color: Color(0xFF526276)),
                             ),
                           ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 10),
+                        child: SegmentedButton<bool>(
+                          segments: const [
+                            ButtonSegment(
+                              value: false,
+                              label: Text(
+                                'Linear',
+                                key: ValueKey('input-linear'),
+                              ),
+                            ),
+                            ButtonSegment(
+                              value: true,
+                              label: Text(
+                                'Brüche',
+                                key: ValueKey('input-fractions'),
+                              ),
+                            ),
+                          ],
+                          selected: {_fractions},
+                          showSelectedIcon: false,
+                          onSelectionChanged: (selection) => setState(() {
+                            _fractions = selection.single;
+                          }),
+                        ),
+                      ),
+                      const Padding(
+                        padding: EdgeInsets.only(bottom: 8),
+                        child: Text(
+                          'Jede Eingabeart behält ihre Rechnung und Ans.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Color(0xFF526276),
+                          ),
                         ),
                       ),
                       _display(),
@@ -130,13 +176,19 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   Widget _button(CalculatorButtonDefinition definition) {
     final key = CalculatorKey.fromId(definition.id);
+    final enabled =
+        key != null || (_fractions && definition.id == 'KEY_FRACTION');
     final primary = definition.id == 'KEY_EQUALS';
     final clear = definition.id == 'KEY_AC' || definition.id == 'KEY_DEL';
     return Tooltip(
-      message: key == null ? 'Noch nicht verfügbar' : definition.label,
+      message: !enabled
+          ? 'Noch nicht verfügbar'
+          : definition.id == 'KEY_FRACTION'
+          ? 'Bruch einfügen'
+          : definition.label,
       child: FilledButton(
         key: ValueKey(definition.id),
-        onPressed: key == null ? null : () => _press(key),
+        onPressed: enabled ? () => _pressId(definition.id) : null,
         style: FilledButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 3),
           minimumSize: Size.zero,
@@ -190,15 +242,20 @@ class _CalculatorPageState extends State<CalculatorPage> {
     final snapshot = _session.snapshot;
     final expression = snapshot.expression;
     final cursor = snapshot.cursorOffset;
-    final editing = snapshot.phase == CalculatorPhase.editing;
-    final result = snapshot.phase == CalculatorPhase.error
-        ? switch (snapshot.error!.code) {
+    final structured = _structured.snapshot;
+    final phase = _fractions ? structured.phase : snapshot.phase;
+    final editing = phase == CalculatorPhase.editing;
+    final answer = _fractions ? structured.answer : snapshot.answer;
+    final value = _fractions ? structured.result : snapshot.result;
+    final error = _fractions ? structured.error : snapshot.error;
+    final result = phase == CalculatorPhase.error
+        ? switch (error!.code) {
             CalculatorErrorCode.syntax => 'Syntaxfehler',
             CalculatorErrorCode.math => 'Mathem. Fehler',
             CalculatorErrorCode.unsupported => 'Noch nicht verfügbar',
             CalculatorErrorCode.limit => 'Eingabe zu umfangreich',
           }
-        : snapshot.result?.toString() ?? '';
+        : value?.toString() ?? '';
     return Container(
       key: const ValueKey('calculator-display'),
       padding: const EdgeInsets.all(16),
@@ -210,41 +267,55 @@ class _CalculatorPageState extends State<CalculatorPage> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Text(
-            'Berechnungen · Linear',
+          Text(
+            _fractions ? 'Berechnungen · Brüche' : 'Berechnungen · Linear',
             style: TextStyle(fontSize: 12, color: Color(0xFF56634D)),
           ),
           const SizedBox(height: 6),
           Text(
-            'Ans: ${snapshot.answer}',
+            'Ans: $answer',
             key: const ValueKey('display-answer'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: const TextStyle(fontSize: 12, color: Color(0xFF56634D)),
           ),
           const SizedBox(height: 12),
-          Semantics(
-            label: 'Eingabe',
-            value: expression,
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Text.rich(
-                key: const ValueKey('display-expression'),
-                TextSpan(
-                  children: [
-                    TextSpan(text: expression.substring(0, cursor)),
-                    if (editing)
-                      const TextSpan(
-                        text: '│',
-                        style: TextStyle(color: Color(0xFF315F8A)),
-                      ),
-                    TextSpan(text: expression.substring(cursor)),
-                  ],
+          if (_fractions)
+            SizedBox(
+              key: const ValueKey('display-structured'),
+              height: 104,
+              child: FractionExpressionView(
+                snapshot: structured.editor,
+                showCursor: editing,
+                followCursor: true,
+              ),
+            )
+          else
+            Semantics(
+              label: 'Eingabe',
+              value: expression,
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Text.rich(
+                  key: const ValueKey('display-expression'),
+                  TextSpan(
+                    children: [
+                      TextSpan(text: expression.substring(0, cursor)),
+                      if (editing)
+                        const TextSpan(
+                          text: '│',
+                          style: TextStyle(color: Color(0xFF315F8A)),
+                        ),
+                      TextSpan(text: expression.substring(cursor)),
+                    ],
+                  ),
+                  style: const TextStyle(
+                    fontSize: 23,
+                    color: Color(0xFF1E2D20),
+                  ),
                 ),
-                style: const TextStyle(fontSize: 23, color: Color(0xFF1E2D20)),
               ),
             ),
-          ),
           const SizedBox(height: 8),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
@@ -253,7 +324,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
               result,
               key: const ValueKey('display-result'),
               style: TextStyle(
-                fontSize: snapshot.phase == CalculatorPhase.error ? 21 : 32,
+                fontSize: phase == CalculatorPhase.error ? 21 : 32,
                 fontWeight: FontWeight.w600,
                 color: const Color(0xFF1E2D20),
               ),

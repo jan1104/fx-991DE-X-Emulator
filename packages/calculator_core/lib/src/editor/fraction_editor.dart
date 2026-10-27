@@ -48,6 +48,14 @@ final class FractionEditorSnapshot {
 /// Prototype navigation rules are explicit, not measured original behavior.
 /// Every edit creates a new immutable tree; rejected edits preserve the snapshot.
 final class FractionEditor {
+  FractionEditor();
+
+  /// Restores a trusted immutable snapshot produced by this editor.
+  /// Later edits do not mutate the supplied snapshot or any other editor.
+  FractionEditor.fromSnapshot(FractionEditorSnapshot snapshot) {
+    _snapshot = snapshot;
+  }
+
   static const maxNodes = 256;
   static const maxDepth = 16;
   static const _tokens = {
@@ -142,6 +150,9 @@ final class FractionEditor {
       EditorCursor._([], 0),
     );
   }
+
+  /// Reopens the complete expression after a result, outside all fraction fields.
+  void moveToRootEnd() => _move([], _snapshot.root.nodes.length);
 
   void deleteBackward() {
     final cursor = _snapshot.cursor;

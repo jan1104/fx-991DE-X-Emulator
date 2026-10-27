@@ -4,6 +4,8 @@ Stand: 25.10.2026. **Planungsstand: alle Fälle `planned`; keine Taste wurde hie
 
 ## Verbindliches Tasteninventar
 
+Ergänzung 27.10.2026: Die eigene Primäraktion `KEY_FRACTION` ist in der ausdrücklich gewählten App-Eingabeart **Brüche** angebunden. `structured_session_test.dart` prüft Vorlagen, Links/Rechts, DEL/AC, `=` und Ans im Core; `structured_calculator_widget_test.dart` prüft Bildschirmsequenzen, Hardwarepfeile, Fehlererholung, Moduswechsel und Cursor-Nachführung. Die lineare Primärbelegung bleibt unverändert. SHIFT-gemischter Bruch, ALPHA-Restdivision, weitere Modi und Originalvergleich dieser Taste sind offen; deshalb wird ihre gesamte Inventarzeile nicht pauschal als bestanden markiert. Eigene Bedienregeln: [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md).
+
 [`tests/reference/key_coverage.csv`](../tests/reference/key_coverage.csv) enthält genau eine Zeile je physischer Taste mit stabiler `key_id`: **50 Zeilen**, darunter **zehn einzelne Ziffern** und **vier einzelne Pfeilrichtungen**. Der Vierwegeblock wird deshalb als vier Tasten geführt. Zählung: vier Kopftasten + vier Pfeile + vier Tasten der ersten Funktionsreihe + drei Reihen zu sechs Tasten + vier Reihen zu fünf Tasten = 50.
 
 Grundlage ist der bereits visuell geprüfte Katalog [`TASTEN_UND_BEDIENUNG.md`](TASTEN_UND_BEDIENUNG.md): Tastaturbild K, PDF-S. 1, und die dort dokumentierten H-Belege. Die PDFs werden für diesen Prüfplan nicht neu vollständig ausgewertet. `KEY_EQUALS` ist die Ausführtaste; das Gleichheitszeichen im Ausdruck entsteht über `KEY_ALPHA`, `KEY_CALC`. `KEY_NEGATE` ist das negative Vorzeichen und bleibt von `KEY_SUBTRACT` getrennt.

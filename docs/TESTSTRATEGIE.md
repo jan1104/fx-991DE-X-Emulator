@@ -2,6 +2,8 @@
 
 Stand: 25.10.2026. Dies ist der Prüfplan für die eigene Implementierung. Es gibt noch keinen laufenden Emulator, keinen Dart-Testadapter und keinen ausgeführten Originalvergleich. Katalogprüfungen sind keine bestandenen Rechnerprüfungen.
 
+Fortschreibung 27.10.2026: Tatsächliche Core-/App-Prüfungen und ihre Grenzen sind im [Entwicklungsstand](ENTWICKLUNGSSTAND.md) dokumentiert. Die gesonderte Suite `packages/calculator_core/test/fraction_editor_test.dart` prüft den ersten strukturierten Brucheditor anhand seines eigenen Bedienvertrags: Feldnavigation, verschachtelte Rechnung, leere Felder, unveränderliche Snapshots und atomare Ressourcenlimits. Sie ist kein Nachweis einer bereits angebundenen Bruchtaste oder eines Originalvergleichs. Die CSV-Inventare bleiben Planungsdaten.
+
 ## Wie Vollständigkeit nachgewiesen werden soll
 
 Eine Liste bestandener Beispiele reicht nicht. Zwei Inventare bilden die Grundlage:

@@ -42,7 +42,7 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P4 | Konstanten, Umrechnungen, QR und PC-Komfortfunktionen | Historische Datenstände und externe Schnittstellen entschieden | Offen |
 | P4 | Reproduzierbarer Build und Paketierung | Saubere lokale Installation und Testlauf reproduzierbar | Offen |
 
-Der minimale lineare Bedienzustand und das erste Flutter-Grundgerüst sind geprüft. Als nächstes folgen der natürliche Formeleditor-Prototyp und ein getrenntes Paket für die fehlenden Windows-/Android-Buildwerkzeuge. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien. Siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
+Der minimale lineare Bedienzustand und das erste Flutter-Grundgerüst sind geprüft. Ein separater strukturierter Brucheditor mit Pfadcursor ist als erster Core-Baustein hinzugekommen; die natürliche Darstellung und Appanbindung folgen als nächstes. Regeln und Grenzen stehen im [Brucheditor-Prototyp](BRUCHEDITOR_PROTOTYP.md). Die fehlenden Windows-/Android-Buildwerkzeuge bleiben ein getrenntes Paket. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien. Siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
 
 ## Risiken und offene Entscheidungen
 

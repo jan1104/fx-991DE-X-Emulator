@@ -1,6 +1,7 @@
 /// Limited, platform-independent exact arithmetic. Not a complete emulator.
 library;
 
+export 'src/editor/fraction_editor.dart';
 export 'src/errors.dart';
 export 'src/expressions/expression.dart';
 export 'src/expressions/parser.dart' show parseExpression;

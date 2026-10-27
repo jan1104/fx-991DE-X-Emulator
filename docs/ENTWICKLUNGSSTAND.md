@@ -1,5 +1,30 @@
 # Entwicklungsstand
 
+## 27.10.2026: strukturierter Brucheditor im Core
+
+Ausgangsbasis `68870aa`, Arbeitskopie vor Beginn sauber. Das nächste abgegrenzte Paket aus dem Entwicklungsplan ist als unabhängiges Editor-Modell umgesetzt; es ersetzt die geprüfte lineare App-Sitzung noch nicht.
+
+### Neu umgesetzt
+
+- Unveränderliche Sequenzen, Textknoten und verschachtelte Bruchvorlagen mit getrennten Zähler-/Nennerfeldern.
+- Pfadcursor, bidirektionale Feldnavigation, Einfügen, DEL und vollständiges Leeren ohne Flutter-Abhängigkeit.
+- Geklammertes Überführen in den bestehenden Parser und exakte Auswertung einschließlich ausdrücklich übergebenem Ans.
+- Eigene Knoten-/Tiefenbudgets mit atomarer Ablehnung; leere Felder und feldübergreifend unausgeglichene Klammern werden explizit abgewiesen.
+
+Ein konkreter Projektionsfehler wurde während der Umsetzung erkannt und vor Abschluss abgesichert: Ungültige Klammern aus Zähler und Nenner konnten sich in der linearen Projektion sonst gegenseitig schließen. Jede Sequenz prüft jetzt ihre Klammerbalance unabhängig. Zwei Regressionen prüfen, dass solche Eingaben Syntaxfehler bleiben. Die genauen eigenen Bedienregeln und Grenzen stehen in [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).
+
+### Tatsächliche Prüfung
+
+Ein Subagent schrieb anhand des API-/Bedienvertrags 68 zusätzliche Tests, ein zweiter prüfte den Produktionscode ohne konkurrierende Änderungen. Der erste Review übersah zunächst die Klammergrenze; die spätere Ergänzung wurde gesondert geprüft. Der vollständige Core-Prüfhelfer bestand mit Dart 3.13.7 auf Windows: Lockdatei erzwungen, 14 Dateien ohne Formatänderung, statische Analyse ohne Befund und **249 Coretests bestanden**. Log lokal unter `build/reports/core-tests.log`.
+
+Die Tests prüfen insbesondere verschachtelte Feldpfade, Rückwärtsnavigation, atomare Ans-/Bruchlöschung, alte Snapshots, beide Klammerregressionen, exakte Werte wie `1/3+1/6=1/2` und `1/(2/3)=3/2` sowie beide Ressourcenlimits. Dies ist ein Nachweis unseres Editorvertrags, kein Originalvergleich und kein Nachweis der Bildschirm-Bruchtaste. Die 50-/243-Referenzinventare bleiben Planungsdaten.
+
+Nach der API-Erweiterung wurde auch `tools/test_app.ps1` vollständig ausgeführt: Lockdatei/SDK-Prüfung erfolgreich, Formatierung unverändert, statische Analyse ohne Befund und **60 App-/Mappingtests erneut bestanden**. Katalogprüfung erfolgreich (50 Tasten, 243 Prüfpositionen, fünf Abläufe, 56 Handbuch-IDs). Keine UI-Änderung, neue Screenshotprüfung oder native Builds in diesem Paket.
+
+### Nächster Schritt und Grenzen
+
+Als nächstes die strukturierte Formelansicht in Flutter mit Bruchstrich, Platzhaltern und Pfadcursor implementieren und visuell/geometrisch prüfen. Anschließend eigene strukturierte Sitzung und Bruchtaste anbinden; Ergebnis-/Fehlerübergänge, Ans und Moduswechsel dabei ausdrücklich festlegen. Gemischte Brüche, Wurzeln, vertikale Navigation und Zuordnung von Parserfehlern zu Feldpfaden sind offen. Windows-/Android-Buildwerkzeuge und native Gerätetests bleiben getrennt offen. Keine neuen Originaldateien vorhanden, kein Push.
+
 ## 27.10.2026: erste Flutter-Oberfläche
 
 Begonnen mit dem automatischen Arbeitspaket am späten 26.10.2026, Ausgangsbasis `8ad6abd`, Arbeitskopie zuvor sauber. Das vorhandene Core-/Sessionpaket wurde wiederverwendet und nicht erneut implementiert.

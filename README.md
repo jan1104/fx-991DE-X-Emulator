@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 27.10.2026
 
-Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Ansicht zeigt 50 Tastenplätze mit 25 aktiven Primäraktionen. Vollständige Rechnerbedienung und natürliche Formeldarstellung fehlen noch. Zu den bisherigen 181 Coretests kommen 60 bestandene App-/Mappingtests; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
+Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Ansicht zeigt 50 Tastenplätze mit 25 aktiven Primäraktionen. Ein separater strukturierter Brucheditor im Core unterstützt jetzt verschachtelte Zähler-/Nennerfelder und einen Pfadcursor; seine Appanbindung und natürliche Formeldarstellung fehlen noch. 249 Coretests und 60 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 
@@ -16,6 +16,7 @@ Ein unabhängiger Dart-Rechenkern und eine erste Flutter-Oberfläche sind implem
 - [Architekturvorschlag und Entwicklungsplan](docs/ARCHITEKTUR_UND_PLAN.md)
 - [Konkrete Projektstruktur und Schnittstellen](docs/PROJEKTSTRUKTUR.md)
 - [Linearer Bedienprototyp und getestete Übergänge](docs/SESSION_PROTOTYP.md)
+- [Strukturierter Brucheditor im Core](docs/BRUCHEDITOR_PROTOTYP.md)
 - [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 

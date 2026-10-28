@@ -9,10 +9,10 @@ import 'package:fx991_calculator/main.dart';
 
 // Visual QA helper, invoked explicitly; it is not part of the ordinary suite.
 void main() {
-  for (final structured in [false, true]) {
-    testWidgets('render the calculator preview: structured=$structured', (
-      tester,
-    ) async {
+  for (final scenario in ['linear', 'fractions', 'error']) {
+    final structured = scenario != 'linear';
+    final error = scenario == 'error';
+    testWidgets('render the calculator preview: $scenario', (tester) async {
       tester.view.physicalSize = const Size(420, 1100);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetPhysicalSize);
@@ -43,7 +43,20 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in structured
+          in error
+              ? [
+                  'KEY_FRACTION',
+                  'KEY_1',
+                  'KEY_RIGHT',
+                  'KEY_FRACTION',
+                  'KEY_2',
+                  'KEY_RIGHT',
+                  'KEY_0',
+                  'KEY_RIGHT',
+                  'KEY_RIGHT',
+                  'KEY_EQUALS',
+                ]
+              : structured
               ? [
                   'KEY_FRACTION',
                   'KEY_1',
@@ -76,8 +89,15 @@ void main() {
       await tester.pumpAndSettle();
       expect(
         tester.widget<Text>(find.byKey(const ValueKey('display-result'))).data,
-        '1/2',
+        error ? 'Mathem. Fehler' : '1/2',
       );
+      if (error) {
+        expect(find.byKey(const ValueKey('formula-error')), findsOneWidget);
+        expect(
+          find.byKey(const ValueKey('display-error-help')),
+          findsOneWidget,
+        );
+      }
       await tester.ensureVisible(
         find.byKey(const ValueKey('calculator-display')),
       );
@@ -90,7 +110,9 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          structured
+          error
+              ? '../../build/reports/calculator-error.png'
+              : structured
               ? '../../build/reports/calculator-fractions.png'
               : '../../build/reports/calculator-prototype.png',
         );

@@ -21,6 +21,8 @@ Zusätzlich implementiert: `CalculatorSession` mit 25 Primäraktionen, unveränd
 
 Ein separater `FractionEditor` ergänzt strukturierte Bruchvorlagen, verschachtelte Zähler-/Nennerfelder, einen Pfadcursor und exakte Auswertung über den bisherigen Parser. `StructuredCalculatorSession` ergänzt 26 Primäraktionen einschließlich `KEY_FRACTION`, exaktes Ans und Ergebnis-/Fehlerphasen. Die Flutter-App bindet ihn als getrennte Eingabeart an. Regeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](../../docs/STRUKTURIERTE_SITZUNG.md).
 
+`FractionEditor.project()` ergänzt eine unveränderliche Source-Map; strukturelle Diagnosen liefern Feldcursor, und `moveTo()` validiert deren Wiederaufnahme. Die Sitzung veröffentlicht Fehlerziele separat als `errorCursor`. Bestehende `toExpression()`-/`evaluate()`-Aufrufer erhalten weiterhin die bisherigen Ausnahmetypen. Details: [FEHLERPOSITIONEN.md](../../docs/FEHLERPOSITIONEN.md).
+
 Die Flutter-Oberfläche verwendet beide Sitzungen. Noch nicht implementiert: vollständiger natürlicher Formeleditor, Variablen/M-Speicher, SHIFT/ALPHA, Menüs/Setup, Rundungs-/Casio-Ausgaberegeln, trigonometrische Funktionen und weitere Modi. Eingabelänge, Verschachtelung und Rechengröße sind mit eigenen Ressourcenbudgets begrenzt; diese sind keine Casio-Hardwaregrenzen. `0^0` und nichtganzzahlige Potenzen werden im Evaluator vorerst als nicht unterstützt gemeldet. Das Zahlenmodell allein verwendet für die nullte Potenz die algebraische Konvention 1.
 
 Der tatsächliche Prüfstand steht in [ENTWICKLUNGSSTAND.md](../../docs/ENTWICKLUNGSSTAND.md). Die umfangreichen Referenzkataloge bleiben Planungsdaten; eine bestandene Coreprüfung bedeutet keinen bestandenen UI-/Originalvergleich.

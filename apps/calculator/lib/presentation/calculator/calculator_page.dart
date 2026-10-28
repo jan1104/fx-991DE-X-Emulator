@@ -288,6 +288,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 snapshot: structured.editor,
                 showCursor: editing,
                 followCursor: true,
+                errorCursor: structured.errorCursor,
               ),
             )
           else
@@ -317,6 +318,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
               ),
             ),
           const SizedBox(height: 8),
+          if (_fractions && phase == CalculatorPhase.error)
+            const Padding(
+              padding: EdgeInsets.only(bottom: 8),
+              child: Text(
+                'Links/Rechts öffnet die markierte Stelle. AC löscht die Eingabe.',
+                key: ValueKey('display-error-help'),
+                style: TextStyle(fontSize: 12, color: Color(0xFFB3261E)),
+              ),
+            ),
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             reverse: true,

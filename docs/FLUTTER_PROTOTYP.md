@@ -1,5 +1,7 @@
 # Flutter-Oberflächenprototyp
 
+Fortschreibung 28.10.2026: Die Hauptansicht markiert über eine Source-Map fehlerhafte natürliche Felder und führt den roten Marker im Display nach. Links/Rechts öffnet das zugeordnete Feld. Assistive Ansagen unterscheiden auch benachbarte Brüche anhand ihrer jeweiligen Bruchnummer. Aktueller Prüfstand und Zuordnungsgrenzen: [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md), [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md).
+
 Aktuelle Fortschreibung vom Abend des 27.10.2026: Die strukturierte Sitzung und natürliche Ansicht sind in der Hauptseite angebunden. Die eigene Wahl **Linear / Brüche** erhält zwei getrennte Entwürfe und Ans, Brüche bietet 26 statt 25 Primäraktionen. 87 App-/Mappingtests bestehen; die folgenden Abschnitte dokumentieren überwiegend den früheren Erststand. Verbindliche neue Bedienregeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md) und im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
 Stand: 27.10.2026, begonnen am 26.10.2026. Ein gemeinsamer Flutter-Einstieg unter `apps/calculator/` bindet die zuvor geprüfte `CalculatorSession` an. Es wurden keine Originaldateien verändert und keine Casio-Grafiken oder Firmware in die Oberfläche übernommen.

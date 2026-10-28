@@ -358,7 +358,7 @@ void main() {
         expect(failure.answer, Rational.fromInt(7));
         expect(failure.result, isNull);
         final restored = session.press(arrow);
-        expect(identical(restored.editor, before), isTrue);
+        expect(identical(restored.editor.root, before.root), isTrue);
         expect(restored.phase, CalculatorPhase.editing);
         expect(restored.error, isNull);
         expect(
@@ -430,7 +430,8 @@ void main() {
       expect(identical(failure.editor, maximum), isTrue);
       expect(failure.answer, Rational.fromInt(7));
       final restored = session.press(CalculatorKey.left);
-      expect(identical(restored.editor, maximum), isTrue);
+      expect(identical(restored.editor.root, maximum.root), isTrue);
+      expect(restored.editor.cursor.offset, maximum.cursor.offset);
       session.press(CalculatorKey.delete);
       session.pressId('KEY_FRACTION');
       expect(session.snapshot.phase, CalculatorPhase.editing);
@@ -452,7 +453,7 @@ void main() {
       expect(failure.error?.code, CalculatorErrorCode.limit);
       expect(identical(failure.editor, deepest), isTrue);
       final restored = session.press(CalculatorKey.right);
-      expect(identical(restored.editor, deepest), isTrue);
+      expect(identical(restored.editor.root, deepest.root), isTrue);
       expect(restored.editor.cursor.path, hasLength(FractionEditor.maxDepth));
       expect(restored.editor.cursor.path.last.field, FractionField.numerator);
       expect(restored.editor.cursor.offset, 0);

@@ -1,5 +1,6 @@
 import '../editor/fraction_editor.dart';
 import '../errors.dart';
+import '../evaluation/evaluator.dart' as arithmetic;
 import '../numbers/rational.dart';
 import 'calculator_session.dart';
 
@@ -13,6 +14,7 @@ final class StructuredCalculatorSnapshot {
   /// Error positions, if present, refer to the projected parser expression.
   /// They are not editor-path offsets and must not be used as such.
   final CalculatorException? error;
+  final EditorCursor? errorCursor;
 
   const StructuredCalculatorSnapshot._({
     required this.editor,
@@ -20,6 +22,7 @@ final class StructuredCalculatorSnapshot {
     required this.answer,
     this.result,
     this.error,
+    this.errorCursor,
   });
 }
 
@@ -56,8 +59,9 @@ final class StructuredCalculatorSession {
     }
     if (_snapshot.phase == CalculatorPhase.error) {
       if (key == CalculatorKey.left || key == CalculatorKey.right) {
-        // No source map exists yet. Preserve the structural cursor exactly.
-        return _edit(_snapshot.editor);
+        final editor = FractionEditor.fromSnapshot(_snapshot.editor);
+        editor.moveTo(_snapshot.errorCursor ?? _snapshot.editor.cursor);
+        return _edit(editor.snapshot);
       }
       return _snapshot;
     }
@@ -117,17 +121,29 @@ final class StructuredCalculatorSession {
   }
 
   StructuredCalculatorSnapshot _execute() {
+    EditorProjection? projection;
     try {
-      final value = FractionEditor.fromSnapshot(_snapshot.editor)
-          .evaluate(answer: _snapshot.answer);
+      projection = FractionEditor.fromSnapshot(_snapshot.editor).project();
+      final value = arithmetic.evaluate(
+        projection.expression,
+        answer: _snapshot.answer,
+      );
       return _snapshot = StructuredCalculatorSnapshot._(
         editor: _snapshot.editor,
         phase: CalculatorPhase.result,
         answer: value,
         result: value,
       );
+    } on EditorProjectionException catch (diagnostic) {
+      return _fail(diagnostic.error, cursor: diagnostic.cursor);
     } on CalculatorException catch (error) {
-      return _fail(error);
+      final position = error.position;
+      return _fail(
+        error,
+        cursor: position == null
+            ? _snapshot.editor.cursor
+            : projection!.cursorAt(position),
+      );
     }
   }
 
@@ -138,11 +154,14 @@ final class StructuredCalculatorSession {
         answer: _snapshot.answer,
       );
 
-  StructuredCalculatorSnapshot _fail(CalculatorException error) =>
-      _snapshot = StructuredCalculatorSnapshot._(
-        editor: _snapshot.editor,
-        phase: CalculatorPhase.error,
-        answer: _snapshot.answer,
-        error: error,
-      );
+  StructuredCalculatorSnapshot _fail(
+    CalculatorException error, {
+    EditorCursor? cursor,
+  }) => _snapshot = StructuredCalculatorSnapshot._(
+    editor: _snapshot.editor,
+    phase: CalculatorPhase.error,
+    answer: _snapshot.answer,
+    error: error,
+    errorCursor: cursor ?? _snapshot.editor.cursor,
+  );
 }

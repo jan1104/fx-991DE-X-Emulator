@@ -10,6 +10,7 @@ class FractionExpressionView extends StatefulWidget {
   final bool showCursor;
   final double fontSize;
   final bool followCursor;
+  final EditorCursor? errorCursor;
 
   const FractionExpressionView({
     super.key,
@@ -17,6 +18,7 @@ class FractionExpressionView extends StatefulWidget {
     this.showCursor = true,
     this.fontSize = 24,
     this.followCursor = false,
+    this.errorCursor,
   }) : assert(fontSize > 0 && fontSize < double.infinity);
 
   @override
@@ -43,9 +45,14 @@ class _FractionExpressionViewState extends State<FractionExpressionView> {
   }
 
   void _scheduleReveal() {
-    if (!widget.followCursor || !widget.showCursor) return;
+    if (!widget.followCursor ||
+        (!widget.showCursor && widget.errorCursor == null))
+      return;
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      if (!mounted || !widget.followCursor || !widget.showCursor) return;
+      if (!mounted ||
+          !widget.followCursor ||
+          (!widget.showCursor && widget.errorCursor == null))
+        return;
       final cursor = _cursorKey.currentContext?.findRenderObject();
       if (cursor is! RenderBox || !cursor.hasSize) return;
       final rect = cursor.localToGlobal(Offset.zero) & cursor.size;
@@ -103,6 +110,7 @@ class _FractionExpressionViewState extends State<FractionExpressionView> {
     cursorKey: _cursorKey,
     horizontalKey: _horizontalKey,
     verticalKey: _verticalKey,
+    errorCursor: widget.errorCursor,
   );
 }
 
@@ -115,6 +123,7 @@ class _FormulaContent extends StatelessWidget {
   final GlobalKey cursorKey;
   final GlobalKey horizontalKey;
   final GlobalKey verticalKey;
+  final EditorCursor? errorCursor;
   const _FormulaContent({
     required this.snapshot,
     required this.showCursor,
@@ -124,13 +133,15 @@ class _FormulaContent extends StatelessWidget {
     required this.cursorKey,
     required this.horizontalKey,
     required this.verticalKey,
+    required this.errorCursor,
   });
 
   @override
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme.onSurface;
     final scaledSize = MediaQuery.textScalerOf(context).scale(fontSize);
-    final cursorPath = snapshot.cursor.path.fold(
+    final target = errorCursor ?? snapshot.cursor;
+    final cursorPath = target.path.fold(
       'root',
       (path, step) =>
           '$path/f${step.nodeIndex}'
@@ -138,7 +149,9 @@ class _FormulaContent extends StatelessWidget {
     );
     return Semantics(
       container: true,
-      label: 'Eingabe: ${_describe(snapshot.root)}',
+      label:
+          'Eingabe: ${_describe(snapshot.root)}'
+          '${errorCursor == null ? '' : '. Fehlerstelle ${_location(errorCursor!)}'}',
       child: SingleChildScrollView(
         key: verticalKey,
         controller: vertical,
@@ -181,22 +194,25 @@ class _FormulaContent extends StatelessWidget {
     double scaledSize,
     Color color,
   ) {
+    final isError = errorCursor != null && path == cursorPath;
     Widget caret() => _BaselineBox(
       baseline: scaledSize,
       child: KeyedSubtree(
         key: cursorKey,
         child: SizedBox(
-          key: const ValueKey('formula-cursor'),
+          key: ValueKey(isError ? 'formula-error' : 'formula-cursor'),
           width: 3,
           height: scaledSize * 1.25,
-          child: ColoredBox(color: color),
+          child: ColoredBox(color: isError ? const Color(0xFFB3261E) : color),
         ),
       ),
     );
     final children = <Widget>[];
-    final active = showCursor && path == cursorPath;
+    final active =
+        (isError || (showCursor && errorCursor == null)) && path == cursorPath;
     for (var index = 0; index <= sequence.nodes.length; index++) {
-      if (active && index == snapshot.cursor.offset) children.add(caret());
+      if (active && index == (errorCursor ?? snapshot.cursor).offset)
+        children.add(caret());
       if (index == sequence.nodes.length) break;
       final node = sequence.nodes[index];
       children.add(switch (node) {
@@ -249,13 +265,45 @@ class _FormulaContent extends StatelessWidget {
         ),
       );
     }
-    return Row(
+    final field = Row(
       key: ValueKey('field-$path'),
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.baseline,
       textBaseline: TextBaseline.alphabetic,
       children: children,
     );
+    return isError
+        ? Container(
+            key: const ValueKey('formula-error-field'),
+            padding: const EdgeInsets.all(3),
+            decoration: BoxDecoration(
+              border: Border.all(color: const Color(0xFFB3261E), width: 2),
+              borderRadius: BorderRadius.circular(3),
+            ),
+            child: field,
+          )
+        : field;
+  }
+
+  String _location(EditorCursor cursor) {
+    if (cursor.path.isEmpty) {
+      return 'in der Eingabe, Position ${cursor.offset + 1}';
+    }
+    var sequence = snapshot.root;
+    final parts = <String>[];
+    for (final step in cursor.path) {
+      final ordinal = sequence.nodes
+          .take(step.nodeIndex + 1)
+          .whereType<EditorFraction>()
+          .length;
+      final field = step.field == FractionField.numerator ? 'Zähler' : 'Nenner';
+      parts.add('im $field des $ordinal. Bruchs');
+      final fraction = sequence.nodes[step.nodeIndex] as EditorFraction;
+      sequence = step.field == FractionField.numerator
+          ? fraction.numerator
+          : fraction.denominator;
+    }
+    return '${parts.join(', darin ')}, Position ${cursor.offset + 1}';
   }
 
   static String _describe(EditorSequence sequence) {

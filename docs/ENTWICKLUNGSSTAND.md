@@ -1,5 +1,36 @@
 # Entwicklungsstand
 
+## 28.10.2026: strukturierte Fehlerstellen und gezielte Wiederaufnahme
+
+Ausgangsbasis `82f533e`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Paket ergänzt die Source-Map zwischen linearem Parserausdruck und natürlichen Bruchfeldern; die bisherige Editor- und Rechenimplementierung bleibt Grundlage.
+
+### Neu umgesetzt
+
+- Unveränderliche `EditorProjection` mit UTF-16-Offsetzuordnung zu Feldpfad/Tokenoffset, einschließlich generierter Bruchklammern und atomarem Ans.
+- Feldbezogene Diagnosen für leere Eingabefelder und unausgeglichene Klammern; die bisherigen `toExpression()`-/`evaluate()`-Aufrufer erhalten weiterhin `CalculatorException`.
+- Separates `errorCursor` im strukturierten Snapshot. Während der Fehlerphase bleibt der ursprüngliche Bearbeitungscursor unverändert; die erste Links-/Rechtsaktion öffnet das markierte Ziel ohne zusätzlichen Schritt. Ein validiertes `moveTo()` schützt vor unpassenden Fremdpfaden.
+- Roter Fehlermarker, Feldrahmen, verständlicher Bearbeitungshinweis und assistive Fehlerstellenbeschreibung in der Hauptansicht. Die vorhandene interne Cursor-Nachführung zeigt jetzt bei Fehlern den Marker, ohne den äußeren Seitenbildlauf zu verändern.
+
+Die Zuordnungsregeln sind eigene dokumentierte Prototypentscheidungen. Beispielsweise führt das von einer Bruchvorlage erzeugte `/` zum Nennerende; ein ausdrücklich eingegebenes `/` bleibt ein gewöhnliches Token. Positionslose Ressourcenfehler verwenden den bisherigen Cursor als Rückkehrhilfe. Details und verbleibende Grenzen stehen in [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md).
+
+### Tatsächliche Prüfung
+
+Ein Subagent implementierte die Core-Erweiterung samt 29 neuen Tests, ein zweiter schrieb neun zusätzliche durchgängige UI-Fälle. Ein weiterer UI-Regressionstest des Hauptagenten ergänzt die eindeutige gesprochene Zuordnung bei benachbarten Brüchen. Die Tests prüfen unter anderem synthetische Zeichen, Ans, tiefe Feldpfade, leere Felder, Klammern, gültige/ungültige Cursor aus anderen Snapshots und Grenzen der Projektionsoffsets. UI-Abläufe markieren ein Fehlerfeld auch dann, wenn sich der bisherige Cursor anderswo befindet, öffnen es per Pfeil und reparieren die Rechnung. Hinzu kommen AC/Moduswechsel, Semantik sowie horizontale und vertikale Fehler-Nachführung.
+
+Zwei anfängliche Testannahmen wurden präzisiert: Ein Core-Testhelfer verglich eine Liste innerhalb eines Records per Identität statt deren Inhalt; ein UI-Test verlangte Scrolloffset exakt null, obwohl der zusätzliche Feldrahmen fünf Pixel Überlauf erzeugte. Die korrigierten Assertions prüfen Pfad-/Offsetwerte beziehungsweise sichtbaren Marker und korrekte Scrollrichtung. Daraus wird kein Produktfehler abgeleitet.
+
+Der zusätzliche Read-only-Review des Core-Agenten fand eine tatsächliche Mehrdeutigkeit in der assistiven Ausgabe: Feldnamen allein unterschieden benachbarte Brüche nicht. Die Ansage zählt nun auf jeder Pfadebene die tatsächlichen Bruchknoten, beispielsweise „im Nenner des 2. Bruchs“. Der neue Regressionstest prüft diesen Fall mit `1/2+1/0`.
+
+Abschließender Core-Prüfhelfer mit Dart 3.13.7 auf Windows: SDK-Vergleich und erzwungene Lockdatei erfolgreich, 18 Dateien ohne Formatänderung, statische Analyse ohne Befund und **314 Coretests bestanden**. Der vorherige direkte Subagentenlauf wird nicht nochmals gezählt. Log lokal unter `build/reports/core-tests.log`.
+
+Nach der Semantikkorrektur bestand der vollständige App-Prüfhelfer mit unverändertem Flutter 3.47.8 / Dart 3.13.7: SDK-/Revisionsvergleich, erzwungene Lockdatei, zwölf Dateien ohne Formatänderung, statische Analyse ohne Befund und **97 App-/Mappingtests bestanden**. Der vorherige Lauf mit 96 Tests wird nicht addiert. Log lokal unter `build/reports/flutter-tests.log`. Die Katalog- und lokale Dokumentlinkprüfung ergänzen die ausführbaren Prüfungen.
+
+Der explizite Vorschauhelfer bestand in drei Szenarien (Linear, Brüche, Fehler). Die neue lokale ignorierte Datei `build/reports/calculator-error.png` wurde bei 420×1100 visuell geprüft: Bei `1/(2/0)` ist der rote Marker am inneren Nenner samt Bearbeitungshinweis und mathematischem Fehler sichtbar. Die hohe Formel wird im festen 104-Pixel-Ausschnitt intern nach unten gescrollt; ihr oberer Teil ist dabei bewusst außerhalb des sichtbaren Bereichs und lässt sich manuell wieder erreichen. Es wird kein vollständiges gleichzeitiges Anzeigen beliebig hoher Formeln behauptet. Keine native Installation oder echte Screenreaderprüfung in diesem Paket.
+
+### Nächster Schritt
+
+Vertikale Feldnavigation für Zähler/Nenner spezifizieren und als eigenes Paket über Core, Bildschirmtasten und Hardwareadapter prüfen. Danach Übernahme bestehender Operanden in Bruchvorlagen und weitere natürliche Vorlagen. Die Source-Map ist eine Zuordnung gemeldeter Stellen, keine allgemeine Ursachenanalyse oder Originalkompatibilitätszusage. Native Builds, echte Screenreader-/Gerätetests und Originalvergleich bleiben offen. Kein Push, keine Originaldateien verändert.
+
 ## 27.10.2026 abends: Bruchtaste und strukturierte Sitzung in der Hauptansicht
 
 Ausgangsbasis `33b8c24`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Arbeitspaket verbindet die bereits geprüften Core-/Darstellungsbausteine zu durchgängigen Bedienabläufen.

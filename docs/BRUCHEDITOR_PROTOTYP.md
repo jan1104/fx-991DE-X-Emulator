@@ -22,7 +22,7 @@ Klammern müssen in jeder Sequenz für sich ausgeglichen sein. Ein ungültiger Z
 
 Der Editor begrenzt sich auf 256 Gesamtknoten und 16 verschachtelte Brüche. Überschreitungen werfen `CalculatorException(limit)` und erhalten den alten Snapshot. Ungültige Tokens werfen `ArgumentError`. Dies sind eigene Schutzbudgets, keine belegten Gerätegrenzen. Die nachgelagerte lineare Parserauswertung hat zusätzlich eigene Längen-, Token- und Tiefenlimits; nicht jeder maximal große Editorbaum muss auswertbar sein.
 
-Die lineare Grammatik bleibt begrenzt: Produkte sollten mit `*` eingegeben werden. Zahlen vor einer öffnenden Klammer erlauben die bisherige implizite Multiplikation; unmittelbar nach einer schließenden Klammer folgt eine Zahl/Ans ohne Operator weiterhin als Syntaxfehler. Der Prototyp erweitert die allgemeinen Vorrangregeln des Parsers nicht. Fehlerpositionen sind Offsets der projizierten Zeichenkette und noch keine Zuordnung zu einem Feldpfad.
+Die lineare Grammatik bleibt begrenzt: Produkte sollten mit `*` eingegeben werden. Zahlen vor einer öffnenden Klammer erlauben die bisherige implizite Multiplikation; unmittelbar nach einer schließenden Klammer folgt eine Zahl/Ans ohne Operator weiterhin als Syntaxfehler. Der Prototyp erweitert die allgemeinen Vorrangregeln des Parsers nicht. Seit 28.10.2026 ordnet `project()` die Parseroffsets über eine unveränderliche Source-Map den Feldern zu. Regeln und Grenzen stehen in [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md).
 
 Nicht im Editorbaustein enthalten sind gemischte Brüche, Wurzeln, hochgestellte Eingabefelder, Auswahl/Übernahme vorhandener Operanden und vertikale Cursorbewegung. Ergebnisphasen und Wahl der Eingabeart sind inzwischen in der strukturierten Sitzung beziehungsweise App ergänzt. Die Taste `KEY_FRACTION` ist in der Hauptansicht nach Wahl von **Brüche** aktiv; in Linear bleibt sie deaktiviert.
 
@@ -38,4 +38,4 @@ Die lokale visuelle Prüfung lässt sich im Appordner mit `flutter test tool/ren
 
 ## Nächster Schritt
 
-Fehlerpositionen auf Feldpfade abbilden und deren gezielte Wiederaufnahme prüfen. Vertikale Navigation, gemischte Brüche und Übernahme vorhandener Operanden bleiben weitere Pakete. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.
+Vertikale Navigation, gemischte Brüche und Übernahme vorhandener Operanden bleiben weitere Pakete. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.

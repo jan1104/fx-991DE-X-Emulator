@@ -6,6 +6,8 @@ Die Hauptansicht zeigt 50 Tastenplätze. **Linear** bietet 25 aktive Primärakti
 
 Die natürliche `FractionExpressionView` ist über `StructuredCalculatorSession` angebunden. Beide Eingabearten behalten beim Umschalten ihre eigenen Entwürfe, Fehler, Ergebnisse und Ans; eine automatische Konvertierung gibt es nicht. Der Cursor wird innerhalb des Displays nachgeführt. Eigene Regeln und Beispiele stehen in [STRUKTURIERTE_SITZUNG.md](../../docs/STRUKTURIERTE_SITZUNG.md).
 
+Fehler in natürlichen Feldern werden durch einen roten Marker und Feldrahmen angezeigt. Links/Rechts öffnet die markierte Stelle; AC verwirft die Eingabe. Die Fehler-Nachführung bleibt innerhalb des Displays. Zuordnungsregeln, Rückfallverhalten und Grenzen stehen in [FEHLERPOSITIONEN.md](../../docs/FEHLERPOSITIONEN.md).
+
 Die Oberfläche skaliert in der Breite und kann bei geringer Höhe vertikal gescrollt werden. Zugeordnete Hardwaretasten: Ziffern, `+ - * / ^ ( )`, Komma/Punkt, Enter, Links/Rechts, Backspace/Entf und Escape. Nicht zugeordnete Tasten und Ctrl/Alt/Meta-Kombinationen bleiben unbehandelt. Haltewiederholungen zugeordneter Ereignisse werden konsumiert, ohne weitere Rechneraktion. Tab und Space bleiben für die normale Fokus-/Buttonbedienung verfügbar. Für Ans und das eigene Vorzeichen existiert noch keine eigene Hardwarezuordnung.
 
 ## Prüfen
@@ -23,6 +25,8 @@ Oder im App-Ordner mit dieser SDK-Version: `flutter pub get --enforce-lockfile`,
 ## Lokale visuelle Vorschau
 
 Im App-Ordner `flutter test tool/render_preview.dart` ausführen. Der explizite QA-Helfer erzeugt `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png` im Repository bei 420×1100 und prüft jeweils das exakte Ergebnis 1/2. Für lesbare Vorschau lädt er lokal eine Systemschrift; unter Windows standardmäßig Segoe UI, alternativ Dateipfad über `PREVIEW_FONT`. Diese Schrift wird nicht in das Projekt kopiert. Die mit Flutter erzeugten Material-Icons werden aus den Testassets geladen. Die Vorschau ist keine native Anwendung und wird nicht als eigener weiterer Gerätetest gezählt.
+
+Ein drittes Szenario desselben Helfers erzeugt `build/reports/calculator-error.png` mit `1/(2/0)`, mathematischem Fehler, markiertem innerem Nenner und Bearbeitungshinweis.
 
 `flutter test tool/render_fraction_preview.dart --no-pub` erzeugt separat `build/reports/fraction-view.png` mit leerer Bruchvorlage, Bruchsumme, Verschachtelung und Pfadcursor. Das ist eine QA-Seite für den neuen Anzeigebaustein; die Rechnerroute bleibt unverändert.
 

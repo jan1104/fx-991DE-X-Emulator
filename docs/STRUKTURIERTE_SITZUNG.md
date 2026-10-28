@@ -33,17 +33,17 @@ Die Ergebniszeile zeigt weiterhin `n/d`; nur die Eingabe verwendet natürliche B
 | `=` bei gültiger Formel | Exaktes Ergebnis und Ans, unveränderter Ausdruck |
 | Erster Pfeil nach Ergebnis | Bearbeitung am Ende der Wurzelsequenz, noch keine zusätzliche Bewegung |
 | DEL nach Ergebnis | Bearbeitung am Wurzelende und Löschen des vorherigen Knotens |
-| Erster Pfeil nach Fehler | Hebt den Fehler auf und erhält exakt den bisherigen Feldpfad und Offset |
+| Erster Pfeil nach Fehler | Hebt den Fehler auf und öffnet das über die Source-Map markierte Feld ohne zusätzliche Bewegung |
 | Andere Eingabe bei Fehler | Bleibt gesperrt, bis Pfeil oder AC verwendet wird |
 | Unbekannte Tasten-ID | Expliziter Unsupported-Fehler ohne Zustandsänderung |
 
-Die Wiederherstellung nach Fehler springt ausdrücklich **nicht** zu einer behaupteten Fehlerstelle. Parseroffsets gehören zur linearen Projektion; ihre Zuordnung zu den natürlichen Feldern ist noch offen. Die sichtbare Cursorposition nach Wiederaufnahme ist die Position vor der Auswertung. Eingabe-/Ressourcenfehler erhalten den alten Baum, Cursor und Ans atomar.
+Seit 28.10.2026 ordnet eine Source-Map Parseroffsets den natürlichen Feldern zu. Die Fehlerphase erhält den alten Bearbeitungscursor und veröffentlicht daneben `errorCursor`; der erste Pfeil übernimmt das markierte Ziel. Positionslose Eingabe-/Ressourcenfehler verwenden weiterhin den bisherigen Cursor als Rückkehrstelle. Baum und Ans bleiben erhalten. Zuordnungsregeln und Grenzen: [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md).
 
 ## Anzeige und Cursor
 
 Das strukturierte Eingabefeld ist in der Hauptansicht 104 logische Pixel hoch und kann in beiden Achsen scrollen. Nach einer Eingabe oder Navigation führt `FractionExpressionView(followCursor: true)` den Cursor innerhalb dieser beiden inneren Scrollbereiche nach. Der äußere Seiten-/Tastaturbildlauf wird dafür nicht verschoben. Bei Ergebnis-/Fehlerphase ist der Cursor verborgen; manuelles Scrollen zur Inspektion bleibt möglich.
 
-Die Rechtecke für Cursor und leere Felder melden eine Baseline innerhalb ihrer vollständigen Layoutgröße. Dadurch werden ihre Oberkanten nicht durch eine nach oben verschobene Baselinebox abgeschnitten. Die Schriftvergrößerung des Betriebssystems wird im Formelwidget berücksichtigt; der feste Displayausschnitt bleibt scrollbar.
+Die Rechtecke für Cursor und leere Felder melden eine Baseline innerhalb ihrer vollständigen Layoutgröße. Dadurch werden ihre Oberkanten nicht durch eine nach oben verschobene Baselinebox abgeschnitten. Die Schriftvergrößerung des Betriebssystems wird im Formelwidget berücksichtigt; der feste Displayausschnitt bleibt scrollbar. In der Fehlerphase folgt der Bildlauf dem roten Fehlermarker, nicht dem verborgenen alten Bearbeitungscursor.
 
 ## Prüfung und offene Punkte
 
@@ -51,4 +51,4 @@ Die konkreten vollständigen Testzahlen und Laufbedingungen stehen im [Entwicklu
 
 Der explizite Vorschauhelfer `apps/calculator/tool/render_preview.dart` erzeugt jetzt beide Hauptansichten bei 420×1100 mit demselben Ergebnis `1/2`. Lokale ignorierte Artefakte: `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png`. Die früheren reinen Komponentenbilder bleiben als eigene QA-Helfer verfügbar.
 
-Offen bleiben unter anderem Source-Map/Fehlercursor, vertikale Feldnavigation, gemischte Brüche, Übernahme vorhandener Operanden in Vorlagen, Wurzeln und natürliche Exponentenfelder, gemeinsame originale Setup-/Speicherregeln sowie native Windows-/Android-/Apple-/Linux-Prüfungen. Details zum Editorbaum: [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).
+Offen bleiben unter anderem vertikale Feldnavigation, gemischte Brüche, Übernahme vorhandener Operanden in Vorlagen, Wurzeln und natürliche Exponentenfelder, gemeinsame originale Setup-/Speicherregeln sowie native Windows-/Android-/Apple-/Linux-Prüfungen. Details zum Editorbaum: [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).

@@ -42,7 +42,7 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P4 | Konstanten, Umrechnungen, QR und PC-Komfortfunktionen | Historische Datenstände und externe Schnittstellen entschieden | Offen |
 | P4 | Reproduzierbarer Build und Paketierung | Saubere lokale Installation und Testlauf reproduzierbar | Offen |
 
-Linearer Bedienzustand, strukturierte Sitzung, Brucheditor und natürliche Flutter-Ansicht sind geprüft und in der Hauptansicht über die eigene Wahl **Linear / Brüche** verbunden. Als nächstes folgt eine Source-Map für Fehlerpositionen und gezielte Feldwiederaufnahme. Regeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md). Die fehlenden Windows-/Android-Buildwerkzeuge bleiben ein getrenntes Paket. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien. Siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
+Linearer Bedienzustand, strukturierte Sitzung, Brucheditor und natürliche Flutter-Ansicht sind geprüft und in der Hauptansicht über die eigene Wahl **Linear / Brüche** verbunden. Eine Source-Map markiert Fehlerfelder und ermöglicht die gezielte Wiederaufnahme. Als nächstes folgt vertikale Feldnavigation. Regeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md) und [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md). Die fehlenden Windows-/Android-Buildwerkzeuge bleiben ein getrenntes Paket. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien. Siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
 
 ## Risiken und offene Entscheidungen
 

@@ -45,6 +45,35 @@ final class FractionEditorSnapshot {
   const FractionEditorSnapshot._(this.root, this.cursor);
 }
 
+/// Immutable source positions for one parenthesized parser projection.
+/// Offsets count UTF-16 code units, just like the parser's error positions.
+final class EditorProjection {
+  final String expression;
+  final List<EditorCursor> _cursors;
+
+  EditorProjection._(this.expression, Iterable<EditorCursor> cursors)
+    : _cursors = List.unmodifiable(cursors);
+
+  /// Maps a character to its owning structural token/field. The final offset
+  /// maps to the root end, not the end of an innermost fraction field.
+  EditorCursor cursorAt(int offset) {
+    if (offset < 0 || offset > expression.length) {
+      throw ArgumentError.value(offset, 'offset', 'Outside projection');
+    }
+    return _cursors[offset];
+  }
+}
+
+/// A structural diagnostic that cannot be expressed as a parser offset.
+final class EditorProjectionException implements Exception {
+  final CalculatorException error;
+  final EditorCursor cursor;
+  const EditorProjectionException(this.error, this.cursor);
+
+  @override
+  String toString() => error.toString();
+}
+
 /// Prototype navigation rules are explicit, not measured original behavior.
 /// Every edit creates a new immutable tree; rejected edits preserve the snapshot.
 final class FractionEditor {
@@ -154,6 +183,28 @@ final class FractionEditor {
   /// Reopens the complete expression after a result, outside all fraction fields.
   void moveToRootEnd() => _move([], _snapshot.root.nodes.length);
 
+  /// Moves only if the whole cursor is valid in the current tree. A cursor may
+  /// originate from an older or different immutable snapshot.
+  void moveTo(EditorCursor cursor) {
+    var sequence = _snapshot.root;
+    for (final step in cursor.path) {
+      if (step.nodeIndex < 0 || step.nodeIndex >= sequence.nodes.length) {
+        throw ArgumentError.value(cursor, 'cursor', 'Invalid fraction path');
+      }
+      final node = sequence.nodes[step.nodeIndex];
+      if (node is! EditorFraction) {
+        throw ArgumentError.value(cursor, 'cursor', 'Path is not a fraction');
+      }
+      sequence = step.field == FractionField.numerator
+          ? node.numerator
+          : node.denominator;
+    }
+    if (cursor.offset < 0 || cursor.offset > sequence.nodes.length) {
+      throw ArgumentError.value(cursor, 'cursor', 'Invalid field offset');
+    }
+    _move(cursor.path, cursor.offset);
+  }
+
   void deleteBackward() {
     final cursor = _snapshot.cursor;
     if (cursor.offset == 0) return;
@@ -225,47 +276,100 @@ final class FractionEditor {
 
   /// Parenthesized projection preserves fractions as operands of powers/products.
   /// Empty fields are errors rather than implicit zeros.
-  String toExpression() => _serialize(_snapshot.root);
+  String toExpression() {
+    try {
+      return project().expression;
+    } on EditorProjectionException catch (diagnostic) {
+      // Preserve the existing serialization/evaluation exception contract.
+      throw diagnostic.error;
+    }
+  }
 
   Rational evaluate({Rational? answer}) =>
       arithmetic.evaluate(toExpression(), answer: answer);
 
-  static String _serialize(EditorSequence sequence) {
+  EditorProjection project() {
+    final output = StringBuffer();
+    final cursors = <EditorCursor>[];
+    _project(_snapshot.root, const [], output, cursors);
+    cursors.add(EditorCursor._([], _snapshot.root.nodes.length));
+    return EditorProjection._(output.toString(), cursors);
+  }
+
+  static Never _projectionError(String message, EditorCursor cursor) {
+    throw EditorProjectionException(
+      CalculatorException(CalculatorErrorCode.syntax, message),
+      cursor,
+    );
+  }
+
+  static void _project(
+    EditorSequence sequence,
+    List<EditorStep> path,
+    StringBuffer output,
+    List<EditorCursor> cursors,
+  ) {
     if (sequence.nodes.isEmpty) {
-      throw const CalculatorException(
-        CalculatorErrorCode.syntax,
-        'Empty expression field',
-      );
+      _projectionError('Empty expression field', EditorCursor._(path, 0));
     }
     // User parentheses belong to this field. They must never consume the
     // grouping delimiters introduced by the fraction projection.
     var parentheses = 0;
-    for (final node in sequence.nodes) {
+    for (var index = 0; index < sequence.nodes.length; index++) {
+      final node = sequence.nodes[index];
       if (node is! EditorText) continue;
       if (node.text == '(') parentheses++;
       if (node.text == ')') parentheses--;
       if (parentheses < 0) {
-        throw const CalculatorException(
-          CalculatorErrorCode.syntax,
+        _projectionError(
           'Unbalanced parentheses in expression field',
+          EditorCursor._(path, index),
         );
       }
     }
     if (parentheses != 0) {
-      throw const CalculatorException(
-        CalculatorErrorCode.syntax,
+      _projectionError(
         'Unbalanced parentheses in expression field',
+        EditorCursor._(path, sequence.nodes.length),
       );
     }
-    return sequence.nodes
-        .map(
-          (node) => switch (node) {
-            EditorText(:final text) => text,
-            EditorFraction(:final numerator, :final denominator) =>
-              '((${_serialize(numerator)})/(${_serialize(denominator)}))',
-          },
-        )
-        .join();
+    void write(String text, EditorCursor cursor) {
+      output.write(text);
+      cursors.addAll(List.filled(text.length, cursor));
+    }
+
+    for (var index = 0; index < sequence.nodes.length; index++) {
+      switch (sequence.nodes[index]) {
+        case EditorText(:final text):
+          write(text, EditorCursor._(path, index));
+        case EditorFraction(:final numerator, :final denominator):
+          final numeratorPath = [
+            ...path,
+            EditorStep._(index, FractionField.numerator),
+          ];
+          final denominatorPath = [
+            ...path,
+            EditorStep._(index, FractionField.denominator),
+          ];
+          final numeratorEnd = EditorCursor._(
+            numeratorPath,
+            numerator.nodes.length,
+          );
+          final denominatorEnd = EditorCursor._(
+            denominatorPath,
+            denominator.nodes.length,
+          );
+          write('((', EditorCursor._(numeratorPath, 0));
+          _project(numerator, numeratorPath, output, cursors);
+          write(')', numeratorEnd);
+          // Evaluator division errors point to this generated operator. Landing
+          // at the denominator end permits immediate DEL/edit of a zero value.
+          write('/', denominatorEnd);
+          write('(', EditorCursor._(denominatorPath, 0));
+          _project(denominator, denominatorPath, output, cursors);
+          write('))', denominatorEnd);
+      }
+    }
   }
 
   static int _count(EditorSequence sequence) => sequence.nodes.fold(

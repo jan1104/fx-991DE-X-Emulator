@@ -1,5 +1,33 @@
 # Entwicklungsstand
 
+## 28.10.2026 abends: geschlossene Klammergruppen als Zähler übernehmen
+
+Ausgangsbasis `8524099`, Arbeitskopie vor Beginn sauber. Die vorhandene explizite Appaktion **Als Zähler** übernimmt nun zusätzlich eine geschlossene Klammergruppe direkt links vom Cursor.
+
+### Neu umgesetzt
+
+- Rückwärtssuche nach der passenden Textklammer ausschließlich im aktuellen Feld; enthaltene Bruchknoten bleiben atomar, verschachtelte Textgruppen samt Originalklammern erhalten.
+- Übernahme der gesamten Gruppe in den Zähler einer neuen Vorlage mit leerem Nenner. Präfix, Suffix und äußere Vorzeichen/Operatoren bleiben außerhalb.
+- Atomare Syntaxablehnung nicht geschlossener und inhaltloser Gruppen; die bestehende Knoten-/Gesamttiefenprüfung gilt unverändert für alle übernommenen Unterbäume.
+- Die App erklärt die zusätzliche Klammergruppenunterstützung. Button, Aktivierungsphasen, physische Bruchtaste und 28/25 aktive Primärbelegungen bleiben unverändert.
+
+Dies ist weiterhin eine eigene begrenzte Editorregel. Eine balancierte, aber arithmetisch unfertige Gruppe wie `(1+)` bleibt übernehmbar und erzeugt erst bei `=` den bisherigen Syntaxfehler. Es gibt keine Vorabauswertung oder automatische Potenz-/Vorzeichenauswahl. Vertrag und Beispiele stehen in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
+
+### Prüfung
+
+Ein Subagent erweiterte den Core samt 37 gezielten Tests; ein zweiter ergänzte 15 unabhängige UI-Fälle. Der bisher in der UI explizit abgewiesene gültige Gruppenfall bleibt entsprechend der bewusst erweiterten Spezifikation als Erfolgsfall erhalten; im Core wurde eine überholte Ablehnungszeile entfernt. Die sonstige Ablehnungsabdeckung bleibt bestehen. Geprüft werden insbesondere verschachtelte Gruppen, enthaltene Brüche, erhaltene Nachbarn, Source-Map-Ziele nach der Übernahme, beide Schutzgrenzen und 320-Pixel-Layout. Ein zusätzlicher Read-only-Review der UI-Textänderung meldete keinen konkreten Befund.
+
+Im ersten neuen Source-Map-Test war eine erwartete Projektionsklammer falsch gezählt; die Testannahme wurde korrigiert, der Produktionscode blieb dafür unverändert. Die Fälle für arithmetisch unvollständige Gruppen prüfen ausdrücklich den späteren Syntaxfehler und dessen Bearbeitung, statt die Editorübernahme als mathematischen Erfolg auszugeben.
+
+Abschließender vollständiger Core-Prüfhelfer mit Dart 3.13.7 auf Windows: SDK-Vergleich und erzwungene Lockdatei erfolgreich, 21 Dateien ohne Formatänderung, statische Analyse ohne Befund und **419 Coretests bestanden**. Der vorherige direkte Subagentenlauf wird nicht addiert. Log lokal unter `build/reports/core-tests.log`.
+
+Abschließender vollständiger App-Prüfhelfer mit unverändertem Flutter 3.47.8 / Dart 3.13.7: SDK-/Revisionsvergleich, erzwungene Lockdatei, 15 Dateien ohne Formatänderung, statische Analyse ohne Befund und **144 App-/Mappingtests bestanden**. Log lokal unter `build/reports/flutter-tests.log`. Die gezielten Subagentenläufe werden nicht zusätzlich gezählt. Kein konkreter Produktfehler wurde in diesem Paket gefunden. Katalog- und lokale Dokumentlinkprüfung ergänzen die ausführbaren Prüfungen.
+
+Der explizite Vorschauhelfer bestand in fünf Szenarien. Die neue lokale ignorierte Datei `build/reports/calculator-group-capture.png` wurde bei 420×1100 visuell geprüft: `(2+4)` wird über den tatsächlichen Button übernommen, als vollständiger Zähler über 3 angezeigt und mit Ergebnis 2 ausgewertet. Die erweiterte Erklärung ist lesbar umgebrochen, die vollständige Tastatur bleibt sichtbar. Dies ist ein Testengine-QA-Szenario, kein nativer Gerätetest. Die Systemschrift wird nur lokal geladen.
+
+### Nächster Schritt
+
+Die Quadriertaste mit eindeutiger Operandbindung und passenden Referenz-/Bedientests als eigenes begrenztes Paket spezifizieren. Allgemeine Termauswahl, vollständige Potenzketten, automatische Original-Bruchtastenübernahme und Undo/Entpacken bleiben offen. Native Builds, echte Geräte-/Screenreaderprüfungen und Originalvergleich werden dadurch nicht ergänzt. Kein Push, keine Originaldateien verändert.
 ## 28.10.2026 nachmittags: vorhandene Atome als Zähler übernehmen
 
 Ausgangsbasis `ef379f7`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Arbeitspaket ergänzt eine ausdrücklich ausgelöste Übernahme vorhandener Bausteine in eine neue Bruchvorlage.

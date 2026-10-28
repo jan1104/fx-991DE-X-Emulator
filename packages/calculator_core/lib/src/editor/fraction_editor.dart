@@ -148,7 +148,8 @@ final class FractionEditor {
   }
 
   /// Explicitly moves the immediately preceding atom into a new numerator.
-  /// Signs, operators and parenthesized groups are never inferred as part of it.
+  /// Closed parenthesized groups are captured whole. Signs, operators and power
+  /// chains outside that group are never inferred as part of the atom.
   /// The denominator starts empty, and all resource checks are atomic.
   void wrapPreviousAtomInFraction() {
     final cursor = _snapshot.cursor;
@@ -189,11 +190,46 @@ final class FractionEditor {
           'The preceding number exceeds the input budget',
         );
       }
+    } else if (previous is EditorText && previous.text == ')') {
+      var balance = 0;
+      var opening = -1;
+      for (var index = start; index >= 0; index--) {
+        final node = nodes[index];
+        // Fractions are indivisible atoms here, even when their own fields
+        // contain parentheses. Only this sequence's text delimiters count.
+        if (node is! EditorText) continue;
+        if (node.text == ')') balance++;
+        if (node.text == '(') {
+          balance--;
+          if (balance == 0) {
+            opening = index;
+            break;
+          }
+        }
+      }
+      if (opening < 0) {
+        throw const CalculatorException(
+          CalculatorErrorCode.syntax,
+          'The preceding group has no matching opening parenthesis',
+        );
+      }
+      if (nodes
+          .sublist(opening + 1, cursor.offset - 1)
+          .every(
+            (node) =>
+                node is EditorText && (node.text == '(' || node.text == ')'),
+          )) {
+        throw const CalculatorException(
+          CalculatorErrorCode.syntax,
+          'The preceding group has no content',
+        );
+      }
+      start = opening;
     } else if (previous is! EditorFraction &&
         !(previous is EditorText && previous.text == 'Ans')) {
       throw const CalculatorException(
         CalculatorErrorCode.unsupported,
-        'Only a preceding number, Ans or fraction can be wrapped',
+        'Only a preceding number, Ans, fraction or closed group can be wrapped',
       );
     }
     if (_count(_snapshot.root) >= maxNodes) {

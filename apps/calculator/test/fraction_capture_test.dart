@@ -97,7 +97,8 @@ void main() {
         tester.widget<TextButton>(keyed('action-wrap-fraction')).onPressed,
         isNull,
       );
-      const explanation = 'Zahl, Ans oder Bruch links vom Cursor übernehmen';
+      const explanation =
+          'Zahl, Ans, Bruch oder Klammergruppe links vom Cursor übernehmen';
       final tooltipExplains = tester
           .widgetList<Tooltip>(find.byType(Tooltip))
           .any((tooltip) => tooltip.message == explanation);
@@ -308,7 +309,6 @@ void main() {
 
   for (final sequence in [
     ['KEY_2', 'KEY_ADD'],
-    ['KEY_LPAREN', 'KEY_1', 'KEY_ADD', 'KEY_2', 'KEY_RPAREN'],
     ['KEY_1', 'KEY_2', 'KEY_3', 'KEY_4', 'KEY_LEFT', 'KEY_LEFT'],
   ]) {
     testWidgets(
@@ -331,6 +331,29 @@ void main() {
       },
     );
   }
+
+  testWidgets(
+    'a balanced group formerly rejected is now a captured numerator',
+    (tester) async {
+      await pumpCalculator(tester);
+      await taps(tester, [
+        'KEY_LPAREN',
+        'KEY_1',
+        'KEY_ADD',
+        'KEY_2',
+        'KEY_RPAREN',
+        'action-wrap-fraction',
+      ]);
+      expect(tree(formula(tester).snapshot.root), [
+        {
+          'numerator': ['(', '1', '+', '2', ')'],
+          'denominator': <Object>[],
+        },
+      ]);
+      expectCursor(tester, 0, [(0, FractionField.denominator)]);
+      expect(result(tester), '');
+    },
+  );
 
   testWidgets(
     'invalid decimal capture is a syntax failure with its tree preserved',

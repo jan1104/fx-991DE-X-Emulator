@@ -1,5 +1,7 @@
 # Flutter-Oberflächenprototyp
 
+Fortschreibung 28.10.2026 abends: **Als Zähler** unterstützt nun auch geschlossene Klammergruppen einschließlich Verschachtelung und enthaltener Brüche. Die physische Tastatur und Aktivierungsphasen bleiben unverändert. 144 App-/Mappingtests bestehen; Grenzen und Beispiele stehen in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
+
 Fortschreibung 28.10.2026 nachmittags: Die zusätzliche eigene Appaktion **Als Zähler** übernimmt eine Zahl, Ans oder einen vorhandenen Bruch in eine neue Vorlage. Die physische Bruchtaste und 28/25 aktive Primärbelegungen bleiben unverändert. 129 App-/Mappingtests bestehen. Regeln, abgewiesene Fälle und Schutzgrenzen: [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
 
 Fortschreibung 28.10.2026 morgens: Die strukturierte Hauptansicht bietet 28 aktive Primäraktionen, darunter Auf/Ab. Bildschirm- und Hardwarepfeile wechseln zwischen unmittelbar zugehörigen Bruchfeldern mit geklemmtem Tokenoffset; Linear bleibt unverändert bei 25 Aktionen. 112 App-/Mappingtests bestehen. Eigene Regeln und Grenzen: [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).

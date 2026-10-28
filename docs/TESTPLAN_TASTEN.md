@@ -4,6 +4,8 @@ Stand: 25.10.2026. **Planungsstand: alle Fälle `planned`; keine Taste wurde hie
 
 ## Verbindliches Tasteninventar
 
+Ergänzung 28.10.2026 abends: Die unveränderte eigene Appaktion **Als Zähler** unterstützt nun auch geschlossene Klammergruppen. Core-/Appfälle in den jeweiligen `test/group_capture_test.dart` prüfen die bewusste Erweiterung einschließlich verschachtelter Gruppen, enthaltenen Brüchen, Source-Map-Korrektur und Ressourcenlimits. Die physische Bruchtastenbelegung und ihre Original-Inventarzeile bleiben unverändert; [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md) grenzt die eigene Editorregel ab.
+
 Ergänzung 28.10.2026 nachmittags: Die neue explizite Appaktion **Als Zähler** (`ACTION_WRAP_FRACTION`) ist keine zusätzliche physische Taste und verändert `KEY_FRACTION` nicht. Corefälle in `test/wrap_fraction_test.dart` und Appfälle in `test/fraction_capture_test.dart` prüfen Atomübernahme, Nachbar-/Cursorerhalt, Ablehnungen und Ressourcenlimits. Der vollständige Original-Bruch-/SHIFT-/ALPHA-Katalog bleibt davon getrennt; Details in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
 
 Ergänzung 28.10.2026 morgens: `KEY_UP` und `KEY_DOWN` sind im eigenen strukturierten Bruchmodus als Primäraktionen angebunden. Core-/Appfälle in den jeweiligen `test/vertical_navigation_test.dart` prüfen unmittelbaren Feldwechsel, geklemmte Offsets, No-op-Grenzen, Ergebnis-/Fehlerwiederaufnahme und Hardwareereignisse. Linear und die übrigen Belegungen/Modi dieser physischen Tasten bleiben davon getrennt. Die vollständigen Inventarzeilen behalten deshalb ihren Planungsstatus. Eigener Vertrag: [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).

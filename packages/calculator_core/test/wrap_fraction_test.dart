@@ -194,7 +194,7 @@ void main() {
   });
 
   group('rejected capture is atomic', () {
-    for (final source in ['', '+', '-', '*', '/', '^', '(', '(12)']) {
+    for (final source in ['', '+', '-', '*', '/', '^', '(']) {
       test('does not capture a predecessor from "$source"', () {
         final editor = FractionEditor();
         text(editor, source);

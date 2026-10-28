@@ -340,7 +340,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             Row(
               children: [
                 Tooltip(
-                  message: 'Zahl, Ans oder Bruch links vom Cursor übernehmen',
+                  message: 'Zahl, Ans, Bruch oder Klammergruppe links vom Cursor übernehmen',
                   child: TextButton(
                     key: const ValueKey('action-wrap-fraction'),
                     onPressed: editing && structured.editor.cursor.offset > 0
@@ -351,7 +351,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 ),
                 const Expanded(
                   child: Text(
-                    'Zahl, Ans oder Bruch links vom Cursor übernehmen.',
+                    'Zahl, Ans, Bruch oder Klammergruppe links vom Cursor übernehmen.',
                     style: TextStyle(fontSize: 11, color: Color(0xFF56634D)),
                   ),
                 ),

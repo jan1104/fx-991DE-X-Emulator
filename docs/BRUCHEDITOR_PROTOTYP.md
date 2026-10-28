@@ -8,7 +8,7 @@ Stand: 27.10.2026. Der unabhängige Editor und seine natürliche Flutter-Ansicht
 
 - `insertText()` fügt genau eine Ziffer, einen Grundoperator, eine Klammer, Dezimalzeichen oder das atomare Token `Ans` ein. Andere Eingaben werden vor der Zustandsänderung abgewiesen.
 - `insertFraction()` fügt am Cursor eine leere Bruchvorlage ein und betritt deren Zähler. Vorhandene Nachbarn werden dabei nicht automatisch in den Bruch übernommen.
-- `wrapPreviousAtomInFraction()` übernimmt ausdrücklich eine vollständige Zahl, Ans oder einen vorhandenen Bruch links vom Cursor als Zähler einer neuen Vorlage; der Cursor landet im leeren Nenner. Dies ist eine gesonderte Appaktion. Vertrag und Grenzen: [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
+- `wrapPreviousAtomInFraction()` übernimmt ausdrücklich eine vollständige Zahl, Ans, einen vorhandenen Bruch oder eine geschlossene Klammergruppe links vom Cursor als Zähler einer neuen Vorlage; der Cursor landet im leeren Nenner. Dies ist eine gesonderte Appaktion. Vertrag und Grenzen: [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
 - Rechts durchläuft Zähler, Nenner und anschließend die Elternsequenz; Links läuft umgekehrt. An den äußersten Grenzen bleibt der Cursor stehen. Verschachtelte Brüche folgen denselben Regeln.
 - Auf/Ab wechselt seit 28.10.2026 unmittelbar zwischen zugehörigem Nenner und Zähler. Der Tokenoffset wird begrenzt; kein automatischer Vorfahrenaufstieg und keine bevorzugte Pixelspalte. Siehe [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
 - DEL entfernt den vollständigen vorherigen Knoten im aktuellen Feld. Unmittelbar hinter einem Bruch entfernt es damit dessen ganzen Teilbaum; am Feldanfang bleibt alles erhalten. Es findet kein automatisches Zusammenziehen mit dem Elternfeld statt.
@@ -40,4 +40,4 @@ Die lokale visuelle Prüfung lässt sich im Appordner mit `flutter test tool/ren
 
 ## Nächster Schritt
 
-Geschlossene Klammergruppen, allgemeine Termauswahl und gemischte Brüche bleiben weitere Pakete. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.
+Allgemeine Termauswahl, vollständige Potenzketten und gemischte Brüche bleiben weitere Pakete. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.

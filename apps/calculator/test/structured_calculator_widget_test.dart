@@ -100,43 +100,44 @@ void expectCursorVisibleInDisplay(WidgetTester tester) {
 }
 
 void main() {
-  testWidgets('starts linear and enables only the fraction key when switched', (
-    tester,
-  ) async {
-    await pumpCalculator(tester);
-    expect(find.text('Berechnungen · Linear'), findsOneWidget);
-    expect(keyed('input-linear'), findsOneWidget);
-    expect(keyed('input-fractions'), findsOneWidget);
-    expectEnabledCount(tester, 25);
-    expect(
-      tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
-      isNull,
-    );
-    await tap(tester, 'input-fractions');
-    expect(find.text('Berechnungen · Brüche'), findsOneWidget);
-    expect(keyed('display-structured'), findsOneWidget);
-    expect(find.byType(FractionExpressionView), findsOneWidget);
-    expectEnabledCount(tester, 26);
-    for (final definition in calculatorRows.expand((row) => row)) {
-      final expected =
-          CalculatorKey.fromId(definition.id) != null ||
-          definition.id == 'KEY_FRACTION';
+  testWidgets(
+    'starts linear and enables structural-only controls when switched',
+    (tester) async {
+      await pumpCalculator(tester);
+      expect(find.text('Berechnungen · Linear'), findsOneWidget);
+      expect(keyed('input-linear'), findsOneWidget);
+      expect(keyed('input-fractions'), findsOneWidget);
+      expectEnabledCount(tester, 25);
       expect(
-        tester.widget<FilledButton>(keyed(definition.id)).onPressed != null,
-        expected,
-        reason: definition.id,
+        tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
+        isNull,
       );
-    }
-    expect(keyed('placeholder-root'), findsOneWidget);
-    expectCursor(tester, 0, []);
-    await tap(tester, 'input-linear');
-    expectEnabledCount(tester, 25);
-    expect(
-      tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
-      isNull,
-    );
-    expect(linearExpression(tester), '│');
-  });
+      await tap(tester, 'input-fractions');
+      expect(find.text('Berechnungen · Brüche'), findsOneWidget);
+      expect(keyed('display-structured'), findsOneWidget);
+      expect(find.byType(FractionExpressionView), findsOneWidget);
+      expectEnabledCount(tester, 28);
+      for (final definition in calculatorRows.expand((row) => row)) {
+        final expected =
+            CalculatorKey.fromId(definition.id) != null ||
+            {'KEY_FRACTION', 'KEY_UP', 'KEY_DOWN'}.contains(definition.id);
+        expect(
+          tester.widget<FilledButton>(keyed(definition.id)).onPressed != null,
+          expected,
+          reason: definition.id,
+        );
+      }
+      expect(keyed('placeholder-root'), findsOneWidget);
+      expectCursor(tester, 0, []);
+      await tap(tester, 'input-linear');
+      expectEnabledCount(tester, 25);
+      expect(
+        tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
+        isNull,
+      );
+      expect(linearExpression(tester), '│');
+    },
+  );
 
   testWidgets('one fraction tap creates exactly one empty template', (
     tester,

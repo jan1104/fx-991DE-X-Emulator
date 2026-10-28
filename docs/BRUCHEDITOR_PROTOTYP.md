@@ -9,6 +9,7 @@ Stand: 27.10.2026. Der unabhängige Editor und seine natürliche Flutter-Ansicht
 - `insertText()` fügt genau eine Ziffer, einen Grundoperator, eine Klammer, Dezimalzeichen oder das atomare Token `Ans` ein. Andere Eingaben werden vor der Zustandsänderung abgewiesen.
 - `insertFraction()` fügt am Cursor eine leere Bruchvorlage ein und betritt deren Zähler. Vorhandene Nachbarn werden dabei nicht automatisch in den Bruch übernommen.
 - Rechts durchläuft Zähler, Nenner und anschließend die Elternsequenz; Links läuft umgekehrt. An den äußersten Grenzen bleibt der Cursor stehen. Verschachtelte Brüche folgen denselben Regeln.
+- Auf/Ab wechselt seit 28.10.2026 unmittelbar zwischen zugehörigem Nenner und Zähler. Der Tokenoffset wird begrenzt; kein automatischer Vorfahrenaufstieg und keine bevorzugte Pixelspalte. Siehe [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
 - DEL entfernt den vollständigen vorherigen Knoten im aktuellen Feld. Unmittelbar hinter einem Bruch entfernt es damit dessen ganzen Teilbaum; am Feldanfang bleibt alles erhalten. Es findet kein automatisches Zusammenziehen mit dem Elternfeld statt.
 - `clear()` leert Baum und Cursor.
 
@@ -24,7 +25,7 @@ Der Editor begrenzt sich auf 256 Gesamtknoten und 16 verschachtelte Brüche. Üb
 
 Die lineare Grammatik bleibt begrenzt: Produkte sollten mit `*` eingegeben werden. Zahlen vor einer öffnenden Klammer erlauben die bisherige implizite Multiplikation; unmittelbar nach einer schließenden Klammer folgt eine Zahl/Ans ohne Operator weiterhin als Syntaxfehler. Der Prototyp erweitert die allgemeinen Vorrangregeln des Parsers nicht. Seit 28.10.2026 ordnet `project()` die Parseroffsets über eine unveränderliche Source-Map den Feldern zu. Regeln und Grenzen stehen in [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md).
 
-Nicht im Editorbaustein enthalten sind gemischte Brüche, Wurzeln, hochgestellte Eingabefelder, Auswahl/Übernahme vorhandener Operanden und vertikale Cursorbewegung. Ergebnisphasen und Wahl der Eingabeart sind inzwischen in der strukturierten Sitzung beziehungsweise App ergänzt. Die Taste `KEY_FRACTION` ist in der Hauptansicht nach Wahl von **Brüche** aktiv; in Linear bleibt sie deaktiviert.
+Nicht im Editorbaustein enthalten sind gemischte Brüche, Wurzeln, hochgestellte Eingabefelder und Auswahl/Übernahme vorhandener Operanden. Ergebnisphasen und Wahl der Eingabeart sind inzwischen in der strukturierten Sitzung beziehungsweise App ergänzt. Die Tasten `KEY_FRACTION`, `KEY_UP` und `KEY_DOWN` sind in der Hauptansicht nach Wahl von **Brüche** aktiv; in Linear bleiben sie deaktiviert.
 
 ## Lesende Flutter-Formelansicht
 
@@ -38,4 +39,4 @@ Die lokale visuelle Prüfung lässt sich im Appordner mit `flutter test tool/ren
 
 ## Nächster Schritt
 
-Vertikale Navigation, gemischte Brüche und Übernahme vorhandener Operanden bleiben weitere Pakete. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.
+Gemischte Brüche und Übernahme vorhandener Operanden bleiben weitere Pakete. Das Modell ist absichtlich noch keine stabile öffentliche Langzeit-API.

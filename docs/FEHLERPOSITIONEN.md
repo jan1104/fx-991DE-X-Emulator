@@ -22,7 +22,7 @@ Bei mehreren Problemen folgt die Prüfung ihrer dokumentierten Traversierung: zu
 
 ## Sitzung und Wiederaufnahme
 
-`StructuredCalculatorSnapshot.errorCursor` ist nur während eines Fehlers gesetzt. Der vorherige Editorbaum und sein Bearbeitungscursor bleiben bis zur Wiederaufnahme unverändert. Die erste Links-/Rechtsaktion öffnet die Bearbeitung genau am markierten Ziel, ohne zusätzlich einen Schritt zu bewegen. Weitere Pfeile verwenden wieder die gewöhnliche Feldnavigation. Eine erfolgreiche Rechnung, AC oder eine aufgehobene Fehlerphase entfernt die Fehlermetadaten.
+`StructuredCalculatorSnapshot.errorCursor` ist nur während eines Fehlers gesetzt. Der vorherige Editorbaum und sein Bearbeitungscursor bleiben bis zur Wiederaufnahme unverändert. Die erste Pfeilaktion (Links/Rechts/Auf/Ab) öffnet die Bearbeitung genau am markierten Ziel, ohne zusätzlich einen Schritt zu bewegen. Weitere Pfeile verwenden wieder die gewöhnliche Feldnavigation. Eine erfolgreiche Rechnung, AC oder eine aufgehobene Fehlerphase entfernt die Fehlermetadaten.
 
 `FractionEditor.moveTo(cursor)` validiert den kompletten Pfad und Offset gegen den aktuellen Baum, bevor es einen neuen Snapshot veröffentlicht. Ein Cursor aus einem anderen, inzwischen unpassenden Baum wird atomar abgewiesen. Die Source-Map gehört immer zu ihrem unveränderten Projektionsbaum; sie ist keine allgemeine Dokumentversionierung.
 
@@ -40,4 +40,4 @@ Der explizite lokale Vorschauhelfer `apps/calculator/tool/render_preview.dart` e
 
 ## Weiter offen
 
-Die Source-Map identifiziert die vom Parser/Evaluator gemeldete Stelle, keine allgemeine mathematische Ursachenanalyse. Vertikale Navigation, gemischte Brüche, Übernahme bestehender Operanden in Vorlagen und weitere natürliche Funktionen bleiben getrennte Arbeitspakete. Die bestehenden Handbuchinventare werden durch diese eigenen Komponententests nicht pauschal als Original-kompatibel freigegeben.
+Die Source-Map identifiziert die vom Parser/Evaluator gemeldete Stelle, keine allgemeine mathematische Ursachenanalyse. Die inzwischen ergänzte [vertikale Navigation](VERTIKALE_NAVIGATION.md) ist bewusst auf unmittelbare Geschwisterfelder begrenzt. Gemischte Brüche, Übernahme bestehender Operanden in Vorlagen und weitere natürliche Funktionen bleiben getrennte Arbeitspakete. Die bestehenden Handbuchinventare werden durch diese eigenen Komponententests nicht pauschal als Original-kompatibel freigegeben.

@@ -1,6 +1,23 @@
 import 'package:calculator_core/calculator_core.dart';
 import 'package:flutter/services.dart';
 
+/// Extra navigation of the structured prototype. The caller enables this only
+/// in fractions mode; the linear key registry deliberately stays unchanged.
+String? mapStructuredNavigation(
+  KeyEvent event, {
+  required bool modified,
+  bool includeRepeats = false,
+}) {
+  if (modified ||
+      (event is! KeyDownEvent && !(includeRepeats && event is KeyRepeatEvent)))
+    return null;
+  return switch (event.logicalKey) {
+    LogicalKeyboardKey.arrowUp => 'KEY_UP',
+    LogicalKeyboardKey.arrowDown => 'KEY_DOWN',
+    _ => null,
+  };
+}
+
 /// Only assigned prototype shortcuts. Unsupported keys retain normal OS use.
 CalculatorKey? mapKeyboardEvent(
   KeyEvent event, {

@@ -40,9 +40,13 @@ final class StructuredCalculatorSession {
 
   StructuredCalculatorSnapshot get snapshot => _snapshot;
 
-  /// KEY_FRACTION is local to this session; the linear key enum stays unchanged.
+  /// Fraction and vertical-navigation IDs are local to this session; the
+  /// linear key enum stays unchanged.
   StructuredCalculatorSnapshot pressId(String id) {
     if (id == 'KEY_FRACTION') return _pressFraction();
+    if (id == 'KEY_UP' || id == 'KEY_DOWN') {
+      return _pressVertical(up: id == 'KEY_UP');
+    }
     final key = CalculatorKey.fromId(id);
     if (key == null) {
       throw CalculatorException(
@@ -59,9 +63,7 @@ final class StructuredCalculatorSession {
     }
     if (_snapshot.phase == CalculatorPhase.error) {
       if (key == CalculatorKey.left || key == CalculatorKey.right) {
-        final editor = FractionEditor.fromSnapshot(_snapshot.editor);
-        editor.moveTo(_snapshot.errorCursor ?? _snapshot.editor.cursor);
-        return _edit(editor.snapshot);
+        return _recoverError();
       }
       return _snapshot;
     }
@@ -108,6 +110,25 @@ final class StructuredCalculatorSession {
       if (_snapshot.phase == CalculatorPhase.result) editor.clear();
       editor.insertFraction();
     });
+  }
+
+  StructuredCalculatorSnapshot _pressVertical({required bool up}) {
+    if (_snapshot.phase == CalculatorPhase.error) return _recoverError();
+    return _apply((editor) {
+      if (_snapshot.phase == CalculatorPhase.result) {
+        editor.moveToRootEnd();
+      } else if (up) {
+        editor.moveUp();
+      } else {
+        editor.moveDown();
+      }
+    });
+  }
+
+  StructuredCalculatorSnapshot _recoverError() {
+    final editor = FractionEditor.fromSnapshot(_snapshot.editor);
+    editor.moveTo(_snapshot.errorCursor ?? _snapshot.editor.cursor);
+    return _edit(editor.snapshot);
   }
 
   StructuredCalculatorSnapshot _apply(void Function(FractionEditor) command) {

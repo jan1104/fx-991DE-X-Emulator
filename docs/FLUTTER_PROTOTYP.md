@@ -1,5 +1,7 @@
 # Flutter-Oberflächenprototyp
 
+Fortschreibung 28.10.2026 morgens: Die strukturierte Hauptansicht bietet 28 aktive Primäraktionen, darunter Auf/Ab. Bildschirm- und Hardwarepfeile wechseln zwischen unmittelbar zugehörigen Bruchfeldern mit geklemmtem Tokenoffset; Linear bleibt unverändert bei 25 Aktionen. 112 App-/Mappingtests bestehen. Eigene Regeln und Grenzen: [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
+
 Fortschreibung 28.10.2026: Die Hauptansicht markiert über eine Source-Map fehlerhafte natürliche Felder und führt den roten Marker im Display nach. Links/Rechts öffnet das zugeordnete Feld. Assistive Ansagen unterscheiden auch benachbarte Brüche anhand ihrer jeweiligen Bruchnummer. Aktueller Prüfstand und Zuordnungsgrenzen: [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md), [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md).
 
 Aktuelle Fortschreibung vom Abend des 27.10.2026: Die strukturierte Sitzung und natürliche Ansicht sind in der Hauptseite angebunden. Die eigene Wahl **Linear / Brüche** erhält zwei getrennte Entwürfe und Ans, Brüche bietet 26 statt 25 Primäraktionen. 87 App-/Mappingtests bestehen; die folgenden Abschnitte dokumentieren überwiegend den früheren Erststand. Verbindliche neue Bedienregeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md) und im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).

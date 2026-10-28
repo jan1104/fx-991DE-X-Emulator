@@ -1,5 +1,32 @@
 # Entwicklungsstand
 
+## 28.10.2026 morgens: vertikale Bruchfeldnavigation
+
+Ausgangsbasis `80301dc`, Arbeitskopie vor Beginn sauber. Das dokumentierte nächste Arbeitspaket ergänzt Auf/Ab durchgängig im vorhandenen strukturierten Editor, der Sitzung und der Hauptansicht.
+
+### Neu umgesetzt
+
+- Auf wechselt vom Nenner in den unmittelbar zugehörigen Zähler, Ab in Gegenrichtung. Der logische Tokenoffset wird auf die Zielfeldlänge begrenzt. Leere Felder und verschachtelte Brüche folgen derselben Regel; es wird keine Pixelspalte oder Vorfahrensuche behauptet.
+- Die strukturierte Sitzung akzeptiert `KEY_UP`/`KEY_DOWN` zusätzlich. Erste Pfeilaktionen nach Ergebnis beziehungsweise Fehler öffnen wie Links/Rechts das Wurzelende beziehungsweise Source-Map-Ziel ohne zusätzliche Bewegung.
+- Die Hauptansicht bietet in Brüche jetzt 28 statt 26 aktive Primäraktionen; Linear bleibt bei 25. Hardware-Up/Down werden ausschließlich im Bruchmodus verarbeitet, Modifier bleiben unzugeordnet und Haltewiederholungen erzeugen keine weitere Bewegung.
+- Die bestehende innere Cursor-Nachführung bleibt auch bei vertikalen Feldwechseln wirksam. Der Fehlerhinweis nennt alle vier Richtungen zur Wiederaufnahme.
+
+Die Regeln sind ausdrücklich eigene Prototypentscheidungen. Details, Grenzen und Beispiele stehen in [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
+
+### Prüfung
+
+Ein Subagent implementierte den Core und 22 neue Tests. Der andere schrieb unabhängig zwölf durchgängige Appfälle; der Hauptagent ergänzte drei fokussierte Mappingtests. Der Core-Agent prüfte den Appadapter zusätzlich ohne Änderungen und ohne konkrete Befunde. Geprüft werden insbesondere unterschiedliche Feldlängen, leere Felder, verschachtelte Pfade ohne automatischen Aufstieg, atomarer Ans-Offset, unveränderliche Snapshots, beide Ressourcenlimits, Ergebnis-/Fehlerwiederaufnahme und die Trennung zum linearen Modus. Die Hardwareprüfung verwendet einen tatsächlich fokussierten Ziffernbutton und kontrolliert, dass Wiederholungen weder den Cursor noch den Fokus bewegen. Der bestehende strukturierte Inventartest wurde gezielt von 26 auf 28 aktive Aktionen aktualisiert.
+
+Abschließender vollständiger Core-Prüfhelfer mit Dart 3.13.7 auf Windows: SDK-Vergleich und erzwungene Lockdatei erfolgreich, 19 Dateien ohne Formatänderung, statische Analyse ohne Befund und **336 Coretests bestanden**. Log lokal unter `build/reports/core-tests.log`. Der vorherige direkte Subagentenlauf wird nicht nochmals gezählt.
+
+Abschließender vollständiger App-Prüfhelfer mit unverändertem Flutter 3.47.8 / Dart 3.13.7: SDK-/Revisionsvergleich, erzwungene Lockdatei, 13 Dateien ohne Formatänderung, statische Analyse ohne Befund und **112 App-/Mappingtests bestanden**. Log lokal unter `build/reports/flutter-tests.log`. Keine konkreten Produktfehler wurden in diesem Paket gefunden. Die Katalog-/Dokumentlinkprüfung ergänzt diese ausführbaren Prüfungen.
+
+Der explizite Vorschauhelfer bestand erneut für Linear, Brüche und Fehler. Die Bruchrechnung benutzt jetzt auch Auf-/Ab-Feldwechsel und bestätigt weiterhin `1/2`. Die lokale ignorierte Vorschau `build/reports/calculator-fractions.png` wurde bei 420×1100 visuell geprüft: alle vier Pfeile sind aktiv und lesbar, Formel und Ergebnis bleiben korrekt dargestellt. Dies ist kein nativer Gerätetest.
+
+### Nächster Schritt
+
+Übernahme bestehender Operanden in eine Bruchvorlage spezifizieren und als eigenes begrenztes Paket umsetzen. Geometrische Spalten, Vorfahrensuche, Verlauf und weitere natürliche Vorlagen bleiben offen. Native Builds, echte Geräte-/Screenreaderprüfungen und Originalvergleich wurden dadurch nicht ergänzt. Kein Push, keine Originaldateien verändert.
+
 ## 28.10.2026: strukturierte Fehlerstellen und gezielte Wiederaufnahme
 
 Ausgangsbasis `82f533e`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Paket ergänzt die Source-Map zwischen linearem Parserausdruck und natürlichen Bruchfeldern; die bisherige Editor- und Rechenimplementierung bleibt Grundlage.

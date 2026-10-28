@@ -60,7 +60,7 @@ void main() {
               ? [
                   'KEY_FRACTION',
                   'KEY_1',
-                  'KEY_RIGHT',
+                  'KEY_DOWN',
                   'KEY_3',
                   'KEY_RIGHT',
                   'KEY_ADD',
@@ -68,6 +68,8 @@ void main() {
                   'KEY_1',
                   'KEY_RIGHT',
                   'KEY_6',
+                  'KEY_UP',
+                  'KEY_DOWN',
                   'KEY_RIGHT',
                   'KEY_EQUALS',
                 ]

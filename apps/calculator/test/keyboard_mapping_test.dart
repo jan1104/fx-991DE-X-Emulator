@@ -14,6 +14,57 @@ KeyDownEvent down({
 );
 
 void main() {
+  group('structured vertical adapter', () {
+    for (final entry in {
+      LogicalKeyboardKey.arrowUp: 'KEY_UP',
+      LogicalKeyboardKey.arrowDown: 'KEY_DOWN',
+    }.entries) {
+      test('${entry.value} filters event phases and modifiers', () {
+        final event = down(logicalKey: entry.key);
+        expect(mapStructuredNavigation(event, modified: false), entry.value);
+        expect(mapStructuredNavigation(event, modified: true), isNull);
+        final repeat = KeyRepeatEvent(
+          physicalKey: PhysicalKeyboardKey.arrowUp,
+          logicalKey: entry.key,
+          timeStamp: Duration.zero,
+        );
+        expect(mapStructuredNavigation(repeat, modified: false), isNull);
+        expect(
+          mapStructuredNavigation(
+            repeat,
+            modified: false,
+            includeRepeats: true,
+          ),
+          entry.value,
+        );
+        expect(
+          mapStructuredNavigation(
+            KeyUpEvent(
+              physicalKey: PhysicalKeyboardKey.arrowUp,
+              logicalKey: entry.key,
+              timeStamp: Duration.zero,
+            ),
+            modified: false,
+            includeRepeats: true,
+          ),
+          isNull,
+        );
+        expect(mapKeyboardEvent(event, modified: false), isNull);
+      });
+    }
+    test('does not claim nonvertical calculator keys', () {
+      for (final key in [
+        LogicalKeyboardKey.arrowLeft,
+        LogicalKeyboardKey.enter,
+        LogicalKeyboardKey.keyA,
+      ]) {
+        expect(
+          mapStructuredNavigation(down(logicalKey: key), modified: false),
+          isNull,
+        );
+      }
+    });
+  });
   group('prototype character mapping', () {
     for (var digit = 0; digit <= 9; digit++) {
       test('maps digit $digit through its stable key ID', () {

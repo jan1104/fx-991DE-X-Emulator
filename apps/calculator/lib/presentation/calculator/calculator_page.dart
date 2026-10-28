@@ -37,12 +37,24 @@ class _CalculatorPageState extends State<CalculatorPage> {
 
   KeyEventResult _onKey(FocusNode node, KeyEvent event) {
     final keyboard = HardwareKeyboard.instance;
+    final modified =
+        keyboard.isControlPressed ||
+        keyboard.isMetaPressed ||
+        keyboard.isAltPressed;
+    final vertical = _fractions
+        ? mapStructuredNavigation(
+            event,
+            modified: modified,
+            includeRepeats: true,
+          )
+        : null;
+    if (vertical != null) {
+      if (event is! KeyRepeatEvent) _pressId(vertical);
+      return KeyEventResult.handled;
+    }
     final key = mapKeyboardEvent(
       event,
-      modified:
-          keyboard.isControlPressed ||
-          keyboard.isMetaPressed ||
-          keyboard.isAltPressed,
+      modified: modified,
       includeRepeats: true,
     );
     if (key == null) return KeyEventResult.ignored;
@@ -177,7 +189,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
   Widget _button(CalculatorButtonDefinition definition) {
     final key = CalculatorKey.fromId(definition.id);
     final enabled =
-        key != null || (_fractions && definition.id == 'KEY_FRACTION');
+        key != null ||
+        (_fractions &&
+            const {
+              'KEY_FRACTION',
+              'KEY_UP',
+              'KEY_DOWN',
+            }.contains(definition.id));
     final primary = definition.id == 'KEY_EQUALS';
     final clear = definition.id == 'KEY_AC' || definition.id == 'KEY_DEL';
     return Tooltip(
@@ -322,7 +340,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             const Padding(
               padding: EdgeInsets.only(bottom: 8),
               child: Text(
-                'Links/Rechts öffnet die markierte Stelle. AC löscht die Eingabe.',
+                'Links/Rechts oder Auf/Ab öffnen die markierte Stelle. AC löscht die Eingabe.',
                 key: ValueKey('display-error-help'),
                 style: TextStyle(fontSize: 12, color: Color(0xFFB3261E)),
               ),

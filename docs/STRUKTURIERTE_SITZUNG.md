@@ -6,7 +6,7 @@ Stand: 27.10.2026. Die strukturierte Sitzung und die natürliche Formelansicht s
 
 Die App startet weiterhin mit **Linear**. Der sichtbare Schalter **Brüche** aktiviert eine getrennte strukturierte Sitzung. Beide Eingabearten behalten ihre Entwürfe, Ergebnisse, Fehler und jeweils eigenes Ans beim Wechsel. Es gibt keine automatische Konvertierung oder Übernahme. Die Oberfläche erklärt diese Trennung direkt am Schalter. Das ist eine eigene Prototypregel; eine spätere Annäherung an das Original-Setup bleibt offen.
 
-Die Tastatur hat weiterhin 50 Plätze. In Linear sind die bisherigen 25 Primäraktionen aktiv. In Brüche kommt `KEY_FRACTION` als 26. Aktion hinzu. SHIFT/ALPHA und weitere Vorlagen bleiben deaktiviert. Der Hardwareadapter verwendet dieselben bisherigen semantischen Aktionen; ein neues Hardwarekürzel für die Bruchvorlage ist noch nicht vergeben.
+Die Tastatur hat weiterhin 50 Plätze. In Linear sind die bisherigen 25 Primäraktionen aktiv. In Brüche kommen `KEY_FRACTION`, `KEY_UP` und `KEY_DOWN` hinzu, insgesamt 28 Aktionen. SHIFT/ALPHA und weitere Vorlagen bleiben deaktiviert. Hardware-Auf/Ab sind ausschließlich im Bruchmodus zugeordnet; ein Hardwarekürzel für die Bruchvorlage ist noch nicht vergeben. Bewegungsregeln: [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
 
 ## Beispiele
 
@@ -26,6 +26,7 @@ Die Ergebniszeile zeigt weiterhin `n/d`; nur die Eingabe verwendet natürliche B
 |---|---|
 | `KEY_FRACTION` während Eingabe | Fügt eine leere Bruchvorlage ein, Cursor im Zähler; keine automatische Übernahme benachbarter Tokens |
 | Links/Rechts während Eingabe | Tiefendurchlauf durch Zähler, Nenner und Elternfeld gemäß Editorvertrag |
+| Auf/Ab während Eingabe | Wechsel zwischen den unmittelbar zugehörigen Zähler-/Nennerfeldern mit begrenztem Tokenoffset; kein automatischer Aufstieg |
 | DEL | Entfernt vorherigen Knoten vollständig; am Feldanfang keine Zusammenziehung |
 | AC | Leert Eingabe/Ergebnis/Fehler der aktiven Sitzung, erhält deren Ans |
 | `=` bei leerer Wurzel | Keine Änderung |
@@ -51,4 +52,4 @@ Die konkreten vollständigen Testzahlen und Laufbedingungen stehen im [Entwicklu
 
 Der explizite Vorschauhelfer `apps/calculator/tool/render_preview.dart` erzeugt jetzt beide Hauptansichten bei 420×1100 mit demselben Ergebnis `1/2`. Lokale ignorierte Artefakte: `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png`. Die früheren reinen Komponentenbilder bleiben als eigene QA-Helfer verfügbar.
 
-Offen bleiben unter anderem vertikale Feldnavigation, gemischte Brüche, Übernahme vorhandener Operanden in Vorlagen, Wurzeln und natürliche Exponentenfelder, gemeinsame originale Setup-/Speicherregeln sowie native Windows-/Android-/Apple-/Linux-Prüfungen. Details zum Editorbaum: [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).
+Offen bleiben unter anderem geometrische Spalten/Vorfahrensuche, gemischte Brüche, Übernahme vorhandener Operanden in Vorlagen, Wurzeln und natürliche Exponentenfelder, gemeinsame originale Setup-/Speicherregeln sowie native Windows-/Android-/Apple-/Linux-Prüfungen. Details zum Editorbaum: [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).

@@ -267,6 +267,35 @@ final class FractionEditor {
     }
   }
 
+  /// Switches from denominator to numerator of the immediate fraction only.
+  /// The logical token offset is clamped to the target field's length.
+  void moveUp() => _moveVertically(FractionField.numerator);
+
+  /// Switches from numerator to denominator of the immediate fraction only.
+  void moveDown() => _moveVertically(FractionField.denominator);
+
+  void _moveVertically(FractionField destination) {
+    final cursor = _snapshot.cursor;
+    if (cursor.path.isEmpty || cursor.path.last.field == destination) return;
+    final parentPath = cursor.path.take(cursor.path.length - 1).toList();
+    var parent = _snapshot.root;
+    for (final step in parentPath) {
+      final fraction = parent.nodes[step.nodeIndex] as EditorFraction;
+      parent = step.field == FractionField.numerator
+          ? fraction.numerator
+          : fraction.denominator;
+    }
+    final index = cursor.path.last.nodeIndex;
+    final fraction = parent.nodes[index] as EditorFraction;
+    final target = destination == FractionField.numerator
+        ? fraction.numerator
+        : fraction.denominator;
+    _move([
+      ...parentPath,
+      EditorStep._(index, destination),
+    ], cursor.offset.clamp(0, target.nodes.length));
+  }
+
   void _move(Iterable<EditorStep> path, int offset) {
     _snapshot = FractionEditorSnapshot._(
       _snapshot.root,

@@ -1,8 +1,8 @@
 # Architekturvorschlag und Entwicklungsplan
 
-Stand: 25.10.2026. Dies ist ein Entwurf, keine bereits vorhandene Implementierung.
+Entwurf vom 25.10.2026, fortgeschrieben bis 28.10.2026. Die folgende Architektur ist das Zielbild; tatsächliche Implementierung und Prüfungen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
-Fortschreibung vom 26.10.2026: Ein unabhängiger Dart-Core-Prototyp ist jetzt implementiert und auf Windows getestet; Flutter und weitere Zieltests sind offen. Der aktuelle verbindliche Prüf-/Arbeitsstand steht in [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md). Die untenstehende Architektur bleibt das Zielbild.
+Der unabhängige Dart-Core und die Flutter-Hauptansicht mit linearer und strukturierter Brucheingabe sind inzwischen im Testengine geprüft. Native Builds und echte Zielsystemtests bleiben offen.
 
 ## Ziel und Grenzen
 
@@ -10,7 +10,7 @@ Eine unabhängige Verhaltensnachbildung soll Eingabe, Anzeige, Zustände und mat
 
 ## Vorgeschlagene Bausteine
 
-Die konkrete Ordneraufteilung, Schnittstellen und Reihenfolge ohne Original-Programmdateien sind in [PROJEKTSTRUKTUR.md](PROJEKTSTRUKTUR.md) festgelegt. Der Dart-Core-Bereich enthält den ersten exakten linearen Rechenprototyp; die Flutter-App und der natürliche Formeleditor sind noch nicht umgesetzt.
+Die konkrete Ordneraufteilung, Schnittstellen und Reihenfolge ohne Original-Programmdateien sind in [PROJEKTSTRUKTUR.md](PROJEKTSTRUKTUR.md) festgelegt. Der Dart-Core enthält exakte rationale Auswertung, beide Sitzungsmodelle und den Brucheditor. Die Flutter-App bindet diese Bausteine mit natürlicher Eingabeanzeige, Fehlerstellen und vier Richtungsaktionen an. Der vollständige Formeleditor bleibt ein Ziel.
 
 | Baustein | Verantwortung |
 |---|---|
@@ -33,7 +33,7 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P0 | Originale sichern, Quelleninventar, Modi und Tasten katalogisieren | Identität geprüft, Seitenbelege und offene Punkte dokumentiert | In dieser Analyse bearbeitet |
 | P0 | Original-Programmdateien statisch untersuchen | Dateitypen, Abhängigkeiten und Laufzeitplan belegt | Wartet auf Programmdateien |
 | P0 | Flutter/Dart-Machbarkeitstest für fünf Zielsysteme | Gemeinsamer Kern und UI-Ansatz geprüft; tatsächlich erreichbare Windows-/Android-Builds und übrige offene Zieltests dokumentiert | Core und erste Flutter-Ansicht im Testengine geprüft; fünf Gerüste erzeugt, native Builds/Gerätetests offen |
-| P1 | Minimaler Zustandskern und strukturierter Editor | ON/AC/DEL, Cursor, SHIFT/ALPHA, MENU/SETUP und Ergebniszustand geprüft | Linearer Zustand, AC/DEL, Cursor und 25 Primäraktionen geprüft; natürlicher Editor/ON/Modifier/Menüs offen |
+| P1 | Minimaler Zustandskern und strukturierter Editor | ON/AC/DEL, Cursor, SHIFT/ALPHA, MENU/SETUP und Ergebniszustand geprüft | Beide Sitzungen, AC/DEL, natürliche Bruchfelder, vier Richtungen und Fehlerziele geprüft; vollständiger Editor/ON/Modifier/Menüs offen |
 | P1 | Grundrechnen mit Prioritäten, Brüchen, Ans und Winkeln | Geplante Referenzfälle samt Fehlern und Anzeigewechsel bestehen | Exaktes lineares Grundrechnen/Potenzen und Ans als Prototyp geprüft; Winkel/Anzeige offen |
 | P2 | Wissenschaftliche Funktionen, CALC, numerische Ableitung/Integral/SOLVE | Genauigkeit und problematische Eingaben reproduzierbar geprüft | Offen |
 | P2 | Gleichungen, komplexe Zahlen, Basis-N | Grenzen und Modusunterschiede geprüft | Offen |
@@ -42,7 +42,7 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P4 | Konstanten, Umrechnungen, QR und PC-Komfortfunktionen | Historische Datenstände und externe Schnittstellen entschieden | Offen |
 | P4 | Reproduzierbarer Build und Paketierung | Saubere lokale Installation und Testlauf reproduzierbar | Offen |
 
-Linearer Bedienzustand, strukturierte Sitzung, Brucheditor und natürliche Flutter-Ansicht sind geprüft und in der Hauptansicht über die eigene Wahl **Linear / Brüche** verbunden. Eine Source-Map markiert Fehlerfelder und ermöglicht die gezielte Wiederaufnahme. Als nächstes folgt vertikale Feldnavigation. Regeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md) und [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md). Die fehlenden Windows-/Android-Buildwerkzeuge bleiben ein getrenntes Paket. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien. Siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
+Linearer Bedienzustand, strukturierte Sitzung, Brucheditor und natürliche Flutter-Ansicht sind geprüft und in der Hauptansicht über die eigene Wahl **Linear / Brüche** verbunden. Source-Map und vier Richtungen ermöglichen gezielte Feldbearbeitung. Als nächstes folgt die Übernahme bestehender Operanden in eine Bruchvorlage. Regeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md), [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md) und [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md). Die fehlenden Windows-/Android-Buildwerkzeuge bleiben ein getrenntes Paket. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien. Siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
 
 ## Risiken und offene Entscheidungen
 

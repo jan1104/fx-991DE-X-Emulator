@@ -2,11 +2,13 @@
 
 Erster Flutter-Oberflächenprototyp mit gemeinsamem Dart-Core. Die Plattformgerüste für Android, iPhone/iPad, Windows, macOS und Linux sind mit Flutter 3.47.8 erzeugt. Native App-Pakete sind noch nicht gebaut oder auf Geräten getestet.
 
-Die Hauptansicht zeigt 50 Tastenplätze. **Linear** bietet 25 aktive Primäraktionen, **Brüche** 26 einschließlich Bruchvorlage. Weitere Funktionen sind sichtbar deaktiviert. Verfügbar sind lineare und natürliche Brucheingabe mit exakten Ergebnissen, Ans, Cursor, DEL/AC und lokalisierte Fehleranzeigen. SHIFT/ALPHA, Menüs und die weiteren Rechenmodi fehlen noch.
+Die Hauptansicht zeigt 50 Tastenplätze. **Linear** bietet 25 aktive Primäraktionen, **Brüche** 28 einschließlich Bruchvorlage und aller vier Richtungen. Weitere Funktionen sind sichtbar deaktiviert. Verfügbar sind lineare und natürliche Brucheingabe mit exakten Ergebnissen, Ans, Cursor, DEL/AC und lokalisierte Fehleranzeigen. SHIFT/ALPHA, Menüs und die weiteren Rechenmodi fehlen noch.
 
 Die natürliche `FractionExpressionView` ist über `StructuredCalculatorSession` angebunden. Beide Eingabearten behalten beim Umschalten ihre eigenen Entwürfe, Fehler, Ergebnisse und Ans; eine automatische Konvertierung gibt es nicht. Der Cursor wird innerhalb des Displays nachgeführt. Eigene Regeln und Beispiele stehen in [STRUKTURIERTE_SITZUNG.md](../../docs/STRUKTURIERTE_SITZUNG.md).
 
 Fehler in natürlichen Feldern werden durch einen roten Marker und Feldrahmen angezeigt. Links/Rechts öffnet die markierte Stelle; AC verwirft die Eingabe. Die Fehler-Nachführung bleibt innerhalb des Displays. Zuordnungsregeln, Rückfallverhalten und Grenzen stehen in [FEHLERPOSITIONEN.md](../../docs/FEHLERPOSITIONEN.md).
+
+Auf/Ab wechselt im Bruchmodus unmittelbar zwischen zugehörigem Zähler und Nenner, mit begrenztem logischem Tokenoffset. Hardware-Up/Down ist nur dort zugeordnet. Auch diese Pfeile öffnen nach einem Fehler zunächst die markierte Stelle. Die lineare Eingabe bleibt unverändert. Details: [VERTIKALE_NAVIGATION.md](../../docs/VERTIKALE_NAVIGATION.md).
 
 Die Oberfläche skaliert in der Breite und kann bei geringer Höhe vertikal gescrollt werden. Zugeordnete Hardwaretasten: Ziffern, `+ - * / ^ ( )`, Komma/Punkt, Enter, Links/Rechts, Backspace/Entf und Escape. Nicht zugeordnete Tasten und Ctrl/Alt/Meta-Kombinationen bleiben unbehandelt. Haltewiederholungen zugeordneter Ereignisse werden konsumiert, ohne weitere Rechneraktion. Tab und Space bleiben für die normale Fokus-/Buttonbedienung verfügbar. Für Ans und das eigene Vorzeichen existiert noch keine eigene Hardwarezuordnung.
 

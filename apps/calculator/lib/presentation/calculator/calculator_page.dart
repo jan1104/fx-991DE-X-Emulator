@@ -336,6 +336,27 @@ class _CalculatorPageState extends State<CalculatorPage> {
               ),
             ),
           const SizedBox(height: 8),
+          if (_fractions)
+            Row(
+              children: [
+                Tooltip(
+                  message: 'Zahl, Ans oder Bruch links vom Cursor übernehmen',
+                  child: TextButton(
+                    key: const ValueKey('action-wrap-fraction'),
+                    onPressed: editing && structured.editor.cursor.offset > 0
+                        ? () => _pressId('ACTION_WRAP_FRACTION')
+                        : null,
+                    child: const Text('Als Zähler'),
+                  ),
+                ),
+                const Expanded(
+                  child: Text(
+                    'Zahl, Ans oder Bruch links vom Cursor übernehmen.',
+                    style: TextStyle(fontSize: 11, color: Color(0xFF56634D)),
+                  ),
+                ),
+              ],
+            ),
           if (_fractions && phase == CalculatorPhase.error)
             const Padding(
               padding: EdgeInsets.only(bottom: 8),

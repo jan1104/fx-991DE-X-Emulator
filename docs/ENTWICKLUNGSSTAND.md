@@ -1,5 +1,34 @@
 # Entwicklungsstand
 
+## 28.10.2026 nachmittags: vorhandene Atome als Zähler übernehmen
+
+Ausgangsbasis `ef379f7`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Arbeitspaket ergänzt eine ausdrücklich ausgelöste Übernahme vorhandener Bausteine in eine neue Bruchvorlage.
+
+### Neu umgesetzt
+
+- `FractionEditor.wrapPreviousAtomInFraction()` übernimmt eine vollständige Zahl, ein atomisches Ans oder einen vorhandenen Bruch direkt links vom Cursor als Zähler. Der Nenner bleibt leer und erhält den Cursor.
+- Vor-/Nachbarn und Vorzeichen bleiben außerhalb der Vorlage erhalten. Ein Cursor mitten in einer Zahl wird abgewiesen; Operatoren, Gruppen und ganze Potenzketten werden nicht geraten. Die Regeln sind eigene begrenzte Prototypentscheidungen.
+- Die neue eigene Appaktion **Als Zähler** ist in Brüche sichtbar und nur während der Bearbeitung hinter einem Token aktiv. Die physische Bruchtaste bleibt eine leere Vorlage; 50 Plätze und 28/25 aktive Primärbelegungen bleiben unverändert.
+- Atomare Prüfung beider Ressourcenlimits. Beim Übernehmen bestehender Brüche wird die maximale Tiefe des gesamten Kandidatenbaums geprüft, einschließlich aller übernommenen Nachkommen.
+
+Spezifikation, Beispiele und Grenzen stehen in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md). Ergebnis-/Fehlerphase verändern sich durch einen direkten Aufruf der neuen Aktion nicht. Die lineare Sitzung bleibt unverändert.
+
+### Prüfung
+
+Ein Subagent implementierte den Core samt 47 neuen Tests; ein zweiter schrieb 17 unabhängige durchgängige UI-Fälle. Der Core-Agent prüfte den Appdiff anschließend ohne konkrete Befunde. Die UI-Fälle prüfen unter anderem `12/3=4`, `(0,5)/2=1/4`, `2+3/2=7/2`, Übernahme eines ganzen Bruchs, atomisches Ans, Suffixerhalt, Verschachtelung und 320-Pixel-Layout. Hinzu kommen abgewiesene Operatoren/Gruppen/Zahlensplits/fehlerhafte Dezimalzahlen, deaktivierte Phasen und die unveränderte physische Tastatur. Es wird kein originaler Casio-Tastenablauf nachgewiesen.
+
+Ein erster Core-Teillauf zeigte eine fehlende Zuordnung von `/` im neuen Testhelfer; diese wurde ergänzt. Der Produktionscode benötigte dafür keine Korrektur. Die Tiefentests prüfen insbesondere erlaubte 15→16 Ebenen, abgewiesene 16→17 Ebenen am Wurzel- und verschachtelten Cursor sowie einen tiefen Geschwisterzweig, der eine flache Übernahme nicht verhindern darf.
+
+Abschließender vollständiger Core-Prüfhelfer mit Dart 3.13.7 auf Windows: SDK-Vergleich und erzwungene Lockdatei erfolgreich, 20 Dateien ohne Formatänderung, statische Analyse ohne Befund und **383 Coretests bestanden**. Log lokal unter `build/reports/core-tests.log`. Der vorherige direkte Subagentenlauf wird nicht addiert.
+
+Abschließender vollständiger App-Prüfhelfer mit unverändertem Flutter 3.47.8 / Dart 3.13.7: SDK-/Revisionsvergleich, erzwungene Lockdatei, 14 Dateien ohne Formatänderung, statische Analyse ohne Befund und **129 App-/Mappingtests bestanden**. Log lokal unter `build/reports/flutter-tests.log`. Die Katalog-/Dokumentlinkprüfung ergänzt diese ausführbaren Prüfungen. Kein konkreter Produktfehler wurde in diesem Paket gefunden.
+
+Der explizite Vorschauhelfer bestand in vier Szenarien. Die neue lokale ignorierte Datei `build/reports/calculator-capture.png` wurde bei 420×1100 visuell geprüft: Die tatsächliche Buttonfolge `12`, **Als Zähler**, `3`, `=` zeigt die natürliche Vorlage `12/3` und das Ergebnis 4, die Erklärung der Appaktion sowie die unveränderte vollständige Tastatur. Der Button ist nach dem Ergebnis korrekt deaktiviert. Dies ist ein QA-Szenario im Testengine, kein nativer Gerätetest. Die Systemschrift wird weiterhin nur lokal geladen.
+
+### Nächster Schritt
+
+Die explizite Übernahme vollständig geschlossener Klammergruppen als eigenes begrenztes Paket spezifizieren. Allgemeine Termauswahl, vollständige Potenzketten, automatische Übernahme durch die Original-Bruchtaste und Undo/Entpacken bleiben offen. Native Builds, echte Geräte-/Screenreaderprüfungen und Originalvergleich wurden nicht ergänzt. Kein Push, keine Originaldateien verändert.
+
 ## 28.10.2026 morgens: vertikale Bruchfeldnavigation
 
 Ausgangsbasis `80301dc`, Arbeitskopie vor Beginn sauber. Das dokumentierte nächste Arbeitspaket ergänzt Auf/Ab durchgängig im vorhandenen strukturierten Editor, der Sitzung und der Hauptansicht.

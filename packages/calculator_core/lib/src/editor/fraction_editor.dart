@@ -147,6 +147,109 @@ final class FractionEditor {
     );
   }
 
+  /// Explicitly moves the immediately preceding atom into a new numerator.
+  /// Signs, operators and parenthesized groups are never inferred as part of it.
+  /// The denominator starts empty, and all resource checks are atomic.
+  void wrapPreviousAtomInFraction() {
+    final cursor = _snapshot.cursor;
+    if (cursor.offset == 0) {
+      throw const CalculatorException(
+        CalculatorErrorCode.unsupported,
+        'No preceding atom to wrap',
+      );
+    }
+    final nodes = _field.nodes.toList();
+    var start = cursor.offset - 1;
+    final previous = nodes[start];
+    if (_isDecimalToken(previous)) {
+      if (cursor.offset < nodes.length &&
+          _isDecimalToken(nodes[cursor.offset])) {
+        throw const CalculatorException(
+          CalculatorErrorCode.unsupported,
+          'Cursor inside numeric literal',
+        );
+      }
+      while (start > 0 && _isDecimalToken(nodes[start - 1])) {
+        start--;
+      }
+      final source = nodes
+          .sublist(start, cursor.offset)
+          .map((node) => (node as EditorText).text)
+          .join();
+      try {
+        Rational.parseDecimal(source);
+      } on FormatException {
+        throw const CalculatorException(
+          CalculatorErrorCode.syntax,
+          'The preceding decimal number is malformed',
+        );
+      } on RangeError {
+        throw const CalculatorException(
+          CalculatorErrorCode.limit,
+          'The preceding number exceeds the input budget',
+        );
+      }
+    } else if (previous is! EditorFraction &&
+        !(previous is EditorText && previous.text == 'Ans')) {
+      throw const CalculatorException(
+        CalculatorErrorCode.unsupported,
+        'Only a preceding number, Ans or fraction can be wrapped',
+      );
+    }
+    if (_count(_snapshot.root) >= maxNodes) {
+      throw const CalculatorException(
+        CalculatorErrorCode.limit,
+        'Editor node limit reached',
+      );
+    }
+    final numerator = EditorSequence._(nodes.sublist(start, cursor.offset));
+    nodes.replaceRange(start, cursor.offset, [
+      EditorFraction._(numerator, EditorSequence._([])),
+    ]);
+    final root = _replace(
+      _snapshot.root,
+      cursor.path,
+      0,
+      EditorSequence._(nodes),
+    );
+    // Wrapping an existing fraction also pushes every descendant down a level.
+    // Checking just the active cursor depth would miss those hidden descendants.
+    if (_fractionDepth(root) > maxDepth) {
+      throw const CalculatorException(
+        CalculatorErrorCode.limit,
+        'Fraction nesting limit reached',
+      );
+    }
+    _snapshot = FractionEditorSnapshot._(
+      root,
+      EditorCursor._([
+        ...cursor.path,
+        EditorStep._(start, FractionField.denominator),
+      ], 0),
+    );
+  }
+
+  static bool _isDecimalToken(EditorNode node) =>
+      node is EditorText &&
+      node.text.length == 1 &&
+      '0123456789.,'.contains(node.text);
+
+  static int _fractionDepth(EditorSequence sequence) {
+    var deepest = 0;
+    for (final node in sequence.nodes) {
+      if (node is! EditorFraction) continue;
+      final numeratorDepth = _fractionDepth(node.numerator);
+      final denominatorDepth = _fractionDepth(node.denominator);
+      final depth =
+          1 +
+          (numeratorDepth > denominatorDepth
+              ? numeratorDepth
+              : denominatorDepth);
+      if (depth > deepest) deepest = depth;
+    }
+    return deepest;
+  }
+
   void _insert(EditorNode node, {required bool enter}) {
     if (_count(_snapshot.root) >= maxNodes) {
       throw const CalculatorException(

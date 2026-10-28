@@ -43,6 +43,10 @@ final class StructuredCalculatorSession {
   /// Fraction and vertical-navigation IDs are local to this session; the
   /// linear key enum stays unchanged.
   StructuredCalculatorSnapshot pressId(String id) {
+    if (id == 'ACTION_WRAP_FRACTION') {
+      if (_snapshot.phase != CalculatorPhase.editing) return _snapshot;
+      return _apply((editor) => editor.wrapPreviousAtomInFraction());
+    }
     if (id == 'KEY_FRACTION') return _pressFraction();
     if (id == 'KEY_UP' || id == 'KEY_DOWN') {
       return _pressVertical(up: id == 'KEY_UP');

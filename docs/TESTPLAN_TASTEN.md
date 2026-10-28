@@ -4,6 +4,8 @@ Stand: 25.10.2026. **Planungsstand: alle Fälle `planned`; keine Taste wurde hie
 
 ## Verbindliches Tasteninventar
 
+Ergänzung 28.10.2026 nachmittags: Die neue explizite Appaktion **Als Zähler** (`ACTION_WRAP_FRACTION`) ist keine zusätzliche physische Taste und verändert `KEY_FRACTION` nicht. Corefälle in `test/wrap_fraction_test.dart` und Appfälle in `test/fraction_capture_test.dart` prüfen Atomübernahme, Nachbar-/Cursorerhalt, Ablehnungen und Ressourcenlimits. Der vollständige Original-Bruch-/SHIFT-/ALPHA-Katalog bleibt davon getrennt; Details in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
+
 Ergänzung 28.10.2026 morgens: `KEY_UP` und `KEY_DOWN` sind im eigenen strukturierten Bruchmodus als Primäraktionen angebunden. Core-/Appfälle in den jeweiligen `test/vertical_navigation_test.dart` prüfen unmittelbaren Feldwechsel, geklemmte Offsets, No-op-Grenzen, Ergebnis-/Fehlerwiederaufnahme und Hardwareereignisse. Linear und die übrigen Belegungen/Modi dieser physischen Tasten bleiben davon getrennt. Die vollständigen Inventarzeilen behalten deshalb ihren Planungsstatus. Eigener Vertrag: [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
 
 Ergänzung 28.10.2026: Links/Rechts nach einem strukturierten Fehler öffnet jetzt das separat markierte Ziel aus der Source-Map. Corefälle in `editor_projection_test.dart`/`structured_error_mapping_test.dart` und Appfälle in `structured_error_location_test.dart` prüfen unter anderem einen Fehler in einem anderen Feld als dem vorherigen Bearbeitungscursor. Die frühere Rückkehr zum unveränderten Cursor gilt nur noch als Rückfallregel für Fehler ohne Position. Die übrigen Original-/Modusbelegungen bleiben offen; [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md) dokumentiert den eigenen Vertrag.

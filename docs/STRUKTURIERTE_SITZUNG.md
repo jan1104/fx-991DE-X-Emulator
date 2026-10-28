@@ -25,6 +25,7 @@ Die Ergebniszeile zeigt weiterhin `n/d`; nur die Eingabe verwendet natürliche B
 | Aktion | Wirkung |
 |---|---|
 | `KEY_FRACTION` während Eingabe | Fügt eine leere Bruchvorlage ein, Cursor im Zähler; keine automatische Übernahme benachbarter Tokens |
+| Eigene Appaktion `ACTION_WRAP_FRACTION` / Als Zähler | Übernimmt das vorherige zulässige Atom als Zähler, Cursor im leeren Nenner; nur während der Bearbeitung wirksam |
 | Links/Rechts während Eingabe | Tiefendurchlauf durch Zähler, Nenner und Elternfeld gemäß Editorvertrag |
 | Auf/Ab während Eingabe | Wechsel zwischen den unmittelbar zugehörigen Zähler-/Nennerfeldern mit begrenztem Tokenoffset; kein automatischer Aufstieg |
 | DEL | Entfernt vorherigen Knoten vollständig; am Feldanfang keine Zusammenziehung |
@@ -52,4 +53,4 @@ Die konkreten vollständigen Testzahlen und Laufbedingungen stehen im [Entwicklu
 
 Der explizite Vorschauhelfer `apps/calculator/tool/render_preview.dart` erzeugt jetzt beide Hauptansichten bei 420×1100 mit demselben Ergebnis `1/2`. Lokale ignorierte Artefakte: `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png`. Die früheren reinen Komponentenbilder bleiben als eigene QA-Helfer verfügbar.
 
-Offen bleiben unter anderem geometrische Spalten/Vorfahrensuche, gemischte Brüche, Übernahme vorhandener Operanden in Vorlagen, Wurzeln und natürliche Exponentenfelder, gemeinsame originale Setup-/Speicherregeln sowie native Windows-/Android-/Apple-/Linux-Prüfungen. Details zum Editorbaum: [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).
+Die explizite Übernahme einfacher Atome ist als zusätzliche Appaktion ergänzt, siehe [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md). Offen bleiben unter anderem geometrische Spalten/Vorfahrensuche, gemischte Brüche, geschlossene Gruppen/allgemeine Termauswahl, Wurzeln und natürliche Exponentenfelder, gemeinsame originale Setup-/Speicherregeln sowie native Windows-/Android-/Apple-/Linux-Prüfungen. Details zum Editorbaum: [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).

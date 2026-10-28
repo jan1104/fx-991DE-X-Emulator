@@ -10,6 +10,8 @@ Fehler in natürlichen Feldern werden durch einen roten Marker und Feldrahmen an
 
 Auf/Ab wechselt im Bruchmodus unmittelbar zwischen zugehörigem Zähler und Nenner, mit begrenztem logischem Tokenoffset. Hardware-Up/Down ist nur dort zugeordnet. Auch diese Pfeile öffnen nach einem Fehler zunächst die markierte Stelle. Die lineare Eingabe bleibt unverändert. Details: [VERTIKALE_NAVIGATION.md](../../docs/VERTIKALE_NAVIGATION.md).
 
+Die zusätzliche Appaktion **Als Zähler** übernimmt während der Bearbeitung eine vollständige Zahl, Ans oder einen vorhandenen Bruch unmittelbar links vom Cursor in eine neue Bruchvorlage. Die physische Taste `□/□` bleibt unverändert. Der Button ist in Ergebnis-/Fehlerphase und am Feldanfang deaktiviert; Zahlen werden am Cursor nicht aufgeteilt. Vertrag und Beispiele: [BRUCHUEBERNAHME.md](../../docs/BRUCHUEBERNAHME.md).
+
 Die Oberfläche skaliert in der Breite und kann bei geringer Höhe vertikal gescrollt werden. Zugeordnete Hardwaretasten: Ziffern, `+ - * / ^ ( )`, Komma/Punkt, Enter, Links/Rechts, Backspace/Entf und Escape. Nicht zugeordnete Tasten und Ctrl/Alt/Meta-Kombinationen bleiben unbehandelt. Haltewiederholungen zugeordneter Ereignisse werden konsumiert, ohne weitere Rechneraktion. Tab und Space bleiben für die normale Fokus-/Buttonbedienung verfügbar. Für Ans und das eigene Vorzeichen existiert noch keine eigene Hardwarezuordnung.
 
 ## Prüfen
@@ -29,6 +31,8 @@ Oder im App-Ordner mit dieser SDK-Version: `flutter pub get --enforce-lockfile`,
 Im App-Ordner `flutter test tool/render_preview.dart` ausführen. Der explizite QA-Helfer erzeugt `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png` im Repository bei 420×1100 und prüft jeweils das exakte Ergebnis 1/2. Für lesbare Vorschau lädt er lokal eine Systemschrift; unter Windows standardmäßig Segoe UI, alternativ Dateipfad über `PREVIEW_FONT`. Diese Schrift wird nicht in das Projekt kopiert. Die mit Flutter erzeugten Material-Icons werden aus den Testassets geladen. Die Vorschau ist keine native Anwendung und wird nicht als eigener weiterer Gerätetest gezählt.
 
 Ein drittes Szenario desselben Helfers erzeugt `build/reports/calculator-error.png` mit `1/(2/0)`, mathematischem Fehler, markiertem innerem Nenner und Bearbeitungshinweis.
+
+Ein viertes Szenario erzeugt `build/reports/calculator-capture.png` über `12`, **Als Zähler**, `3`, `=` mit dem Ergebnis 4. Es verwendet die zusätzliche Appaktion tatsächlich über ihren sichtbaren Button.
 
 `flutter test tool/render_fraction_preview.dart --no-pub` erzeugt separat `build/reports/fraction-view.png` mit leerer Bruchvorlage, Bruchsumme, Verschachtelung und Pfadcursor. Das ist eine QA-Seite für den neuen Anzeigebaustein; die Rechnerroute bleibt unverändert.
 

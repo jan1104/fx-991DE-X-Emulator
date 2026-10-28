@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 28.10.2026
 
-Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Hauptansicht bietet **Linear** mit 25 aktiven Primäraktionen und **Brüche** mit 28, einschließlich Bruchvorlage und aller vier Pfeilrichtungen. Verschachtelte Bruchfelder, natürliche Eingabeanzeige und Cursor-Nachführung sind angebunden. Eine Source-Map markiert Fehlerfelder und öffnet sie per Pfeiltaste zum Bearbeiten. Beide Eingabearten behalten eigene Entwürfe und Ans; dies ist eine eigene Prototypregel. 336 Coretests und 112 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
+Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Hauptansicht bietet **Linear** mit 25 aktiven Primäraktionen und **Brüche** mit 28, einschließlich Bruchvorlage und aller vier Pfeilrichtungen. Eine zusätzliche Appaktion **Als Zähler** übernimmt eine vorhandene Zahl, Ans oder einen Bruch in eine neue Vorlage. Natürliche Eingabeanzeige, Cursor-Nachführung und markierte Fehlerfelder sind angebunden. Beide Eingabearten behalten eigene Entwürfe und Ans; dies ist eine eigene Prototypregel. 383 Coretests und 129 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 
@@ -20,6 +20,7 @@ Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche sind implementier
 - [Bruchtaste, strukturierte Sitzung und App-Bedienung](docs/STRUKTURIERTE_SITZUNG.md)
 - [Fehlerstellen und gezielte Wiederaufnahme](docs/FEHLERPOSITIONEN.md)
 - [Auf/Ab zwischen natürlichen Bruchfeldern](docs/VERTIKALE_NAVIGATION.md)
+- [Vorhandene Bausteine als Zähler übernehmen](docs/BRUCHUEBERNAHME.md)
 - [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 

@@ -23,6 +23,8 @@ Ein separater `FractionEditor` ergänzt strukturierte Bruchvorlagen, verschachte
 
 `FractionEditor.project()` ergänzt eine unveränderliche Source-Map; strukturelle Diagnosen liefern Feldcursor, und `moveTo()` validiert deren Wiederaufnahme. Die Sitzung veröffentlicht Fehlerziele separat als `errorCursor`. Bestehende `toExpression()`-/`evaluate()`-Aufrufer erhalten weiterhin die bisherigen Ausnahmetypen. Details: [FEHLERPOSITIONEN.md](../../docs/FEHLERPOSITIONEN.md).
 
+`wrapPreviousAtomInFraction()` übernimmt eine vollständige Zahl, Ans oder einen vorhandenen Bruch als Zähler. Die eigene Sitzungsaktion `ACTION_WRAP_FRACTION` wirkt nur während der Bearbeitung und verändert weder das physische Tastenregister noch die lineare Sitzung. Knoten- und gesamte Unterbaumtiefe werden vor Veröffentlichung geprüft. Regeln: [BRUCHUEBERNAHME.md](../../docs/BRUCHUEBERNAHME.md).
+
 Die Flutter-Oberfläche verwendet beide Sitzungen. Noch nicht implementiert: vollständiger natürlicher Formeleditor, Variablen/M-Speicher, SHIFT/ALPHA, Menüs/Setup, Rundungs-/Casio-Ausgaberegeln, trigonometrische Funktionen und weitere Modi. Eingabelänge, Verschachtelung und Rechengröße sind mit eigenen Ressourcenbudgets begrenzt; diese sind keine Casio-Hardwaregrenzen. `0^0` und nichtganzzahlige Potenzen werden im Evaluator vorerst als nicht unterstützt gemeldet. Das Zahlenmodell allein verwendet für die nullte Potenz die algebraische Konvention 1.
 
 Der tatsächliche Prüfstand steht in [ENTWICKLUNGSSTAND.md](../../docs/ENTWICKLUNGSSTAND.md). Die umfangreichen Referenzkataloge bleiben Planungsdaten; eine bestandene Coreprüfung bedeutet keinen bestandenen UI-/Originalvergleich.

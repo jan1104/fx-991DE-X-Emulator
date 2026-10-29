@@ -2,9 +2,9 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 28.10.2026
+## Stand am 29.10.2026
 
-Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche sind implementiert: exakte Brüche/Dezimalzahlen, Grundoperatoren, Klammern, ganzzahlige Potenzen, Cursor und Ans. Die Hauptansicht bietet **Linear** mit 25 aktiven Primäraktionen und **Brüche** mit 28, einschließlich Bruchvorlage und aller vier Pfeilrichtungen. Eine zusätzliche Appaktion **Als Zähler** übernimmt Zahlen, Ans, Brüche oder geschlossene Klammergruppen in eine neue Vorlage. Natürliche Eingabeanzeige, Cursor-Nachführung und markierte Fehlerfelder sind angebunden. Beide Eingabearten behalten eigene Entwürfe und Ans; dies ist eine eigene Prototypregel. 419 Coretests und 144 App-/Mappingtests bestehen; native App-Builds sind noch offen. Original-Programmdateien liegen weiterhin nicht vor. Details, Grenzen und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
+Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche für lineare und natürliche Brucheingabe sind vorhanden. Der Core unterstützt jetzt auch die Quadriertaste mit eindeutiger Postfixbindung; **462 Coretests bestehen**. Die zusätzliche Appanbindung ist vorbereitet und statisch geprüft, ihre Ausführungsprüfung ist durch Windows Code Integrity blockiert. Die bisherigen **144 bestandenen App-/Mappingtests gehören zum Vorgängerstand**; die aktuelle Oberfläche und die 25 neuen Quadratfälle sind noch nicht ausgeführt. Der neue Tastenstand sieht 26 Primäraktionen in Linear und 29 in Brüche vor. Eigene Entwürfe/Ans, Bruchübernahme, Cursor-Nachführung und Fehlerfelder bleiben Teil des Prototyps. Native Builds und Original-Programmdateien sind weiterhin offen. Details, Diagnose und nächste Schritte stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md).
 
 ## Dokumentation
 
@@ -21,6 +21,7 @@ Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche sind implementier
 - [Fehlerstellen und gezielte Wiederaufnahme](docs/FEHLERPOSITIONEN.md)
 - [Auf/Ab zwischen natürlichen Bruchfeldern](docs/VERTIKALE_NAVIGATION.md)
 - [Vorhandene Bausteine als Zähler übernehmen](docs/BRUCHUEBERNAHME.md)
+- [Quadrieren: Bindung, Coreprüfung und offene Appprüfung](docs/QUADRIEREN.md)
 - [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 

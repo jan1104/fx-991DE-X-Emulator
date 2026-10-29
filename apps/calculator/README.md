@@ -2,7 +2,7 @@
 
 Erster Flutter-Oberflächenprototyp mit gemeinsamem Dart-Core. Die Plattformgerüste für Android, iPhone/iPad, Windows, macOS und Linux sind mit Flutter 3.47.8 erzeugt. Native App-Pakete sind noch nicht gebaut oder auf Geräten getestet.
 
-Die Hauptansicht zeigt 50 Tastenplätze. **Linear** bietet 25 aktive Primäraktionen, **Brüche** 28 einschließlich Bruchvorlage und aller vier Richtungen. Weitere Funktionen sind sichtbar deaktiviert. Verfügbar sind lineare und natürliche Brucheingabe mit exakten Ergebnissen, Ans, Cursor, DEL/AC und lokalisierte Fehleranzeigen. SHIFT/ALPHA, Menüs und die weiteren Rechenmodi fehlen noch.
+Stand 29.10.2026: Die bestehende lineare und natürliche Brucheingabe ist um eine vorbereitete x²-Anbindung ergänzt. Der neue Code sieht 50 Tastenplätze mit 26 aktiven Primäraktionen in **Linear** und 29 in **Brüche** vor. Der Quadrat-Core ist geprüft; die aktuelle Appausführung ist durch Windows Code Integrity am Flutter-Testcompiler blockiert. Die zuletzt bestandenen 144 App-/Mappingtests gehören zum Vorgängerstand, 25 neue Quadratfälle sind noch nicht ausgeführt. Statische Analyse und Formatprüfung des aktuellen Appcodes bestehen. Diagnose: [ENTWICKLUNGSSTAND.md](../../docs/ENTWICKLUNGSSTAND.md), Vertrag: [QUADRIEREN.md](../../docs/QUADRIEREN.md).
 
 Die natürliche `FractionExpressionView` ist über `StructuredCalculatorSession` angebunden. Beide Eingabearten behalten beim Umschalten ihre eigenen Entwürfe, Fehler, Ergebnisse und Ans; eine automatische Konvertierung gibt es nicht. Der Cursor wird innerhalb des Displays nachgeführt. Eigene Regeln und Beispiele stehen in [STRUKTURIERTE_SITZUNG.md](../../docs/STRUKTURIERTE_SITZUNG.md).
 
@@ -26,6 +26,8 @@ Vom Repository aus unter PowerShell:
 
 Oder im App-Ordner mit dieser SDK-Version: `flutter pub get --enforce-lockfile`, `flutter analyze`, `flutter test`. Der Prüfhelfer speichert Testausgaben im ignorierten `build/reports/flutter-tests.log` des Repositorys. Dies sind Widget-/Mappingtests, keine Betriebssystem-Installationstests.
 
+Aktuell benötigt `flutter test` wieder eine richtlinienkonform ausführbare Compilerumgebung. Der blockierte Versuch und der betroffene SDK-Pfad sind lokal unter `build/reports/square-flutter-blocked.log` dokumentiert. Nach Wiederherstellung dieser Voraussetzung zuerst den vollständigen Prüfhelfer ausführen; bestehende Vorab-Screenshots sind kein Nachweis des neuen Quadratstands.
+
 ## Lokale visuelle Vorschau
 
 Im App-Ordner `flutter test tool/render_preview.dart` ausführen. Der explizite QA-Helfer erzeugt `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png` im Repository bei 420×1100 und prüft jeweils das exakte Ergebnis 1/2. Für lesbare Vorschau lädt er lokal eine Systemschrift; unter Windows standardmäßig Segoe UI, alternativ Dateipfad über `PREVIEW_FONT`. Diese Schrift wird nicht in das Projekt kopiert. Die mit Flutter erzeugten Material-Icons werden aus den Testassets geladen. Die Vorschau ist keine native Anwendung und wird nicht als eigener weiterer Gerätetest gezählt.
@@ -35,6 +37,8 @@ Ein drittes Szenario desselben Helfers erzeugt `build/reports/calculator-error.p
 Ein viertes Szenario erzeugt `build/reports/calculator-capture.png` über `12`, **Als Zähler**, `3`, `=` mit dem Ergebnis 4. Es verwendet die zusätzliche Appaktion tatsächlich über ihren sichtbaren Button.
 
 Ein fünftes Szenario erzeugt `build/reports/calculator-group-capture.png` über `(2+4)`, **Als Zähler**, `3`, `=` mit dem Ergebnis 2. Die Klammergruppe bleibt sichtbar als vollständiger Zähler erhalten.
+
+Ein sechstes Quadrat-Szenario ist vorbereitet (`3`, x², x², `=` → 81), aber wegen des Compilerblocks noch nicht ausgeführt. `calculator-square.png` wurde noch nicht erzeugt oder visuell geprüft.
 
 `flutter test tool/render_fraction_preview.dart --no-pub` erzeugt separat `build/reports/fraction-view.png` mit leerer Bruchvorlage, Bruchsumme, Verschachtelung und Pfadcursor. Das ist eine QA-Seite für den neuen Anzeigebaustein; die Rechnerroute bleibt unverändert.
 

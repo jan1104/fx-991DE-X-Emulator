@@ -315,6 +315,7 @@ class _FormulaContent extends StatelessWidget {
               '*' => 'mal',
               '/' => 'geteilt durch',
               '^' => 'hoch',
+              '²' => 'zum Quadrat',
               'Ans' => 'Ans',
               _ => text,
             },

@@ -242,8 +242,8 @@ void main() {
   });
 
   group('structured session vertical actions', () {
-    test('linear enum remains 25 and rejects both vertical action IDs', () {
-      expect(CalculatorKey.values, hasLength(25));
+    test('linear enum has 26 and rejects both vertical action IDs', () {
+      expect(CalculatorKey.values, hasLength(26));
       final linear = CalculatorSession();
       for (final id in ['KEY_UP', 'KEY_DOWN']) {
         expect(CalculatorKey.fromId(id), isNull);
@@ -251,7 +251,7 @@ void main() {
         expect(() => linear.pressId(id), throwsA(isA<CalculatorException>()));
         expect(identical(linear.snapshot, before), isTrue);
       }
-      // The structured session accepts the 25 enum IDs and three local IDs.
+      // The structured session accepts the 26 enum IDs and three local IDs.
       final structured = StructuredCalculatorSession();
       for (final id in ['KEY_UP', 'KEY_DOWN']) {
         expect(structured.pressId(id).phase, CalculatorPhase.editing);

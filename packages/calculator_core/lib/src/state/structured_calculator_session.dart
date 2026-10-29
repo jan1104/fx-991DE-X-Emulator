@@ -101,7 +101,9 @@ final class StructuredCalculatorSession {
     return _apply((editor) {
       if (_snapshot.phase == CalculatorPhase.result) {
         editor.clear();
-        if (key.isBinaryOperator) editor.insertText('Ans');
+        if (key.isBinaryOperator || key == CalculatorKey.square) {
+          editor.insertText('Ans');
+        }
       }
       // The supported enum's control keys have all been handled above.
       editor.insertText(key.text!);

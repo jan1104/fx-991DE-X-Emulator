@@ -19,6 +19,7 @@ enum CalculatorKey {
   multiply('KEY_MULTIPLY', '*'),
   divide('KEY_DIVIDE', '/'),
   power('KEY_POWER', '^'),
+  square('KEY_SQUARE', '²'),
   negate('KEY_NEGATE', '-'),
   decimal('KEY_DECIMAL', ','),
   leftParenthesis('KEY_LPAREN', '('),
@@ -140,7 +141,9 @@ final class CalculatorSession {
     var tokens = _snapshot.tokens.toList();
     var cursor = _snapshot.cursor;
     if (_snapshot.phase == CalculatorPhase.result) {
-      tokens = key.isBinaryOperator ? ['Ans'] : [];
+      tokens = key.isBinaryOperator || key == CalculatorKey.square
+          ? ['Ans']
+          : [];
       cursor = tokens.length;
     }
     final text = key.text!; // All non-text control keys were handled above.

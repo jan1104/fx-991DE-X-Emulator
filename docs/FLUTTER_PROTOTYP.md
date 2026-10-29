@@ -1,5 +1,7 @@
 # Flutter-Oberflächenprototyp
 
+Aktueller Prüfvorbehalt 29.10.2026: Die x²-Anbindung ist vorbereitet und `flutter analyze --no-pub` besteht, aber Windows Code Integrity blockiert `dartaotruntime.exe` beim Start des Flutter-Testcompilers. Neue Quadrat-Widgetfälle und der aktuelle vollständige Appstand sind daher nicht ausgeführt; die folgenden bestandenen Zahlen/Bilder dokumentieren ältere Stände. Der Core besteht mit 462 Tests unabhängig davon. Diagnose und verbleibende Prüfungen: [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md), [QUADRIEREN.md](QUADRIEREN.md).
+
 Fortschreibung 28.10.2026 abends: **Als Zähler** unterstützt nun auch geschlossene Klammergruppen einschließlich Verschachtelung und enthaltener Brüche. Die physische Tastatur und Aktivierungsphasen bleiben unverändert. 144 App-/Mappingtests bestehen; Grenzen und Beispiele stehen in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).
 
 Fortschreibung 28.10.2026 nachmittags: Die zusätzliche eigene Appaktion **Als Zähler** übernimmt eine Zahl, Ans oder einen vorhandenen Bruch in eine neue Vorlage. Die physische Bruchtaste und 28/25 aktive Primärbelegungen bleiben unverändert. 129 App-/Mappingtests bestehen. Regeln, abgewiesene Fälle und Schutzgrenzen: [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).

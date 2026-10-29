@@ -4,6 +4,8 @@ Stand: 25.10.2026. **Planungsstand: alle Fälle `planned`; keine Taste wurde hie
 
 ## Verbindliches Tasteninventar
 
+Ergänzung 29.10.2026: `KEY_SQUARE` ist im Core beider Sitzungen geprüft. `packages/calculator_core/test/square_key_test.dart` ergänzt insbesondere wiederholtes Quadrieren, Vorzeichen/Klammern (K02 als mathematische Projektion), Brüche, Ans und Grenzen. Die 25 Fälle unter `apps/calculator/test/square_key_test.dart` sind geschrieben und statisch analysiert, wegen Windows-Code-Integrity-Block des Testcompilers jedoch nicht ausgeführt. Die gesamte Original-Inventarzeile bleibt geplant; SHIFT-Kubieren und Basis-N-DEC sind nicht durch diese Primäraktion abgedeckt. Details: [QUADRIEREN.md](QUADRIEREN.md).
+
 Ergänzung 28.10.2026 abends: Die unveränderte eigene Appaktion **Als Zähler** unterstützt nun auch geschlossene Klammergruppen. Core-/Appfälle in den jeweiligen `test/group_capture_test.dart` prüfen die bewusste Erweiterung einschließlich verschachtelter Gruppen, enthaltenen Brüchen, Source-Map-Korrektur und Ressourcenlimits. Die physische Bruchtastenbelegung und ihre Original-Inventarzeile bleiben unverändert; [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md) grenzt die eigene Editorregel ab.
 
 Ergänzung 28.10.2026 nachmittags: Die neue explizite Appaktion **Als Zähler** (`ACTION_WRAP_FRACTION`) ist keine zusätzliche physische Taste und verändert `KEY_FRACTION` nicht. Corefälle in `test/wrap_fraction_test.dart` und Appfälle in `test/fraction_capture_test.dart` prüfen Atomübernahme, Nachbar-/Cursorerhalt, Ablehnungen und Ressourcenlimits. Der vollständige Original-Bruch-/SHIFT-/ALPHA-Katalog bleibt davon getrennt; Details in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md).

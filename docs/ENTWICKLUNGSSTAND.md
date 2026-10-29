@@ -1,5 +1,32 @@
 # Entwicklungsstand
 
+## 29.10.2026: Quadriertaste mit expliziter Postfixbindung
+
+Ausgangsbasis `97bc352`, Arbeitskopie vor Beginn sauber. Das dokumentierte nächste Arbeitspaket bindet die vorhandene physische x²-Taste in beiden Sitzungen und der Hauptansicht an.
+
+### Neu umgesetzt
+
+- Eigenständiger Postfixoperator `²` im vorhandenen Lexer/Parser. Wiederholungen werden links aufgebaut; `3²²` ergibt 81. Die bestehenden normalen Potenzen bleiben rechtsassoziativ. Der bestehende exakte Evaluator wird unverändert wiederverwendet.
+- `CalculatorKey.square` und strukturiertes Texttoken. Nach Ergebnis beginnt die Taste mit exakt gebundenem `Ans²`; während der Bearbeitung fügt sie `²` am Cursor ein. Ohne Basis entsteht erst bei `=` ein Syntaxfehler.
+- Das Register löst im vorbereiteten Appcode 26 Primäraktionen in Linear und 29 in Brüche auf; weiterhin 50 physische Plätze. Eigene Appaktionen und Hardwarezuordnung bleiben getrennt. Die natürliche Semantik nennt den Operator „zum Quadrat“. Die praktische Appprüfung dieses Standes ist noch offen.
+
+Die Operandbindung und Grenzen sind in [QUADRIEREN.md](QUADRIEREN.md) dokumentiert. Der vorhandene Quellenbefund H 19/29 und Referenzfall K02 werden verwendet; es findet keine erneute Gesamtanalyse der PDFs statt.
+
+### Prüfung
+
+Ein Subagent implementierte Parser und Sitzungen samt 43 neuen Coretests; ein zweiter schrieb 25 neue Widgetfälle und passte vier bestehende App-Inventarerwartungen gezielt an. Die Coretests trennen insbesondere `-2²=-4`, `(-2)²=4`, `3²²=81`, `2^3²=512` und `2²^3=64`. K02 ist als mathematische Projektion ergänzt, ohne einen Original-Display-/Setupvergleich zu behaupten. Zwei neue Testannahmen wurden präzisiert: Ein Größenlimit wird erst beim elften Quadrat erreicht; ein Cursoroffset war durch die bestehende vertikale Navigation bereits auf 1 geklemmt. Der Produktionscode bestand danach unverändert.
+
+Abschließender vollständiger Core-Prüfhelfer mit Dart 3.13.7 auf Windows: SDK-Vergleich und erzwungene Lockdatei erfolgreich, 22 Dateien ohne Formatänderung, statische Analyse ohne Befund und **462 Coretests bestanden**. Der vorherige direkte Subagentenlauf wird nicht addiert. Log lokal unter `build/reports/core-tests.log`.
+
+Der Versuch des gezielten Widgettests scheiterte bereits beim Laden vor der Testausführung: Windows blockierte das Flutter-SDK-Programm `dartaotruntime.exe`, das den `frontend_server_aot.dart.snapshot` starten sollte. Der hängende Testloader wurde beendet. Der Hauptagent bestätigte den Vorgang lesend im Ereignisprotokoll `Microsoft-Windows-CodeIntegrity/Operational`: Ereignisse 3077 und 3033 am 29.10.2026 um 02:06:45. Daraus wird weder eine genaue Ursache der neuen Blockierung noch ein konkretes Windows-Sicherheitsprodukt abgeleitet. Die Richtlinie und SDK-Dateien bleiben unverändert. Fehlerbeleg lokal unter `build/reports/square-flutter-blocked.log`.
+
+Eine abschließende Diffkontrolle fand außerdem eine unbeabsichtigte globale `e`→`x`-Ersetzung in einer bestehenden App-Testdatei. Ursache war ein einzelnes Ersetzungspaar, das das PowerShell-Skript des Subagenten als zwei einzelne Strings statt als Paar behandelte. Der Hauptagent stellte ausschließlich diese eigene Testdatei aus der sauberen Ausgangsbasis wieder her und änderte nur den erwarteten Zähler 28→29. Die anderen App-Diffs wurden gezielt geprüft. Das ist ein korrigierter Testbearbeitungsfehler, kein gemessener Produktfehler.
+
+Nach dieser Korrektur bestand die unabhängige App-Formatprüfung mit dem vorhandenen Dartformatter (16 Dateien, unverändert) sowie der normale Aufruf `flutter analyze --no-pub` ohne Befund. Dieser statische Prüfschritt benötigt keinen Start des blockierten Testcompilers und ersetzt keine Widgettests. Die **25 neuen Widgetfälle und die aktuelle vollständige Appsuite sind nicht ausgeführt**; die 144 bestandenen Apptests des Vorgängerstands werden nicht als Ergebnis dieses Standes ausgegeben. Der erweiterte Vorschauhelfer wurde nicht ausgeführt, eine Quadratvorschau nicht erzeugt und keine neue visuelle Prüfung behauptet. Katalog- und lokale Dokumentlinkprüfung ergänzen die verfügbaren Prüfungen.
+
+### Nächster Schritt
+
+Sobald eine richtlinienkonform ausführbare Flutter-Testumgebung wieder vorhanden ist, zuerst die vorbereiteten Appfälle, den vollständigen App-Prüfhelfer und die neue Vorschau nachholen. Bis dahin ist unabhängig davon die Kehrwerttaste im Core mit Definitionsbereich, Nullfall und klarer Operandbindung das nächste begrenzte Arbeitspaket. Kubieren/SHIFT, weitere Belegungen, freie natürliche Exponentenfelder, native Builds und Originalvergleich bleiben offen. Kein Push und keine Originaldateien verändert.
 ## 28.10.2026 abends: geschlossene Klammergruppen als Zähler übernehmen
 
 Ausgangsbasis `8524099`, Arbeitskopie vor Beginn sauber. Die vorhandene explizite Appaktion **Als Zähler** übernimmt nun zusätzlich eine geschlossene Klammergruppe direkt links vom Cursor.

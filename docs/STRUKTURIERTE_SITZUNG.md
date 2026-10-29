@@ -6,7 +6,7 @@ Stand: 27.10.2026. Die strukturierte Sitzung und die natürliche Formelansicht s
 
 Die App startet weiterhin mit **Linear**. Der sichtbare Schalter **Brüche** aktiviert eine getrennte strukturierte Sitzung. Beide Eingabearten behalten ihre Entwürfe, Ergebnisse, Fehler und jeweils eigenes Ans beim Wechsel. Es gibt keine automatische Konvertierung oder Übernahme. Die Oberfläche erklärt diese Trennung direkt am Schalter. Das ist eine eigene Prototypregel; eine spätere Annäherung an das Original-Setup bleibt offen.
 
-Die Tastatur hat weiterhin 50 Plätze. In Linear sind die bisherigen 25 Primäraktionen aktiv. In Brüche kommen `KEY_FRACTION`, `KEY_UP` und `KEY_DOWN` hinzu, insgesamt 28 Aktionen. SHIFT/ALPHA und weitere Vorlagen bleiben deaktiviert. Hardware-Auf/Ab sind ausschließlich im Bruchmodus zugeordnet; ein Hardwarekürzel für die Bruchvorlage ist noch nicht vergeben. Bewegungsregeln: [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
+Die Tastatur hat weiterhin 50 Plätze. Der am 28.10. geprüfte Appstand bot 25/28 aktive Primäraktionen. Seit 29.10. ergänzt der Core `KEY_SQUARE`, somit 26 in Linear und zusätzlich `KEY_FRACTION`, `KEY_UP`, `KEY_DOWN` in Brüche, insgesamt 29. Die Appanbindung ist vorbereitet und statisch analysiert, ihre aktuelle Ausführungsprüfung aber blockiert; Details in [QUADRIEREN.md](QUADRIEREN.md). SHIFT/ALPHA und weitere Vorlagen bleiben deaktiviert. Hardware-Auf/Ab sind ausschließlich im Bruchmodus zugeordnet; ein Hardwarekürzel für die Bruchvorlage ist nicht vergeben. Bewegungsregeln: [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md).
 
 ## Beispiele
 
@@ -20,7 +20,7 @@ Die Ergebniszeile zeigt weiterhin `n/d`; nur die Eingabe verwendet natürliche B
 
 ## Zustandsregeln
 
-`StructuredCalculatorSession` im Core kapselt den Editor und veröffentlicht ausschließlich unveränderliche `StructuredCalculatorSnapshot`-Daten: Editorbaum/Cursor, Phase, Ans, Ergebnis oder strukturierten Fehler. Der lineare Controller und sein 25-Tasten-Enum bleiben unabhängig.
+`StructuredCalculatorSession` im Core kapselt den Editor und veröffentlicht ausschließlich unveränderliche `StructuredCalculatorSnapshot`-Daten: Editorbaum/Cursor, Phase, Ans, Ergebnis oder strukturierten Fehler. Der lineare Controller und sein inzwischen um x² erweitertes 26-Tasten-Enum bleiben unabhängig.
 
 | Aktion | Wirkung |
 |---|---|

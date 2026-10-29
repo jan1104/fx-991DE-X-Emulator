@@ -69,7 +69,7 @@ void main() {
       expect(size.width, greaterThanOrEqualTo(44), reason: id);
     }
   });
-  testWidgets('renders exactly 50 unique keys, 25 enabled and 25 disabled', (
+  testWidgets('renders exactly 50 unique keys, 26 enabled and 24 disabled', (
     tester,
   ) async {
     await pumpCalculator(tester);
@@ -90,8 +90,8 @@ void main() {
         enabled++;
       }
     }
-    expect(enabled, 25);
-    expect(disabled, 25);
+    expect(enabled, 26);
+    expect(disabled, 24);
     expect(find.byType(FilledButton), findsNWidgets(50));
     expect(expression(tester), '│');
     expect(result(tester), '');

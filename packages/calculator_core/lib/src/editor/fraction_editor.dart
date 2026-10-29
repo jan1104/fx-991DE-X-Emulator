@@ -103,6 +103,7 @@ final class FractionEditor {
     '*',
     '/',
     '^',
+    '²',
     '(',
     ')',
     ',',

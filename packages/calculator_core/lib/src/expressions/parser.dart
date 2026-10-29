@@ -14,6 +14,7 @@ enum _Kind {
   times,
   divide,
   power,
+  square,
   left,
   right,
   end,
@@ -97,6 +98,7 @@ final class _Parser {
         '*' || '×' => _Kind.times,
         '/' || '÷' => _Kind.divide,
         '^' => _Kind.power,
+        '²' => _Kind.square,
         '(' => _Kind.left,
         ')' => _Kind.right,
         _ => null,
@@ -184,7 +186,18 @@ final class _Parser {
           token.position,
         );
       }
-      final result = _primary();
+      var result = _primary();
+      // A physical square key is a postfix operation, not the text rewrite ^2.
+      // Repeated presses therefore square the previous result again.
+      while (_current.kind == _Kind.square) {
+        final token = _take();
+        result = BinaryExpression(
+          BinaryOperator.power,
+          result,
+          NumberExpression(Rational.fromInt(2), token.position),
+          token.position,
+        );
+      }
       if (_current.kind == _Kind.power) {
         final token = _take();
         return BinaryExpression(

@@ -9,11 +9,19 @@ import 'package:fx991_calculator/main.dart';
 
 // Visual QA helper, invoked explicitly; it is not part of the ordinary suite.
 void main() {
-  for (final scenario in ['linear', 'fractions', 'error', 'capture', 'group']) {
+  for (final scenario in [
+    'linear',
+    'fractions',
+    'error',
+    'capture',
+    'group',
+    'square',
+  ]) {
     final structured = scenario != 'linear';
     final error = scenario == 'error';
     final capture = scenario == 'capture';
     final group = scenario == 'group';
+    final square = scenario == 'square';
     testWidgets('render the calculator preview: $scenario', (tester) async {
       tester.view.physicalSize = const Size(420, 1100);
       tester.view.devicePixelRatio = 1;
@@ -45,7 +53,9 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in group
+          in square
+              ? ['KEY_3', 'KEY_SQUARE', 'KEY_SQUARE', 'KEY_EQUALS']
+              : group
               ? [
                   'KEY_LPAREN',
                   'KEY_2',
@@ -112,7 +122,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(
         tester.widget<Text>(find.byKey(const ValueKey('display-result'))).data,
-        group
+        square
+            ? '81'
+            : group
             ? '2'
             : capture
             ? '4'
@@ -139,7 +151,9 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          group
+          square
+              ? '../../build/reports/calculator-square.png'
+              : group
               ? '../../build/reports/calculator-group-capture.png'
               : capture
               ? '../../build/reports/calculator-capture.png'

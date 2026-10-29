@@ -1,6 +1,6 @@
 # Architekturvorschlag und Entwicklungsplan
 
-Entwurf vom 25.10.2026, fortgeschrieben bis 28.10.2026. Die folgende Architektur ist das Zielbild; tatsächliche Implementierung und Prüfungen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
+Entwurf vom 25.10.2026, fortgeschrieben bis 29.10.2026. Die folgende Architektur ist das Zielbild; tatsächliche Implementierung und Prüfungen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
 Der unabhängige Dart-Core und die Flutter-Hauptansicht mit linearer und strukturierter Brucheingabe sind inzwischen im Testengine geprüft. Native Builds und echte Zielsystemtests bleiben offen.
 
@@ -42,7 +42,7 @@ Der Rechenkern soll ohne Oberfläche testbar sein. Exakte rationale Ergebnisse u
 | P4 | Konstanten, Umrechnungen, QR und PC-Komfortfunktionen | Historische Datenstände und externe Schnittstellen entschieden | Offen |
 | P4 | Reproduzierbarer Build und Paketierung | Saubere lokale Installation und Testlauf reproduzierbar | Offen |
 
-Linearer Bedienzustand, strukturierte Sitzung, Brucheditor und natürliche Flutter-Ansicht sind geprüft und in der Hauptansicht über die eigene Wahl **Linear / Brüche** verbunden. Source-Map, vier Richtungen und eine eigene Appaktion zur Übernahme einfacher Bausteine einschließlich geschlossener Klammergruppen ermöglichen gezielte Feldbearbeitung. Als nächstes folgt die Quadriertaste mit klarer Operandbindung und Referenz-/Bedientests. Regeln und Grenzen stehen in [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md), [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md), [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md) und [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md). Die fehlenden Windows-/Android-Buildwerkzeuge bleiben ein getrenntes Paket. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien. Siehe [FLUTTER_PROTOTYP.md](FLUTTER_PROTOTYP.md).
+Linearer Bedienzustand, strukturierte Sitzung, Brucheditor und natürliche Flutter-Ansicht sind verbunden. Source-Map, vier Richtungen und Übernahme einfacher Bausteine einschließlich geschlossener Klammergruppen wurden im Vorgängerstand geprüft. Die neue Quadriertaste besteht im Core; ihre Appfälle und Vorschau sind durch einen Windows-Code-Integrity-Block des Flutter-Testcompilers noch offen. Sobald eine richtlinienkonform ausführbare Testumgebung verfügbar ist, diese Prüfungen zuerst nachholen. Unabhängig davon folgt die Kehrwerttaste im Core mit definiertem Nullfall und Operandbindung. Regeln und Grenzen: [QUADRIEREN.md](QUADRIEREN.md), [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md), [STRUKTURIERTE_SITZUNG.md](STRUKTURIERTE_SITZUNG.md), [VERTIKALE_NAVIGATION.md](VERTIKALE_NAVIGATION.md), [FEHLERPOSITIONEN.md](FEHLERPOSITIONEN.md). Fehlende Windows-/Android-Buildwerkzeuge bleiben ein getrenntes Paket. Für die technische Rekonstruktion des alten PC-Programms fehlen weiterhin dessen Dateien.
 
 ## Risiken und offene Entscheidungen
 

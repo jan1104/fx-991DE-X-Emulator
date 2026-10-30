@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 30.10.2026
 
-Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche für lineare und natürliche Brucheingabe sind vorhanden. Neu ist die Kehrwerttaste mit exakten rationalen Ergebnissen, atomarer Eingabe und klarer Postfixbindung neben der Quadriertaste. **516 Coretests bestehen.** Der tatsächliche aktuelle Prüfstand steht im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Die Appanbindung sieht 27 Primäraktionen in Linear und 30 in Brüche vor; ihre Ausführungsprüfung bleibt durch Windows Code Integrity blockiert. Die zuletzt bestandenen 144 App-/Mappingtests gehören zum Stand vor Quadrat und Kehrwert. Native Builds und Original-Programmdateien sind weiterhin offen.
+Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche für lineare und natürliche Brucheingabe sind vorhanden. Neu ist ein unabhängiger Formatter für gekürzte Brüche und exakt endliche Dezimalzahlen mit ausdrücklichen Rückfallgründen und Ausgabegrenzen. **575 Coretests bestehen.** Der Formatter verändert noch keine Sitzung oder App. Der tatsächliche aktuelle Prüfstand steht im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Die Appanbindung sieht 27 Primäraktionen in Linear und 30 in Brüche vor; ihre Ausführungsprüfung bleibt durch Windows Code Integrity blockiert. Die zuletzt bestandenen 144 App-/Mappingtests gehören zum Stand vor Quadrat und Kehrwert. Native Builds und Original-Programmdateien sind weiterhin offen.
 
 ## Dokumentation
 
@@ -23,6 +23,7 @@ Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche für lineare und 
 - [Vorhandene Bausteine als Zähler übernehmen](docs/BRUCHUEBERNAHME.md)
 - [Quadrieren: Bindung, Coreprüfung und offene Appprüfung](docs/QUADRIEREN.md)
 - [Kehrwert: atomare Eingabe, Nullfall und Postfixbindung](docs/KEHRWERT.md)
+- [Exakte Bruch-/Dezimalausgabe und Grenzen](docs/EXAKTE_AUSGABE.md)
 - [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 

@@ -1,5 +1,31 @@
 # Entwicklungsstand
 
+## 30.10.2026 vormittags: unabhängige exakte Ausgabeformatierung
+
+Ausgangsbasis `d8aa34e`, Arbeitskopie vor Beginn sauber. Das dokumentierte nächste Paket trennt die Ausgabeformatierung von Rechenwerten und Bedienzuständen. Der Vertrag wurde zuerst in [EXAKTE_AUSGABE.md](EXAKTE_AUSGABE.md) festgelegt, anschließend der begrenzte Core-Dienst implementiert. Es gab keine erneute PDF-Gesamtanalyse.
+
+### Neu umgesetzt
+
+- Öffentliche reine Funktion `formatRational` und unveränderliches `RationalDisplay`: gekürzter Bruch oder exakt endlicher Dezimaltext mit deutschem Komma, ausdrücklich ausgewiesenem tatsächlichem Format und optionalem Rückfallgrund.
+- Prüfung des gekürzten Nenners auf Faktoren 2 und 5. Nicht endliche Entwicklungen bleiben Brüche mit Grund `periodic`; zu viele erforderliche Stellen führen zum Grund `decimalPlacesLimit`. Die dokumentierte frühe Budgetentscheidung hat Vorrang vor noch ungeprüften periodischen Restfaktoren.
+- Keine Gleitkommaumwandlung oder Rundung. Stellenbudget 0–1000, Zeichenbudget 1–10000, standardmäßig 100/2048. Das Zeichenbudget umfasst auch Vorzeichen, Komma und Bruchstrich sowie Rückfalltexte. Vorabprüfungen begrenzen den Textaufbau auch für große öffentliche Rationalwerte außerhalb der Evaluatorgrenzen.
+
+Die vorhandenen Sitzungen, Tastenzuordnungen, Appdateien und deren 27/30 Primäraktionen bleiben in diesem Paket unverändert. Der Dienst bindet noch keine S⇔D-Taste an. Originaler Perioden-/Dezimalzyklus, Fix/Sci/Norm, Rundung und gemischte Brüche sind ausdrücklich nicht abgedeckt.
+
+### Prüfung
+
+Ein Subagent implementierte den Dienst und 59 neue Corefälle. Ein zweiter prüfte unabhängig Quellenabgrenzung, feste mathematische Sollwerte und anschließend den Produktionscode lesend. Der Review fand keinen konkreten Rechen- oder Ressourcenfehler; sein Hinweis zur Priorität der Rückfallgründe wurde in die öffentliche API-Dokumentation aufgenommen. Der Hauptagent prüfte Code, Tests und Dokumentlinks.
+
+Feste Solltexte umfassen unter anderem `3/40→0,075`, `7/250→0,028`, `-1/8→-0,125` und große Zähler jenseits der Gleitkommagenauigkeit. Die Tests trennen das Maximum der Faktorenexponenten von deren Summe, prüfen beide Rückfallgründe und die Parameter-/Zeichenränder bis 1000 Nachkommastellen und 10000 Ausgabezeichen. 343 zusätzliche exakte Rückumwandlungen liegen innerhalb eines Tests und werden nicht als 343 Einzeltests gezählt. Beide Sitzungsmodelle behalten nach Formatierung einschließlich Ausgabeproblemen ihren exakten Ergebniswert, Ans und Bearbeitungszustand.
+
+Abschließender vollständiger Core-Prüfhelfer mit Dart 3.13.7 auf Windows: SDK-Vergleich und erzwungene Lockdatei erfolgreich, 25 Dateien ohne Formatänderung, statische Analyse ohne Befund und **575 Coretests bestanden**. Der vorherige gezielte Lauf mit 59 Fällen wird nicht addiert. Log lokal unter `build/reports/core-tests.log`.
+
+Keine App-Ausführung, App-Neuanalyse oder Vorschau wurde in diesem reinen Core-Paket vorgenommen. Der bekannte Windows-Code-Integrity-Block wurde nicht erneut provoziert oder umgangen. Die 25 Quadrat- und 32 Kehrwert-Widgetfälle bleiben nicht ausgeführt; 144 bestandene Apptests gehören weiterhin zum Stand vor diesen beiden Tasten. Native Builds und Originalvergleich bleiben offen.
+
+### Nächster Schritt
+
+Die ausdrückliche Darstellungswahl in beiden Sitzungsmodellen spezifizieren und mit unverändertem exaktem Ergebnis/Ans sowie Ergebnis-, Bearbeitungs- und Fehlerphasen prüfen. Die Appanbindung zurückstellen, bis eine richtlinienkonform ausführbare Flutter-Testumgebung verfügbar ist; dann die bestehenden offenen Appfälle und Vorschauen zuerst nachholen. Originaldateien und SDKs bleiben unverändert, kein Push.
+
 ## 30.10.2026: Kehrwerttaste mit atomarem Zwei-Zeichen-Token
 
 Ausgangsbasis `796831a`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Arbeitspaket ergänzt `KEY_RECIPROCAL` unabhängig von der weiterhin blockierten Flutter-Testausführung.

@@ -4,6 +4,8 @@ Stand: 25.10.2026. **Planung, keine ausgeführten Emulatorprüfungen.** Die masc
 
 ## Umfang und Aussage der Matrix
 
+Ergänzung 30.10.2026: Ein unabhängiger Core-Formatter für gekürzte Brüche und exakt endliche Dezimaltexte wird durch `packages/calculator_core/test/rational_display_test.dart` geprüft. Feste mathematische Solltexte, Rückumwandlung, Stellen-/Zeichenränder und unverändertes Ans werden getrennt betrachtet. Er ist noch kein vollständiger S⇔D-Zyklus: Periodenschreibweise, Rundung/Fix/Sci/Norm und Appanbindung bleiben offen. Die Inventare bleiben `planned`; tatsächliche Testausführung steht im [Entwicklungsstand](ENTWICKLUNGSSTAND.md), Vertrag in [EXAKTE_AUSGABE.md](EXAKTE_AUSGABE.md).
+
 Jede Zeile benennt eine Funktion oder eine ausdrücklich getrennte Variante: beispielsweise sin/cos/tan jeweils separat, alle inversen und hyperbolischen Funktionen separat, die sieben Verteilungen separat und alle zwölf Kombinationen aus Ungleichungsgrad und Vergleichsrichtung separat. Alle 13 Modi des Funktionskatalogs sind vertreten. Darstellung, gemeinsame Speicherzustände und QR-Export werden zusätzlich geführt; QR ist keine mathematische Rechenfunktion.
 
 Die Matrix ist ein nachvollziehbarer **Ausgangskatalog**, kein Beweis absoluter Vollständigkeit. Die Menüeinträge aller Konstanten und gerichteten Umrechnungen sind noch nicht als Einzelzeilen transkribiert. Einige Setup-/Editoraktionen, Bytegrenzen, Statistik-Konventionen und nicht in den bisherigen Quellen katalogisierte Optionen bleiben ausdrücklich offen. Ein aggregierter Enumerationseintrag darf nicht als bestandener Test für alle seine späteren Datensätze zählen.

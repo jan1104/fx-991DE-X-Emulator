@@ -15,6 +15,7 @@ enum _Kind {
   divide,
   power,
   square,
+  reciprocal,
   left,
   right,
   end,
@@ -79,6 +80,13 @@ final class _Parser {
       if (source.startsWith('Ans', position)) {
         tokens.add(_Token(_Kind.answer, 'Ans', position));
         position += 3;
+        continue;
+      }
+      // One postfix token spans two UTF-16 code units. Neither superscript
+      // character is accepted on its own or merged with the following token.
+      if (source.startsWith('⁻¹', position)) {
+        tokens.add(_Token(_Kind.reciprocal, '⁻¹', position));
+        position += 2;
         continue;
       }
       final match = _number.matchAsPrefix(source, position);
@@ -187,14 +195,18 @@ final class _Parser {
         );
       }
       var result = _primary();
-      // A physical square key is a postfix operation, not the text rewrite ^2.
-      // Repeated presses therefore square the previous result again.
-      while (_current.kind == _Kind.square) {
+      // Physical postfix keys compose from left to right, before ordinary ^.
+      // They are not textual rewrites, which would change repeated-key binding.
+      while (_current.kind == _Kind.square ||
+          _current.kind == _Kind.reciprocal) {
         final token = _take();
         result = BinaryExpression(
           BinaryOperator.power,
           result,
-          NumberExpression(Rational.fromInt(2), token.position),
+          NumberExpression(
+            Rational.fromInt(token.kind == _Kind.square ? 2 : -1),
+            token.position,
+          ),
           token.position,
         );
       }

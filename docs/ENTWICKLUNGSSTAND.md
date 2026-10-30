@@ -1,5 +1,33 @@
 # Entwicklungsstand
 
+## 30.10.2026: Kehrwerttaste mit atomarem Zwei-Zeichen-Token
+
+Ausgangsbasis `796831a`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Arbeitspaket ergänzt `KEY_RECIPROCAL` unabhängig von der weiterhin blockierten Flutter-Testausführung.
+
+### Neu umgesetzt
+
+- Der Lexer erkennt `⁻¹` als einen zusammenhängenden Postfixoperator mit korrekten UTF-16-Positionen. Quadrat und Kehrwert werden in Eingabereihenfolge aufgebaut; normale Potenzen bleiben rechtsassoziativ. Der unveränderte exakte Evaluator berechnet den Exponenten −1 und meldet bei Null einen mathematischen Fehler.
+- Beide Sitzungen und der natürliche Editor behandeln das Token atomar. Nach Ergebnis startet die Taste `Ans⁻¹`, während der Bearbeitung erfolgt normale Cursoreinfügung. Ohne Basis entsteht erst bei `=` ein Syntaxfehler. Fehlerfreeze, Ans-Erhalt und gezielte Wiederaufnahme bleiben erhalten.
+- Das gemeinsame Register aktiviert im vorbereiteten Appcode 27 Primäraktionen in Linear und 30 in Brüche bei weiterhin 50 physischen Plätzen. Die natürliche assistive Beschreibung nennt das Token „Kehrwert“. Es gibt kein neues Hardwarekürzel.
+
+Vertrag, Beispiele und Grenzen stehen in [KEHRWERT.md](KEHRWERT.md). Bestehende Quellenbelege H 19/21/29 werden verwendet, ohne die abgeschlossene PDF-Gesamtanalyse zu wiederholen. SHIFT-Fakultät, ALPHA-C und die Hexadezimalbelegung bleiben offen. Ganze Postfixketten werden weiterhin nicht automatisch als Zähler übernommen.
+
+### Prüfung
+
+Ein Subagent implementierte den Core samt 54 neuen Fällen; ein zweiter bereitete unabhängig 32 Widgetfälle vor und passte ausschließlich aktuelle Inventarzähler in fünf vorhandenen App-Testdateien an. Der Hauptagent ergänzte die Semantik und prüfte Produktions- und Testdiffs. Die neuen Corefälle prüfen insbesondere AST-Reihenfolge, exakte negative Bruchwerte, beide Zeichenoffsets desselben Tokens, anschließende Syntaxpositionen, atomaren DEL, Nullfehler und Source-Map-Wiederaufnahme. Zeichenlänge, Lexertokenzahl, Editorknotenzahl und Auswertungstiefe werden getrennt geprüft.
+
+Eine neue Core-Testannahme erwartete zunächst `4^2⁻¹=2`. Der bestehende rationale Evaluator unterstützt nichtganzzahlige Exponenten jedoch ausdrücklich noch nicht; der Test wurde auf diesen vorhandenen Vertrag korrigiert. Keine Wurzelfunktion oder Sonderbehandlung wurde dafür hinzugefügt.
+
+Abschließender vollständiger Core-Prüfhelfer mit Dart 3.13.7 auf Windows: SDK-Vergleich und erzwungene Lockdatei erfolgreich, 23 Dateien ohne Formatänderung, statische Analyse ohne Befund und **516 Coretests bestanden**. Der direkte Subagentenlauf wird nicht addiert. Log lokal unter `build/reports/core-tests.log`.
+
+Der normale Aufruf `flutter analyze --no-pub` bestand ohne Befund. Die neue Widgetdatei wurde formatiert; die abschließende App-Formatkontrolle meldete 17 Dateien ohne Änderungen. Ein erster Formatierungsaufruf verwendete versehentlich repo-relative Pfade bei bereits gesetztem App-Arbeitsordner und fand keine Dateien; der korrekte Aufruf wurde nachgeholt. Diese statischen Prüfungen führen keine Widgetfälle aus.
+
+Der am 29.10. dokumentierte Windows-Code-Integrity-Block des Flutter-Testcompilers wurde nicht erneut provoziert oder umgangen. **32 neue Kehrwertfälle und 25 Quadratfälle sind vorbereitet, aber nicht ausgeführt; die aktuelle vollständige Appsuite ist offen.** Die zuletzt bestandenen 144 Apptests gehören zum Vorgängerstand vor Quadrat und Kehrwert. Es wurde keine neue Vorschau erzeugt und keine neue visuelle Prüfung behauptet. Katalogprüfung (50 Tasten, 243 Funktionspositionen, fünf Beispielabläufe, 56 Handbuchfall-IDs), Dokumentlinks und Diffkontrolle ergänzen die tatsächlich ausführbaren Prüfungen.
+
+### Nächster Schritt
+
+Sobald eine richtlinienkonform ausführbare Flutter-Testumgebung vorhanden ist, Quadrat-/Kehrwertfälle, vollständigen App-Prüfhelfer und Vorschauen zuerst nachholen. Unabhängig davon eine ausdrücklich ausgelöste exakte Bruch-/Dezimalanzeige spezifizieren: endliche gegenüber periodischen Dezimalbrüchen, verlustfreier Ans-Erhalt und Ausgabegrenzen vor der Implementierung festlegen. Kubieren/SHIFT, allgemeine Exponentenfelder, native Builds und Originalvergleich bleiben offen. Keine Originaldateien oder SDKs verändert, kein Push.
+
 ## 29.10.2026: Quadriertaste mit expliziter Postfixbindung
 
 Ausgangsbasis `97bc352`, Arbeitskopie vor Beginn sauber. Das dokumentierte nächste Arbeitspaket bindet die vorhandene physische x²-Taste in beiden Sitzungen und der Hauptansicht an.

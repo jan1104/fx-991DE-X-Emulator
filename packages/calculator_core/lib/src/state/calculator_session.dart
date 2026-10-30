@@ -20,6 +20,7 @@ enum CalculatorKey {
   divide('KEY_DIVIDE', '/'),
   power('KEY_POWER', '^'),
   square('KEY_SQUARE', '²'),
+  reciprocal('KEY_RECIPROCAL', '⁻¹'),
   negate('KEY_NEGATE', '-'),
   decimal('KEY_DECIMAL', ','),
   leftParenthesis('KEY_LPAREN', '('),
@@ -141,7 +142,10 @@ final class CalculatorSession {
     var tokens = _snapshot.tokens.toList();
     var cursor = _snapshot.cursor;
     if (_snapshot.phase == CalculatorPhase.result) {
-      tokens = key.isBinaryOperator || key == CalculatorKey.square
+      tokens =
+          key.isBinaryOperator ||
+              key == CalculatorKey.square ||
+              key == CalculatorKey.reciprocal
           ? ['Ans']
           : [];
       cursor = tokens.length;

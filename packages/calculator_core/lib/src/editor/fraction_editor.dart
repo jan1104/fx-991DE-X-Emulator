@@ -104,6 +104,7 @@ final class FractionEditor {
     '/',
     '^',
     '²',
+    '⁻¹',
     '(',
     ')',
     ',',

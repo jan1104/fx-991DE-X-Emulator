@@ -134,9 +134,9 @@ void main() {
   });
 
   group('linear square key transitions', () {
-    test('registry has 26 unique keys and square is not a binary operator', () {
-      expect(CalculatorKey.values, hasLength(26));
-      expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(26));
+    test('registry has 27 unique keys and square is not a binary operator', () {
+      expect(CalculatorKey.values, hasLength(27));
+      expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(27));
       expect(CalculatorKey.fromId('KEY_SQUARE'), CalculatorKey.square);
       expect(CalculatorKey.square.text, '²');
       expect(CalculatorKey.square.isBinaryOperator, isFalse);

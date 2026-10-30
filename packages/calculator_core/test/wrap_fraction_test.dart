@@ -382,7 +382,7 @@ void main() {
         enter(session, '3');
         expect(session.press(CalculatorKey.equals).result, Rational.fromInt(4));
         expect(FractionEditor.fromSnapshot(before.editor).toExpression(), '12');
-        expect(CalculatorKey.values, hasLength(26));
+        expect(CalculatorKey.values, hasLength(27));
         expect(CalculatorKey.fromId('ACTION_WRAP_FRACTION'), isNull);
         expect(
           () => CalculatorSession().pressId('ACTION_WRAP_FRACTION'),

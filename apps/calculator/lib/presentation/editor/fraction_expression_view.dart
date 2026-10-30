@@ -316,6 +316,7 @@ class _FormulaContent extends StatelessWidget {
               '/' => 'geteilt durch',
               '^' => 'hoch',
               '²' => 'zum Quadrat',
+              '⁻¹' => 'Kehrwert',
               'Ans' => 'Ans',
               _ => text,
             },

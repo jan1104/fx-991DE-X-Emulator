@@ -82,7 +82,7 @@ void main() {
         enabled++;
       }
     }
-    expect(enabled, 29);
+    expect(enabled, 30);
     await tap(tester, 'input-linear');
     for (final id in ['KEY_UP', 'KEY_DOWN']) {
       expect(tester.widget<FilledButton>(keyed(id)).onPressed, isNull);

@@ -2,6 +2,8 @@
 
 Stand: 25.10.2026. **Planungsstand: alle Fälle `planned`; keine Taste wurde hierdurch als implementiert oder bestanden geprüft.** Geprüft wurden nur Aufbau und Vollständigkeit der CSV-Datei. Es liegt noch keine Messreihe am Originalemulator vor.
 
+Ergänzung 30.10.2026: `KEY_RECIPROCAL` ergänzt die Primäraktion Kehrwert. Corefälle in `test/reciprocal_key_test.dart` decken atomare Zwei-Zeichen-Eingabe, Nullfall, Postfixbindung, exaktes Ans und Fehlerwiederaufnahme ab; Appfälle sind vorbereitet und noch nicht ausgeführt. SHIFT-Fakultät, ALPHA-C, Hexadezimalbelegung und Originalvergleich bleiben offen; die Inventarzeile bleibt `planned`. Vertrag: [KEHRWERT.md](KEHRWERT.md).
+
 ## Verbindliches Tasteninventar
 
 Ergänzung 29.10.2026: `KEY_SQUARE` ist im Core beider Sitzungen geprüft. `packages/calculator_core/test/square_key_test.dart` ergänzt insbesondere wiederholtes Quadrieren, Vorzeichen/Klammern (K02 als mathematische Projektion), Brüche, Ans und Grenzen. Die 25 Fälle unter `apps/calculator/test/square_key_test.dart` sind geschrieben und statisch analysiert, wegen Windows-Code-Integrity-Block des Testcompilers jedoch nicht ausgeführt. Die gesamte Original-Inventarzeile bleibt geplant; SHIFT-Kubieren und Basis-N-DEC sind nicht durch diese Primäraktion abgedeckt. Details: [QUADRIEREN.md](QUADRIEREN.md).

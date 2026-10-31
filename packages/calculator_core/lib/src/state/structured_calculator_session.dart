@@ -1,6 +1,7 @@
 import '../editor/fraction_editor.dart';
 import '../errors.dart';
 import '../evaluation/evaluator.dart' as arithmetic;
+import '../formatting/rational_display.dart';
 import '../numbers/rational.dart';
 import 'calculator_session.dart';
 
@@ -15,6 +16,7 @@ final class StructuredCalculatorSnapshot {
   /// They are not editor-path offsets and must not be used as such.
   final CalculatorException? error;
   final EditorCursor? errorCursor;
+  final RationalDisplayFormat resultDisplayFormat;
 
   const StructuredCalculatorSnapshot._({
     required this.editor,
@@ -23,7 +25,24 @@ final class StructuredCalculatorSnapshot {
     this.result,
     this.error,
     this.errorCursor,
+    this.resultDisplayFormat = RationalDisplayFormat.fraction,
   });
+
+  /// Formats only a present result. Outside the result phase, budgets are not
+  /// inspected. A formatting failure never becomes a calculator/session error.
+  RationalDisplay? formatResult({
+    int maxDecimalPlaces = 100,
+    int maxOutputCharacters = 2048,
+  }) {
+    final value = result;
+    if (phase != CalculatorPhase.result || value == null) return null;
+    return formatRational(
+      value,
+      format: resultDisplayFormat,
+      maxDecimalPlaces: maxDecimalPlaces,
+      maxOutputCharacters: maxOutputCharacters,
+    );
+  }
 }
 
 /// Prototype controller for structured fractions, with exact Ans continuation.
@@ -39,6 +58,26 @@ final class StructuredCalculatorSession {
   );
 
   StructuredCalculatorSnapshot get snapshot => _snapshot;
+
+  /// Selects the requested representation without evaluating or formatting it.
+  /// Fallback output may be a fraction while this choice stays exactDecimal.
+  StructuredCalculatorSnapshot selectResultDisplayFormat(
+    RationalDisplayFormat format,
+  ) {
+    if (_snapshot.phase != CalculatorPhase.result ||
+        _snapshot.resultDisplayFormat == format) {
+      return _snapshot;
+    }
+    return _snapshot = StructuredCalculatorSnapshot._(
+      editor: _snapshot.editor,
+      phase: _snapshot.phase,
+      answer: _snapshot.answer,
+      result: _snapshot.result,
+      error: _snapshot.error,
+      errorCursor: _snapshot.errorCursor,
+      resultDisplayFormat: format,
+    );
+  }
 
   /// Fraction and vertical-navigation IDs are local to this session; the
   /// linear key enum stays unchanged.

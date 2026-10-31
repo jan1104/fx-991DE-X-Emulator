@@ -1,5 +1,33 @@
 # Entwicklungsstand
 
+## 31.10.2026: Darstellungswahl vorbereitet, neuer Core-Testblock
+
+Ausgangsbasis `655acd8`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Paket verbindet die exakte Ausgabe mit einer ausdrücklichen Wahl in beiden Core-Sitzungen. Der Vertrag wurde zuerst in [DARSTELLUNGSWAHL.md](DARSTELLUNGSWAHL.md) festgelegt. **Die neue Anbindung ist vorbereitet und statisch geprüft; ihre Ausführungsprüfung bleibt offen.**
+
+### Vorbereitet
+
+- Beide Snapshots erhalten `resultDisplayFormat` und den bedarfsweisen Textabruf `formatResult()`. `selectResultDisplayFormat(...)` verändert ausschließlich die gewünschte Darstellung eines vorhandenen Ergebnisses.
+- Gleiche Wahl sowie Wahl während Bearbeitung/Fehler sind identische No-ops. Neue Bearbeitung oder Auswertung beginnt wieder im Bruchformat. Vorhandene Ergebnis-No-ops behalten die Wahl.
+- Gewünschtes Dezimalformat bleibt auch bei tatsächlicher Bruchausgabe erhalten. Textabruf und mögliche Ausgabeprobleme sollen Ergebniswert, Ans, Editor und Fehlerphase unverändert lassen. Auswahl selbst formatiert nicht.
+
+Keine Appänderungen, zusätzlichen physischen Belegungen oder SDK-/Abhängigkeitsänderungen. S⇔D, Periodendarstellung und originale Rundungsregeln sind dadurch nicht implementiert. Die bisherigen 27/30 Primäraktionen bleiben unverändert.
+
+### Tatsächlicher Prüfstatus und neuer Block
+
+Ein Subagent bereitete den Produktionscode und 37 neue Fälle unter `packages/calculator_core/test/session_display_test.dart` vor. Ein zweiter prüfte unabhängig den Vertrag und die Produktionsdiffs lesend, ohne konkreten Befund. Der Hauptagent prüfte die Änderungen ebenfalls lesend. Die Fälle sind für Werteerhalt, alte Snapshots, Phasen-/No-op-Regeln, echte Bruch-/Dezimaltexte, Ausgabeprobleme, Fehlerziele und unabhängige Sitzungen geschrieben; **kein neuer Fall wurde ausgeführt**.
+
+Der erste gezielte Testaufruf mit dem bisher verwendeten Dart 3.13.7 scheiterte bereits vor Testausführung: `ProcessStarter::StartForExec failed`, Windows meldete eine blockierende Anwendungssteuerungsrichtlinie; Werkzeug-Exitcode −1. Die Prozessmeldung allein nennt keine konkrete Datei. Der Hauptagent bestätigte lesend im Protokoll `Microsoft-Windows-CodeIntegrity/Operational` die zeitgleichen Ereignisse 3077/3033 am 31.10.2026 um 19:01:13: Der portable SDK-Prozess `dart.exe` versuchte `dartvm.exe` aus demselben SDK zu laden; Signatur-/Integritätsanforderungen der Richtlinie wurden nicht erfüllt. Daraus wird kein konkretes Sicherheitsprodukt oder Grund der neuen Blockierung abgeleitet.
+
+Lokale ignorierte Belege: `build/reports/session-display-blocked.log` mit Testaufruf und Prozessmeldung sowie `build/reports/session-display-code-integrity.log` mit der lesenden Ereignisabfrage. Kein Wiederholungsversuch, alternativer Testlauf, SDK-Umbau oder Eingriff in Sicherheitsrichtlinien. Der vollständige Core-Prüfhelfer wurde wegen des bereits belegten Blocks nicht gestartet.
+
+Die separate normale statische Analyse `dart analyze packages/calculator_core` bestand nach Korrektur einer Warnung zu einem ungenutzten privaten optionalen Parameter ohne Befund. Die abschließende Formatkontrolle des Subagenten meldete drei Dateien ohne Änderung. Diese Schritte ersetzen keine Testausführung. Lokale Dokumentlinkprüfung und Diffkontrolle bestanden.
+
+Die **575 bestandenen Coretests gehören ausschließlich zum Vorgängerstand `655acd8`**. Für den neuen Stand wird keine bestandene Core-Gesamtzahl angegeben. Die bereits offenen 25 Quadrat- und 32 Kehrwert-Widgetfälle wurden ebenso nicht ausgeführt; 144 bestandene Apptests gehören zum Stand vor diesen beiden Tasten. Keine neue Vorschau, kein nativer Build und kein Originalvergleich.
+
+### Nächster Schritt
+
+Sobald eine richtlinienkonform ausführbare Umgebung vorhanden ist, zuerst die 37 vorbereiteten Sitzungsfälle und den vollständigen Core-Prüfhelfer ausführen; danach die bereits offenen Appfälle und Vorschauen nachholen. Ohne diese Umgebungsänderung keine wiederholten blockierten Teststarts. Unabhängig davon ist eine begrenzte exakte Periodendarstellung zunächst spezifizierbar: Vorperiode/Periode, Restzykluserkennung und getrennte Arbeits-/Ausgabegrenzen. Die Appanbindung bleibt zurückgestellt. Originaldateien und Sicherheitsrichtlinien unverändert, kein Push.
+
 ## 30.10.2026 vormittags: unabhängige exakte Ausgabeformatierung
 
 Ausgangsbasis `d8aa34e`, Arbeitskopie vor Beginn sauber. Das dokumentierte nächste Paket trennt die Ausgabeformatierung von Rechenwerten und Bedienzuständen. Der Vertrag wurde zuerst in [EXAKTE_AUSGABE.md](EXAKTE_AUSGABE.md) festgelegt, anschließend der begrenzte Core-Dienst implementiert. Es gab keine erneute PDF-Gesamtanalyse.

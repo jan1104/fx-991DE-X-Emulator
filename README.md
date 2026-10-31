@@ -2,9 +2,9 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 30.10.2026
+## Stand am 31.10.2026
 
-Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche für lineare und natürliche Brucheingabe sind vorhanden. Neu ist ein unabhängiger Formatter für gekürzte Brüche und exakt endliche Dezimalzahlen mit ausdrücklichen Rückfallgründen und Ausgabegrenzen. **575 Coretests bestehen.** Der Formatter verändert noch keine Sitzung oder App. Der tatsächliche aktuelle Prüfstand steht im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Die Appanbindung sieht 27 Primäraktionen in Linear und 30 in Brüche vor; ihre Ausführungsprüfung bleibt durch Windows Code Integrity blockiert. Die zuletzt bestandenen 144 App-/Mappingtests gehören zum Stand vor Quadrat und Kehrwert. Native Builds und Original-Programmdateien sind weiterhin offen.
+Die ausdrückliche Bruch-/Dezimalwahl ist für beide Core-Sitzungen vorbereitet; Ergebniswert und Ans sollen dabei exakt bleiben. **Auch der Dart-Core-Teststart wird inzwischen durch Windows Code Integrity blockiert.** Die zuletzt bestandenen **575 Coretests gehören zum Stand `655acd8` vor dieser Sitzungsanbindung**. Die neuen Fälle sind nicht ausgeführt. Details und tatsächlicher Prüfstatus stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Die App nutzt diese neue API noch nicht; ihre offenen Quadrat-/Kehrwerttests bleiben ebenfalls blockiert. Die zuletzt bestandenen 144 Apptests gehören zum Stand vor diesen beiden Tasten. Native Builds und Original-Programmdateien sind weiterhin offen.
 
 ## Dokumentation
 
@@ -24,6 +24,7 @@ Ein unabhängiger Dart-Rechenkern und eine Flutter-Oberfläche für lineare und 
 - [Quadrieren: Bindung, Coreprüfung und offene Appprüfung](docs/QUADRIEREN.md)
 - [Kehrwert: atomare Eingabe, Nullfall und Postfixbindung](docs/KEHRWERT.md)
 - [Exakte Bruch-/Dezimalausgabe und Grenzen](docs/EXAKTE_AUSGABE.md)
+- [Darstellungswahl in beiden Core-Sitzungen](docs/DARSTELLUNGSWAHL.md)
 - [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 

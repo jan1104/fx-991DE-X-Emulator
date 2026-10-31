@@ -8,6 +8,8 @@ Das Paket hat keine externen Laufzeitabhängigkeiten; `package:test` ist nur Ent
 
 `formatRational(value, format: RationalDisplayFormat.exactDecimal)` ergänzt eine reine exakte Ausgabe mit deutschem Komma. Endliche Dezimalbrüche werden ohne Gleitkomma und Rundung erzeugt; bei periodischer oder zu langer Entwicklung bleibt der gekürzte Bruch mit ausdrücklich gemeldetem Rückfallgrund erhalten. Das Zeichenlimit gilt auch für diesen Rückfall. Der Dienst verändert weder Werte noch Sitzungen und bindet noch keine S⇔D-Taste an. Vertrag und Beispiele: [EXAKTE_AUSGABE.md](../../docs/EXAKTE_AUSGABE.md).
 
+Vorbereitet, noch nicht durch Ausführung geprüft: Beide Sitzungen ergänzen eine ausdrückliche Ergebniswahl über `selectResultDisplayFormat(...)`; ihr Snapshot veröffentlicht `resultDisplayFormat` und liefert über `formatResult()` den Text bei Bedarf. Ergebnis und Ans bleiben exakt. Außerhalb der Ergebnisphase ist die Wahl wirkungslos und der Textabruf liefert `null`. Die App bindet diese API noch nicht an. Übergänge, Rückfallgründe und Ausgabeprobleme sind im [Sitzungsvertrag](../../docs/DARSTELLUNGSWAHL.md) festgelegt.
+
 Mit Dart 3.13.7 im Paketordner:
 
 ```text

@@ -1,5 +1,6 @@
 import '../errors.dart';
 import '../evaluation/evaluator.dart';
+import '../formatting/rational_display.dart';
 import '../numbers/rational.dart';
 
 /// Supported semantic keys of the linear prototype, not the full keyboard.
@@ -60,6 +61,7 @@ final class CalculatorSnapshot {
   final Rational answer;
   final Rational? result;
   final CalculatorException? error;
+  final RationalDisplayFormat resultDisplayFormat;
 
   CalculatorSnapshot._({
     required this.phase,
@@ -68,7 +70,35 @@ final class CalculatorSnapshot {
     required this.answer,
     this.result,
     this.error,
-  }) : tokens = List<String>.unmodifiable(tokens);
+  }) : tokens = List<String>.unmodifiable(tokens),
+       resultDisplayFormat = RationalDisplayFormat.fraction;
+
+  CalculatorSnapshot._withDisplayFormat(
+    CalculatorSnapshot previous,
+    this.resultDisplayFormat,
+  ) : phase = previous.phase,
+      tokens = previous.tokens,
+      cursor = previous.cursor,
+      answer = previous.answer,
+      result = previous.result,
+      error = previous.error;
+
+  /// Formats only a present result. Outside the result phase this is a no-op,
+  /// including when the supplied budgets would otherwise be invalid.
+  /// Formatter failures do not change the snapshot or the owning session.
+  RationalDisplay? formatResult({
+    int maxDecimalPlaces = 100,
+    int maxOutputCharacters = 2048,
+  }) {
+    final value = result;
+    if (phase != CalculatorPhase.result || value == null) return null;
+    return formatRational(
+      value,
+      format: resultDisplayFormat,
+      maxDecimalPlaces: maxDecimalPlaces,
+      maxOutputCharacters: maxOutputCharacters,
+    );
+  }
 
   String get expression => tokens.join();
   int get cursorOffset =>
@@ -86,6 +116,16 @@ final class CalculatorSession {
   );
 
   CalculatorSnapshot get snapshot => _snapshot;
+
+  /// Changes only the requested display of the current result. No formatting
+  /// or numerical conversion happens until the snapshot's formatResult call.
+  CalculatorSnapshot selectResultDisplayFormat(RationalDisplayFormat format) {
+    if (_snapshot.phase != CalculatorPhase.result ||
+        _snapshot.resultDisplayFormat == format) {
+      return _snapshot;
+    }
+    return _snapshot = CalculatorSnapshot._withDisplayFormat(_snapshot, format);
+  }
 
   /// Unsupported keys fail explicitly and do not alter the previous state.
   CalculatorSnapshot pressId(String id) {

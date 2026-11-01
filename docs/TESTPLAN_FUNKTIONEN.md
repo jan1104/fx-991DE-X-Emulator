@@ -4,6 +4,8 @@ Stand: 25.10.2026. **Planung, keine ausgeführten Emulatorprüfungen.** Die masc
 
 ## Umfang und Aussage der Matrix
 
+Ergänzung 01.11.2026: Die begrenzte exakte Periodenausgabe wird zunächst im [Periodenvertrag](PERIODENDARSTELLUNG.md) spezifiziert. Eigene Sollfälle unter `tests/reference/formatting/recurring_decimal_planned.json` behalten `status=planned`; ein separater Python-Prüfer kontrolliert die geschlossenen mathematischen Bruchformeln und Budgeterwartungen. Es gibt noch keine entsprechende Dart-Implementierung und keine bestandenen Produkt- oder Originalprüfungen.
+
 Ergänzung 31.10.2026: Die explizite Darstellungswahl ist für beide Core-Sitzungen vorbereitet. Ihre noch nicht ausgeführten Fälle liegen getrennt vom reinen Formatter unter `packages/calculator_core/test/session_display_test.dart` geprüft. Gewünschtes und tatsächliches Format, unveränderliches Ans, Ausgabeprobleme und Bedienphasen bleiben getrennte Erwartungen. Dies ist weiterhin keine S⇔D-Appbelegung oder bestandener Originalvergleich; [DARSTELLUNGSWAHL.md](DARSTELLUNGSWAHL.md).
 
 Ergänzung 30.10.2026: Ein unabhängiger Core-Formatter für gekürzte Brüche und exakt endliche Dezimaltexte wird durch `packages/calculator_core/test/rational_display_test.dart` geprüft. Feste mathematische Solltexte, Rückumwandlung, Stellen-/Zeichenränder und unverändertes Ans werden getrennt betrachtet. Er ist noch kein vollständiger S⇔D-Zyklus: Periodenschreibweise, Rundung/Fix/Sci/Norm und Appanbindung bleiben offen. Die Inventare bleiben `planned`; tatsächliche Testausführung steht im [Entwicklungsstand](ENTWICKLUNGSSTAND.md), Vertrag in [EXAKTE_AUSGABE.md](EXAKTE_AUSGABE.md).

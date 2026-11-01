@@ -1,5 +1,29 @@
 # Entwicklungsstand
 
+## 01.11.2026: Periodenausgabe spezifiziert und Planungsreferenzen geprüft
+
+Ausgangsbasis `873c1ad`, Arbeitskopie vor Beginn sauber. Der Nutzer ließ die bis zu diesem Commit gespeicherten 14 Entwicklungscommits am 01.11. ausdrücklich auf GitHub sichern; der Push auf `main` wurde bestätigt. Das folgende neue Planungspaket bleibt lokal und wird dadurch nicht automatisch erneut zur Veröffentlichung freigegeben.
+
+### Abgeschlossenes Planungspaket
+
+- [PERIODENDARSTELLUNG.md](PERIODENDARSTELLUNG.md) legt den zukünftigen Modus `exactRecurringDecimal` fest: eigene Klammernotation, Vorperiode und kleinste Periode, endlicher Abschluss, strukturierte Ausgabe und exakte unveränderte Werte.
+- Die Reihenfolge von Restabschluss, Zykluserkennung und Budgetprüfung ist festgelegt, einschließlich Erfolg genau am Ziffernrand. Getrennte Ziffern-, Wertegrößen- und Zeichenlimits begrenzen Arbeit und Speicher. Der vorhandene endliche Modus wird nicht stillschweigend geändert.
+- 30 ausschließlich geplante eigene Sollfälle unter `tests/reference/formatting/recurring_decimal_planned.json`. Sie bleiben vom vorhandenen Tastenszenarioschema und den Original-Inventaren getrennt. Es gibt in diesem Paket keine neue Dart-Implementierung, Appanbindung oder Tastenbelegung.
+
+Ein Subagent schrieb den Vertrag, ein zweiter die unabhängigen Sollfälle und deren Planvalidator. Der Hauptagent prüfte beide, legte die additive API-Signatur und den zukünftigen DTO-Typ abschließend im Entwurf fest und ergänzte die Zuordnung zwischen Plan-JSON und DTO. Die mathematische Referenz rekonstruiert den Wert mit geschlossenen Bruchformeln aus den vorgegebenen Ziffern; sie berechnet die Ziffern nicht mit dem geplanten Produktalgorithmus.
+
+### Tatsächliche Prüfung
+
+Der neue Python-Prüfer `tools/check_recurring_decimal_plan.py` bestätigte abschließend die mathematische Konsistenz und Budgetmetadaten aller **30 Planfixtures**. Dies sind keine bestandenen Produktfälle. Der Hauptagent fand vor Abschluss drei Prüflücken: uneinheitlicher Formatname, fehlende Prüfung der kürzesten Vorperiode und unzureichende Nullkanonisierung. Diese wurden korrigiert. Sechs flüchtige absichtlich fehlerhafte Kopien wurden vom Subagenten erwartungsgemäß mit `ValueError` zurückgewiesen; sie werden nicht als neue Produkt- oder Referenzfälle gezählt oder gespeichert. Der Hauptagent ergänzte zusätzlich die Prüfung der Plan-Schemaversion.
+
+Der bestehende Katalogprüfer bestand unverändert: 50 Tasten, 243 Funktionspositionen, fünf Beispielabläufe und 56 Handbuchfall-IDs, weiterhin ausschließlich Planung. Lokale Dokumentlinks und Diffkontrolle wurden ebenfalls geprüft.
+
+Keine blockierten Dart-/Flutter-Teststarts wiederholt, keine SDK- oder Sicherheitsrichtlinien geändert und keine neue Laufzeitprüfung behauptet. Die 37 Sitzungsfälle und 57 Appfälle bleiben unausgeführt. Die letzten bestandenen 575 Coretests gehören weiterhin zu `655acd8`, die 144 Apptests zum Stand vor Quadrat und Kehrwert. Original-Programmdateien und native Builds bleiben offen.
+
+### Nächster Schritt
+
+Nach einer nachweislichen Änderung der ausführbaren Testumgebung zuerst die offenen Sitzungs-/Gesamttests nachholen. Danach lässt sich der spezifizierte Periodenformatter als begrenztes reines Core-Paket mit den unabhängigen Planreferenzen implementieren und tatsächlich prüfen. Bis dahin keine weiteren ungeprüften Produktänderungen auf diese offene Prüfgrundlage stapeln und keine wiederholten blockierten Teststarts. Neue Originale weiterhin lokal halten; kein neuer Push.
+
 ## 31.10.2026: Darstellungswahl vorbereitet, neuer Core-Testblock
 
 Ausgangsbasis `655acd8`, Arbeitskopie vor Beginn sauber. Das nächste dokumentierte Paket verbindet die exakte Ausgabe mit einer ausdrücklichen Wahl in beiden Core-Sitzungen. Der Vertrag wurde zuerst in [DARSTELLUNGSWAHL.md](DARSTELLUNGSWAHL.md) festgelegt. **Die neue Anbindung ist vorbereitet und statisch geprüft; ihre Ausführungsprüfung bleibt offen.**

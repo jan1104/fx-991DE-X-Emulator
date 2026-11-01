@@ -1,0 +1,702 @@
+{
+  "schemaVersion": 1,
+  "status": "planned",
+  "evidence": "ownMathematicalEvidence",
+  "originalDeviceVerified": false,
+  "notation": "Own notation: 0,(3), 0,1(6); comma decimal separator, parentheses mark the period. No Casio skin or original-output claim.",
+  "componentMeaning": "sign is -1/0/1; integerPart is unsigned; preperiod and period are digit strings (empty period means finite). Components and unlimitedText describe the exact expansion even when bounded planned output falls back or fails.",
+  "budgetContract": "Generated digits count preperiod plus one complete minimal period, or finite fractional digits. Integer digits, sign, comma and parentheses do not consume this digit budget. Zero budget allows integers only. Exceeding it plans canonical reduced-fraction fallback expansionLimit. Character budget then covers the entire chosen text, including sign, comma, both parentheses or fraction slash; exceeding it plans limit (no second fallback). expectedFallback records the selected fallback reason even when its text exceeds the character budget; expectedText and expectedFormat are then null.",
+  "oracle": "Closed form sign * (integerPart + preperiodInteger/10^m + periodInteger/[10^m*(10^n-1)]), omitting empty terms; verified by Python fractions.Fraction. Digits are supplied independently, not calculated by long division or product code.",
+  "cases": [
+    {
+      "id": "RECUR_THIRD",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "3"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "3"
+      },
+      "unlimitedText": "0,(3)",
+      "requiredGeneratedDigits": 1,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,(3)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_SIXTH_TWO_DIGITS",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "6"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "1",
+        "period": "6"
+      },
+      "unlimitedText": "0,1(6)",
+      "requiredGeneratedDigits": 2,
+      "maxGeneratedDigits": 2,
+      "maxOutputCharacters": 6,
+      "expectedText": "0,1(6)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_SEVENTH_SIX_DIGITS",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "7"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "142857"
+      },
+      "unlimitedText": "0,(142857)",
+      "requiredGeneratedDigits": 6,
+      "maxGeneratedDigits": 6,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,(142857)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_TWELFTH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "12"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "08",
+        "period": "3"
+      },
+      "unlimitedText": "0,08(3)",
+      "requiredGeneratedDigits": 3,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,08(3)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_TWENTY_EIGHTH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "28"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "03",
+        "period": "571428"
+      },
+      "unlimitedText": "0,03(571428)",
+      "requiredGeneratedDigits": 8,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,03(571428)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_TWENTY_TWO_SEVENTHS",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "22",
+        "denominator": "7"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "3",
+        "preperiod": "",
+        "period": "142857"
+      },
+      "unlimitedText": "3,(142857)",
+      "requiredGeneratedDigits": 6,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "3,(142857)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_NEGATIVE_SIXTH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "-1",
+        "denominator": "6"
+      },
+      "components": {
+        "sign": -1,
+        "integerPart": "0",
+        "preperiod": "1",
+        "period": "6"
+      },
+      "unlimitedText": "-0,1(6)",
+      "requiredGeneratedDigits": 2,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "-0,1(6)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_NINETIETH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "90"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "0",
+        "period": "1"
+      },
+      "unlimitedText": "0,0(1)",
+      "requiredGeneratedDigits": 2,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,0(1)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_NINETY_NINTH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "99"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "01"
+      },
+      "unlimitedText": "0,(01)",
+      "requiredGeneratedDigits": 2,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,(01)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_ELEVENTH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "11"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "09"
+      },
+      "unlimitedText": "0,(09)",
+      "requiredGeneratedDigits": 2,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,(09)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_TWENTY_SEVENTH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "27"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "037"
+      },
+      "unlimitedText": "0,(037)",
+      "requiredGeneratedDigits": 3,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,(037)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_FINITE_EIGHTH",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "8"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "125",
+        "period": ""
+      },
+      "unlimitedText": "0,125",
+      "requiredGeneratedDigits": 3,
+      "maxGeneratedDigits": 3,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,125",
+      "expectedFormat": "exactDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_ZERO",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "0",
+        "denominator": "9"
+      },
+      "components": {
+        "sign": 0,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": ""
+      },
+      "unlimitedText": "0",
+      "requiredGeneratedDigits": 0,
+      "maxGeneratedDigits": 0,
+      "maxOutputCharacters": 1,
+      "expectedText": "0",
+      "expectedFormat": "exactDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_REDUCED_TWO_SIXTHS",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "2",
+        "denominator": "6"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "3"
+      },
+      "unlimitedText": "0,(3)",
+      "requiredGeneratedDigits": 1,
+      "maxGeneratedDigits": 100,
+      "maxOutputCharacters": 2048,
+      "expectedText": "0,(3)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_SEVENTH_FIVE_DIGITS_FALLBACK",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "7"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "142857"
+      },
+      "unlimitedText": "0,(142857)",
+      "requiredGeneratedDigits": 6,
+      "maxGeneratedDigits": 5,
+      "maxOutputCharacters": 2048,
+      "expectedText": "1/7",
+      "expectedFormat": "fraction",
+      "expectedFallback": "expansionLimit",
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_SIXTH_ONE_DIGIT_FALLBACK",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "6"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "1",
+        "period": "6"
+      },
+      "unlimitedText": "0,1(6)",
+      "requiredGeneratedDigits": 2,
+      "maxGeneratedDigits": 1,
+      "maxOutputCharacters": 2048,
+      "expectedText": "1/6",
+      "expectedFormat": "fraction",
+      "expectedFallback": "expansionLimit",
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_ZERO_BUDGET_INTEGER",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "7",
+        "denominator": "1"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "7",
+        "preperiod": "",
+        "period": ""
+      },
+      "unlimitedText": "7",
+      "requiredGeneratedDigits": 0,
+      "maxGeneratedDigits": 0,
+      "maxOutputCharacters": 1,
+      "expectedText": "7",
+      "expectedFormat": "exactDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_ZERO_BUDGET_PERIODIC_FALLBACK",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "3"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "3"
+      },
+      "unlimitedText": "0,(3)",
+      "requiredGeneratedDigits": 1,
+      "maxGeneratedDigits": 0,
+      "maxOutputCharacters": 2048,
+      "expectedText": "1/3",
+      "expectedFormat": "fraction",
+      "expectedFallback": "expansionLimit",
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_ZERO_BUDGET_FINITE_FALLBACK",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "8"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "125",
+        "period": ""
+      },
+      "unlimitedText": "0,125",
+      "requiredGeneratedDigits": 3,
+      "maxGeneratedDigits": 0,
+      "maxOutputCharacters": 2048,
+      "expectedText": "1/8",
+      "expectedFormat": "fraction",
+      "expectedFallback": "expansionLimit",
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_THIRD_CHARACTER_BOUNDARY",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "3"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "3"
+      },
+      "unlimitedText": "0,(3)",
+      "requiredGeneratedDigits": 1,
+      "maxGeneratedDigits": 1,
+      "maxOutputCharacters": 5,
+      "expectedText": "0,(3)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_THIRD_CHARACTER_LIMIT",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "3"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "3"
+      },
+      "unlimitedText": "0,(3)",
+      "requiredGeneratedDigits": 1,
+      "maxGeneratedDigits": 1,
+      "maxOutputCharacters": 4,
+      "expectedText": null,
+      "expectedFormat": null,
+      "expectedFallback": null,
+      "expectedError": "limit"
+    },
+    {
+      "id": "RECUR_NEGATIVE_THIRD_CHARACTER_BOUNDARY",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "-1",
+        "denominator": "3"
+      },
+      "components": {
+        "sign": -1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "3"
+      },
+      "unlimitedText": "-0,(3)",
+      "requiredGeneratedDigits": 1,
+      "maxGeneratedDigits": 1,
+      "maxOutputCharacters": 6,
+      "expectedText": "-0,(3)",
+      "expectedFormat": "exactRecurringDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_NEGATIVE_THIRD_CHARACTER_LIMIT",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "-1",
+        "denominator": "3"
+      },
+      "components": {
+        "sign": -1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "3"
+      },
+      "unlimitedText": "-0,(3)",
+      "requiredGeneratedDigits": 1,
+      "maxGeneratedDigits": 1,
+      "maxOutputCharacters": 5,
+      "expectedText": null,
+      "expectedFormat": null,
+      "expectedFallback": null,
+      "expectedError": "limit"
+    },
+    {
+      "id": "RECUR_SIXTH_CHARACTER_LIMIT",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "6"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "1",
+        "period": "6"
+      },
+      "unlimitedText": "0,1(6)",
+      "requiredGeneratedDigits": 2,
+      "maxGeneratedDigits": 2,
+      "maxOutputCharacters": 5,
+      "expectedText": null,
+      "expectedFormat": null,
+      "expectedFallback": null,
+      "expectedError": "limit"
+    },
+    {
+      "id": "RECUR_FALLBACK_CHARACTER_BOUNDARY",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "7"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "142857"
+      },
+      "unlimitedText": "0,(142857)",
+      "requiredGeneratedDigits": 6,
+      "maxGeneratedDigits": 5,
+      "maxOutputCharacters": 3,
+      "expectedText": "1/7",
+      "expectedFormat": "fraction",
+      "expectedFallback": "expansionLimit",
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_FALLBACK_CHARACTER_LIMIT",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "1",
+        "denominator": "7"
+      },
+      "components": {
+        "sign": 1,
+        "integerPart": "0",
+        "preperiod": "",
+        "period": "142857"
+      },
+      "unlimitedText": "0,(142857)",
+      "requiredGeneratedDigits": 6,
+      "maxGeneratedDigits": 5,
+      "maxOutputCharacters": 2,
+      "expectedText": null,
+      "expectedFormat": null,
+      "expectedFallback": "expansionLimit",
+      "expectedError": "limit"
+    },
+    {
+      "id": "RECUR_NEGATIVE_INTEGER_BOUNDARY",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "-12",
+        "denominator": "1"
+      },
+      "components": {
+        "sign": -1,
+        "integerPart": "12",
+        "preperiod": "",
+        "period": ""
+      },
+      "unlimitedText": "-12",
+      "requiredGeneratedDigits": 0,
+      "maxGeneratedDigits": 0,
+      "maxOutputCharacters": 3,
+      "expectedText": "-12",
+      "expectedFormat": "exactDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_NEGATIVE_INTEGER_LIMIT",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "-12",
+        "denominator": "1"
+      },
+      "components": {
+        "sign": -1,
+        "integerPart": "12",
+        "preperiod": "",
+        "period": ""
+      },
+      "unlimitedText": "-12",
+      "requiredGeneratedDigits": 0,
+      "maxGeneratedDigits": 0,
+      "maxOutputCharacters": 2,
+      "expectedText": null,
+      "expectedFormat": null,
+      "expectedFallback": null,
+      "expectedError": "limit"
+    },
+    {
+      "id": "RECUR_NEGATIVE_FINITE_BOUNDARY",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "-1",
+        "denominator": "8"
+      },
+      "components": {
+        "sign": -1,
+        "integerPart": "0",
+        "preperiod": "125",
+        "period": ""
+      },
+      "unlimitedText": "-0,125",
+      "requiredGeneratedDigits": 3,
+      "maxGeneratedDigits": 3,
+      "maxOutputCharacters": 6,
+      "expectedText": "-0,125",
+      "expectedFormat": "exactDecimal",
+      "expectedFallback": null,
+      "expectedError": null
+    },
+    {
+      "id": "RECUR_NEGATIVE_FINITE_LIMIT",
+      "status": "planned",
+      "evidence": "ownMathematicalEvidence",
+      "input": {
+        "numerator": "-1",
+        "denominator": "8"
+      },
+      "components": {
+        "sign": -1,
+        "integerPart": "0",
+        "preperiod": "125",
+        "period": ""
+      },
+      "unlimitedText": "-0,125",
+      "requiredGeneratedDigits": 3,
+      "maxGeneratedDigits": 3,
+      "maxOutputCharacters": 5,
+      "expectedText": null,
+      "expectedFormat": null,
+      "expectedFallback": null,
+      "expectedError": "limit"
+    }
+  ]
+}

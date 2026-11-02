@@ -35,3 +35,6 @@ Bei einer Periode zeichnet die Ansicht Präfix und genau die wiederholten Ziffer
 ## Prüfung und nächster Schritt
 
 Neue Controllerfälle prüfen Zyklus, Rückfälle, direkte Dezimalausgabe, beide Eingabearten, globale Normalisierung und exaktes Ans. Neue Widgetfälle prüfen Tasten-/Setup-Bedienung, Überstrich und Semantik, Ausgabehinweise sowie Kontrast und schmale Darstellung. Der bestehende Cloud-Test-/Web-Build bleibt der tatsächliche Ausführungsweg; bekannte blockierte lokale Tests werden nicht erneut gestartet. Ergebnisse und geprüfte Revision werden im [Entwicklungsstand](ENTWICKLUNGSSTAND.md) dokumentiert. Eine Vorschau mit echter Periodenansicht soll zusätzlich erzeugt und visuell geprüft werden.
+
+
+Fortschreibung nach Ausführung: Der gesamte Vertrag ist auf `a9aaa7a` im Cloud-Lauf geprüft. Insgesamt 671 Core- und 290 Appfälle bestanden, einschließlich 50 neuer Controller-/Widgetfälle dieses Pakets. Zehn Vorschau-Szenarien bestanden; positive und negative Periodenansicht wurden tatsächlich visuell geprüft. Revisionsnachweis, korrigierter Test-Aufräumfehler und Grenzen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).

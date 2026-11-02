@@ -2,6 +2,8 @@
 
 Stand: 25.10.2026. **Planungsstand: alle Fälle `planned`; keine Taste wurde hierdurch als implementiert oder bestanden geprüft.** Geprüft wurden nur Aufbau und Vollständigkeit der CSV-Datei. Es liegt noch keine Messreihe am Originalemulator vor.
 
+Ergänzung 02.11.2026 vormittags: Der S⇔D-Zyklus ist mit dem wirksamen Periodenschalter und exaktem Core-Formatter verbunden. 26 neue Controller- und 24 neue Widgetfälle sind im Cloud-Lauf ausgeführt, mit erhaltenem Ans, globaler Normalisierung und begrenzten Ausgabeproblemen. Dies deckt nicht alle Modi und Originalabläufe der Inventarzeile ab; deren Planstatus bleibt erhalten. [PERIODEN_APP.md](PERIODEN_APP.md).
+
 Ergänzung 02.11.2026: Der zentrale Appcontroller ergänzt eigene Abläufe für SHIFT/MENU/ON/S⇔D, OFF, Setupnavigation und Anzeigeoptionen. 28 Controller- und elf Widgetfälle sind vorbereitet, aber nicht ausgeführt. Die Originalinventare bleiben geplant; die neue Front und Setupbelegung sind noch kein bestandener Originalvergleich. [FRONT_UND_SETUP.md](FRONT_UND_SETUP.md).
 
 Ergänzung 30.10.2026: `KEY_RECIPROCAL` ergänzt die Primäraktion Kehrwert. Corefälle in `test/reciprocal_key_test.dart` decken atomare Zwei-Zeichen-Eingabe, Nullfall, Postfixbindung, exaktes Ans und Fehlerwiederaufnahme ab; Appfälle sind vorbereitet und noch nicht ausgeführt. SHIFT-Fakultät, ALPHA-C, Hexadezimalbelegung und Originalvergleich bleiben offen; die Inventarzeile bleibt `planned`. Vertrag: [KEHRWERT.md](KEHRWERT.md).

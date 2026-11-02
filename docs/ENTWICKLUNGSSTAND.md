@@ -4,7 +4,7 @@
 
 Ausgangsbasis `75d7abe`, Arbeitskopie vor Beginn sauber. Im nächsten planmäßigen Sechs-Stunden-Lauf wird die bereits dokumentierte Appanbindung des exakten Core-Formatters umgesetzt. Der Vertrag wurde vor der Umsetzung in [PERIODEN_APP.md](PERIODEN_APP.md) festgelegt; vorhandene PDF-Analysen wurden nicht wiederholt.
 
-### Vorbereitet und statisch geprüft
+### Umgesetzt und geprüft
 
 - Bei Norm und eingeschalteter Periodendarstellung wechselt S⇔D für periodische Werte zwischen exaktem Bruch, exakter Periode und gerundetem Dezimalwert. Endliche Werte, ganze Zahlen, Fix/Sci und Perioden-Aus behalten ihren zweistufigen Wechsel. Direkte Dezimalausgabe nach SHIFT → `=` oder über die Eingabe-/Ausgabevorgabe bleibt erhalten.
 - Der vorhandene Setup-Schalter ist wirksam und nicht mehr als in Vorbereitung gekennzeichnet. Aus oder Fix/Sci normalisieren beide gespeicherten Periodenwünsche auf gerundet; Ergebnis, Ans und Editor bleiben erhalten.
@@ -12,7 +12,21 @@ Ausgangsbasis `75d7abe`, Arbeitskopie vor Beginn sauber. Im nächsten planmäßi
 
 Ein Subagent entwickelte Controller und 26 neue Controllerfälle, ein zweiter die Ansicht und 24 neue Widgetfälle. Der Hauptagent prüfte die Diffs und ergänzte zwei vorbereitete Vorschauszenarien für `1/6` und `-1/12`. Die bisherigen SHIFT-S⇔D-Erwartungen wurden gezielt an die nun vorgeschaltete Periode angepasst; die Prüfung weiterhin fehlender Modi bleibt bestehen. Beim Review wurde außerdem verhindert, dass ein großer ganzzahliger Wert unnötig durch den Periodenformatter läuft und dadurch statt direkter wissenschaftlicher Dezimalausgabe zunächst einen Ausgabegrenzfehler erhält. Dafür sind beide Eingabearten gezielt abgedeckt.
 
-Normale Appanalyse ohne Befund, Formatierung über 25 Dateien erfolgreich. Keine bekannten blockierten lokalen Tests gestartet und keine SDK-/Abhängigkeits- oder Sicherheitsrichtlinien geändert. Die tatsächliche Prüfung erfolgt anschließend über den bestehenden GitHub-Test-/Web-Build und wird nach Abschluss ergänzt. Originalvergleich, native Builds und noch fehlende andere Rechnerfunktionen werden dadurch nicht ergänzt.
+Normale Appanalyse ohne Befund, Formatierung über 25 Dateien erfolgreich. Keine bekannten blockierten lokalen Tests gestartet und keine SDK-/Abhängigkeits- oder Sicherheitsrichtlinien geändert. Die tatsächliche Prüfung erfolgt anschließend über den bestehenden GitHub-Test-/Web-Build und wird nach Abschluss ergänzt.
+
+Der erste [Cloud-Lauf 41428457937](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41428457937) bestand den Core, scheiterte aber in vier neuen Semantikfällen am Testende: Ein mit `ensureSemantics()` angelegter Handle wurde erst im allgemeinen Tear-down und damit nach der Flutter-Abschlussprüfung freigegeben. Die konkreten Text-/Semantikerwartungen hatten davor keinen Fehler gemeldet. Der Hauptagent ersetzte ausschließlich diese Test-Aufräumstelle durch `try/finally` mit rechtzeitiger Freigabe. Produktionscode und Erwartungen wurden dafür nicht verändert oder abgeschwächt. Die übrigen 286 Appfälle bestanden bereits im ersten Lauf; Web-Build und Vorschauen wurden wegen der fehlgeschlagenen Appsuite dort korrekt übersprungen.
+
+### Abschließender Prüfstand
+
+[GitHub-Lauf 41429023354](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41429023354) für **`a9aaa7ae04f7486bef5469502e2f45d3face7f80`** bestand auf Ubuntu 24.04 mit unverändertem dokumentiertem Flutter/Dart vollständig: **671 Coretests, 290 App-/Controller-/Widgettests, Web-Release-Build und zehn separate Vorschauszenarien bestanden**. Die 50 neuen Appfälle sind darin enthalten, nicht zusätzlich zu zählen. SDK-/Revisionskontrolle, erzwungene Lockdateien, Formatierung und statische Analyse gehören zum erfolgreichen Lauf.
+
+Der Hauptagent lud die Vorschauen herunter und prüfte `calculator-periodic.png` und `calculator-periodic-negative.png` bei jeweils 420×1600: `1/6` erscheint als `0,16` mit Überstrich nur über der 6; `-1/12` als `-0,083` mit Überstrich nur über der 3. Vorperiode und Minus sind lesbar und nicht überstrichen, der Strich ist nicht abgeschnitten. Dies ist gerenderte Linux-Testengine-QA, kein manueller Browser-/Geräte-/Screenreader-Test oder Originalvergleich. Lokale Dateien liegen ignoriert unter `build/reports/github-41429023354/previews/`.
+
+Das [Browser-Artefakt](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41429023354/artifacts/13134190597) und die [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41429023354/artifacts/13133516926) gehören genau zur genannten Revision. Der nachfolgende reine Dokumentationscommit verändert keinen Produktcode und löst per `[skip ci]` keinen redundanten Volltest aus.
+
+### Nächster Schritt
+
+Im nächsten Sechs-Stunden-Lauf als begrenztes Paket die bereits beschriftete SHIFT-x²-Belegung für Kubieren anhand des vorhandenen Quelleninventars spezifizieren, im Core mit eindeutiger Postfixbindung ergänzen und mit Controller-/Bedientests verbinden. Weitere SHIFT-/ALPHA-Belegungen und fehlende Rechenmodi bleiben getrennte Pakete. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Zeitplan; keine neue Veröffentlichung fremder Originale oder öffentliches Hosting. Originalvergleich, native Builds und noch fehlende andere Rechnerfunktionen werden dadurch nicht ergänzt.
 
 ## 02.11.2026 früh: begrenzter exakter Periodenformatter im Core
 

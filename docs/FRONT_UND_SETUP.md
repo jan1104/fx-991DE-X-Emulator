@@ -26,8 +26,9 @@ Die vier Eingabe-/Ausgabearten, die drei Winkeleinheiten und alle 17 Setup-Berei
 | 1000er-Trennung | Punkte im Ganzteil der Ergebnisanzeige |
 | Mehrzeilengröße | Schriftgröße der Eingabeansicht |
 | Kontrast | Lesefarbe des LCD; eigene Skala 0–10 mit eigener Vorgabe 5 |
+| Periodische Darstellung | Exakte Periodenansicht mit Überstrich im Norm-S⇔D-Zyklus; Aus und Fix/Sci unterdrücken den Periodenschritt |
 | Winkeleinheit | D/R/G gespeichert und als Status angezeigt; Trigonometrie noch offen |
-| Präfixe, komplexe Zahlen, Statistik, Tabellenkalkulation, komplexe Lösungen, Wertetabelle, Perioden, QR, automatisches Ausschalten | Auswahl gespeichert; betroffene Rechen-/Ausgabefunktion noch in Vorbereitung und im Menü so gekennzeichnet |
+| Präfixe, komplexe Zahlen, Statistik, Tabellenkalkulation, komplexe Lösungen, Wertetabelle, QR, automatisches Ausschalten | Auswahl gespeichert; betroffene Rechen-/Ausgabefunktion noch in Vorbereitung und im Menü so gekennzeichnet |
 
 MENU zeigt außerdem die 13 bekannten Modi; die Auswahl eines noch fehlenden Modus meldet dessen Vorbereitungsstatus und simuliert keinen Moduswechsel. ON, SHIFT-Verriegelung, SHIFT → AC als OFF, S⇔D sowie SHIFT → `=` als Dezimalwunsch sind im Appcontroller vorbereitet. Weitere fehlende SHIFT-Belegungen liefern eine Meldung ohne Änderung der Rechnung; ALPHA bleibt deaktiviert. Außerhalb des Menüs sind 31 Primäraktionen in Linear und 34 in Math vorgesehen.
 
@@ -35,11 +36,11 @@ MENU zeigt außerdem die 13 bekannten Modi; die Auswahl eines noch fehlenden Mod
 
 Die neue Appanzeige berechnet Fix/Sci/Norm mit BigInt-Ganzzahldivision. Die eigene Rundungsregel ist „bei genau halbem Abstand vom Nullpunkt weg“. Norm verwendet zehn signifikante Stellen und die bereits dokumentierten Norm-Schwellen; Sci 0 bedeutet im Prototyp zehn signifikante Stellen. Ein Rundungsübertrag an der oberen Norm-Schwelle wird als wissenschaftliche Darstellung ausgegeben. Ein auf Null gerundetes negatives Ergebnis erhält kein Minus.
 
-Das ist ausschließlich Ausgabe. Ergebnis und Ans bleiben die exakten Rationalwerte. Der bisherige reine Core-Formatter `formatRational` behält seinen Vertrag ohne Rundung; der Appcontroller verwendet einen eigenen begrenzten Anzeigepfad für den über S⇔D oder Setup gewählten Dezimalwunsch. Periodische Ergebnisse können dort gerundet angezeigt werden; der geplante exakte Periodenformatter bleibt weiterhin nicht implementiert. Originale Genauigkeits-/Anzeigegrenzen sind damit nicht vollständig nachgewiesen.
+Das ist ausschließlich Ausgabe. Ergebnis und Ans bleiben die exakten Rationalwerte. Der bisherige reine Core-Formatter `formatRational` behält seinen Vertrag ohne Rundung; der Appcontroller verwendet einen eigenen begrenzten Anzeigepfad für den über S⇔D oder Setup gewählten Dezimalwunsch. Periodische Ergebnisse können dort gerundet angezeigt werden; der exakte Periodenformatter ist inzwischen als zusätzlicher Norm-S⇔D-Schritt angebunden; [PERIODEN_APP.md](PERIODEN_APP.md) legt Zyklus und Grenzen fest. Originale Genauigkeits-/Anzeigegrenzen sind damit nicht vollständig nachgewiesen.
 
 ## Test- und Browserweg
 
-Lokal bestehen Formatprüfung und statische Analyse. Die 28 neuen Controllerfälle und elf neuen Widgetfälle sind inzwischen im erfolgreichen GitHub-Lauf als Teil der 240 Appfälle ausgeführt worden. Bestehende Widgetfälle wählen ihren Eingabemodus jetzt ausdrücklich und berücksichtigen die zusätzlichen Primäraktionen. Der neue Math-Startmodus wird separat geprüft. Die bestehenden Windows-Code-Integrity-Sperren werden weder umgangen noch durch wiederholte Teststarts provoziert.
+Lokal bestehen Formatprüfung und statische Analyse. Die ursprünglichen 28 Controllerfälle und elf Widgetfälle sind ausgeführt. Der spätere Perioden-Schritt ergänzt 50 Fälle; der aktuelle erfolgreiche Cloud-Lauf umfasst 671 Core- und 290 Appfälle. Bestehende Widgetfälle wählen ihren Eingabemodus jetzt ausdrücklich und berücksichtigen die zusätzlichen Primäraktionen. Der neue Math-Startmodus wird separat geprüft. Die bestehenden Windows-Code-Integrity-Sperren werden weder umgangen noch durch wiederholte Teststarts provoziert.
 
 Der lokale Workflow [verify-and-build-web.yml](../.github/workflows/verify-and-build-web.yml) bereitet einen unabhängigen GitHub-Testlauf vor. Er verwendet den festgehaltenen Flutter-Tag und prüft dessen Revision, führt Core-/Apptests aus und erstellt erst danach einen Web-Build derselben Flutter-App. Die Web-Startdateien werden dabei mit dem offiziellen Flutter-Werkzeug erzeugt. Eine zusätzliche Vorschauausgabe ist vorbereitet. Es gibt keine zweite HTML-Rechnerimplementierung und kein automatisches öffentliches Hosting.
 

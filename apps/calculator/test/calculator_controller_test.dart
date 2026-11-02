@@ -379,7 +379,7 @@ void main() {
       calculate(c, '-7/3');
       final answer = c.result;
       c.pressId('KEY_SD');
-      expect(c.resultText, '-2,333333333');
+      expect(c.resultText, '-2,(3)');
       c.pressId('KEY_SHIFT');
       c.pressId('KEY_SD');
       expect(c.settings.fractionForm, CalculatorFractionForm.mixed);
@@ -443,7 +443,7 @@ void main() {
   });
 
   test(
-    'all pending settings store explicit choices without enabling modes',
+    'settings store explicit choices without enabling unavailable modes',
     () {
       final c = CalculatorController();
       for (final path in const [
@@ -462,7 +462,11 @@ void main() {
         c.openSetup();
         chooseVisible(c, path[0]);
         expect(
-          c.menuItems.every((i) => i.capabilityStatus.contains('Vorbereitung')),
+          c.menuItems.every(
+            (i) => path[0] == 'period'
+                ? i.capabilityStatus == 'Verfügbar'
+                : i.capabilityStatus.contains('Vorbereitung'),
+          ),
           isTrue,
         );
         chooseVisible(c, path[1]);

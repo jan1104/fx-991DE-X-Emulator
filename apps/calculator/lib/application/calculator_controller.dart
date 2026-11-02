@@ -4,6 +4,22 @@ import 'calculator_settings.dart';
 import 'key_layout.dart';
 export 'calculator_settings.dart';
 
+/// One immutable rendering decision, shared by visual text and accessibility.
+/// [periodPrefix] already includes sign, grouping and non-repeating digits.
+final class CalculatorResultPresentation {
+  final String text;
+  final RationalDecimalExpansion? expansion;
+  final String? periodPrefix;
+  final RationalDisplayFallbackReason? fallbackReason;
+
+  const CalculatorResultPresentation({
+    required this.text,
+    this.expansion,
+    this.periodPrefix,
+    this.fallbackReason,
+  });
+}
+
 final class CalculatorMenuItem {
   final String id, label, capabilityStatus;
   final bool selected;
@@ -253,11 +269,54 @@ final class CalculatorController {
 
   void _toggleDisplay() {
     if (phase != CalculatorPhase.result) return;
-    _selectDisplay(
-      _displayFormat == RationalDisplayFormat.fraction
-          ? RationalDisplayFormat.exactDecimal
-          : RationalDisplayFormat.fraction,
-    );
+    if (_displayFormat == RationalDisplayFormat.exactRecurringDecimal) {
+      _selectDisplay(RationalDisplayFormat.exactDecimal);
+    } else if (_displayFormat == RationalDisplayFormat.exactDecimal) {
+      _selectDisplay(RationalDisplayFormat.fraction);
+    } else if (result!.isInteger) {
+      // Integers never have a period, even when their full exact text exceeds
+      // the output budget. Rounded Sci/Norm can still render such a value.
+      _selectDisplay(RationalDisplayFormat.exactDecimal);
+    } else if (_recurringEnabled) {
+      // A classification limit must not escape a key event. Preserve the exact
+      // request and let resultPresentation report the separate output problem;
+      // the next S/D still advances to the rounded representation.
+      try {
+        final display = formatRational(
+          result!,
+          format: RationalDisplayFormat.exactRecurringDecimal,
+        );
+        final hasPeriod =
+            display.expansion?.repeatingDigits.isNotEmpty ?? false;
+        _selectDisplay(
+          hasPeriod ||
+                  display.fallbackReason ==
+                      RationalDisplayFallbackReason.expansionLimit
+              ? RationalDisplayFormat.exactRecurringDecimal
+              : RationalDisplayFormat.exactDecimal,
+        );
+      } on CalculatorException {
+        _selectDisplay(RationalDisplayFormat.exactRecurringDecimal);
+      }
+    } else {
+      _selectDisplay(RationalDisplayFormat.exactDecimal);
+    }
+  }
+
+  bool get _recurringEnabled =>
+      settings.recurringDisplay &&
+      settings.numberFormat == CalculatorNumberFormat.norm;
+
+  void _normalizeUnavailablePeriodChoices() {
+    if (_recurringEnabled) return;
+    if (session.snapshot.resultDisplayFormat ==
+        RationalDisplayFormat.exactRecurringDecimal) {
+      session.selectResultDisplayFormat(RationalDisplayFormat.exactDecimal);
+    }
+    if (structured.snapshot.resultDisplayFormat ==
+        RationalDisplayFormat.exactRecurringDecimal) {
+      structured.selectResultDisplayFormat(RationalDisplayFormat.exactDecimal);
+    }
   }
 
   String get displayStatus => [
@@ -274,10 +333,17 @@ final class CalculatorController {
 
   /// Display-only rounding: exact integer division, ties away from zero.
   /// The rational result and Ans remain the sessions' original values.
-  String get resultText {
+  String get resultText => resultPresentation.text;
+
+  CalculatorResultPresentation get resultPresentation {
     final value = result;
-    if (phase != CalculatorPhase.result || value == null) return '';
+    if (phase != CalculatorPhase.result || value == null) {
+      return const CalculatorResultPresentation(text: '');
+    }
     String text;
+    RationalDecimalExpansion? expansion;
+    RationalDisplayFallbackReason? fallbackReason;
+    String? periodPrefix;
     if (_displayFormat == RationalDisplayFormat.fraction) {
       text = formatRational(value).text;
       if (settings.fractionForm == CalculatorFractionForm.mixed &&
@@ -285,6 +351,22 @@ final class CalculatorController {
           value.numerator.abs() > value.denominator) {
         final n = value.numerator.abs(), d = value.denominator;
         text = '${value.numerator.isNegative ? '-' : ''}${n ~/ d} ${n % d}/$d';
+      }
+    } else if (_displayFormat == RationalDisplayFormat.exactRecurringDecimal) {
+      final display = formatRational(
+        value,
+        format: RationalDisplayFormat.exactRecurringDecimal,
+      );
+      text = display.text;
+      expansion = display.expansion;
+      fallbackReason = display.fallbackReason;
+      if (expansion != null && expansion.repeatingDigits.isNotEmpty) {
+        final integerText =
+            '${expansion.negative ? '-' : ''}${expansion.integerDigits}';
+        final grouped = settings.thousandsSeparator
+            ? _group(integerText)
+            : integerText;
+        periodPrefix = '$grouped,${expansion.nonRepeatingDigits}';
       }
     } else {
       text = _decimal(value);
@@ -295,7 +377,12 @@ final class CalculatorController {
         CalculatorErrorCode.limit,
         'Anzeige zu lang',
       );
-    return text;
+    return CalculatorResultPresentation(
+      text: text,
+      expansion: expansion,
+      periodPrefix: periodPrefix,
+      fallbackReason: fallbackReason,
+    );
   }
 
   String _decimal(Rational value) {
@@ -471,7 +558,6 @@ final class CalculatorController {
                 'sheetCell',
                 'solutions',
                 'table',
-                'period',
                 'qr',
                 'off',
               }.contains(pair[0]),
@@ -610,7 +696,7 @@ final class CalculatorController {
           item('fg', 'f(x),g(x)', settings.tableBothFunctions, true),
         ];
       case 'period':
-        return toggles(settings.recurringDisplay, pending: true);
+        return toggles(settings.recurringDisplay);
       case 'separator':
         return toggles(settings.thousandsSeparator);
       case 'text':
@@ -674,5 +760,6 @@ final class CalculatorController {
       'off' => settings.copyWith(autoOffMinutes: int.parse(id)),
       _ => settings,
     };
+    _normalizeUnavailablePeriodChoices();
   }
 }

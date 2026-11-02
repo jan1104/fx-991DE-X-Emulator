@@ -6,6 +6,7 @@ import '../../application/calculator_controller.dart';
 import '../../application/keyboard_mapping.dart';
 import '../editor/fraction_expression_view.dart';
 import 'calculator_skin.dart';
+import 'recurring_result_view.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
@@ -215,21 +216,32 @@ class _CalculatorPageState extends State<CalculatorPage> {
     )!;
     final fontSize = _controller.settings.smallText ? 19.0 : 23.0;
     var resultText = '';
+    CalculatorResultPresentation? presentation;
     String? outputError;
     if (!_controller.menuOpen && _controller.poweredOn) {
       try {
-        resultText = phase == CalculatorPhase.error
-            ? switch (error!.code) {
-                CalculatorErrorCode.syntax => 'Syntaxfehler',
-                CalculatorErrorCode.math => 'Mathem. Fehler',
-                CalculatorErrorCode.unsupported => 'Noch nicht verfügbar',
-                CalculatorErrorCode.limit => 'Eingabe zu umfangreich',
-              }
-            : _controller.resultText;
+        if (phase == CalculatorPhase.error) {
+          resultText = switch (error!.code) {
+            CalculatorErrorCode.syntax => 'Syntaxfehler',
+            CalculatorErrorCode.math => 'Mathem. Fehler',
+            CalculatorErrorCode.unsupported => 'Noch nicht verfügbar',
+            CalculatorErrorCode.limit => 'Eingabe zu umfangreich',
+          };
+        } else {
+          presentation = _controller.resultPresentation;
+          resultText = presentation.text;
+        }
       } on CalculatorException {
         outputError = 'Ergebnisanzeige zu umfangreich';
       }
     }
+    final expansion = presentation?.expansion;
+    final periodPrefix = presentation?.periodPrefix;
+    final resultStyle = TextStyle(
+      fontSize: phase == CalculatorPhase.error ? 18 : 30,
+      fontWeight: FontWeight.w600,
+      color: ink,
+    );
     return Container(
       key: const ValueKey('calculator-display'),
       constraints: const BoxConstraints(minHeight: 204),
@@ -339,16 +351,29 @@ class _CalculatorPageState extends State<CalculatorPage> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       reverse: true,
-                      child: Text(
-                        resultText,
-                        key: const ValueKey('display-result'),
-                        style: TextStyle(
-                          fontSize: phase == CalculatorPhase.error ? 18 : 30,
-                          fontWeight: FontWeight.w600,
-                          color: ink,
-                        ),
-                      ),
+                      child:
+                          periodPrefix != null &&
+                              expansion != null &&
+                              expansion.repeatingDigits.isNotEmpty
+                          ? RecurringResultView(
+                              periodPrefix: periodPrefix,
+                              repeatingDigits: expansion.repeatingDigits,
+                              canonicalText: resultText,
+                              style: resultStyle,
+                            )
+                          : Text(
+                              resultText,
+                              key: const ValueKey('display-result'),
+                              style: resultStyle,
+                            ),
                     ),
+                    if (presentation?.fallbackReason ==
+                        RationalDisplayFallbackReason.expansionLimit)
+                      const Text(
+                        'Periode zu lang; Bruch bleibt exakt. S⇔D zeigt den Dezimalwert.',
+                        key: ValueKey('display-period-limit'),
+                        style: TextStyle(fontSize: 11),
+                      ),
                     if (outputError != null)
                       Text(
                         outputError,

@@ -1,5 +1,19 @@
 # Entwicklungsstand
 
+## 02.11.2026 vormittags: Perioden in der App und wirksamer Setup-Schalter
+
+Ausgangsbasis `75d7abe`, Arbeitskopie vor Beginn sauber. Im nächsten planmäßigen Sechs-Stunden-Lauf wird die bereits dokumentierte Appanbindung des exakten Core-Formatters umgesetzt. Der Vertrag wurde vor der Umsetzung in [PERIODEN_APP.md](PERIODEN_APP.md) festgelegt; vorhandene PDF-Analysen wurden nicht wiederholt.
+
+### Vorbereitet und statisch geprüft
+
+- Bei Norm und eingeschalteter Periodendarstellung wechselt S⇔D für periodische Werte zwischen exaktem Bruch, exakter Periode und gerundetem Dezimalwert. Endliche Werte, ganze Zahlen, Fix/Sci und Perioden-Aus behalten ihren zweistufigen Wechsel. Direkte Dezimalausgabe nach SHIFT → `=` oder über die Eingabe-/Ausgabevorgabe bleibt erhalten.
+- Der vorhandene Setup-Schalter ist wirksam und nicht mehr als in Vorbereitung gekennzeichnet. Aus oder Fix/Sci normalisieren beide gespeicherten Periodenwünsche auf gerundet; Ergebnis, Ans und Editor bleiben erhalten.
+- Ein unveränderliches gemeinsames Präsentationsobjekt liefert Text, Core-Komponenten, vollständig formatiertes Präfix und Rückfallgrund. Die Ansicht überstreicht genau die periodischen Ziffern und nennt die Periode assistiv. Bei zu langer Entwicklung bleibt der exakte Bruch mit Hinweis sichtbar; weitere S⇔D-Wechsel funktionieren.
+
+Ein Subagent entwickelte Controller und 26 neue Controllerfälle, ein zweiter die Ansicht und 24 neue Widgetfälle. Der Hauptagent prüfte die Diffs und ergänzte zwei vorbereitete Vorschauszenarien für `1/6` und `-1/12`. Die bisherigen SHIFT-S⇔D-Erwartungen wurden gezielt an die nun vorgeschaltete Periode angepasst; die Prüfung weiterhin fehlender Modi bleibt bestehen. Beim Review wurde außerdem verhindert, dass ein großer ganzzahliger Wert unnötig durch den Periodenformatter läuft und dadurch statt direkter wissenschaftlicher Dezimalausgabe zunächst einen Ausgabegrenzfehler erhält. Dafür sind beide Eingabearten gezielt abgedeckt.
+
+Normale Appanalyse ohne Befund, Formatierung über 25 Dateien erfolgreich. Keine bekannten blockierten lokalen Tests gestartet und keine SDK-/Abhängigkeits- oder Sicherheitsrichtlinien geändert. Die tatsächliche Prüfung erfolgt anschließend über den bestehenden GitHub-Test-/Web-Build und wird nach Abschluss ergänzt. Originalvergleich, native Builds und noch fehlende andere Rechnerfunktionen werden dadurch nicht ergänzt.
+
 ## 02.11.2026 früh: begrenzter exakter Periodenformatter im Core
 
 Ausgangsbasis `c2b5d68`, Arbeitskopie vor Beginn sauber. Im planmäßigen Sechs-Stunden-Lauf wird das bereits spezifizierte nächste Paket aus [PERIODENDARSTELLUNG.md](PERIODENDARSTELLUNG.md) umgesetzt. Appcontroller, Setupbelegung, sichtbarer S⇔D-Zyklus und lokale Sicherheitsrichtlinien werden in diesem Paket nicht geändert.

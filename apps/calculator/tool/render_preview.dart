@@ -18,12 +18,16 @@ void main() {
     'square',
     'front',
     'settings',
+    'periodic',
+    'periodic-negative',
   ]) {
     final structured = scenario != 'linear';
     final error = scenario == 'error';
     final capture = scenario == 'capture';
     final group = scenario == 'group';
     final square = scenario == 'square';
+    final periodic = scenario.startsWith('periodic');
+    final negativePeriod = scenario == 'periodic-negative';
     testWidgets('render the calculator preview: $scenario', (tester) async {
       tester.view.physicalSize = const Size(420, 1600);
       tester.view.devicePixelRatio = 1;
@@ -64,7 +68,17 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in square
+          in periodic
+              ? [
+                  if (negativePeriod) 'KEY_NEGATE',
+                  'KEY_FRACTION',
+                  'KEY_1',
+                  'KEY_DOWN',
+                  if (negativePeriod) ...['KEY_1', 'KEY_2'] else 'KEY_6',
+                  'KEY_EQUALS',
+                  'KEY_SD',
+                ]
+              : square
               ? ['KEY_3', 'KEY_SQUARE', 'KEY_SQUARE', 'KEY_EQUALS']
               : group
               ? [
@@ -131,9 +145,16 @@ void main() {
         await tester.pump();
       }
       await tester.pumpAndSettle();
+      final output = tester.widget<Text>(
+        find.byKey(const ValueKey('display-result')),
+      );
       expect(
-        tester.widget<Text>(find.byKey(const ValueKey('display-result'))).data,
-        square
+        output.data ?? output.textSpan!.toPlainText(),
+        periodic
+            ? negativePeriod
+                  ? '-0,083'
+                  : '0,16'
+            : square
             ? '81'
             : group
             ? '2'
@@ -143,6 +164,11 @@ void main() {
             ? 'Mathem. Fehler'
             : '1/2',
       );
+      if (periodic) {
+        final span = output.textSpan! as TextSpan;
+        final repeating = span.children!.last as TextSpan;
+        expect(repeating.style!.decoration, TextDecoration.overline);
+      }
       if (error) {
         expect(find.byKey(const ValueKey('formula-error')), findsOneWidget);
         expect(
@@ -167,7 +193,9 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          scenario == 'settings'
+          periodic
+              ? '../../build/reports/calculator-$scenario.png'
+              : scenario == 'settings'
               ? '../../build/reports/calculator-settings.png'
               : scenario == 'front'
               ? '../../build/reports/calculator-front.png'

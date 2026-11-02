@@ -125,7 +125,7 @@ void main() {
           hasLength(fractions ? 34 : 31),
         );
         expect(physical.where((key) => key.id == 'ACTION_CUBE'), isEmpty);
-        expect(CalculatorKey.values, hasLength(28));
+        expect(CalculatorKey.values, hasLength(29));
         expect(CalculatorKey.fromId('ACTION_CUBE')!.text, '³');
       },
     );

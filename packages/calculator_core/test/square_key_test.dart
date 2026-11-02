@@ -135,12 +135,12 @@ void main() {
 
   group('linear square key transitions', () {
     test(
-      'registry has 28 unique actions and square is not a binary operator',
+      'registry has 29 unique actions and square is not a binary operator',
       () {
-        expect(CalculatorKey.values, hasLength(28));
+        expect(CalculatorKey.values, hasLength(29));
         expect(
           CalculatorKey.values.map((key) => key.id).toSet(),
-          hasLength(28),
+          hasLength(29),
         );
         expect(CalculatorKey.fromId('KEY_SQUARE'), CalculatorKey.square);
         expect(CalculatorKey.square.text, '²');

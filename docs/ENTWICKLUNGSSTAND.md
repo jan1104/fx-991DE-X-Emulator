@@ -1,5 +1,13 @@
 # Entwicklungsstand
 
+## 02.11.2026 abends: Prozent über SHIFT → Ans
+
+Ausgangsbasis `32ffbdc`, Arbeitskopie vor Beginn sauber. Der planmäßige Sechs-Stunden-Lauf nimmt das im letzten Lauf vorgeschlagene Paket auf. Die vorhandenen Quellen belegen die Belegung, die nachgestellte Prozentfunktion und die drei Rechnungen `150*20% = 30`, `660/880% = 75`, `3500-3500*25% = 2625`. Der vor der Umsetzung festgehaltene Vertrag [PROZENT.md](PROZENT.md) trennt diese Belege von eigenen Prototypregeln für gemischte Postfix-/Potenzketten. Keine vollständige Originalkompatibilität solcher Schreibweisen behauptet.
+
+Ein Subagent ergänzte Core und 45 neue vorbereitete Corefälle, ein zweiter unabhängig 24 Controller-/Widgetfälle. Der Hauptagent verbindet SHIFT → Ans mit `ACTION_PERCENT`, ergänzt die natürliche Beschreibung „Prozent“ und eine Vorschau für das erste Handbuchbeispiel. Die neue sekundäre Aktion verändert weder die 50 physischen Tasten noch die 31/34 Primärbelegungen; das Core-Enum wächst auf 29 semantische Aktionen. Die Tests gelten vor der Cloud-Ausführung als vorbereitet. Bekannte blockierte lokale Teststarts werden nicht wiederholt und Sicherheitsrichtlinien bleiben unverändert.
+
+Formatprüfung und statische Analyse von Core und vollständiger App bestanden. Der Hauptagent prüfte die Produktionsdiffs, Registryänderungen und neue Testannahmen. Beide Planungskatalogprüfer bestanden ebenfalls; sie führen keine Rechnungen aus. Tatsächliche Prüfungen, Revision und nächster Schritt werden nach dem GitHub-Test-/Web-Build ergänzt. Originaldateien und Werkzeugversionen bleiben unverändert; kein Hosting oder Release.
+
 ## 02.11.2026 nachmittags: Kubieren über SHIFT → x²
 
 Ausgangsbasis `9181b7b`, Arbeitskopie vor Beginn sauber. Das nächste planmäßige Paket ergänzt die bereits belegte SHIFT-Belegung x³. Der Vertrag steht in [KUBIEREN.md](KUBIEREN.md); keine Originaldateien oder SDK-Versionen wurden verändert.

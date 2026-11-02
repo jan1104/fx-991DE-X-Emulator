@@ -317,6 +317,7 @@ class _FormulaContent extends StatelessWidget {
               '^' => 'hoch',
               '²' => 'zum Quadrat',
               '³' => 'hoch drei',
+              '%' => 'Prozent',
               '⁻¹' => 'Kehrwert',
               'Ans' => 'Ans',
               _ => text,

@@ -214,6 +214,10 @@ final class CalculatorController {
     }
     notice = '';
     if (shifted) {
+      if (id == 'KEY_ANS') {
+        _pressCore('ACTION_PERCENT');
+        return;
+      }
       if (id == 'KEY_SQUARE') {
         _pressCore('ACTION_CUBE');
         return;

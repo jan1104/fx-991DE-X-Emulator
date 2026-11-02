@@ -17,6 +17,7 @@ void main() {
     'group',
     'square',
     'cube',
+    'percent',
     'front',
     'settings',
     'periodic',
@@ -28,6 +29,7 @@ void main() {
     final group = scenario == 'group';
     final square = scenario == 'square';
     final cube = scenario == 'cube';
+    final percent = scenario == 'percent';
     final periodic = scenario.startsWith('periodic');
     final negativePeriod = scenario == 'periodic-negative';
     testWidgets('render the calculator preview: $scenario', (tester) async {
@@ -70,7 +72,19 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in cube
+          in percent
+              ? [
+                  'KEY_1',
+                  'KEY_5',
+                  'KEY_0',
+                  'KEY_MULTIPLY',
+                  'KEY_2',
+                  'KEY_0',
+                  'KEY_SHIFT',
+                  'KEY_ANS',
+                  'KEY_EQUALS',
+                ]
+              : cube
               ? [
                   'KEY_3',
                   'KEY_SHIFT',
@@ -161,7 +175,9 @@ void main() {
       );
       expect(
         output.data ?? output.textSpan!.toPlainText(),
-        cube
+        percent
+            ? '30'
+            : cube
             ? '19683'
             : periodic
             ? negativePeriod
@@ -206,7 +222,9 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          cube
+          percent
+              ? '../../build/reports/calculator-percent.png'
+              : cube
               ? '../../build/reports/calculator-cube.png'
               : periodic
               ? '../../build/reports/calculator-$scenario.png'

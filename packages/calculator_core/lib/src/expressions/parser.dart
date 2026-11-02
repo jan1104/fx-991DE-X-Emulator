@@ -17,6 +17,7 @@ enum _Kind {
   square,
   reciprocal,
   cube,
+  percent,
   left,
   right,
   end,
@@ -109,12 +110,13 @@ final class _Parser {
         '^' => _Kind.power,
         '²' => _Kind.square,
         '³' => _Kind.cube,
+        '%' => _Kind.percent,
         '(' => _Kind.left,
         ')' => _Kind.right,
         _ => null,
       };
       if (kind == null) {
-        final unsupported = RegExp(r'[A-Za-z%√]').hasMatch(char);
+        final unsupported = RegExp(r'[A-Za-z√]').hasMatch(char);
         throw CalculatorException(
           unsupported
               ? CalculatorErrorCode.unsupported
@@ -201,15 +203,19 @@ final class _Parser {
       // They are not textual rewrites, which would change repeated-key binding.
       while (_current.kind == _Kind.square ||
           _current.kind == _Kind.reciprocal ||
-          _current.kind == _Kind.cube) {
+          _current.kind == _Kind.cube ||
+          _current.kind == _Kind.percent) {
         final token = _take();
         result = BinaryExpression(
-          BinaryOperator.power,
+          token.kind == _Kind.percent
+              ? BinaryOperator.divide
+              : BinaryOperator.power,
           result,
           NumberExpression(
             Rational.fromInt(switch (token.kind) {
               _Kind.square => 2,
               _Kind.cube => 3,
+              _Kind.percent => 100,
               _ => -1,
             }),
             token.position,

@@ -76,8 +76,8 @@ void main() {
   });
 
   test('semantic registry has no new physical cube ID and postfix classes are precise', () {
-    expect(CalculatorKey.values, hasLength(28));
-    expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(28));
+    expect(CalculatorKey.values, hasLength(29));
+    expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(29));
     expect(CalculatorKey.fromId('ACTION_CUBE'), CalculatorKey.cube);
     expect(CalculatorKey.fromId('KEY_CUBE'), isNull);
     expect(CalculatorKey.cube.text, '³');
@@ -86,6 +86,7 @@ void main() {
       CalculatorKey.square,
       CalculatorKey.reciprocal,
       CalculatorKey.cube,
+      CalculatorKey.percent,
     });
   });
 

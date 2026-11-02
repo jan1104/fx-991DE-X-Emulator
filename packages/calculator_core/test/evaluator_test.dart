@@ -64,7 +64,7 @@ void main() {
             expect(() => evaluate(input), errorCode(CalculatorErrorCode.math)),
       );
     }
-    for (final input in ['sin(30)', '2^(1/2)', '0^0', '5%']) {
+    for (final input in ['sin(30)', '2^(1/2)', '0^0', '√5']) {
       test(
         'unsupported: $input',
         () => expect(

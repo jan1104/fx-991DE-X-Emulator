@@ -1,6 +1,7 @@
 # Arbeitsregeln
 
-- Im bestehenden Repository arbeiten. Kein git push und keine Veröffentlichung ohne ausdrückliche Nutzerfreigabe.
+- Im bestehenden Repository arbeiten. Der Nutzer hat am 02.11.2026 eigene Projektänderungen einschließlich Tests und Dokumentation ausdrücklich für selbstständige Commits und Pushs auf das bestehende GitHub-Repository freigegeben. Dafür nicht erneut nachfragen. Neue Veröffentlichungen fremder Originaldateien, Releases oder öffentliches Hosting benötigen weiterhin einen gesonderten Auftrag.
+- Automatische Arbeitsläufe ausschließlich alle sechs Stunden über die vorhandene Automatik starten. Keine zusätzlichen Automationen oder dauernden Weiterarbeitsschleifen anlegen. Manuelle Nutzeraufträge dürfen direkt bearbeitet werden.
 - Originale unter `reference/originals/` getrennt halten. Neue Referenzen und `tmp/` sind standardmäßig von Git ausgeschlossen. Ausnahme: Der Nutzer hat am 25.10.2026 ausdrücklich den Upload des gesamten aktuellen Projektordners einschließlich der vorhandenen Original-PDFs und Analyseausgaben beauftragt. Diese Dateien werden für diesen Stand bewusst versioniert; dies erlaubt keine automatische Veröffentlichung später hinzukommender Originalsoftware.
 - Die MIT-Lizenz gilt für unseren eigenen Projektbeitrag; sie erteilt keine Rechte an fremden Handbüchern, Firmware, Grafiken oder Programmen.
 - Eigene Implementierung auf Basis dokumentierten Verhaltens entwickeln. Keine Originalkomponenten übernehmen, keine Lizenzprüfungen umgehen.

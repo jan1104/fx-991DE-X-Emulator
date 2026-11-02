@@ -1,5 +1,11 @@
 # Entwicklungsstand
 
+## 02.11.2026: Selbstständige Pushs freigegeben, Sechs-Stunden-Takt bestätigt
+
+Der Nutzer gibt eigene Projektänderungen ausdrücklich für selbstständige Pushs frei und bestätigt, dass automatische neue Arbeitsläufe ausschließlich alle sechs Stunden beginnen sollen. AGENTS.md und die bestehende aktive Automatik wurden entsprechend aktualisiert; es wurde keine zusätzliche Automatik angelegt. Die bestehende Wiederholungsregel bleibt alle sechs Stunden. Manuelle Nutzeraufträge wie der aktuelle Push werden direkt bearbeitet. Die Freigabe umfasst eigene Quellen, Tests und Dokumentation, keine neue Veröffentlichung fremder Originaldateien oder Bereitstellung als öffentliches Hosting.
+
+Der neue Front-/Setup-Stand und der vorbereitete GitHub-Test-/Web-Build werden mit diesem Auftrag hochgeladen. Tatsächliche Ergebnisse des ersten Laufs sind erst nach dessen Ausführung zu bewerten; die zuvor dokumentierte lokale Testblockade bleibt unverändert.
+
 ## 02.11.2026: Frontnaher Rechner und gemeinsames Einstellungsmenü
 
 Ausgangsbasis `d657e39`, Arbeitskopie vor Beginn sauber. Der Nutzer fordert ausdrücklich weitere Softwarearbeit, eine Front nach einem Webbild sowie ein Einstellungsmenü oben mit denselben Einstellungen wie über die Rechnertasten. Die fehlende Originalsoftware blockiert dieses eigene Implementierungspaket nicht. Die bisherige interne Zurückstellung weiterer Produktänderungen wird damit für diesen Auftrag angepasst; die offenen Ausführungsprüfungen werden nicht als bestanden ausgegeben.

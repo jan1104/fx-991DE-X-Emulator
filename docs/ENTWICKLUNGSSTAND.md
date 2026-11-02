@@ -10,6 +10,18 @@ Formatprüfung und statische Analyse von Core und vollständiger App bestanden. 
 
 Der erste [Cloud-Lauf 41536377552](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41536377552) bestand 755 Corefälle und scheiterte an genau einer alten Editorfixture: `%` war dort noch als abzulehnendes Eingabetoken aufgelistet. Der Hauptagent ersetzte diesen Eintrag durch das weiterhin nicht unterstützte `!`. Die neue Prozentannahme wird bereits durch eigene Feld-/Rechentests geprüft; keine Produktionserwartung wurde abgeschwächt. Appprüfung, Web-Build und Vorschauen wurden im ersten Lauf wegen des Corefehlers korrekt übersprungen.
 
+### Abschließender Prüfstand
+
+[GitHub-Lauf 41536642968](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41536642968) für **`6eb59d2dab7dcca31060499c3046e202b9dd17b6`** bestand auf Ubuntu 24.04 vollständig: **756 Coretests, 342 App-/Controller-/Widgettests, Web-Release-Build und zwölf separate Vorschauszenarien bestanden**. Die Zahlen stammen aus dem vollständigen Joblog; der optionale Vorschauschritt wurde ausdrücklich auf Erfolg geprüft. Die 45 neuen Core- und 24 Appfälle sind darin enthalten. SDK-/Revisionskontrolle, erzwungene Lockdateien, Formatierung und statische Analyse bestanden mit unveränderten Werkzeugversionen.
+
+Der Hauptagent lud die Vorschauen herunter und prüfte `calculator-percent.png` bei 420×1600 visuell: natürliche Formel `150 × 20%`, Ergebnis und Ans 30, Prozentbeschriftung über Ans sowie Front-/Tastentexte sind lesbar und ohne sichtbare Überlagerung. Die ungruppierte Prozentkette ist erwartungsgemäß nicht direkt als Zähler übernehmbar. Dies ist Linux-Testengine-QA, kein manueller Browser-/Geräte-/Screenreader-Test und kein Originalvergleich. Lokale Dateien liegen ignoriert unter `build/reports/github-41536642968/previews/`.
+
+[Browser-Artefakt](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41536642968/artifacts/13183613675) und [zwölf Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41536642968/artifacts/13183623418) gehören genau zur genannten Revision. Die Planungskataloge und relativen Links in 31 Dokumenten wurden zusätzlich geprüft, ohne dies als weitere Rechnerfunktionstests zu zählen. Ein anschließender reiner Dokumentationscommit startet per `[skip ci]` keinen redundanten Volltest.
+
+### Nächster Schritt
+
+Im nächsten Sechs-Stunden-Lauf Fakultät über SHIFT → x⁻¹ als begrenztes Paket spezifizieren und prüfen. Das vorhandene Inventar belegt die Taste (H, PDF-S. 19/21/29), das Beispiel `(5+3)! = 40320` (H, PDF-S. 21) und ganzzahlige Eingaben von 0 bis 69 (H, PDF-S. 51). Vor Umsetzung müssen Domänenfehler, Ans, Postfixbindung und Größen-/Arbeitsbudgets festgelegt werden. Weitere wissenschaftliche Funktionen, Originalvergleich und native Builds bleiben getrennt offen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Zeitplan, keine neue Veröffentlichung fremder Originale, kein Hosting oder Release.
+
 ## 02.11.2026 nachmittags: Kubieren über SHIFT → x²
 
 Ausgangsbasis `9181b7b`, Arbeitskopie vor Beginn sauber. Das nächste planmäßige Paket ergänzt die bereits belegte SHIFT-Belegung x³. Der Vertrag steht in [KUBIEREN.md](KUBIEREN.md); keine Originaldateien oder SDK-Versionen wurden verändert.

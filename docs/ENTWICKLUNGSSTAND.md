@@ -8,6 +8,8 @@ Ein Subagent ergänzte Core und 45 neue vorbereitete Corefälle, ein zweiter una
 
 Formatprüfung und statische Analyse von Core und vollständiger App bestanden. Der Hauptagent prüfte die Produktionsdiffs, Registryänderungen und neue Testannahmen. Beide Planungskatalogprüfer bestanden ebenfalls; sie führen keine Rechnungen aus. Tatsächliche Prüfungen, Revision und nächster Schritt werden nach dem GitHub-Test-/Web-Build ergänzt. Originaldateien und Werkzeugversionen bleiben unverändert; kein Hosting oder Release.
 
+Der erste [Cloud-Lauf 41536377552](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41536377552) bestand 755 Corefälle und scheiterte an genau einer alten Editorfixture: `%` war dort noch als abzulehnendes Eingabetoken aufgelistet. Der Hauptagent ersetzte diesen Eintrag durch das weiterhin nicht unterstützte `!`. Die neue Prozentannahme wird bereits durch eigene Feld-/Rechentests geprüft; keine Produktionserwartung wurde abgeschwächt. Appprüfung, Web-Build und Vorschauen wurden im ersten Lauf wegen des Corefehlers korrekt übersprungen.
+
 ## 02.11.2026 nachmittags: Kubieren über SHIFT → x²
 
 Ausgangsbasis `9181b7b`, Arbeitskopie vor Beginn sauber. Das nächste planmäßige Paket ergänzt die bereits belegte SHIFT-Belegung x³. Der Vertrag steht in [KUBIEREN.md](KUBIEREN.md); keine Originaldateien oder SDK-Versionen wurden verändert.

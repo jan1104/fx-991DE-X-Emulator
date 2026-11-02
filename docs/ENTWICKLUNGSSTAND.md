@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 02.11.2026 nachmittags: Kubieren über SHIFT → x²
+
+Ausgangsbasis `9181b7b`, Arbeitskopie vor Beginn sauber. Das nächste planmäßige Paket ergänzt die bereits belegte SHIFT-Belegung x³. Der Vertrag steht in [KUBIEREN.md](KUBIEREN.md); keine Originaldateien oder SDK-Versionen wurden verändert.
+
+Ein Subagent ergänzte das Postfixtoken `³`, die sekundäre Aktion `ACTION_CUBE`, beide Sitzungen und 40 vorbereitete Corefälle. Ein zweiter ergänzte unabhängig 28 Controller-/Widgetfälle und prüfte die Coreänderungen lesend. Der Hauptagent prüfte die Diffs, verband SHIFT → x² mit der Aktion und ergänzte die natürliche Beschreibung „hoch drei“ sowie eine Vorschau für `3³³ = 19683`. Ein alter Test für eine weiterhin unbelegte SHIFT-Taste verwendet jetzt die tatsächlich unbelegte Potenztaste. Bestehende Registry-Erwartungen wurden gezielt um die neue semantische Aktion erweitert; die 50 physischen Tasten und 31/34 Primärbelegungen bleiben bestehen.
+
+Postfixketten binden in Eingabereihenfolge vor normalem `^`. Negative und gebrochene Ans-Werte bleiben exakt; Fehlerphase, Cursor, DEL, Bruchfelder und Ressourcenbudgets folgen den bestehenden Verträgen. Formatierung und statische Analyse von Core und App bestanden. Keine bekannten blockierten lokalen Tests erneut gestartet. Tatsächliche Ausführung und visuelle Prüfung folgen über den bestehenden GitHub-Test-/Web-Build; bis dahin sind die neuen Fälle vorbereitet, nicht als bestanden gemeldet.
+
+Nächster Schritt nach erfolgreicher Cloudprüfung: ein weiteres begrenztes Paket aus dem noch offenen wissenschaftlichen Funktionsumfang spezifizieren, beispielsweise Prozent über SHIFT → Ans. Die Quellenbelegung ist vor der Implementierung anhand des vorhandenen Inventars zu prüfen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Sechs-Stunden-Zeitplan.
+
 ## 02.11.2026 vormittags: Perioden in der App und wirksamer Setup-Schalter
 
 Ausgangsbasis `75d7abe`, Arbeitskopie vor Beginn sauber. Im nächsten planmäßigen Sechs-Stunden-Lauf wird die bereits dokumentierte Appanbindung des exakten Core-Formatters umgesetzt. Der Vertrag wurde vor der Umsetzung in [PERIODEN_APP.md](PERIODEN_APP.md) festgelegt; vorhandene PDF-Analysen wurden nicht wiederholt.

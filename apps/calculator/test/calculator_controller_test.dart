@@ -160,7 +160,7 @@ void main() {
     expect(c.shift, isFalse);
     final before = c.structured.snapshot;
     c.pressId('KEY_SHIFT');
-    c.pressId('KEY_SQUARE');
+    c.pressId('KEY_POWER');
     expect(c.structured.snapshot, same(before));
     expect(c.notice, contains('Vorbereitung'));
     c.pressId('KEY_SHIFT');

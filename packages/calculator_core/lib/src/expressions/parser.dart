@@ -16,6 +16,7 @@ enum _Kind {
   power,
   square,
   reciprocal,
+  cube,
   left,
   right,
   end,
@@ -107,6 +108,7 @@ final class _Parser {
         '/' || '÷' => _Kind.divide,
         '^' => _Kind.power,
         '²' => _Kind.square,
+        '³' => _Kind.cube,
         '(' => _Kind.left,
         ')' => _Kind.right,
         _ => null,
@@ -195,16 +197,21 @@ final class _Parser {
         );
       }
       var result = _primary();
-      // Physical postfix keys compose from left to right, before ordinary ^.
+      // Postfix actions compose from left to right, before ordinary ^.
       // They are not textual rewrites, which would change repeated-key binding.
       while (_current.kind == _Kind.square ||
-          _current.kind == _Kind.reciprocal) {
+          _current.kind == _Kind.reciprocal ||
+          _current.kind == _Kind.cube) {
         final token = _take();
         result = BinaryExpression(
           BinaryOperator.power,
           result,
           NumberExpression(
-            Rational.fromInt(token.kind == _Kind.square ? 2 : -1),
+            Rational.fromInt(switch (token.kind) {
+              _Kind.square => 2,
+              _Kind.cube => 3,
+              _ => -1,
+            }),
             token.position,
           ),
           token.position,

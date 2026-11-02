@@ -235,10 +235,10 @@ void main() {
         );
         expect(CalculatorKey.reciprocal.text, '⁻¹');
         expect(CalculatorKey.reciprocal.isBinaryOperator, isFalse);
-        expect(CalculatorKey.values, hasLength(27));
+        expect(CalculatorKey.values, hasLength(28));
         expect(
           CalculatorKey.values.map((key) => key.id).toSet(),
-          hasLength(27),
+          hasLength(28),
         );
       },
     );

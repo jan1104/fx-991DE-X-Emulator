@@ -16,6 +16,7 @@ void main() {
     'capture',
     'group',
     'square',
+    'cube',
     'front',
     'settings',
     'periodic',
@@ -26,6 +27,7 @@ void main() {
     final capture = scenario == 'capture';
     final group = scenario == 'group';
     final square = scenario == 'square';
+    final cube = scenario == 'cube';
     final periodic = scenario.startsWith('periodic');
     final negativePeriod = scenario == 'periodic-negative';
     testWidgets('render the calculator preview: $scenario', (tester) async {
@@ -68,7 +70,16 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in periodic
+          in cube
+              ? [
+                  'KEY_3',
+                  'KEY_SHIFT',
+                  'KEY_SQUARE',
+                  'KEY_SHIFT',
+                  'KEY_SQUARE',
+                  'KEY_EQUALS',
+                ]
+              : periodic
               ? [
                   if (negativePeriod) 'KEY_NEGATE',
                   'KEY_FRACTION',
@@ -150,7 +161,9 @@ void main() {
       );
       expect(
         output.data ?? output.textSpan!.toPlainText(),
-        periodic
+        cube
+            ? '19683'
+            : periodic
             ? negativePeriod
                   ? '-0,083'
                   : '0,16'
@@ -193,7 +206,9 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          periodic
+          cube
+              ? '../../build/reports/calculator-cube.png'
+              : periodic
               ? '../../build/reports/calculator-$scenario.png'
               : scenario == 'settings'
               ? '../../build/reports/calculator-settings.png'

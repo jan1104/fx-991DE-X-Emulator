@@ -134,13 +134,19 @@ void main() {
   });
 
   group('linear square key transitions', () {
-    test('registry has 27 unique keys and square is not a binary operator', () {
-      expect(CalculatorKey.values, hasLength(27));
-      expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(27));
-      expect(CalculatorKey.fromId('KEY_SQUARE'), CalculatorKey.square);
-      expect(CalculatorKey.square.text, '²');
-      expect(CalculatorKey.square.isBinaryOperator, isFalse);
-    });
+    test(
+      'registry has 28 unique actions and square is not a binary operator',
+      () {
+        expect(CalculatorKey.values, hasLength(28));
+        expect(
+          CalculatorKey.values.map((key) => key.id).toSet(),
+          hasLength(28),
+        );
+        expect(CalculatorKey.fromId('KEY_SQUARE'), CalculatorKey.square);
+        expect(CalculatorKey.square.text, '²');
+        expect(CalculatorKey.square.isBinaryOperator, isFalse);
+      },
+    );
 
     test('pressing square in editing inserts one token and repeated presses square again', () {
       final session = CalculatorSession();

@@ -108,6 +108,7 @@ void main() {
       CalculatorKey.power: 'KEY_POWER',
       CalculatorKey.square: 'KEY_SQUARE',
       CalculatorKey.reciprocal: 'KEY_RECIPROCAL',
+      CalculatorKey.cube: 'ACTION_CUBE',
       CalculatorKey.negate: 'KEY_NEGATE',
       CalculatorKey.decimal: 'KEY_DECIMAL',
       CalculatorKey.leftParenthesis: 'KEY_LPAREN',

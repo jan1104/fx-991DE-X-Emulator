@@ -140,9 +140,7 @@ final class StructuredCalculatorSession {
     return _apply((editor) {
       if (_snapshot.phase == CalculatorPhase.result) {
         editor.clear();
-        if (key.isBinaryOperator ||
-            key == CalculatorKey.square ||
-            key == CalculatorKey.reciprocal) {
+        if (key.isBinaryOperator || key.isPostfixOperator) {
           editor.insertText('Ans');
         }
       }

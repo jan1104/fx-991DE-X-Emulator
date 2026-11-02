@@ -22,6 +22,7 @@ enum CalculatorKey {
   power('KEY_POWER', '^'),
   square('KEY_SQUARE', '²'),
   reciprocal('KEY_RECIPROCAL', '⁻¹'),
+  cube('ACTION_CUBE', '³'),
   negate('KEY_NEGATE', '-'),
   decimal('KEY_DECIMAL', ','),
   leftParenthesis('KEY_LPAREN', '('),
@@ -36,6 +37,9 @@ enum CalculatorKey {
   final String id;
   final String? text;
   const CalculatorKey(this.id, [this.text]);
+
+  bool get isPostfixOperator =>
+      this == square || this == reciprocal || this == cube;
 
   bool get isBinaryOperator => switch (this) {
     add || subtract || multiply || divide || power => true,
@@ -182,12 +186,7 @@ final class CalculatorSession {
     var tokens = _snapshot.tokens.toList();
     var cursor = _snapshot.cursor;
     if (_snapshot.phase == CalculatorPhase.result) {
-      tokens =
-          key.isBinaryOperator ||
-              key == CalculatorKey.square ||
-              key == CalculatorKey.reciprocal
-          ? ['Ans']
-          : [];
+      tokens = key.isBinaryOperator || key.isPostfixOperator ? ['Ans'] : [];
       cursor = tokens.length;
     }
     final text = key.text!; // All non-text control keys were handled above.

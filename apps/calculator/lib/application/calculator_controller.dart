@@ -214,6 +214,10 @@ final class CalculatorController {
     }
     notice = '';
     if (shifted) {
+      if (id == 'KEY_SQUARE') {
+        _pressCore('ACTION_CUBE');
+        return;
+      }
       if (id == 'KEY_SD') {
         if (phase == CalculatorPhase.result) {
           _settings = settings.copyWith(

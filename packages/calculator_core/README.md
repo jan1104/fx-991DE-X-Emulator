@@ -8,7 +8,7 @@ Das Paket hat keine externen Laufzeitabhängigkeiten; `package:test` ist nur Ent
 
 `formatRational(value, format: RationalDisplayFormat.exactDecimal)` ergänzt eine reine exakte Ausgabe mit deutschem Komma. Endliche Dezimalbrüche werden ohne Gleitkomma und Rundung erzeugt; bei periodischer oder zu langer Entwicklung bleibt der gekürzte Bruch mit ausdrücklich gemeldetem Rückfallgrund erhalten. Das Zeichenlimit gilt auch für diesen Rückfall. Der Dienst verändert weder Werte noch Sitzungen und bindet noch keine S⇔D-Taste an. Vertrag und Beispiele: [EXAKTE_AUSGABE.md](../../docs/EXAKTE_AUSGABE.md).
 
-Vorbereitet, noch nicht durch Ausführung geprüft: Beide Sitzungen ergänzen eine ausdrückliche Ergebniswahl über `selectResultDisplayFormat(...)`; ihr Snapshot veröffentlicht `resultDisplayFormat` und liefert über `formatResult()` den Text bei Bedarf. Ergebnis und Ans bleiben exakt. Außerhalb der Ergebnisphase ist die Wahl wirkungslos und der Textabruf liefert `null`. Die App bindet diese API noch nicht an. Übergänge, Rückfallgründe und Ausgabeprobleme sind im [Sitzungsvertrag](../../docs/DARSTELLUNGSWAHL.md) festgelegt.
+Beide Sitzungen ergänzen eine ausdrückliche Ergebniswahl über `selectResultDisplayFormat(...)`; ihr Snapshot veröffentlicht `resultDisplayFormat` und liefert über `formatResult()` den Text bei Bedarf. Ergebnis und Ans bleiben exakt. Außerhalb der Ergebnisphase ist die Wahl wirkungslos und der Textabruf liefert `null`. Die App bindet diese API noch nicht an. Übergänge, Rückfallgründe und Ausgabeprobleme sind im [Sitzungsvertrag](../../docs/DARSTELLUNGSWAHL.md) festgelegt.
 
 Mit Dart 3.13.7 im Paketordner:
 
@@ -23,7 +23,7 @@ Alternativ unter PowerShell vom Repository aus: `./tools/test_core.ps1 -DartPath
 
 Zusätzlich implementiert: `CalculatorSession` mit 27 Primäraktionen einschließlich `KEY_SQUARE` und `KEY_RECIPROCAL`, unveränderlichen Snapshots, linearem Cursor und atomarem Ans-Token, AC/DEL sowie Ergebnis- und Fehlerübergängen. Aufruf etwa `session.pressId('KEY_7')`; unterstützte IDs und Prototypregeln stehen im [Bedienprototyp](../../docs/SESSION_PROTOTYP.md) und [QUADRIEREN.md](../../docs/QUADRIEREN.md). Siehe auch [Kehrwertvertrag](../../docs/KEHRWERT.md). `evaluate('Ans+1', answer: vorherigerWert)` bindet Ans ausdrücklich, ohne globalen Speicher.
 
-Ein separater `FractionEditor` ergänzt strukturierte Bruchvorlagen, verschachtelte Zähler-/Nennerfelder, einen Pfadcursor und exakte Auswertung über den bisherigen Parser. `StructuredCalculatorSession` ergänzt 30 Primäraktionen einschließlich `KEY_FRACTION`, `KEY_UP`, `KEY_DOWN` sowie `KEY_SQUARE` und `KEY_RECIPROCAL`, exaktes Ans und Ergebnis-/Fehlerphasen. Die Flutter-App bindet ihn als getrennte Eingabeart an; ihre neue Quadrat-/Kehrwertprüfung ist noch blockiert. Regeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](../../docs/STRUKTURIERTE_SITZUNG.md).
+Ein separater `FractionEditor` ergänzt strukturierte Bruchvorlagen, verschachtelte Zähler-/Nennerfelder, einen Pfadcursor und exakte Auswertung über den bisherigen Parser. `StructuredCalculatorSession` ergänzt 30 Primäraktionen einschließlich `KEY_FRACTION`, `KEY_UP`, `KEY_DOWN` sowie `KEY_SQUARE` und `KEY_RECIPROCAL`, exaktes Ans und Ergebnis-/Fehlerphasen. Die Flutter-App bindet ihn als getrennte Eingabeart an; ihre Quadrat-/Kehrwertfälle sind inzwischen im unabhängigen Cloud-Lauf geprüft. Regeln und Grenzen stehen in [STRUKTURIERTE_SITZUNG.md](../../docs/STRUKTURIERTE_SITZUNG.md).
 
 `FractionEditor.project()` ergänzt eine unveränderliche Source-Map; strukturelle Diagnosen liefern Feldcursor, und `moveTo()` validiert deren Wiederaufnahme. Die Sitzung veröffentlicht Fehlerziele separat als `errorCursor`. Bestehende `toExpression()`-/`evaluate()`-Aufrufer erhalten weiterhin die bisherigen Ausnahmetypen. Details: [FEHLERPOSITIONEN.md](../../docs/FEHLERPOSITIONEN.md).
 
@@ -34,3 +34,10 @@ Die Flutter-Oberfläche verwendet beide Sitzungen. Noch nicht implementiert: vol
 Der tatsächliche Prüfstand steht in [ENTWICKLUNGSSTAND.md](../../docs/ENTWICKLUNGSSTAND.md). Die umfangreichen Referenzkataloge bleiben Planungsdaten; eine bestandene Coreprüfung bedeutet keinen bestandenen UI-/Originalvergleich.
 
 Siehe [Projektstruktur](../../docs/PROJEKTSTRUKTUR.md).
+
+
+## Begrenzte exakte Periodenausgabe
+
+`formatRational(value, format: RationalDisplayFormat.exactRecurringDecimal, maxGeneratedDigits: 100)` ergänzt einen exakten Restzyklus-Formatter. Beispiel: `1/6` wird `0,1(6)`, `1/11` wird `0,(09)` und `1/8` bleibt `0,125`. Erfolgreiche Aufrufe liefern zusätzlich die unveränderlichen Komponenten unter `display.expansion`; endliche Ausgaben melden tatsächlich `exactDecimal`. Bei unvollständiger Entwicklung bleibt der gekürzte Bruch mit `expansionLimit`, ohne unvollständiges DTO.
+
+Die beiden Stellenbudgets sind unabhängig: `maxGeneratedDigits` gilt nur im neuen Modus, `maxDecimalPlaces` nur im bisherigen endlichen Modus. Alle Parameter werden vor wertabhängiger Arbeit validiert. Die 100000-Bit-Summengrenze gilt nur im neuen Modus; das vollständige Zeichenbudget gilt auch für Bruchrückfälle. Vertrag: [PERIODENDARSTELLUNG.md](../../docs/PERIODENDARSTELLUNG.md). Appcontroller und sichtbarer Periodenschalter verwenden den neuen Formatter noch nicht. Tatsächlicher Prüfstand: [ENTWICKLUNGSSTAND.md](../../docs/ENTWICKLUNGSSTAND.md).

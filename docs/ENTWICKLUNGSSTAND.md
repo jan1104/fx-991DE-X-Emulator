@@ -4,13 +4,23 @@
 
 Ausgangsbasis `c2b5d68`, Arbeitskopie vor Beginn sauber. Im planmäßigen Sechs-Stunden-Lauf wird das bereits spezifizierte nächste Paket aus [PERIODENDARSTELLUNG.md](PERIODENDARSTELLUNG.md) umgesetzt. Appcontroller, Setupbelegung, sichtbarer S⇔D-Zyklus und lokale Sicherheitsrichtlinien werden in diesem Paket nicht geändert.
 
-### Vorbereitet und statisch geprüft
+### Umgesetzt und geprüft
 
 `formatRational` ergänzt den Modus `exactRecurringDecimal`, das separate Ziffernbudget `maxGeneratedDigits`, den Rückfallgrund `expansionLimit` und das unveränderliche Ausgabeobjekt `RationalDecimalExpansion`. Exakte Restzyklen liefern kleinste Periode und Vorperiode; endliche Entwicklungen bleiben exakt dezimal. Abschluss und Restwiederholung werden vor dem Budgetabbruch geprüft. Wertebit-Summe, begrenzte Restmap und vollständiges Zeichenbudget schützen die neue Ausgabe; die bisherigen Modi behalten ihre Verträge.
 
-Ein Subagent implementierte den Formatter und 24 neue gezielte Fälle. Ein zweiter ergänzte unabhängig einen Adapter für alle 30 vorhandenen, unverändert geplanten mathematischen Referenzen und prüfte den Produktionsdiff lesend. Der Hauptagent prüfte Code, API-Kompatibilität und Testannahmen ebenfalls. Der bestehende Ganzzahltest über alle Formate wurde gezielt um das tatsächliche endliche Format des neuen Modus ergänzt. Statische Core-Analyse und Formatierung bestanden; keine lokalen Tests wurden gestartet. Die tatsächliche Ausführungsprüfung erfolgt über den bestehenden GitHub-Test-/Web-Build und wird nach Abschluss ergänzt.
+Ein Subagent implementierte den Formatter und 24 neue gezielte Fälle. Ein zweiter ergänzte unabhängig einen Adapter für alle 30 vorhandenen, unverändert geplanten mathematischen Referenzen und prüfte den Produktionsdiff lesend. Der Hauptagent prüfte Code, API-Kompatibilität und Testannahmen ebenfalls. Der bestehende Ganzzahltest über alle Formate wurde gezielt um das tatsächliche endliche Format des neuen Modus ergänzt. Statische Core-Analyse und Formatierung bestanden; keine lokalen Tests wurden gestartet. Die tatsächliche Ausführungsprüfung erfolgte anschließend über den bestehenden GitHub-Test-/Web-Build; Ergebnis siehe unten.
 
 Die 30 Planfixtures bleiben `planned`: Der neue Dart-Adapter ist die davon getrennte Implementierungsprüfung. Die 2040 zusätzlichen Rückumwandlungen in einem der gezielten Fälle sind keine zusätzlichen Einzeltests. Originalvergleich, Rundung und eine sichtbare Periodenanzeige in der App sind damit nicht abgedeckt.
+
+### Tatsächliche Cloud-Prüfung
+
+[GitHub-Lauf 41387340158](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41387340158) für **`eb53686ae7f937c76aa5d1319054a3989d49f5bf`** bestand auf Ubuntu 24.04 mit dem unveränderten dokumentierten Flutter/Dart-Stand vollständig: **671 Coretests, 240 App-/Bedientests, Web-Release-Build und acht separate Vorschauszenarien bestanden**. Die Zahlen stammen aus dem vollständigen Joblog; die 30 unabhängigen Referenzfälle wurden tatsächlich als Darttests ausgeführt. Neben den 24 neuen gezielten und 30 Referenzfällen entstehen fünf weitere Fälle durch die bestehenden Parameterprüfungen über den zusätzlichen Enumwert. Die Vorschauläufe werden nicht zu den 240 normalen Apptests addiert.
+
+SDK-/Revisionsprüfung, erzwungene Lockdateien, Formatprüfung und statische Analyse sind Teil des erfolgreichen CI-Laufs. Die Planungskataloge wurden weiterhin getrennt geprüft. Keine neuen Abhängigkeiten oder Werkzeugversionen, keine lokale Testwiederholung und keine Änderung einer Sicherheitsrichtlinie. Appquellen und Anzeigeverhalten blieben in diesem Paket unverändert, daher wurde die bereits vorliegende manuelle Bildprüfung nicht als neue visuelle QA ausgegeben.
+
+### Nächster Schritt
+
+Im nächsten planmäßigen Lauf die Anbindung an den vorhandenen App-Controller und das Setup „Periodische Darstellung“ als eigenes Paket spezifizieren und prüfen: gewünschte gegenüber tatsächlicher Darstellung, S⇔D-Zyklus, Ausgabegrenzen und unverändertes Ans. Bis zu dieser Anbindung bleibt die sichtbare Periodenoption im Appmenü als in Vorbereitung gekennzeichnet. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Sechs-Stunden-Zeitplan. Eigene Änderungen wurden autorisiert gepusht; nachfolgende reine Berichtspflege startet per `[skip ci]` keinen redundanten Volltest.
 
 ## 02.11.2026: Selbstständige Pushs freigegeben, Sechs-Stunden-Takt bestätigt
 

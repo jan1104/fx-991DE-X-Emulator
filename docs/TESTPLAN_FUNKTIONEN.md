@@ -4,6 +4,8 @@ Stand: 25.10.2026. **Planung, keine ausgeführten Emulatorprüfungen.** Die masc
 
 ## Umfang und Aussage der Matrix
 
+Ergänzung 02.11.2026 früh: Der exakte Periodenformatter besteht nun als eigene Core-Funktion. `recurring_display_test.dart` prüft Grenzen und Verträge, `recurring_reference_test.dart` führt alle 30 unveränderten mathematischen Planreferenzen gegen die Implementierung aus. Der Cloud-Lauf bestätigt insgesamt 671 Coretests und 240 Appfälle. Die Referenzdatei und Originalinventare bleiben trotzdem `planned`; der tatsächlich ausgeführte Adaptertest wird separat dokumentiert. Eine sichtbare Perioden-/S⇔D-Appbelegung und Originalvergleich bleiben offen.
+
 Ergänzung 01.11.2026: Die begrenzte exakte Periodenausgabe wird zunächst im [Periodenvertrag](PERIODENDARSTELLUNG.md) spezifiziert. Eigene Sollfälle unter `tests/reference/formatting/recurring_decimal_planned.json` behalten `status=planned`; ein separater Python-Prüfer kontrolliert die geschlossenen mathematischen Bruchformeln und Budgeterwartungen. Es gibt noch keine entsprechende Dart-Implementierung und keine bestandenen Produkt- oder Originalprüfungen.
 
 Ergänzung 31.10.2026: Die explizite Darstellungswahl ist für beide Core-Sitzungen vorbereitet. Ihre noch nicht ausgeführten Fälle liegen getrennt vom reinen Formatter unter `packages/calculator_core/test/session_display_test.dart` geprüft. Gewünschtes und tatsächliches Format, unveränderliches Ans, Ausgabeprobleme und Bedienphasen bleiben getrennte Erwartungen. Dies ist weiterhin keine S⇔D-Appbelegung oder bestandener Originalvergleich; [DARSTELLUNGSWAHL.md](DARSTELLUNGSWAHL.md).

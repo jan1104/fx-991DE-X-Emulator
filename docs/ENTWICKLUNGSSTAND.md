@@ -1,5 +1,17 @@
 # Entwicklungsstand
 
+## 02.11.2026 früh: begrenzter exakter Periodenformatter im Core
+
+Ausgangsbasis `c2b5d68`, Arbeitskopie vor Beginn sauber. Im planmäßigen Sechs-Stunden-Lauf wird das bereits spezifizierte nächste Paket aus [PERIODENDARSTELLUNG.md](PERIODENDARSTELLUNG.md) umgesetzt. Appcontroller, Setupbelegung, sichtbarer S⇔D-Zyklus und lokale Sicherheitsrichtlinien werden in diesem Paket nicht geändert.
+
+### Vorbereitet und statisch geprüft
+
+`formatRational` ergänzt den Modus `exactRecurringDecimal`, das separate Ziffernbudget `maxGeneratedDigits`, den Rückfallgrund `expansionLimit` und das unveränderliche Ausgabeobjekt `RationalDecimalExpansion`. Exakte Restzyklen liefern kleinste Periode und Vorperiode; endliche Entwicklungen bleiben exakt dezimal. Abschluss und Restwiederholung werden vor dem Budgetabbruch geprüft. Wertebit-Summe, begrenzte Restmap und vollständiges Zeichenbudget schützen die neue Ausgabe; die bisherigen Modi behalten ihre Verträge.
+
+Ein Subagent implementierte den Formatter und 24 neue gezielte Fälle. Ein zweiter ergänzte unabhängig einen Adapter für alle 30 vorhandenen, unverändert geplanten mathematischen Referenzen und prüfte den Produktionsdiff lesend. Der Hauptagent prüfte Code, API-Kompatibilität und Testannahmen ebenfalls. Der bestehende Ganzzahltest über alle Formate wurde gezielt um das tatsächliche endliche Format des neuen Modus ergänzt. Statische Core-Analyse und Formatierung bestanden; keine lokalen Tests wurden gestartet. Die tatsächliche Ausführungsprüfung erfolgt über den bestehenden GitHub-Test-/Web-Build und wird nach Abschluss ergänzt.
+
+Die 30 Planfixtures bleiben `planned`: Der neue Dart-Adapter ist die davon getrennte Implementierungsprüfung. Die 2040 zusätzlichen Rückumwandlungen in einem der gezielten Fälle sind keine zusätzlichen Einzeltests. Originalvergleich, Rundung und eine sichtbare Periodenanzeige in der App sind damit nicht abgedeckt.
+
 ## 02.11.2026: Selbstständige Pushs freigegeben, Sechs-Stunden-Takt bestätigt
 
 Der Nutzer gibt eigene Projektänderungen ausdrücklich für selbstständige Pushs frei und bestätigt, dass automatische neue Arbeitsläufe ausschließlich alle sechs Stunden beginnen sollen. AGENTS.md und die bestehende aktive Automatik wurden entsprechend aktualisiert; es wurde keine zusätzliche Automatik angelegt. Die bestehende Wiederholungsregel bleibt alle sechs Stunden. Manuelle Nutzeraufträge wie der aktuelle Push werden direkt bearbeitet. Die Freigabe umfasst eigene Quellen, Tests und Dokumentation, keine neue Veröffentlichung fremder Originaldateien oder Bereitstellung als öffentliches Hosting.

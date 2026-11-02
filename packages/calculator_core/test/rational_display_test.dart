@@ -365,7 +365,12 @@ void main() {
         expect(display.text.length, 10000);
         expect(display.text[0], '1');
         expect(display.text.endsWith('0000'), isTrue);
-        expect(display.format, format);
+        expect(
+          display.format,
+          format == RationalDisplayFormat.exactRecurringDecimal
+              ? RationalDisplayFormat.exactDecimal
+              : format,
+        );
       }
       expect(
         () => formatRational(value, maxOutputCharacters: 9999),

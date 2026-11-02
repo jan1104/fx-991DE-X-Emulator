@@ -1,9 +1,29 @@
 import '../errors.dart';
 import '../numbers/rational.dart';
 
-enum RationalDisplayFormat { fraction, exactDecimal }
+enum RationalDisplayFormat { fraction, exactDecimal, exactRecurringDecimal }
 
-enum RationalDisplayFallbackReason { periodic, decimalPlacesLimit }
+enum RationalDisplayFallbackReason {
+  periodic,
+  decimalPlacesLimit,
+  expansionLimit,
+}
+
+/// Exact digit components, without punctuation or sign characters in the
+/// strings. Leading zeroes in fractional components are significant.
+final class RationalDecimalExpansion {
+  final bool negative;
+  final String integerDigits;
+  final String nonRepeatingDigits;
+  final String repeatingDigits;
+
+  const RationalDecimalExpansion({
+    required this.negative,
+    required this.integerDigits,
+    required this.nonRepeatingDigits,
+    required this.repeatingDigits,
+  });
+}
 
 /// An immutable rendering result. [format] describes the actual output, not
 /// the requested format. Exact-decimal fallbacks therefore report
@@ -13,7 +33,16 @@ final class RationalDisplay {
   final RationalDisplayFormat format;
   final RationalDisplayFallbackReason? fallbackReason;
 
-  const RationalDisplay(this.text, this.format, {this.fallbackReason});
+  /// Available only after a successful exact-recurring request, including
+  /// finite expansions whose actual [format] is exactDecimal.
+  final RationalDecimalExpansion? expansion;
+
+  const RationalDisplay(
+    this.text,
+    this.format, {
+    this.fallbackReason,
+    this.expansion,
+  });
 }
 
 /// Formats a mathematical value without changing it, rounding it or using a
@@ -21,10 +50,15 @@ final class RationalDisplay {
 /// Factor checks stop at the first decimal-place budget overrun, so that
 /// `decimalPlacesLimit` precedes any unexamined periodic remainder: for example,
 /// 1/6 with a zero-place budget reports that limit rather than `periodic`.
+/// Recurring requests use [maxGeneratedDigits] instead of [maxDecimalPlaces],
+/// checking termination/repeated remainders before the digit limit. All budget
+/// arguments are validated in every mode. Only recurring requests enforce a
+/// 100000-bit sum limit on the reduced numerator magnitude and denominator.
 RationalDisplay formatRational(
   Rational value, {
   RationalDisplayFormat format = RationalDisplayFormat.fraction,
   int maxDecimalPlaces = 100,
+  int maxGeneratedDigits = 100,
   int maxOutputCharacters = 2048,
 }) {
   if (maxDecimalPlaces < 0 || maxDecimalPlaces > 1000) {
@@ -41,6 +75,13 @@ RationalDisplay formatRational(
       'Must be between 1 and 10000',
     );
   }
+  if (maxGeneratedDigits < 0 || maxGeneratedDigits > 1000) {
+    throw ArgumentError.value(
+      maxGeneratedDigits,
+      'maxGeneratedDigits',
+      'Must be between 0 and 1000',
+    );
+  }
 
   RationalDisplay fraction([RationalDisplayFallbackReason? reason]) =>
       RationalDisplay(
@@ -50,6 +91,9 @@ RationalDisplay formatRational(
       );
 
   if (format == RationalDisplayFormat.fraction) return fraction();
+  if (format == RationalDisplayFormat.exactRecurringDecimal) {
+    return _recurringDisplay(value, maxGeneratedDigits, maxOutputCharacters);
+  }
   if (value.isInteger) {
     return RationalDisplay(_fractionText(value, maxOutputCharacters), format);
   }
@@ -99,6 +143,79 @@ RationalDisplay formatRational(
   // is nonzero, so no rounding or trailing-zero cleanup is needed.
   _checkLength(text, maxOutputCharacters);
   return RationalDisplay(text, RationalDisplayFormat.exactDecimal);
+}
+
+RationalDisplay _recurringDisplay(
+  Rational value,
+  int digitBudget,
+  int textBudget,
+) {
+  final magnitude = value.numerator.abs();
+  final denominator = value.denominator;
+  if (magnitude.bitLength + denominator.bitLength > 100000) {
+    throw const CalculatorException(
+      CalculatorErrorCode.limit,
+      'Recurring expansion exceeds value bit budget',
+    );
+  }
+  final negative = value.numerator.isNegative;
+  final sign = negative ? '-' : '';
+  final integerDigits = _boundedDigits(
+    magnitude ~/ denominator,
+    textBudget - sign.length,
+  );
+  var remainder = magnitude % denominator;
+  final positions = <BigInt, int>{};
+  final digits = <String>[];
+  int? repeatingStart;
+  while (true) {
+    // Completion at the final allowed digit still succeeds. Never store an
+    // additional closing remainder or compute an unnecessary next digit.
+    if (remainder == BigInt.zero) break;
+    final seen = positions[remainder];
+    if (seen != null) {
+      repeatingStart = seen;
+      break;
+    }
+    if (digits.length == digitBudget) {
+      return RationalDisplay(
+        _fractionText(value, textBudget),
+        RationalDisplayFormat.fraction,
+        fallbackReason: RationalDisplayFallbackReason.expansionLimit,
+      );
+    }
+    positions[remainder] = digits.length;
+    final scaled = remainder * BigInt.from(10);
+    digits.add((scaled ~/ denominator).toString());
+    remainder = scaled % denominator;
+  }
+
+  final punctuationLength =
+      (digits.isEmpty ? 0 : 1) + (repeatingStart == null ? 0 : 2);
+  if (sign.length + integerDigits.length + digits.length + punctuationLength >
+      textBudget) {
+    _outputLimit();
+  }
+  final split = repeatingStart ?? digits.length;
+  final nonRepeating = digits.take(split).join();
+  final repeating = digits.skip(split).join();
+  final suffix = digits.isEmpty
+      ? ''
+      : ',$nonRepeating${repeating.isEmpty ? '' : '($repeating)'}';
+  final text = '$sign$integerDigits$suffix';
+  _checkLength(text, textBudget);
+  return RationalDisplay(
+    text,
+    repeatingStart == null
+        ? RationalDisplayFormat.exactDecimal
+        : RationalDisplayFormat.exactRecurringDecimal,
+    expansion: RationalDecimalExpansion(
+      negative: negative,
+      integerDigits: integerDigits,
+      nonRepeatingDigits: nonRepeating,
+      repeatingDigits: repeating,
+    ),
+  );
 }
 
 String _fractionText(Rational value, int budget) {

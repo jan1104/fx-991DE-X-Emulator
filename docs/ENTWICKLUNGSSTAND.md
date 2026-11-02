@@ -1,5 +1,37 @@
 # Entwicklungsstand
 
+## 02.11.2026: Frontnaher Rechner und gemeinsames Einstellungsmenü
+
+Ausgangsbasis `d657e39`, Arbeitskopie vor Beginn sauber. Der Nutzer fordert ausdrücklich weitere Softwarearbeit, eine Front nach einem Webbild sowie ein Einstellungsmenü oben mit denselben Einstellungen wie über die Rechnertasten. Die fehlende Originalsoftware blockiert dieses eigene Implementierungspaket nicht. Die bisherige interne Zurückstellung weiterer Produktänderungen wird damit für diesen Auftrag angepasst; die offenen Ausführungsprüfungen werden nicht als bestanden ausgegeben.
+
+### Im Code umgesetzt
+
+- Tatsächlich angesehene Web-Vorderansicht lokal als ignorierte Referenz gesichert. Die neue Front entsteht ausschließlich aus eigenen Flutter-Widgets: dunkles Gehäuse, silberner Rand, Solarfeld, LCD, zentrale Richtungstasten, obere Rundtasten, helle Ziffern und blaue DEL/AC. Das Foto wird kein veröffentlichtes Appasset.
+- Zentrale `CalculatorController`-/`CalculatorSettings`-Steuerung. Werkzeugleiste und SHIFT → MENU öffnen dasselbe Setup. Alle 17 inventarisierten Bereiche sind auswählbar; vier sichtbare Zeilen, Berührung, Ziffern, Pfeile, `=` und AC verwenden denselben Menüzustand.
+- Tatsächliche Anzeigeanbindung für Eingabe-/Ausgabeart, Fix/Sci/Norm, Bruchform, Tausendertrennung, Schriftgröße und Kontrast. Weitere noch fehlende Modi behalten gespeicherte Optionen mit sichtbarem Vorbereitungsstatus. Die Auswahl allein simuliert keine Trigonometrie, Statistik, Perioden- oder QR-Funktion.
+- S⇔D, SHIFT → S⇔D, SHIFT → `=` sowie ON und SHIFT → AC werden im Controller behandelt. Die Anzeige rundet mit BigInt-Ganzzahldivision; Ergebnis und Ans bleiben exakt. Math → Math ist jetzt Startvorgabe. Vorgesehen sind 34 aktive Primäraktionen in Math und 31 in Linear, bei weiterhin 50 physischen Plätzen.
+- Ein Öffnen des Menüs führt automatisch zum Display zurück, auch nach Arbeit unten auf der Tastatur. Der äußere Fokus umfasst die Werkzeugleiste. Kleine Ansichten scrollen bei mindestens 44×44 logischen Pixeln je Taste.
+
+Details, Quellenbeleg und Grenzen: [FRONT_UND_SETUP.md](FRONT_UND_SETUP.md). Es gibt keine aktuelle gerenderte Frontvorschau und keine Behauptung vollständiger Originalkompatibilität.
+
+### Prüfung und Korrekturen
+
+Ein Subagent entwickelte Steuerung, Settings und 28 neue Controllerfälle; ein zweiter Front, Menüansicht und neun Widgetfälle. Der Hauptagent prüfte Produktionscode und Sollwerte lesend, ergänzte zwei weitere Widgetfälle zur Sichtbarkeit des Setup nach Scrollen und zur tatsächlichen Kontrastwirkung auf natürliche Brüche und passte sechs bestehende Widgetdateien gezielt an: explizite lineare Testausgangslage, neue Primäraktionen und weiterhin deaktiviertes ALPHA. Alte Quadrat-/Kehrwertprüfungen werden nicht durch neue Implementierungserwartungen ersetzt. Der Vorschauhelfer erhält neue Front-/Setup-Szenarien und 420×1600 als vorbereitete Größe.
+
+Bei der Durchsicht wurden drei konkrete Verhaltensprobleme vor Abschluss korrigiert: fehlende SHIFT-Belegungen dürfen keine unbehandelte Ausnahme in der UI auslösen; SHIFT → S⇔D muss die gemeinsame Bruchform ändern; ein Norm-Rundungsübertrag an die obere Darstellungsgrenze braucht wissenschaftliche Ausgabe. Dazu wurden gezielte Fälle vorbereitet. Der Hauptagent ergänzte außerdem die automatische Sichtbarmachung des Displays beim Menüöffnen und verband die Kontrastfarbe mit dem Theme der natürlichen Formelansicht.
+
+Die abschließende normale Appanalyse `flutter analyze --no-pub` bestand ohne Befund. Formatkontrolle: 22 Dateien ohne Änderung. Ein erster Formatierungsaufruf verwendete versehentlich repo-relative Pfade bei bereits gesetztem App-Arbeitsordner und fand keine Dateien; der korrekte Aufruf wurde nachgeholt. Es wurden keine bekannten blockierten Testprogramme erneut gestartet. Die **39 neuen App-/Controllerfälle sind vorbereitet, aber nicht ausgeführt**. Die vorher offenen 37 Core- und 57 Appfälle bleiben ebenfalls unausgeführt; frühere 575 Core-/144 App-Ergebnisse sind weiterhin ausschließlich historische Prüfstände. Keine neuen nativen Builds oder visuelle QA behauptet.
+
+### Konkreter unabhängiger Testweg
+
+Der lokale GitHub-Actions-Workflow `.github/workflows/verify-and-build-web.yml` verwendet die dokumentierte Flutter-Version samt Revisionsprüfung, validiert Referenzpläne und führt die vollständigen Core-/Appsuiten aus. Anschließend erzeugt das offizielle Flutter-Werkzeug den Web-Einstieg derselben App; ein erfolgreicher Web-Build wird als herunterladbares Artefakt gespeichert. Eine zusätzliche Vorschauausgabe ist vorbereitet. Es gibt keine zweite HTML-Rechnerimplementierung und kein automatisches Hosting. Die verwendeten GitHub-Actions-Versionen sind auf die anhand offizieller Tagrefs geprüften Commit-IDs festgelegt.
+
+Der Workflow wurde noch nicht hochgeladen oder ausgeführt. Ein lokaler Versuch, YAML mit Python zu parsen, scheiterte am fehlenden optionalen `yaml`-Modul; keine zusätzliche Abhängigkeit wurde dafür installiert. Die Workflowdatei wurde lesend geprüft. Katalog-, Planungsdaten-, Dokumentlink- und Diffprüfungen ergänzen die verfügbaren Prüfungen. Eine erfolgreiche Cloud-Ausführung, Browserdatei oder neue Vorschau existiert noch nicht.
+
+### Nächster Schritt
+
+Nach ausdrücklicher Freigabe dieses neuen Pushs den konkreten Testworkflow auf GitHub ausführen, tatsächliche Fehler beheben, Browserartefakt und Front-/Setup-Vorschauen prüfen und dem Nutzer den testbaren Stand bereitstellen. Bis dahin keine Cloud-Ergebnisse behaupten und die unveränderte lokale Sicherheitsrichtlinie nicht umgehen. Neue Originalreferenz bleibt lokal; kein neuer Push in diesem Arbeitspaket.
+
 ## 01.11.2026: Periodenausgabe spezifiziert und Planungsreferenzen geprüft
 
 Ausgangsbasis `873c1ad`, Arbeitskopie vor Beginn sauber. Der Nutzer ließ die bis zu diesem Commit gespeicherten 14 Entwicklungscommits am 01.11. ausdrücklich auf GitHub sichern; der Push auf `main` wurde bestätigt. Das folgende neue Planungspaket bleibt lokal und wird dadurch nicht automatisch erneut zur Veröffentlichung freigegeben.

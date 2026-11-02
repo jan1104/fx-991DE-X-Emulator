@@ -64,7 +64,7 @@ Future<void> pumpCalculator(
   addTearDown(tester.view.resetDevicePixelRatio);
   await tester.pumpWidget(const CalculatorApp());
   await tester.pumpAndSettle();
-  if (structured) await tap(tester, 'input-fractions');
+  await tap(tester, structured ? 'input-fractions' : 'input-linear');
 }
 
 int physicalEnabledCount(WidgetTester tester) => calculatorRows
@@ -82,9 +82,9 @@ void main() {
       await pumpCalculator(tester, structured: false);
       expect(keyed('action-wrap-fraction'), findsNothing);
       expect(calculatorRows.expand((row) => row), hasLength(50));
-      expect(physicalEnabledCount(tester), 27);
+      expect(physicalEnabledCount(tester), 31);
       await tap(tester, 'input-fractions');
-      expect(physicalEnabledCount(tester), 30);
+      expect(physicalEnabledCount(tester), 34);
       expect(keyed('action-wrap-fraction'), findsOneWidget);
       expect(
         find.descendant(
@@ -111,7 +111,7 @@ void main() {
         tester.widget<TextButton>(keyed('action-wrap-fraction')).onPressed,
         isNotNull,
       );
-      expect(physicalEnabledCount(tester), 30);
+      expect(physicalEnabledCount(tester), 34);
     },
   );
 
@@ -445,7 +445,7 @@ void main() {
         'KEY_EQUALS',
       ]);
       expect(result(tester), '4');
-      expect(physicalEnabledCount(tester), 30);
+      expect(physicalEnabledCount(tester), 34);
       expect(tester.takeException(), isNull);
       await tap(tester, 'input-linear');
       expect(keyed('action-wrap-fraction'), findsNothing);
@@ -456,7 +456,7 @@ void main() {
             .toPlainText(),
         '8+1│',
       );
-      expect(physicalEnabledCount(tester), 27);
+      expect(physicalEnabledCount(tester), 31);
       await tap(tester, 'KEY_EQUALS');
       expect(result(tester), '9');
       expect(tester.takeException(), isNull);

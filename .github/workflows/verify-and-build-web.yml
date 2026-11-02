@@ -1,0 +1,81 @@
+name: Tests and browser build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Install the recorded Flutter toolchain
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(python3 -c 'import json; print(json.load(open("tools/toolchain.json"))["flutter_version"])')
+          revision=$(python3 -c 'import json; print(json.load(open("tools/toolchain.json"))["flutter_framework_revision"])')
+          git clone --depth 1 --branch "$version" https://github.com/flutter/flutter.git "$RUNNER_TEMP/flutter"
+          test "$(git -C "$RUNNER_TEMP/flutter" rev-parse HEAD)" = "$revision"
+          echo "$RUNNER_TEMP/flutter/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/flutter/bin/flutter" config --no-analytics
+          "$RUNNER_TEMP/flutter/bin/flutter" --version --machine > "$RUNNER_TEMP/flutter-version.json"
+          python3 - <<'PY'
+          import json, os
+          required = json.load(open('tools/toolchain.json'))
+          actual = json.load(open(os.environ['RUNNER_TEMP'] + '/flutter-version.json'))
+          assert actual['frameworkRevision'] == required['flutter_framework_revision']
+          assert actual['dartSdkVersion'] == required['flutter_dart_version']
+          PY
+      - name: Validate reference plans
+        run: |
+          python3 tools/check_test_catalogs.py
+          python3 tools/check_recurring_decimal_plan.py
+      - name: Verify the calculation core
+        working-directory: packages/calculator_core
+        run: |
+          dart pub get --enforce-lockfile
+          dart format --output=none --set-exit-if-changed lib bin test
+          dart analyze
+          dart test --reporter expanded
+      - name: Verify the calculator app
+        working-directory: apps/calculator
+        run: |
+          flutter pub get --enforce-lockfile
+          dart format --output=none --set-exit-if-changed lib test tool
+          flutter analyze --no-pub
+          flutter test --no-pub --reporter expanded
+      - name: Generate web bootstrap and build the same Flutter app
+        working-directory: apps/calculator
+        run: |
+          flutter create --platforms=web --project-name=fx991_calculator --org=dev.fx991 --no-pub .
+          flutter build web --release --no-pub
+      - name: Render visual previews
+        continue-on-error: true
+        working-directory: apps/calculator
+        env:
+          PREVIEW_FONT: /usr/share/fonts/truetype/dejavu/DejaVuSans.ttf
+        run: flutter test tool/render_preview.dart --no-pub --reporter expanded
+      - name: Save visual previews
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: fx991-previews-${{ github.sha }}
+          path: build/reports/calculator-*.png
+          if-no-files-found: ignore
+          retention-days: 7
+      - name: Save browser files for manual testing
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: fx991-browser-${{ github.sha }}
+          path: apps/calculator/build/web/
+          if-no-files-found: error
+          retention-days: 7

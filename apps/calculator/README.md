@@ -2,7 +2,7 @@
 
 Erster Flutter-Oberflächenprototyp mit gemeinsamem Dart-Core. Die Plattformgerüste für Android, iPhone/iPad, Windows, macOS und Linux sind mit Flutter 3.47.8 erzeugt. Native App-Pakete sind noch nicht gebaut oder auf Geräten getestet.
 
-Stand 30.10.2026: Die bestehende lineare und natürliche Brucheingabe ist um vorbereitete x²- und x⁻¹-Anbindungen ergänzt. Der Code sieht 50 Tastenplätze mit 27 aktiven Primäraktionen in **Linear** und 30 in **Brüche** vor. Der aktuelle tatsächliche Core-Prüfstand steht im [Entwicklungsstand](../../docs/ENTWICKLUNGSSTAND.md). Die Appausführung bleibt durch Windows Code Integrity am Flutter-Testcompiler blockiert; die zuletzt bestandenen 144 App-/Mappingtests gehören zum Stand vor Quadrat und Kehrwert. Neue Widgetfälle sind vorbereitet, aber nicht ausgeführt. Verträge: [Quadrieren](../../docs/QUADRIEREN.md) und [Kehrwert](../../docs/KEHRWERT.md).
+Stand 02.11.2026: Neue eigene Front nach Webreferenz, zentrale Einstellungen über Werkzeugleiste und SHIFT → MENU, vier Eingabe-/Ausgabearten und Anzeigeformatierung. 50 physische Tastenplätze, vorgesehen 31 aktive Primäraktionen in Linear und 34 in Math. Die statische Analyse ist sauber; 39 neue Controller-/Widgetfälle sind vorbereitet und nicht ausgeführt. Ein unabhängiger Test-/Web-Build auf GitHub ist lokal vorbereitet. Er ist noch nicht hochgeladen oder gestartet. Grenzen und Bedienung: [FRONT_UND_SETUP.md](../../docs/FRONT_UND_SETUP.md). Die folgenden ursprünglichen Vorschauen dokumentieren ältere Stände und validieren die neue Front nicht.
 
 Die natürliche `FractionExpressionView` ist über `StructuredCalculatorSession` angebunden. Beide Eingabearten behalten beim Umschalten ihre eigenen Entwürfe, Fehler, Ergebnisse und Ans; eine automatische Konvertierung gibt es nicht. Der Cursor wird innerhalb des Displays nachgeführt. Eigene Regeln und Beispiele stehen in [STRUKTURIERTE_SITZUNG.md](../../docs/STRUKTURIERTE_SITZUNG.md).
 
@@ -47,3 +47,8 @@ Ein sechstes Quadrat-Szenario ist vorbereitet (`3`, x², x², `=` → 81), aber 
 Die lokale Werkzeugprüfung fand noch kein Android-SDK und keine Visual-Studio-C++-Buildwerkzeuge. Deshalb stehen Windows- und Android-App-Builds aus. Nach Einrichtung der jeweiligen Werkzeuge sind `flutter run -d windows` bzw. Android-Geräte-/Buildtests möglich. macOS-/iOS-Builds benötigen einen Mac; Linux-Builds eine passende Linux-Umgebung. Die erzeugten Plattformordner allein sind kein Nachweis, dass diese Ziele getestet wurden. Die mit Flutter erzeugten Standard-Appicons sind Platzhalter für die spätere Paketierung.
 
 Verbindlicher Entwurf: [Projektstruktur](../../docs/PROJEKTSTRUKTUR.md). Die Originalsoftware ist keine Voraussetzung für das erste eigene Grundgerüst.
+
+
+## Browser-Test nach freigegebenem Push
+
+Der Workflow `Tests and browser build` läuft nach einem freigegebenen Push oder manuell unter GitHub Actions. Nach erfolgreichen Tests und Build steht ein `fx991-browser-…`-Artefakt bereit. Das entpackte Verzeichnis per lokalem HTTP-Server bereitstellen, zum Beispiel `python -m http.server 8080 --bind 127.0.0.1 --directory <entpackter-Ordner>`, und `http://127.0.0.1:8080` öffnen. Es gibt noch kein automatisch veröffentlichtes Hosting. Neue Vorschauen werden, falls erfolgreich erzeugt, getrennt als Artefakt gespeichert. Keine dieser Ausführungen ist bisher erfolgt.

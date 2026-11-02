@@ -54,3 +54,6 @@ Die konkreten vollständigen Testzahlen und Laufbedingungen stehen im [Entwicklu
 Der explizite Vorschauhelfer `apps/calculator/tool/render_preview.dart` erzeugt jetzt beide Hauptansichten bei 420×1100 mit demselben Ergebnis `1/2`. Lokale ignorierte Artefakte: `build/reports/calculator-prototype.png` und `build/reports/calculator-fractions.png`. Die früheren reinen Komponentenbilder bleiben als eigene QA-Helfer verfügbar.
 
 Die explizite Übernahme einfacher Atome und geschlossener Klammergruppen ist als zusätzliche Appaktion ergänzt, siehe [BRUCHUEBERNAHME.md](BRUCHUEBERNAHME.md). Offen bleiben unter anderem geometrische Spalten/Vorfahrensuche, gemischte Brüche, allgemeine Termauswahl/Potenzketten, Wurzeln und natürliche Exponentenfelder, gemeinsame originale Setup-/Speicherregeln sowie native Windows-/Android-/Apple-/Linux-Prüfungen. Details zum Editorbaum: [BRUCHEDITOR_PROTOTYP.md](BRUCHEDITOR_PROTOTYP.md).
+
+
+Fortschreibung 02.11.2026: Der neue zentrale Appcontroller verbindet die Wahl der Eingabe-/Ausgabeart und S⇔D mit beiden vorhandenen Sitzungen. Gemeinsames Setup, neue Front und zusätzlicher Anzeigepfad: [FRONT_UND_SETUP.md](FRONT_UND_SETUP.md). Die Core-Enums bleiben unverändert; die zusätzlichen Appaktionen SHIFT/MENU/ON/S⇔D ergeben 31/34 aktive Primäraktionen. Dieser neue Stand ist noch nicht durch Ausführung geprüft.

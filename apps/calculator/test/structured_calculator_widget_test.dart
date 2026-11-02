@@ -32,6 +32,10 @@ Future<void> pumpCalculator(
   addTearDown(tester.view.resetDevicePixelRatio);
   await tester.pumpWidget(const CalculatorApp());
   await tester.pumpAndSettle();
+  // Regression cases select linear input explicitly; the device defaults to Math.
+  await tester.ensureVisible(find.byKey(const ValueKey('input-linear')));
+  await tester.tap(find.byKey(const ValueKey('input-linear')));
+  await tester.pumpAndSettle();
 }
 
 Future<void> tap(WidgetTester tester, String id) async {
@@ -107,7 +111,7 @@ void main() {
       expect(find.text('Berechnungen · Linear'), findsOneWidget);
       expect(keyed('input-linear'), findsOneWidget);
       expect(keyed('input-fractions'), findsOneWidget);
-      expectEnabledCount(tester, 27);
+      expectEnabledCount(tester, 31);
       expect(
         tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
         isNull,
@@ -116,10 +120,16 @@ void main() {
       expect(find.text('Berechnungen · Brüche'), findsOneWidget);
       expect(keyed('display-structured'), findsOneWidget);
       expect(find.byType(FractionExpressionView), findsOneWidget);
-      expectEnabledCount(tester, 30);
+      expectEnabledCount(tester, 34);
       for (final definition in calculatorRows.expand((row) => row)) {
         final expected =
             CalculatorKey.fromId(definition.id) != null ||
+            const {
+              'KEY_SHIFT',
+              'KEY_MENU',
+              'KEY_ON',
+              'KEY_SD',
+            }.contains(definition.id) ||
             {'KEY_FRACTION', 'KEY_UP', 'KEY_DOWN'}.contains(definition.id);
         expect(
           tester.widget<FilledButton>(keyed(definition.id)).onPressed != null,
@@ -130,7 +140,7 @@ void main() {
       expect(keyed('placeholder-root'), findsOneWidget);
       expectCursor(tester, 0, []);
       await tap(tester, 'input-linear');
-      expectEnabledCount(tester, 27);
+      expectEnabledCount(tester, 31);
       expect(
         tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
         isNull,
@@ -409,7 +419,7 @@ void main() {
       expect(tester.takeException(), isNull);
       await tap(tester, 'input-linear');
       expect(linearExpression(tester), '│');
-      expectEnabledCount(tester, 27);
+      expectEnabledCount(tester, 31);
       expect(tester.takeException(), isNull);
     },
   );

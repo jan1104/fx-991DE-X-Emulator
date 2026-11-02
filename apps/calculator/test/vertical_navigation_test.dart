@@ -54,7 +54,7 @@ Future<void> pumpCalculator(
   addTearDown(tester.view.resetDevicePixelRatio);
   await tester.pumpWidget(const CalculatorApp());
   await tester.pumpAndSettle();
-  if (structured) await tap(tester, 'input-fractions');
+  await tap(tester, structured ? 'input-fractions' : 'input-linear');
 }
 
 Future<void> hardwareKey(WidgetTester tester, LogicalKeyboardKey key) async {
@@ -82,7 +82,7 @@ void main() {
         enabled++;
       }
     }
-    expect(enabled, 30);
+    expect(enabled, 34);
     await tap(tester, 'input-linear');
     for (final id in ['KEY_UP', 'KEY_DOWN']) {
       expect(tester.widget<FilledButton>(keyed(id)).onPressed, isNull);

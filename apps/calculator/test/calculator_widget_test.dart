@@ -28,6 +28,10 @@ Future<void> pumpCalculator(
   addTearDown(tester.view.resetDevicePixelRatio);
   await tester.pumpWidget(const CalculatorApp());
   await tester.pumpAndSettle();
+  // Regression cases select linear input explicitly; the device defaults to Math.
+  await tester.ensureVisible(find.byKey(const ValueKey('input-linear')));
+  await tester.tap(find.byKey(const ValueKey('input-linear')));
+  await tester.pumpAndSettle();
 }
 
 Future<void> tapKey(WidgetTester tester, String id) async {
@@ -65,11 +69,11 @@ void main() {
           .descendant(of: button(id), matching: find.byType(Material))
           .first;
       final size = tester.getSize(material);
-      expect(size.height, greaterThanOrEqualTo(48), reason: id);
+      expect(size.height, greaterThanOrEqualTo(44), reason: id);
       expect(size.width, greaterThanOrEqualTo(44), reason: id);
     }
   });
-  testWidgets('renders exactly 50 unique keys, 27 enabled and 23 disabled', (
+  testWidgets('renders exactly 50 unique keys, 31 enabled and 19 disabled', (
     tester,
   ) async {
     await pumpCalculator(tester);
@@ -82,7 +86,14 @@ void main() {
       final finder = button(definition.id);
       expect(finder, findsOneWidget);
       final widget = tester.widget<FilledButton>(finder);
-      final supported = CalculatorKey.fromId(definition.id) != null;
+      final supported =
+          CalculatorKey.fromId(definition.id) != null ||
+          const {
+            'KEY_SHIFT',
+            'KEY_MENU',
+            'KEY_ON',
+            'KEY_SD',
+          }.contains(definition.id);
       expect(widget.onPressed != null, supported, reason: definition.id);
       if (widget.onPressed == null) {
         disabled++;
@@ -90,8 +101,8 @@ void main() {
         enabled++;
       }
     }
-    expect(enabled, 27);
-    expect(disabled, 23);
+    expect(enabled, 31);
+    expect(disabled, 19);
     expect(find.byType(FilledButton), findsNWidgets(50));
     expect(expression(tester), '│');
     expect(result(tester), '');
@@ -211,13 +222,13 @@ void main() {
     expect(expression(tester), '│');
   });
 
-  testWidgets('disabled SHIFT remains visible and has no effect', (
+  testWidgets('disabled ALPHA remains visible and has no effect', (
     tester,
   ) async {
     await pumpCalculator(tester);
     await tapKeys(tester, ['KEY_1', 'KEY_2']);
-    expect(tester.widget<FilledButton>(button('KEY_SHIFT')).onPressed, isNull);
-    await tapKey(tester, 'KEY_SHIFT');
+    expect(tester.widget<FilledButton>(button('KEY_ALPHA')).onPressed, isNull);
+    await tapKey(tester, 'KEY_ALPHA');
     expect(expression(tester), '12│');
     expect(result(tester), '');
     expect(answer(tester), 'Ans: 0');

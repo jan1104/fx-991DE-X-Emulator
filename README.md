@@ -2,9 +2,11 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 01.11.2026
+## Stand am 02.11.2026
 
-Die ausdrückliche Bruch-/Dezimalwahl ist für beide Core-Sitzungen vorbereitet; Ergebniswert und Ans sollen dabei exakt bleiben. **Auch der Dart-Core-Teststart wird inzwischen durch Windows Code Integrity blockiert.** Die zuletzt bestandenen **575 Coretests gehören zum Stand `655acd8` vor dieser Sitzungsanbindung**. Die neuen Fälle sind nicht ausgeführt. Details und tatsächlicher Prüfstatus stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Die App nutzt diese neue API noch nicht; ihre offenen Quadrat-/Kehrwerttests bleiben ebenfalls blockiert. Die zuletzt bestandenen 144 Apptests gehören zum Stand vor diesen beiden Tasten. Native Builds und Original-Programmdateien sind weiterhin offen.
+Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Ein Einstellungsmenü in der Werkzeugleiste und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind im Code angebunden; noch fehlende Modusfunktionen werden gekennzeichnet. **Statische Analyse und Formatprüfung bestehen; Ausführungs- und Sichtprüfung des neuen Standes sind offen.** Ein GitHub-Test-/Web-Build-Workflow ist lokal vorbereitet, noch nicht ausgeführt. Details: [Front und Setup](docs/FRONT_UND_SETUP.md).
+
+Die lokale Windows-Code-Integrity-Sperre der Testprogramme bleibt unberührt. Die zuletzt bestandenen **575 Coretests gehören zu `655acd8`**, die 144 bestandenen Apptests zum Stand vor Quadrat und Kehrwert. Die neuen Fälle sind nicht ausgeführt. Tatsächlicher Prüfstatus und nächster Schritt stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Native Builds und Original-Programmdateien bleiben offen.
 
 Die nächste exakte Periodenausgabe ist spezifiziert; 30 eigene Planungsreferenzen wurden mathematisch geprüft. Der Periodenformatter ist noch nicht implementiert. Der gespeicherte Entwicklungsstand bis `873c1ad` wurde am 01.11. auf ausdrücklichen Nutzerwunsch auf GitHub gesichert; neue Arbeiten bleiben zunächst lokal.
 
@@ -28,6 +30,7 @@ Die nächste exakte Periodenausgabe ist spezifiziert; 30 eigene Planungsreferenz
 - [Exakte Bruch-/Dezimalausgabe und Grenzen](docs/EXAKTE_AUSGABE.md)
 - [Darstellungswahl in beiden Core-Sitzungen](docs/DARSTELLUNGSWAHL.md)
 - [Geplante exakte Periodendarstellung](docs/PERIODENDARSTELLUNG.md)
+- [Rechnerfront und gemeinsames Einstellungsmenü](docs/FRONT_UND_SETUP.md)
 - [Flutter-Oberfläche, Werkzeugstand und Buildgrenzen](docs/FLUTTER_PROTOTYP.md)
 - [Plattformvergleich: Flutter, Tauri und Compose](docs/PLATTFORMWAHL.md)
 

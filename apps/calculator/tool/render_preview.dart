@@ -16,6 +16,8 @@ void main() {
     'capture',
     'group',
     'square',
+    'front',
+    'settings',
   ]) {
     final structured = scenario != 'linear';
     final error = scenario == 'error';
@@ -23,7 +25,7 @@ void main() {
     final group = scenario == 'group';
     final square = scenario == 'square';
     testWidgets('render the calculator preview: $scenario', (tester) async {
-      tester.view.physicalSize = const Size(420, 1100);
+      tester.view.physicalSize = const Size(420, 1600);
       tester.view.devicePixelRatio = 1;
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
@@ -48,6 +50,11 @@ void main() {
       await tester.pumpWidget(
         const RepaintBoundary(key: boundaryKey, child: CalculatorApp()),
       );
+      if (!structured) {
+        await tester.ensureVisible(find.byKey(const ValueKey('input-linear')));
+        await tester.tap(find.byKey(const ValueKey('input-linear')));
+        await tester.pumpAndSettle();
+      }
       if (structured) {
         await tester.tap(find.byKey(const ValueKey('input-fractions')));
         await tester.pumpAndSettle();
@@ -139,6 +146,11 @@ void main() {
           findsOneWidget,
         );
       }
+      if (scenario == 'settings') {
+        await tester.tap(find.byKey(const ValueKey('toolbar-settings')));
+        await tester.pumpAndSettle();
+        expect(find.byKey(const ValueKey('calculator-menu')), findsOneWidget);
+      }
       await tester.ensureVisible(
         find.byKey(const ValueKey('calculator-display')),
       );
@@ -151,7 +163,11 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          square
+          scenario == 'settings'
+              ? '../../build/reports/calculator-settings.png'
+              : scenario == 'front'
+              ? '../../build/reports/calculator-front.png'
+              : square
               ? '../../build/reports/calculator-square.png'
               : group
               ? '../../build/reports/calculator-group-capture.png'

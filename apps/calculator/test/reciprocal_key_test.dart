@@ -72,7 +72,7 @@ Future<void> pumpCalculator(
   addTearDown(tester.view.resetDevicePixelRatio);
   await tester.pumpWidget(const CalculatorApp());
   await tester.pumpAndSettle();
-  if (structured) await tap(tester, 'input-fractions');
+  await tap(tester, structured ? 'input-fractions' : 'input-linear');
 }
 
 void main() {
@@ -95,7 +95,7 @@ void main() {
               tester.widget<FilledButton>(keyed(definition.id)).onPressed !=
               null,
         ),
-        hasLength(structured ? 30 : 27),
+        hasLength(structured ? 34 : 31),
       );
       expect(
         tester.widget<FilledButton>(keyed('KEY_RECIPROCAL')).onPressed,

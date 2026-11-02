@@ -113,24 +113,27 @@ void main() {
       tester,
     ) async {
       final semantics = tester.ensureSemantics();
-      addTearDown(semantics.dispose);
-      await tester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: RecurringResultView(
-              periodPrefix: prefix,
-              repeatingDigits: period,
-              canonicalText: canonical,
-              style: const TextStyle(fontSize: 30),
+      try {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Scaffold(
+              body: RecurringResultView(
+                periodPrefix: prefix,
+                repeatingDigits: period,
+                canonicalText: canonical,
+                style: const TextStyle(fontSize: 30),
+              ),
             ),
           ),
-        ),
-      );
-      expectPeriod(tester, prefix, period, canonical);
-      final spoken = find.bySemanticsLabel('$prefix Periode $period');
-      expect(spoken, findsOneWidget);
-      expect(tester.getSemantics(spoken).getSemanticsData().value, canonical);
-      expect(keyed('display-result'), findsOneWidget);
+        );
+        expectPeriod(tester, prefix, period, canonical);
+        final spoken = find.bySemanticsLabel('$prefix Periode $period');
+        expect(spoken, findsOneWidget);
+        expect(tester.getSemantics(spoken).getSemanticsData().value, canonical);
+        expect(keyed('display-result'), findsOneWidget);
+      } finally {
+        semantics.dispose();
+      }
     });
   }
 

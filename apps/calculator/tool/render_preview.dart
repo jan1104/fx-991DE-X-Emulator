@@ -41,6 +41,10 @@ void main() {
           fontFamily: 'Roboto',
         );
         await ui.loadFontFromList(
+          Uint8List.fromList(bytes),
+          fontFamily: 'monospace',
+        );
+        await ui.loadFontFromList(
           await File('build/unit_test_assets/fonts/MaterialIcons-Regular.otf')
               .readAsBytes(),
           fontFamily: 'MaterialIcons',

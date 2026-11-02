@@ -13,6 +13,7 @@ class CalculatorApp extends StatelessWidget {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       useMaterial3: true,
+      fontFamily: 'Roboto',
       colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF315F8A)),
       scaffoldBackgroundColor: const Color(0xFFE9EDF1),
     ),

@@ -8,7 +8,17 @@ Ein Subagent ergänzte das Postfixtoken `³`, die sekundäre Aktion `ACTION_CUBE
 
 Postfixketten binden in Eingabereihenfolge vor normalem `^`. Negative und gebrochene Ans-Werte bleiben exakt; Fehlerphase, Cursor, DEL, Bruchfelder und Ressourcenbudgets folgen den bestehenden Verträgen. Formatierung und statische Analyse von Core und App bestanden. Keine bekannten blockierten lokalen Tests erneut gestartet. Tatsächliche Ausführung und visuelle Prüfung folgen über den bestehenden GitHub-Test-/Web-Build; bis dahin sind die neuen Fälle vorbereitet, nicht als bestanden gemeldet.
 
-Nächster Schritt nach erfolgreicher Cloudprüfung: ein weiteres begrenztes Paket aus dem noch offenen wissenschaftlichen Funktionsumfang spezifizieren, beispielsweise Prozent über SHIFT → Ans. Die Quellenbelegung ist vor der Implementierung anhand des vorhandenen Inventars zu prüfen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Sechs-Stunden-Zeitplan.
+### Abschließender Prüfstand
+
+[GitHub-Lauf 41480260905](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41480260905) für **`c078d7d586e6635a09e70d99193c91c8c56395b0`** bestand auf Ubuntu 24.04 mit dem unveränderten dokumentierten Werkzeugstand vollständig: **711 Coretests, 318 App-/Controller-/Widgettests, Web-Release-Build und elf separate Vorschauszenarien bestanden**. Das vollständige Joblog bestätigt die Zahlen; auch der separat behandelte Vorschauschritt ist ausdrücklich erfolgreich. Die 40 neuen Core- und 28 neuen Appfälle sind in diesen Summen enthalten. Format-/Analyseprüfung, SDK-Revisionskontrolle und erzwungene Lockdateien bestanden ebenfalls.
+
+Der Hauptagent lud das Vorschauartefakt herunter und prüfte `calculator-cube.png` bei 420×1600: natürliche Formel `3³³`, exaktes Ergebnis und Ans 19683, lesbare Front-/Tastenbeschriftung und keine sichtbare Überlagerung. Die Ansicht markiert **Als Zähler** für die ungruppierte Postfixkette erwartungsgemäß als nicht verfügbar. Dies ist Linux-Testengine-QA, kein manueller Browser-/Gerätetest, Screenreader-Test oder Originalvergleich. Dateien liegen lokal ignoriert unter `build/reports/github-41480260905/previews/`.
+
+[Browser-Artefakt](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41480260905/artifacts/13159297317) und [elf Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41480260905/artifacts/13158334702) gehören genau zur genannten Revision. Beide Planungskatalogprüfer sowie die relativen Links in 30 Dokumenten wurden zusätzlich geprüft; dies sind keine weiteren Rechnerfunktionstests. Der anschließende reine Dokumentationscommit verändert keinen Produktcode und startet per `[skip ci]` keinen redundanten Volltest.
+
+### Nächster Schritt
+
+Im nächsten Sechs-Stunden-Lauf ein weiteres begrenztes Paket aus dem noch offenen wissenschaftlichen Funktionsumfang spezifizieren, beispielsweise Prozent über SHIFT → Ans. Die Quellenbelegung ist vor der Implementierung anhand des vorhandenen Inventars zu prüfen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Sechs-Stunden-Zeitplan.
 
 ## 02.11.2026 vormittags: Perioden in der App und wirksamer Setup-Schalter
 

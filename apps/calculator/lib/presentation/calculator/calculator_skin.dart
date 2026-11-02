@@ -397,6 +397,7 @@ class _DeviceKey extends StatelessWidget {
             borderRadius: BorderRadius.circular(round ? 24 : 7),
           ),
           textStyle: TextStyle(
+            fontFamily: 'Roboto',
             fontSize: numeric ? 24 : 15,
             fontWeight: FontWeight.w600,
           ),

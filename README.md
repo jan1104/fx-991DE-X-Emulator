@@ -4,11 +4,11 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 02.11.2026
 
-Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Ein Einstellungsmenü in der Werkzeugleiste und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind im Code angebunden; noch fehlende Modusfunktionen werden gekennzeichnet. **Statische Analyse und Formatprüfung bestehen; Ausführungs- und Sichtprüfung des neuen Standes sind offen.** Ein GitHub-Test-/Web-Build-Workflow ist lokal vorbereitet, noch nicht ausgeführt. Details: [Front und Setup](docs/FRONT_UND_SETUP.md).
+Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 
-Die lokale Windows-Code-Integrity-Sperre der Testprogramme bleibt unberührt. Die zuletzt bestandenen **575 Coretests gehören zu `655acd8`**, die 144 bestandenen Apptests zum Stand vor Quadrat und Kehrwert. Die neuen Fälle sind nicht ausgeführt. Tatsächlicher Prüfstatus und nächster Schritt stehen im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Native Builds und Original-Programmdateien bleiben offen.
+Der unabhängige GitHub-Lauf hat **612 Coretests und 240 App-/Bedientests bestanden**, die Browser-Version gebaut und acht separate Vorschauszenarien ausgeführt. Nach Korrektur der Vorschau-Schriftzuordnung bestand auch der abschließende Lauf für `e0568b9`; Front und Setup wurden in gerenderten Bildern visuell geprüft. Die genaue Revision steht im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Browserdateien stehen als Artefakt unter [GitHub Actions](https://github.com/jan1104/fx-991DE-X-Emulator/actions) bereit. Native Builds und Originalvergleich bleiben offen. Die lokale Windows-Testblockade wurde nicht verändert. Bedienung und Grenzen: [Front und Setup](docs/FRONT_UND_SETUP.md).
 
-Die nächste exakte Periodenausgabe ist spezifiziert; 30 eigene Planungsreferenzen wurden mathematisch geprüft. Der Periodenformatter ist noch nicht implementiert. Der gespeicherte Entwicklungsstand bis `873c1ad` wurde am 01.11. auf ausdrücklichen Nutzerwunsch auf GitHub gesichert; neue Arbeiten bleiben zunächst lokal.
+Die nächste exakte Periodenausgabe ist spezifiziert; 30 eigene Planungsreferenzen wurden mathematisch geprüft. Der Periodenformatter ist noch nicht implementiert. Der gespeicherte Entwicklungsstand bis `873c1ad` wurde am 01.11. auf ausdrücklichen Nutzerwunsch auf GitHub gesichert; Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig auf dieses Repository gepusht werden.
 
 ## Dokumentation
 
@@ -46,4 +46,4 @@ Die Ignore-Regeln bleiben für neu hinzukommende Referenzen und temporäre Datei
 
 Für eine erneute lokale Auswertung: Python mit den Abhängigkeiten aus `tools/requirements.txt` verwenden, dann `python tools/inspect_manuals.py` ausführen. Das Werkzeug liest nur lokale PDFs, startet sie nicht und schreibt Ergebnisse ausschließlich nach `tmp/pdfs/`. PDF-Symbole können in der Textextraktion fehlerhaft erscheinen; Tasten und Formeln zusätzlich visuell prüfen.
 
-Alle Arbeiten erfolgen zunächst lokal. Kein Push ohne ausdrückliche Freigabe.
+Eigene Projektänderungen werden lokal entwickelt und dürfen nach der ausdrücklichen Freigabe vom 02.11.2026 selbstständig gepusht werden. Automatische neue Arbeitsläufe beginnen ausschließlich alle sechs Stunden. Neue fremde Originaldateien bleiben ohne gesonderte Freigabe lokal.

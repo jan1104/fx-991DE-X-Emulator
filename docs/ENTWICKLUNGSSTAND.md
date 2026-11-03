@@ -10,6 +10,18 @@ Der erste [Cloud-Lauf 41593363517](https://github.com/jan1104/fx-991DE-X-Emulato
 
 Im zweiten [Cloud-Lauf 41593555964](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41593555964) bestanden alle 807 Coretests und 364 Appfälle. Vier neue Controllerfälle prüften irrtümlich den übersetzten UI-Fehlertext über `resultText`, obwohl dieses API nur die mathematische Ergebnispräsentation liefert. Die Fehlerübersetzung erfolgt in der Ansicht. Die Korrektur prüft am Controller Phase, Fehlercode und Position sowie zusätzlich den sichtbaren Mathematikfehler in den vorhandenen Widgetfällen beider Eingabearten. Ans-/Fehlersperrprüfungen bleiben bestehen; Produktionscode wird dafür nicht geändert.
 
+### Abschließender Prüfstand
+
+[GitHub-Lauf 41594174938](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41594174938) für **`03dadd2d8a16feb7c3746e3f4c4a4fc3c30f9aff`** bestand auf Ubuntu 24.04 vollständig: **807 Coretests, 368 App-/Controller-/Widgettests, Web-Release-Build und 13 separate Vorschauszenarien bestanden**. Die Zahlen stammen aus dem vollständigen Joblog; auch der optionale Vorschauschritt wurde ausdrücklich auf Erfolg geprüft. Die 51 neuen Core- und 26 Appfälle sind in den Summen enthalten. SDK-/Revisionskontrolle, erzwungene Lockdateien, Formatierung und statische Analyse bestanden mit unveränderten Werkzeugversionen.
+
+Der Hauptagent lud das Vorschauartefakt herunter und prüfte `calculator-factorial.png` bei 420×1600 visuell: natürliche Formel `(5+3)!`, Ergebnis und Ans 40320, Fakultätsbeschriftung über x⁻¹ und Front-/Tastentexte sind lesbar und ohne sichtbare Überlagerung. Die ungruppierte Postfixkette bleibt erwartungsgemäß nicht direkt als Zähler übernehmbar. Dies ist Linux-Testengine-QA, kein manueller Browser-/Geräte-/Screenreader-Test oder Originalvergleich. Lokale Dateien liegen ignoriert unter `build/reports/github-41594174938/previews/`.
+
+[Browser-Artefakt](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41594174938/artifacts/13211965584) und [13 Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41594174938/artifacts/13212110379) gehören genau zur genannten Revision. Planungskatalogprüfer und relative Links in 32 Dokumenten wurden zusätzlich geprüft; dies sind keine weiteren Rechnerfunktionstests. Der anschließende reine Dokumentationscommit startet per `[skip ci]` keinen redundanten Volltest.
+
+### Nächster Schritt
+
+Im nächsten Sechs-Stunden-Lauf Permutationen/Kombinationen über SHIFT → ×/÷ als begrenztes Paket spezifizieren. Das vorhandene Inventar belegt nPr/nCr und die Handbuchbeispiele `10 nPr 4 = 5040`, `10 nCr 4 = 210` (H, PDF-S. 21), außerdem Domänengrenzen (H, PDF-S. 51). Vor der Umsetzung sind Binärbindung, exaktes Ans, reduzierte ganzzahlige Argumente, Domänenfehler und ein begrenztes Verfahren ohne unbeschränkte Fakultätsschleifen festzulegen. Weitere wissenschaftliche Funktionen, Originalvergleich und native Builds bleiben getrennt offen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Zeitplan; keine neue Veröffentlichung fremder Originale, kein Hosting oder Release.
+
 ## 02.11.2026 abends: Prozent über SHIFT → Ans
 
 Ausgangsbasis `32ffbdc`, Arbeitskopie vor Beginn sauber. Der planmäßige Sechs-Stunden-Lauf nimmt das im letzten Lauf vorgeschlagene Paket auf. Die vorhandenen Quellen belegen die Belegung, die nachgestellte Prozentfunktion und die drei Rechnungen `150*20% = 30`, `660/880% = 75`, `3500-3500*25% = 2625`. Der vor der Umsetzung festgehaltene Vertrag [PROZENT.md](PROZENT.md) trennt diese Belege von eigenen Prototypregeln für gemischte Postfix-/Potenzketten. Keine vollständige Originalkompatibilität solcher Schreibweisen behauptet.

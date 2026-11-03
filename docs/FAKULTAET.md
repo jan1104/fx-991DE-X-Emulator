@@ -12,7 +12,7 @@ Die eigene Prototypgrammatik bleibt erhalten: Postfixe bauen sich von links nach
 
 ## Sitzung und App
 
-`CalculatorKey.factorial` mit ID `ACTION_FACTORIAL` ist eine sekundäre semantische Aktion. Das Core-Enum wächst auf 30 Aktionen, die strukturierte Sitzung ergänzt weiterhin drei lokale Bruch-/Richtungsaktionen. Es bleiben 50 physische Tasten und 31/34 Primärbelegungen in Linear/Math.
+`CalculatorKey.factorial` mit ID `ACTION_FACTORIAL` ist eine sekundäre semantische Aktion. Das Core-Enum wächst auf 30 Aktionen, die strukturierte Sitzung unterstützt zusätzlich die Tasten-IDs `KEY_FRACTION`, `KEY_UP`, `KEY_DOWN` und die eigene Zählerübernahme `ACTION_WRAP_FRACTION`. Es bleiben 50 physische Tasten und 31/34 Primärbelegungen in Linear/Math.
 
 Während der Bearbeitung fügt die Aktion genau ein Editortoken am aktuellen Cursor ein, auch innerhalb eines Bruchfelds. Ohne Basis entsteht erst bei `=` ein Syntaxfehler. Nach einem Ergebnis beginnt die Aktion mit exakt gebundenem `Ans!`; eine gerundete oder periodische Anzeige wird nicht zur Eingabe gemacht. Fehlerphase, Pfeilwiederaufnahme, AC und DEL folgen den bestehenden Regeln. Unmarkierte Postfixketten werden weiterhin nicht automatisch als Zähler übernommen; geschlossene Gruppen bleiben explizit übernehmbar.
 
@@ -20,4 +20,4 @@ SHIFT → x⁻¹ sendet die Aktion an die aktive Sitzung und verbraucht SHIFT. x
 
 ## Prüfung
 
-Corefälle prüfen Handbuchbeispiel und Randwerte, unabhängige mathematische Erwartungen, exaktes Ans, Syntax-/Domänenfehler, Quellpositionen, Cursor/Felder und Ressourcenbudgets. Unabhängige Controller-/Widgetfälle betätigen die sichtbaren Tasten in beiden Eingabearten. Eine zusätzliche Vorschau soll `(5+3)! = 40320` zeigen. Tatsächliche Ausführung und visuelle Prüfung stehen anschließend im [Entwicklungsstand](ENTWICKLUNGSSTAND.md). Bis dahin sind neue Fälle vorbereitet. Originalvergleich, vollständige Anzeige-/Rundungskompatibilität und native Gerätetests bleiben offen.
+Corefälle prüfen Handbuchbeispiel und Randwerte, unabhängige mathematische Erwartungen, exaktes Ans, Syntax-/Domänenfehler, Quellpositionen, Cursor/Felder und Ressourcenbudgets. Unabhängige Controller-/Widgetfälle betätigen die sichtbaren Tasten in beiden Eingabearten. Die zusätzliche ausgeführte und visuell geprüfte Vorschau zeigt `(5+3)! = 40320`. Tatsächliche Ausführung und visuelle Grenzen stehen für die geprüfte Revision im [Entwicklungsstand](ENTWICKLUNGSSTAND.md). Originalvergleich, vollständige Anzeige-/Rundungskompatibilität und native Gerätetests bleiben offen.

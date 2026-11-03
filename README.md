@@ -6,7 +6,9 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 
-Der unabhängige GitHub-Lauf für `03dadd2` hat **807 Coretests und 368 App-/Bedientests bestanden**, die Browser-Version gebaut und 13 separate Vorschauszenarien ausgeführt. Fakultät über SHIFT → x⁻¹ ist für ganze Werte von 0 bis 69 mit Domänenfehlern und begrenztem Arbeitsaufwand geprüft. Prozent über SHIFT → Ans ist anhand der drei Handbuchbeispiele und exaktem Ans geprüft. SHIFT → x² kubiert jetzt exakt, einschließlich verketteter Postfixe und Ans. Periodische Ergebnisse sind jetzt sichtbar: S⇔D wechselt bei Norm und eingeschalteter Periodendarstellung zwischen Bruch, exakter Periode mit Überstrich und gerundetem Dezimalwert. Der Setup-Schalter wirkt direkt; Ans bleibt exakt. Front und Periodenansicht wurden als gerenderte Testengine-Bilder geprüft. Die genaue Revision steht im [Entwicklungsstand](docs/ENTWICKLUNGSSTAND.md). Browserdateien stehen unter [GitHub Actions](https://github.com/jan1104/fx-991DE-X-Emulator/actions) bereit. Native Builds und Originalvergleich bleiben offen. Die lokale Windows-Testblockade wurde nicht verändert. Bedienung: [Front und Setup](docs/FRONT_UND_SETUP.md), [Perioden in der App](docs/PERIODEN_APP.md), [Kubieren](docs/KUBIEREN.md), [Prozent](docs/PROZENT.md), [Fakultät](docs/FAKULTAET.md).
+Grundrechnen, Brüche und exaktes Ans sind mit Quadrat, Kubieren, Kehrwert, Prozent, Fakultät und jetzt nPr/nCr verbunden. SHIFT → ×/÷ berechnet Permutationen/Kombinationen mit den belegten Argument- und Zwischenwertgrenzen. Der Periodenschalter wirkt direkt; S⇔D wechselt bei Norm zwischen Bruch, exakter Periode mit Überstrich und gerundetem Dezimalwert.
+
+Der unabhängige GitHub-Lauf für `8527328` hat **869 Coretests und 398 App-/Bedientests bestanden**, die Browser-Version gebaut und **15 separate Vorschauszenarien** ausgeführt. Die neuen nPr-/nCr-Bilder wurden visuell geprüft. [Prüfstand und Grenzen](docs/ENTWICKLUNGSSTAND.md), [Browserdateien unter GitHub Actions](https://github.com/jan1104/fx-991DE-X-Emulator/actions). Native Builds und Originalvergleich bleiben offen; die lokale Windows-Testblockade bleibt bestehen. Bedienung: [Front und Setup](docs/FRONT_UND_SETUP.md), [Kombinatorik](docs/KOMBINATORIK.md).
 
 Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig gepusht werden; automatische neue Arbeitsläufe beginnen ausschließlich alle sechs Stunden. Die bereits veröffentlichten Originalreferenzen bleiben erhalten; neue fremde Originaldateien bleiben ohne gesonderte Freigabe lokal.
 
@@ -30,6 +32,7 @@ Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig ge
 - [Kubieren über SHIFT → x²](docs/KUBIEREN.md)
 - [Prozent über SHIFT → Ans](docs/PROZENT.md)
 - [Fakultät über SHIFT → x⁻¹](docs/FAKULTAET.md)
+- [Permutationen und Kombinationen über SHIFT → ×/÷](docs/KOMBINATORIK.md)
 - [Exakte Bruch-/Dezimalausgabe und Grenzen](docs/EXAKTE_AUSGABE.md)
 - [Darstellungswahl in beiden Core-Sitzungen](docs/DARSTELLUNGSWAHL.md)
 - [Begrenzte exakte Periodendarstellung](docs/PERIODENDARSTELLUNG.md)

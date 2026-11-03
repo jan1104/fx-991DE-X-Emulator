@@ -61,7 +61,7 @@ void main() {
     ('2!^3', '8'),
     ('2^3^2', '512'),
     ('2(3)!', '12'),
-    ('2!(3)', '12'),
+    ('2!(3)', '6'),
   ]) {
     test('exact factorial and own postfix grammar $input', () {
       expect(evaluate(input).toString(), expected);

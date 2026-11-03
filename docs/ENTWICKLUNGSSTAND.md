@@ -8,6 +8,8 @@ Ein Subagent ergänzte Core und 51 vorbereitete Corefälle, ein zweiter unabhän
 
 Der erste [Cloud-Lauf 41593363517](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41593363517) bestand 806 Corefälle und fand genau einen falschen neuen Testwert: `2!(3)` bedeutet `2! × 3 = 6`, die Fixture erwartete irrtümlich 12. Der Hauptagent korrigierte diesen Erwartungswert anhand der unabhängigen Rechnung. Produktionscode und Grammatik blieben unverändert. Appprüfung, Web-Build und Vorschauen wurden im ersten Lauf wegen des Corefehlers korrekt übersprungen.
 
+Im zweiten [Cloud-Lauf 41593555964](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41593555964) bestanden alle 807 Coretests und 364 Appfälle. Vier neue Controllerfälle prüften irrtümlich den übersetzten UI-Fehlertext über `resultText`, obwohl dieses API nur die mathematische Ergebnispräsentation liefert. Die Fehlerübersetzung erfolgt in der Ansicht. Die Korrektur prüft am Controller Phase, Fehlercode und Position sowie zusätzlich den sichtbaren Mathematikfehler in den vorhandenen Widgetfällen beider Eingabearten. Ans-/Fehlersperrprüfungen bleiben bestehen; Produktionscode wird dafür nicht geändert.
+
 ## 02.11.2026 abends: Prozent über SHIFT → Ans
 
 Ausgangsbasis `32ffbdc`, Arbeitskopie vor Beginn sauber. Der planmäßige Sechs-Stunden-Lauf nimmt das im letzten Lauf vorgeschlagene Paket auf. Die vorhandenen Quellen belegen die Belegung, die nachgestellte Prozentfunktion und die drei Rechnungen `150*20% = 30`, `660/880% = 75`, `3500-3500*25% = 2625`. Der vor der Umsetzung festgehaltene Vertrag [PROZENT.md](PROZENT.md) trennt diese Belege von eigenen Prototypregeln für gemischte Postfix-/Potenzketten. Keine vollständige Originalkompatibilität solcher Schreibweisen behauptet.

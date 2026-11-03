@@ -55,6 +55,8 @@ Rational answer(CalculatorController c) =>
     c.fractions ? c.structured.snapshot.answer : c.session.snapshot.answer;
 Object snapshot(CalculatorController c) =>
     c.fractions ? c.structured.snapshot : c.session.snapshot;
+CalculatorException? controllerError(CalculatorController c) =>
+    c.fractions ? c.structured.snapshot.error : c.session.snapshot.error;
 
 void choose(CalculatorController c, String id) {
   for (var guard = 0; guard < 80; guard++) {
@@ -166,7 +168,12 @@ void main() {
       for (final input in ['70!', '(-5)!', '(1/2)!']) {
         calculate(c, input);
         expect(c.phase, CalculatorPhase.error, reason: input);
-        expect(c.resultText, 'Mathem. Fehler', reason: input);
+        expect(
+          controllerError(c)!.code,
+          CalculatorErrorCode.math,
+          reason: input,
+        );
+        expect(controllerError(c)!.position, input.length - 1, reason: input);
         expect(answer(c).toString(), '5');
         final failed = snapshot(c);
         pressAll(c, ['KEY_SHIFT', 'KEY_RECIPROCAL', 'KEY_2', 'KEY_DEL']);
@@ -195,7 +202,9 @@ void main() {
       pressAll(c, ['KEY_SHIFT', 'KEY_RECIPROCAL']);
       expect(controllerSource(c), 'Ans!');
       c.pressId('KEY_EQUALS');
-      expect(c.resultText, 'Mathem. Fehler');
+      expect(c.phase, CalculatorPhase.error);
+      expect(controllerError(c)!.code, CalculatorErrorCode.math);
+      expect(controllerError(c)!.position, 3);
       expect(answer(c).toString(), '1/2');
     });
 
@@ -266,6 +275,14 @@ void main() {
         hasLength(50),
       );
       expect(keyed('ACTION_FACTORIAL'), findsNothing);
+      await taps(tester, ['KEY_AC', ...entry('70!'), 'KEY_EQUALS']);
+      expect(result(tester), 'Mathem. Fehler');
+      expect(tester.widget<Text>(keyed('display-answer')).data, 'Ans: 40320');
+      await factorial(tester);
+      expect(source(tester, fractions), '70!');
+      expect(result(tester), 'Mathem. Fehler');
+      await taps(tester, ['KEY_AC', 'KEY_ANS', 'KEY_EQUALS']);
+      expect(result(tester), '40320');
     });
 
     testWidgets('$mode repeated factorial and DEL remove exactly one token', (

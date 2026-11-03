@@ -319,6 +319,8 @@ class _FormulaContent extends StatelessWidget {
               '³' => 'hoch drei',
               '%' => 'Prozent',
               '!' => 'Fakultät',
+              'nPr' => 'Permutation',
+              'nCr' => 'Kombination',
               '⁻¹' => 'Kehrwert',
               'Ans' => 'Ans',
               _ => text,

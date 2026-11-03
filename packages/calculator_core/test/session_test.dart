@@ -111,6 +111,8 @@ void main() {
       CalculatorKey.cube: 'ACTION_CUBE',
       CalculatorKey.percent: 'ACTION_PERCENT',
       CalculatorKey.factorial: 'ACTION_FACTORIAL',
+      CalculatorKey.permutation: 'ACTION_PERMUTATION',
+      CalculatorKey.combination: 'ACTION_COMBINATION',
       CalculatorKey.negate: 'KEY_NEGATE',
       CalculatorKey.decimal: 'KEY_DECIMAL',
       CalculatorKey.leftParenthesis: 'KEY_LPAREN',

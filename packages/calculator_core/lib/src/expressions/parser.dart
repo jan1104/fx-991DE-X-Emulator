@@ -19,6 +19,8 @@ enum _Kind {
   cube,
   percent,
   factorial,
+  permutation,
+  combination,
   left,
   right,
   end,
@@ -79,6 +81,19 @@ final class _Parser {
           'Too many tokens',
           position: position,
         );
+      }
+      if (source.startsWith('nPr', position) ||
+          source.startsWith('nCr', position)) {
+        final text = source.substring(position, position + 3);
+        tokens.add(
+          _Token(
+            text == 'nPr' ? _Kind.permutation : _Kind.combination,
+            text,
+            position,
+          ),
+        );
+        position += 3;
+        continue;
       }
       if (source.startsWith('Ans', position)) {
         tokens.add(_Token(_Kind.answer, 'Ans', position));
@@ -151,13 +166,32 @@ final class _Parser {
   }
 
   Expression _product() {
-    var result = _implicitProduct();
+    var result = _combinatorics();
     while (_current.kind == _Kind.times || _current.kind == _Kind.divide) {
       final token = _take();
       result = BinaryExpression(
         token.kind == _Kind.times
             ? BinaryOperator.multiply
             : BinaryOperator.divide,
+        result,
+        _combinatorics(),
+        token.position,
+      );
+    }
+    return result;
+  }
+
+  // nPr/nCr bind below implicit multiplication and above explicit products.
+  // Both binary operations associate from left to right.
+  Expression _combinatorics() {
+    var result = _implicitProduct();
+    while (_current.kind == _Kind.permutation ||
+        _current.kind == _Kind.combination) {
+      final token = _take();
+      result = BinaryExpression(
+        token.kind == _Kind.permutation
+            ? BinaryOperator.permutation
+            : BinaryOperator.combination,
         result,
         _implicitProduct(),
         token.position,

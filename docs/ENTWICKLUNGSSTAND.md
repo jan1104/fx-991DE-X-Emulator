@@ -1,5 +1,11 @@
 # Entwicklungsstand
 
+## 03.11.2026 mittags: Permutationen und Kombinationen
+
+Ausgangsbasis `92a6fe5`, Arbeitskopie vor Beginn sauber. Der nächste planmäßige Lauf setzt das dokumentierte nPr-/nCr-Paket um; der gleichlautende manuelle Nutzerauftrag bestätigt den Umfang während der Arbeit. AGENTS, README, Entwicklungsstand und Entwicklungsplan wurden zuerst gelesen. Der Vertrag [KOMBINATORIK.md](KOMBINATORIK.md) legt vor der Umsetzung Operatorbindung, exakte Argumente und Zwischenwertgrenzen fest. Die bekannte Domänentabelle auf H, physischer PDF-S. 51, wurde gezielt gerendert und visuell geprüft: Bei nCr reicht ein begrenzter Endwert allein nicht; mindestens einer der beiden Fakultätsquotienten muss kleiner als `10^100` sein. Das neue lokale Prüfbild liegt ignoriert unter `build/reports/combinatorics-source/handbook-51.png` und wird nicht veröffentlicht.
+
+Ein Subagent ergänzte Core und 62 vorbereitete Corefälle, ein zweiter unabhängig 30 Controller-/Widgetfälle. Der Hauptagent verbindet SHIFT → ×/÷ mit den sekundären Aktionen, ergänzt die natürliche Beschreibung und zwei Vorschauen der Handbuchbeispiele. Direkte fallende Produkte und nCr-Symmetrie begrenzen den Aufwand auf höchstens 69 Schleifendurchläufe pro Operator; es werden keine riesigen Fakultäten aufgebaut. Die 50 physischen Tasten und 31/34 Primärbelegungen bleiben bestehen, das Core-Enum wächst auf 32 semantische Aktionen. Formatierung und statische Analyse von Core und vollständiger App bestanden. Der Hauptagent prüfte Produktionsdiffs und Testannahmen; beide Planungskatalogprüfer bestanden separat. Tatsächliche Prüfergebnisse werden nach dem GitHub-Test-/Web-Build ergänzt. Keine bekannten blockierten lokalen Teststarts, Werkzeugwechsel oder Änderungen an Sicherheitsrichtlinien; Originale bleiben unverändert.
+
 ## 03.11.2026 früh: Fakultät über SHIFT → x⁻¹
 
 Ausgangsbasis `d287533`, Arbeitskopie vor Beginn sauber. Der nächste planmäßige Lauf setzt das dokumentierte Fakultätspaket um. Der Vertrag [FAKULTAET.md](FAKULTAET.md) legt vor der Umsetzung die belegte Domäne ganzer Werte von 0 bis 69, exakte BigInt-Rechnung, Domänenfehler und das gemeinsame Arbeitsbudget fest. Gemischte Postfix-/Potenzketten bleiben ausdrücklich eigene Prototypregeln.

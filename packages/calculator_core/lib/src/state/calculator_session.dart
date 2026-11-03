@@ -25,6 +25,8 @@ enum CalculatorKey {
   cube('ACTION_CUBE', '³'),
   percent('ACTION_PERCENT', '%'),
   factorial('ACTION_FACTORIAL', '!'),
+  permutation('ACTION_PERMUTATION', 'nPr'),
+  combination('ACTION_COMBINATION', 'nCr'),
   negate('KEY_NEGATE', '-'),
   decimal('KEY_DECIMAL', ','),
   leftParenthesis('KEY_LPAREN', '('),
@@ -48,7 +50,13 @@ enum CalculatorKey {
       this == factorial;
 
   bool get isBinaryOperator => switch (this) {
-    add || subtract || multiply || divide || power => true,
+    add ||
+    subtract ||
+    multiply ||
+    divide ||
+    power ||
+    permutation ||
+    combination => true,
     _ => false,
   };
 

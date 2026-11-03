@@ -18,7 +18,15 @@ final class UnaryExpression extends Expression {
   const UnaryExpression(this.operator, this.operand, super.position);
 }
 
-enum BinaryOperator { add, subtract, multiply, divide, power }
+enum BinaryOperator {
+  add,
+  subtract,
+  multiply,
+  divide,
+  power,
+  permutation,
+  combination,
+}
 
 final class BinaryExpression extends Expression {
   final BinaryOperator operator;

@@ -149,8 +149,8 @@ void main() {
   }
 
   test('factorial is secondary semantic action and participates in postfix continuation', () {
-    expect(CalculatorKey.values, hasLength(30));
-    expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(30));
+    expect(CalculatorKey.values, hasLength(32));
+    expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(32));
     expect(CalculatorKey.fromId('ACTION_FACTORIAL'), CalculatorKey.factorial);
     expect(CalculatorKey.fromId('KEY_FACTORIAL'), isNull);
     expect(CalculatorKey.factorial.text, '!');

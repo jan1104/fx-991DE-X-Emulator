@@ -58,7 +58,16 @@ Rational _evaluate(Expression expression, int depth, _EvaluationBudget budget) {
           position: expression.position,
         );
       }
-      if (operator == BinaryOperator.power) {
+      if (operator == BinaryOperator.permutation ||
+          operator == BinaryOperator.combination) {
+        result = _combinatorics(
+          a,
+          b,
+          combination: operator == BinaryOperator.combination,
+          position: expression.position,
+          budget: budget,
+        );
+      } else if (operator == BinaryOperator.power) {
         if (!b.isInteger) {
           throw CalculatorException(
             CalculatorErrorCode.unsupported,
@@ -101,6 +110,8 @@ Rational _evaluate(Expression expression, int depth, _EvaluationBudget budget) {
           BinaryOperator.multiply => a * b,
           BinaryOperator.divide => a / b,
           BinaryOperator.power => throw StateError('Power handled above'),
+          BinaryOperator.permutation || BinaryOperator.combination =>
+            throw StateError('Combinatorics handled above'),
         };
       }
   }
@@ -133,4 +144,55 @@ Rational _factorial(Rational value, int position, _EvaluationBudget budget) {
     product *= BigInt.from(factor);
   }
   return Rational(product, BigInt.one);
+}
+
+final _combinatoricsInputLimit = BigInt.from(10).pow(10);
+final _combinatoricsProductLimit = BigInt.from(10).pow(100);
+
+Rational _combinatorics(
+  Rational nValue,
+  Rational rValue, {
+  required bool combination,
+  required int position,
+  required _EvaluationBudget budget,
+}) {
+  CalculatorException domain() => CalculatorException(
+    CalculatorErrorCode.math,
+    'Combinatorics arguments or intermediate product outside supported domain',
+    position: position,
+  );
+  final n = nValue.numerator;
+  final r = rValue.numerator;
+  if (!nValue.isInteger ||
+      !rValue.isInteger ||
+      n < BigInt.zero ||
+      n >= _combinatoricsInputLimit ||
+      r < BigInt.zero ||
+      r > n) {
+    throw domain();
+  }
+  // For nCr, the smaller falling product realizes the handbook's OR between
+  // n!/r! and n!/(n-r)!. A reduced final result alone does not prove validity.
+  final complement = n - r;
+  final count = combination && complement < r ? complement : r;
+  // falling(n,k) >= k! for n>=k; 70! already exceeds 10^100. Reject before
+  // converting a potentially large count or entering an unbounded loop.
+  if (count > BigInt.from(69)) throw domain();
+  final iterations = count.toInt();
+  var falling = BigInt.one;
+  var denominator = BigInt.one;
+  for (var i = 0; i < iterations; i++) {
+    budget.consume(position);
+    falling *= n - BigInt.from(i);
+    if (falling >= _combinatoricsProductLimit) throw domain();
+    if (combination) {
+      budget.consume(position);
+      denominator *= BigInt.from(i + 1);
+    }
+  }
+  if (combination) {
+    budget.consume(position);
+    return Rational(falling ~/ denominator);
+  }
+  return Rational(falling);
 }

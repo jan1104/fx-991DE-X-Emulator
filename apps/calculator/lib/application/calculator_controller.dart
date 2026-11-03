@@ -214,6 +214,14 @@ final class CalculatorController {
     }
     notice = '';
     if (shifted) {
+      if (id == 'KEY_MULTIPLY') {
+        _pressCore('ACTION_PERMUTATION');
+        return;
+      }
+      if (id == 'KEY_DIVIDE') {
+        _pressCore('ACTION_COMBINATION');
+        return;
+      }
       if (id == 'KEY_RECIPROCAL') {
         _pressCore('ACTION_FACTORIAL');
         return;

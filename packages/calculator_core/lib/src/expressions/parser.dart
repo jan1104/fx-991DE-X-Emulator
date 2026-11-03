@@ -18,6 +18,7 @@ enum _Kind {
   reciprocal,
   cube,
   percent,
+  factorial,
   left,
   right,
   end,
@@ -111,6 +112,7 @@ final class _Parser {
         '²' => _Kind.square,
         '³' => _Kind.cube,
         '%' => _Kind.percent,
+        '!' => _Kind.factorial,
         '(' => _Kind.left,
         ')' => _Kind.right,
         _ => null,
@@ -204,8 +206,17 @@ final class _Parser {
       while (_current.kind == _Kind.square ||
           _current.kind == _Kind.reciprocal ||
           _current.kind == _Kind.cube ||
-          _current.kind == _Kind.percent) {
+          _current.kind == _Kind.percent ||
+          _current.kind == _Kind.factorial) {
         final token = _take();
+        if (token.kind == _Kind.factorial) {
+          result = UnaryExpression(
+            UnaryOperator.factorial,
+            result,
+            token.position,
+          );
+          continue;
+        }
         result = BinaryExpression(
           token.kind == _Kind.percent
               ? BinaryOperator.divide

@@ -12,16 +12,20 @@ Rational evaluateExpression(Expression expression) =>
 
 final class _EvaluationBudget {
   int visits = 0;
+
+  void consume(int position) {
+    if (++visits > 2048) {
+      throw CalculatorException(
+        CalculatorErrorCode.limit,
+        'Evaluation work budget exceeded',
+        position: position,
+      );
+    }
+  }
 }
 
 Rational _evaluate(Expression expression, int depth, _EvaluationBudget budget) {
-  if (++budget.visits > 2048) {
-    throw CalculatorException(
-      CalculatorErrorCode.limit,
-      'Evaluation work budget exceeded',
-      position: expression.position,
-    );
-  }
+  budget.consume(expression.position);
   if (depth > 256) {
     throw CalculatorException(
       CalculatorErrorCode.limit,
@@ -35,7 +39,15 @@ Rational _evaluate(Expression expression, int depth, _EvaluationBudget budget) {
       result = value;
     case UnaryExpression(:final operator, :final operand):
       final value = _evaluate(operand, depth + 1, budget);
-      result = operator == UnaryOperator.negate ? -value : value;
+      result = switch (operator) {
+        UnaryOperator.plus => value,
+        UnaryOperator.negate => -value,
+        UnaryOperator.factorial => _factorial(
+          value,
+          expression.position,
+          budget,
+        ),
+      };
     case BinaryExpression(:final operator, :final left, :final right):
       final a = _evaluate(left, depth + 1, budget);
       final b = _evaluate(right, depth + 1, budget);
@@ -100,4 +112,25 @@ Rational _evaluate(Expression expression, int depth, _EvaluationBudget budget) {
     );
   }
   return result;
+}
+
+Rational _factorial(Rational value, int position, _EvaluationBudget budget) {
+  if (!value.isInteger ||
+      value.numerator < BigInt.zero ||
+      value.numerator > BigInt.from(69)) {
+    throw CalculatorException(
+      CalculatorErrorCode.math,
+      'Factorial requires an integer between 0 and 69',
+      position: position,
+    );
+  }
+  // Convert only after domain validation. At most 68 bounded multiplications
+  // are charged to the same per-evaluation work budget as expression visits.
+  final argument = value.numerator.toInt();
+  var product = BigInt.one;
+  for (var factor = 2; factor <= argument; factor++) {
+    budget.consume(position);
+    product *= BigInt.from(factor);
+  }
+  return Rational(product, BigInt.one);
 }

@@ -123,7 +123,7 @@ void main() {
           hasLength(fractions ? 34 : 31),
         );
         expect(physical.where((key) => key.id == 'ACTION_PERCENT'), isEmpty);
-        expect(CalculatorKey.values, hasLength(29));
+        expect(CalculatorKey.values, hasLength(30));
         expect(CalculatorKey.fromId('ACTION_PERCENT')!.text, '%');
         expect(CalculatorKey.fromId('KEY_PERCENT'), isNull);
       },

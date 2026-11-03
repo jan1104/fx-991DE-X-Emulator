@@ -289,7 +289,7 @@ void main() {
         final session = linearResult('1/8');
         final selected = session.selectResultDisplayFormat(decimalFormat);
         expect(CalculatorKey.fromId('KEY_SD'), isNull);
-        expect(CalculatorKey.values, hasLength(29));
+        expect(CalculatorKey.values, hasLength(30));
         expect(
           () => session.pressId('KEY_SD'),
           throwsA(isA<CalculatorException>()),

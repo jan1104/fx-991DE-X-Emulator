@@ -1,5 +1,11 @@
 # Entwicklungsstand
 
+## 03.11.2026 früh: Fakultät über SHIFT → x⁻¹
+
+Ausgangsbasis `d287533`, Arbeitskopie vor Beginn sauber. Der nächste planmäßige Lauf setzt das dokumentierte Fakultätspaket um. Der Vertrag [FAKULTAET.md](FAKULTAET.md) legt vor der Umsetzung die belegte Domäne ganzer Werte von 0 bis 69, exakte BigInt-Rechnung, Domänenfehler und das gemeinsame Arbeitsbudget fest. Gemischte Postfix-/Potenzketten bleiben ausdrücklich eigene Prototypregeln.
+
+Ein Subagent ergänzte Core und 51 vorbereitete Corefälle, ein zweiter unabhängig 26 Controller-/Widgetfälle. Der Hauptagent verbindet SHIFT → x⁻¹ mit `ACTION_FACTORIAL`, ergänzt die natürliche Beschreibung „Fakultät“ und eine Vorschau des Handbuchbeispiels `(5+3)! = 40320`. Es bleiben 50 physische Tasten und 31/34 Primärbelegungen; das Core-Enum enthält künftig 30 semantische Aktionen. Formatierung und statische Analyse von Core und vollständiger App bestanden. Der Hauptagent prüfte die Produktionsdiffs und Testannahmen. Beide Planungskatalogprüfer bestanden separat. Die tatsächlichen Prüfergebnisse werden nach dem GitHub-Test-/Web-Build ergänzt. Keine bekannten blockierten lokalen Teststarts, SDK-/Abhängigkeitswechsel oder Änderungen an Sicherheitsrichtlinien. Originaldateien bleiben unverändert.
+
 ## 02.11.2026 abends: Prozent über SHIFT → Ans
 
 Ausgangsbasis `32ffbdc`, Arbeitskopie vor Beginn sauber. Der planmäßige Sechs-Stunden-Lauf nimmt das im letzten Lauf vorgeschlagene Paket auf. Die vorhandenen Quellen belegen die Belegung, die nachgestellte Prozentfunktion und die drei Rechnungen `150*20% = 30`, `660/880% = 75`, `3500-3500*25% = 2625`. Der vor der Umsetzung festgehaltene Vertrag [PROZENT.md](PROZENT.md) trennt diese Belege von eigenen Prototypregeln für gemischte Postfix-/Potenzketten. Keine vollständige Originalkompatibilität solcher Schreibweisen behauptet.

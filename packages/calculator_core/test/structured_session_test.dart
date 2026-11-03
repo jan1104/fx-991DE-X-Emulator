@@ -99,7 +99,7 @@ void main() {
     });
 
     test('fraction command does not extend the linear enum or session', () {
-      expect(CalculatorKey.values, hasLength(29));
+      expect(CalculatorKey.values, hasLength(30));
       expect(CalculatorKey.fromId('KEY_FRACTION'), isNull);
       final linear = CalculatorSession();
       expect(

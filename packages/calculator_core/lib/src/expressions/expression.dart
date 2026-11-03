@@ -10,7 +10,7 @@ final class NumberExpression extends Expression {
   const NumberExpression(this.value, super.position);
 }
 
-enum UnaryOperator { plus, negate }
+enum UnaryOperator { plus, negate, factorial }
 
 final class UnaryExpression extends Expression {
   final UnaryOperator operator;

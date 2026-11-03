@@ -24,6 +24,7 @@ enum CalculatorKey {
   reciprocal('KEY_RECIPROCAL', '⁻¹'),
   cube('ACTION_CUBE', '³'),
   percent('ACTION_PERCENT', '%'),
+  factorial('ACTION_FACTORIAL', '!'),
   negate('KEY_NEGATE', '-'),
   decimal('KEY_DECIMAL', ','),
   leftParenthesis('KEY_LPAREN', '('),
@@ -40,7 +41,11 @@ enum CalculatorKey {
   const CalculatorKey(this.id, [this.text]);
 
   bool get isPostfixOperator =>
-      this == square || this == reciprocal || this == cube || this == percent;
+      this == square ||
+      this == reciprocal ||
+      this == cube ||
+      this == percent ||
+      this == factorial;
 
   bool get isBinaryOperator => switch (this) {
     add || subtract || multiply || divide || power => true,

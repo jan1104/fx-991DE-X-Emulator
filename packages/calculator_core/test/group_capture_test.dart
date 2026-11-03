@@ -437,7 +437,7 @@ void main() {
         enter(session, '6');
         final success = session.press(CalculatorKey.equals);
         expect(success.result.toString(), '1/2');
-        expect(CalculatorKey.values, hasLength(29));
+        expect(CalculatorKey.values, hasLength(30));
         expect(CalculatorKey.fromId('ACTION_WRAP_FRACTION'), isNull);
         expect(
           identical(session.pressId('ACTION_WRAP_FRACTION'), success),

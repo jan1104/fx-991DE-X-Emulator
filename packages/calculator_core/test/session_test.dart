@@ -110,6 +110,7 @@ void main() {
       CalculatorKey.reciprocal: 'KEY_RECIPROCAL',
       CalculatorKey.cube: 'ACTION_CUBE',
       CalculatorKey.percent: 'ACTION_PERCENT',
+      CalculatorKey.factorial: 'ACTION_FACTORIAL',
       CalculatorKey.negate: 'KEY_NEGATE',
       CalculatorKey.decimal: 'KEY_DECIMAL',
       CalculatorKey.leftParenthesis: 'KEY_LPAREN',

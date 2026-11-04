@@ -243,19 +243,25 @@ void main() {
     });
   }
 
-  test('IO switching preserves independent sessions and previous immutable settings', () {
-    final c = CalculatorController();
-    final previousSettings = c.settings;
-    calculate(c, '2/3');
-    final structured = c.structured.snapshot;
-    c.selectInputOutput(CalculatorInputOutput.linearLinear);
-    calculate(c, '5');
-    c.selectInputOutput(CalculatorInputOutput.mathMath);
-    expect(c.structured.snapshot, same(structured));
-    expect(c.resultText, '2/3');
-    expect(previousSettings.inputOutput, CalculatorInputOutput.mathMath);
-    expect(c.session.snapshot.answer, Rational.fromInt(5));
-  });
+  test(
+    'IO switching shares Ans but preserves results and immutable settings',
+    () {
+      final c = CalculatorController();
+      final previousSettings = c.settings;
+      calculate(c, '2/3');
+      final structured = c.structured.snapshot;
+      c.selectInputOutput(CalculatorInputOutput.linearLinear);
+      calculate(c, '5');
+      c.selectInputOutput(CalculatorInputOutput.mathMath);
+      expect(c.structured.snapshot.editor, same(structured.editor));
+      expect(c.structured.snapshot.result, structured.result);
+      expect(c.structured.snapshot.answer, Rational.fromInt(5));
+      expect(structured.answer.toString(), '2/3');
+      expect(c.resultText, '2/3');
+      expect(previousSettings.inputOutput, CalculatorInputOutput.mathMath);
+      expect(c.session.snapshot.answer, Rational.fromInt(5));
+    },
+  );
 
   test(
     'SHIFT equals requests decimal and SD is harmless during editing/error',

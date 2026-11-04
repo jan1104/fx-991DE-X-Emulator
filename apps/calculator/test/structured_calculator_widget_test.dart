@@ -312,7 +312,7 @@ void main() {
     expect(answer(tester), 'Ans: 7');
   });
 
-  testWidgets('switching preserves independent drafts, cursors, and answers', (
+  testWidgets('switching preserves drafts and cursors while sharing Ans', (
     tester,
   ) async {
     await pumpCalculator(tester);
@@ -320,9 +320,9 @@ void main() {
     expect(linearExpression(tester), '1│2');
     expect(answer(tester), 'Ans: 7');
     await tap(tester, 'input-fractions');
-    // No automatic conversion of the existing linear draft or answer.
+    // Drafts stay separate; both input modes use the current shared Ans.
     expect(keyed('placeholder-root'), findsOneWidget);
-    expect(answer(tester), 'Ans: 0');
+    expect(answer(tester), 'Ans: 7');
     await taps(tester, [
       'KEY_FRACTION',
       'KEY_1',
@@ -336,7 +336,7 @@ void main() {
     expectCursor(tester, 1, [(0, FractionField.numerator)]);
     await tap(tester, 'input-linear');
     expect(linearExpression(tester), '1│2');
-    expect(answer(tester), 'Ans: 7');
+    expect(answer(tester), 'Ans: 1/2');
     expect(result(tester), '');
     await tap(tester, 'input-fractions');
     final draft = formula(tester).snapshot.root.nodes.single as EditorFraction;
@@ -347,7 +347,7 @@ void main() {
     await tap(tester, 'KEY_AC');
     await tap(tester, 'input-linear');
     expect(linearExpression(tester), '1│2');
-    expect(answer(tester), 'Ans: 7');
+    expect(answer(tester), 'Ans: 1/2');
   });
 
   testWidgets(
@@ -362,7 +362,7 @@ void main() {
       expect(answer(tester), 'Ans: 4');
       await tap(tester, 'input-fractions');
       expect(result(tester), '1/3');
-      expect(answer(tester), 'Ans: 1/3');
+      expect(answer(tester), 'Ans: 4');
       expect(formula(tester).showCursor, isFalse);
       expect(keyed('formula-cursor'), findsNothing);
     },

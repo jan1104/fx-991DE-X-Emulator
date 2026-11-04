@@ -3,9 +3,11 @@ import '../errors.dart';
 import '../evaluation/evaluator.dart' as arithmetic;
 import '../formatting/rational_display.dart';
 import '../numbers/rational.dart';
+import 'calculator_memory.dart';
 import 'calculator_session.dart';
 
-/// An immutable structured-input state, independent of the linear session.
+/// An immutable structured-input view with its own editor and result display.
+/// Ans reflects the shared memory at the time this snapshot is obtained.
 final class StructuredCalculatorSnapshot {
   final FractionEditorSnapshot editor;
   final CalculatorPhase phase;
@@ -51,19 +53,45 @@ final class StructuredCalculatorSnapshot {
 /// retain the complete previous tree and cursor. These navigation rules are
 /// explicit prototype decisions, not measured Casio behavior.
 final class StructuredCalculatorSession {
+  StructuredCalculatorSession({CalculatorMemory? memory})
+    : memory = memory ?? CalculatorMemory() {
+    _synchronizeAnswer();
+  }
+
+  final CalculatorMemory memory;
+
   StructuredCalculatorSnapshot _snapshot = StructuredCalculatorSnapshot._(
     editor: FractionEditor().snapshot,
     phase: CalculatorPhase.editing,
     answer: Rational.fromInt(0),
   );
 
-  StructuredCalculatorSnapshot get snapshot => _snapshot;
+  StructuredCalculatorSnapshot get snapshot {
+    _synchronizeAnswer();
+    return _snapshot;
+  }
+
+  void _synchronizeAnswer() {
+    final answer = memory.snapshot.answer;
+    if (_snapshot.answer != answer) {
+      _snapshot = StructuredCalculatorSnapshot._(
+        editor: _snapshot.editor,
+        phase: _snapshot.phase,
+        answer: answer,
+        result: _snapshot.result,
+        error: _snapshot.error,
+        errorCursor: _snapshot.errorCursor,
+        resultDisplayFormat: _snapshot.resultDisplayFormat,
+      );
+    }
+  }
 
   /// Selects the requested representation without evaluating or formatting it.
   /// Fallback output may be a fraction while this choice stays exactDecimal.
   StructuredCalculatorSnapshot selectResultDisplayFormat(
     RationalDisplayFormat format,
   ) {
+    _synchronizeAnswer();
     if (_snapshot.phase != CalculatorPhase.result ||
         _snapshot.resultDisplayFormat == format) {
       return _snapshot;
@@ -82,6 +110,7 @@ final class StructuredCalculatorSession {
   /// Fraction and vertical-navigation IDs are local to this session; the
   /// linear key enum stays unchanged.
   StructuredCalculatorSnapshot pressId(String id) {
+    _synchronizeAnswer();
     if (id == 'ACTION_WRAP_FRACTION') {
       if (_snapshot.phase != CalculatorPhase.editing) return _snapshot;
       return _apply((editor) => editor.wrapPreviousAtomInFraction());
@@ -101,6 +130,7 @@ final class StructuredCalculatorSession {
   }
 
   StructuredCalculatorSnapshot press(CalculatorKey key) {
+    _synchronizeAnswer();
     if (key == CalculatorKey.clear) {
       return _edit(FractionEditor().snapshot);
     }
@@ -195,7 +225,32 @@ final class StructuredCalculatorSession {
     }
   }
 
-  StructuredCalculatorSnapshot _execute() {
+  /// Commits the current operand while preserving error recovery and drafts.
+  /// A displayed result is reused exactly, even if shared Ans has since changed.
+  StructuredCalculatorSnapshot applyMemory(MemoryOperation operation) {
+    _synchronizeAnswer();
+    if (_snapshot.phase == CalculatorPhase.error ||
+        (_snapshot.phase == CalculatorPhase.editing &&
+            _snapshot.editor.root.nodes.isEmpty)) {
+      return _snapshot;
+    }
+    if (_snapshot.phase == CalculatorPhase.editing) {
+      return _execute(operation: operation);
+    }
+    try {
+      final value = memory.acceptResult(
+        _snapshot.result!,
+        operation: operation,
+      );
+      return _publishResult(value);
+    } on CalculatorException catch (error) {
+      return _fail(error);
+    }
+  }
+
+  StructuredCalculatorSnapshot _execute({
+    MemoryOperation operation = MemoryOperation.result,
+  }) {
     EditorProjection? projection;
     try {
       projection = FractionEditor.fromSnapshot(_snapshot.editor).project();
@@ -203,12 +258,8 @@ final class StructuredCalculatorSession {
         projection.expression,
         answer: _snapshot.answer,
       );
-      return _snapshot = StructuredCalculatorSnapshot._(
-        editor: _snapshot.editor,
-        phase: CalculatorPhase.result,
-        answer: value,
-        result: value,
-      );
+      memory.acceptResult(value, operation: operation);
+      return _publishResult(value);
     } on EditorProjectionException catch (diagnostic) {
       return _fail(diagnostic.error, cursor: diagnostic.cursor);
     } on CalculatorException catch (error) {
@@ -221,6 +272,14 @@ final class StructuredCalculatorSession {
       );
     }
   }
+
+  StructuredCalculatorSnapshot _publishResult(Rational value) =>
+      _snapshot = StructuredCalculatorSnapshot._(
+        editor: _snapshot.editor,
+        phase: CalculatorPhase.result,
+        answer: value,
+        result: value,
+      );
 
   StructuredCalculatorSnapshot _edit(FractionEditorSnapshot editor) =>
       _snapshot = StructuredCalculatorSnapshot._(

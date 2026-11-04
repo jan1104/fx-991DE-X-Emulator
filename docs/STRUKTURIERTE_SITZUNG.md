@@ -2,6 +2,8 @@
 
 Stand: 27.10.2026. Die strukturierte Sitzung und die natürliche Formelansicht sind nun in der Hauptrechnerseite verbunden. Dies ist ein eigener Bedienprototyp, kein bereits vollständig kompatibler Math-Eingabemodus des Originals.
 
+Fortschreibung 04.11.2026 abends: Die App startet inzwischen mit Math → Math. Beide Sitzungen verwenden nun denselben exakten Ans-/M-Speicher je Appcontroller; Entwürfe, Fehler und gespeicherte Ergebnisanzeigen bleiben getrennt. Die nachfolgenden Regeln zum ursprünglich eigenen Ans beschreiben den älteren Prototyp. Aktueller Vertrag und Prüfung: [Speicher M](SPEICHER_M.md), [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
+
 ## Eingabe auswählen
 
 Die App startet weiterhin mit **Linear**. Der sichtbare Schalter **Brüche** aktiviert eine getrennte strukturierte Sitzung. Beide Eingabearten behalten ihre Entwürfe, Ergebnisse, Fehler und jeweils eigenes Ans beim Wechsel. Es gibt keine automatische Konvertierung oder Übernahme. Die Oberfläche erklärt diese Trennung direkt am Schalter. Das ist eine eigene Prototypregel; eine spätere Annäherung an das Original-Setup bleibt offen.

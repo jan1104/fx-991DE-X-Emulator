@@ -1,7 +1,7 @@
 import '../errors.dart';
-import '../evaluation/evaluator.dart';
 import '../formatting/rational_display.dart';
 import '../numbers/rational.dart';
+import 'calculator_memory.dart';
 
 /// Supported semantic keys of the linear prototype, not the full keyboard.
 enum CalculatorKey {
@@ -102,6 +102,14 @@ final class CalculatorSnapshot {
       result = previous.result,
       error = previous.error;
 
+  CalculatorSnapshot._withAnswer(CalculatorSnapshot previous, this.answer)
+    : phase = previous.phase,
+      tokens = previous.tokens,
+      cursor = previous.cursor,
+      result = previous.result,
+      error = previous.error,
+      resultDisplayFormat = previous.resultDisplayFormat;
+
   /// Formats only a present result. Outside the result phase this is a no-op,
   /// including when the supplied budgets would otherwise be invalid.
   /// Formatter failures do not change the snapshot or the owning session.
@@ -127,6 +135,13 @@ final class CalculatorSnapshot {
 /// A small, synchronous linear editor/controller for the general calculation
 /// mode. It has no Flutter, platform, modifier, menu or persistence dependency.
 final class CalculatorSession {
+  CalculatorSession({CalculatorMemory? memory})
+    : memory = memory ?? CalculatorMemory() {
+    _synchronizeAnswer();
+  }
+
+  final CalculatorMemory memory;
+
   CalculatorSnapshot _snapshot = CalculatorSnapshot._(
     phase: CalculatorPhase.editing,
     tokens: const [],
@@ -134,11 +149,22 @@ final class CalculatorSession {
     answer: Rational.fromInt(0),
   );
 
-  CalculatorSnapshot get snapshot => _snapshot;
+  CalculatorSnapshot get snapshot {
+    _synchronizeAnswer();
+    return _snapshot;
+  }
+
+  void _synchronizeAnswer() {
+    final answer = memory.snapshot.answer;
+    if (_snapshot.answer != answer) {
+      _snapshot = CalculatorSnapshot._withAnswer(_snapshot, answer);
+    }
+  }
 
   /// Changes only the requested display of the current result. No formatting
   /// or numerical conversion happens until the snapshot's formatResult call.
   CalculatorSnapshot selectResultDisplayFormat(RationalDisplayFormat format) {
+    _synchronizeAnswer();
     if (_snapshot.phase != CalculatorPhase.result ||
         _snapshot.resultDisplayFormat == format) {
       return _snapshot;
@@ -146,8 +172,9 @@ final class CalculatorSession {
     return _snapshot = CalculatorSnapshot._withDisplayFormat(_snapshot, format);
   }
 
-  /// Unsupported keys fail explicitly and do not alter the previous state.
+  /// Unsupported keys fail explicitly without editing the expression or memory.
   CalculatorSnapshot pressId(String id) {
+    _synchronizeAnswer();
     final key = CalculatorKey.fromId(id);
     if (key == null) {
       throw CalculatorException(
@@ -159,6 +186,7 @@ final class CalculatorSession {
   }
 
   CalculatorSnapshot press(CalculatorKey key) {
+    _synchronizeAnswer();
     if (key == CalculatorKey.clear) {
       _edit(const [], 0);
       return _snapshot;
@@ -234,19 +262,51 @@ final class CalculatorSession {
     );
   }
 
-  void _execute() {
+  /// Commits the current operand, not a reevaluation of a displayed result.
+  /// Empty editors and error phases are unchanged; AC remains editor-only.
+  CalculatorSnapshot applyMemory(MemoryOperation operation) {
+    _synchronizeAnswer();
+    if (_snapshot.phase == CalculatorPhase.error ||
+        (_snapshot.phase == CalculatorPhase.editing &&
+            _snapshot.tokens.isEmpty)) {
+      return _snapshot;
+    }
+    if (_snapshot.phase == CalculatorPhase.editing) {
+      _execute(operation: operation);
+    } else {
+      try {
+        final value = memory.acceptResult(
+          _snapshot.result!,
+          operation: operation,
+        );
+        _publishResult(value);
+      } on CalculatorException catch (error) {
+        _fail(error);
+      }
+    }
+    return _snapshot;
+  }
+
+  void _execute({MemoryOperation operation = MemoryOperation.result}) {
     try {
-      final value = evaluate(_snapshot.expression, answer: _snapshot.answer);
-      _snapshot = CalculatorSnapshot._(
-        phase: CalculatorPhase.result,
-        tokens: _snapshot.tokens,
-        cursor: _snapshot.tokens.length,
-        answer: value,
-        result: value,
+      final value = memory.calculate(
+        _snapshot.expression,
+        operation: operation,
       );
+      _publishResult(value);
     } on CalculatorException catch (error) {
       _fail(error);
     }
+  }
+
+  void _publishResult(Rational value) {
+    _snapshot = CalculatorSnapshot._(
+      phase: CalculatorPhase.result,
+      tokens: _snapshot.tokens,
+      cursor: _snapshot.tokens.length,
+      answer: value,
+      result: value,
+    );
   }
 
   void _fail(CalculatorException error) {

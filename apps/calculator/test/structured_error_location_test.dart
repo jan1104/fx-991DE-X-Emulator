@@ -339,7 +339,7 @@ void main() {
       await tap(tester, 'KEY_AC');
       expectEditingCursor(tester, offset: 0, path: []);
       expect(result(tester), '');
-      expect(tester.widget<Text>(keyed('display-answer')).data, 'Ans: 7');
+      expect(tester.widget<Text>(keyed('display-answer')).data, 'Ans: 4');
       expect(keyed('placeholder-root'), findsOneWidget);
     },
   );

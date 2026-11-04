@@ -1,8 +1,20 @@
 # Unabhängiger Speicher M
 
-## Abgegrenztes Paket vom 04.11.2026
+## Gemeinsame Sitzungsspeicher: Vertrag vom 04.11.2026 abends
 
-Dieses Paket beginnt mit einem eigenen Core-Speicherzustand. Die bestehenden Math-/Linear-Sitzungen und App-Tasten verwenden ihn noch nicht. M+, M−, STO, RECALL und ein sichtbarer M-Indikator bleiben in der App offen. Der tatsächliche Prüfstand steht im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
+Das Folgepaket bindet `CalculatorMemory` an beide Eingabesitzungen. Die Konstruktoren akzeptieren optional `memory:`; ohne Übergabe bleibt jede Sitzung unabhängig. Der Appcontroller erzeugt ein eigenes Speicherobjekt und übergibt es an Math und Linear. Jeder neue Controller beginnt unabhängig bei null. Eine Persistenz über einen Appneustart ist weiterhin nicht enthalten.
+
+Der Snapshotabruf und jeder öffentliche zustandsabhängige Sitzungsaufruf übernehmen den aktuellen Ans aus diesem Speicher. Nur bei abweichendem Ans wird dafür ein neuer Snapshot erzeugt. Vorher ausgegebene Snapshots bleiben unverändert. Eingabebaum beziehungsweise Tokens, Cursor, Fehler und Fehlerziel, gespeicherter Ergebniswert und dessen Darstellungswahl bleiben erhalten. Das ist eine gezielte Änderung der früheren Prototypregel mit getrennten Ans-Registern; alte Wechseltests werden entsprechend präzisiert. Ein Wechsel über die Werkzeugleiste und über das Setupmenü verwendet denselben gemeinsamen Speicher.
+
+`applyMemory(operation)` ist zunächst eine Core-Sitzungsaktion ohne neue physische Tastenbelegung. Während der Bearbeitung wertet sie einen nichtleeren Entwurf mit dem aktuellen Ans aus und übernimmt ihn mit der gewünschten Speicheroperation. Bei Ergebnisanzeige verwendet sie ausschließlich den gespeicherten Ergebniswert. Insbesondere wird ein Ausdruck mit `Ans` nach einer zwischenzeitlichen Rechnung der anderen Sitzung nicht erneut ausgewertet. Das angezeigte Ergebnis bleibt der Summand, Ans wird dieser Wert und M wird gemäß Operation geändert. Eine erfolgreiche Speicheraktion beginnt wie eine neue Berechnung mit Bruchdarstellung. Ein leerer Entwurf und eine Fehlerphase lassen den Speicher unverändert. Eingabefehler verwenden die vorhandene Fehlerzuordnung; eine Speichergrenze ohne Ausdrucksposition erhält im Math-Editor den aktuellen Cursor als Fehlerziel.
+
+AC entfernt weiterhin nur den aktiven Entwurf. Setup-/Darstellungsänderungen löschen weder Ans noch M. Ein ausdrückliches `memory.clearMemory()` setzt beide Register auf null; bestehende Ergebnisanzeigen werden dabei nicht zu neuen Rechnungen. Ein solcher Core-Aufruf ist noch kein implementiertes RESET-Menü. OFF/ON bewahrt den Speicher innerhalb desselben Controllers, keine Speicherung über einen Prozessneustart.
+
+Die sichtbare M+/M−-Taste und der M-Indikator folgen als eigenes App-Paket. Das Register kann bis dahin nur über die Core-API verändert werden. STO/RECALL, Variable M im Parser und Resetmenüs bleiben offen. Tatsächliche Prüfungen werden nach dem GitHub-Lauf im [Entwicklungsstand](ENTWICKLUNGSSTAND.md) ausgewiesen.
+
+## Erstes abgegrenztes Paket vom 04.11.2026 nachmittags
+
+Das erste Paket begann mit einem eigenen Core-Speicherzustand, noch ohne Sitzungsanbindung. M+, M−, STO, RECALL und ein sichtbarer M-Indikator bleiben in der App offen. Der tatsächliche Prüfstand steht im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
 39 neue Speicherfälle sind im unabhängigen [GitHub-Lauf 41852962881](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41852962881) für `12b64e7` bestanden: insgesamt 984 Coretests, 438 Appfälle, Web-Build und 18 bestehende Vorschauszenarien. Dies bestätigt den Core-Dienst und die Regression des bisherigen Appumfangs, keine M-Bedienung in der App.
 
@@ -27,7 +39,7 @@ Die bestehenden Parser-/Auswertungsbudgets gelten weiterhin. Zusätzlich dürfen
 
 `clearMemory()` setzt in diesem Paket Ans und M auf null. Es existieren noch keine weiteren Variablen. Der Name bezeichnet ausschließlich Speicherinitialisierung und darf nicht für AC oder eine Setupinitialisierung aufgerufen werden. Persistenz über einen Prozessneustart ist nicht enthalten.
 
-## Nächstes Integrationspaket
+## Ursprüngliche Integrationsplanung und verbleibende Abnahme
 
 Ein Appcontroller soll genau ein Speicherobjekt an beide Eingabesitzungen übergeben. Jeder Controller muss weiterhin unabhängig bleiben. Ans in Sitzungssnapshots darf nach Wechsel der Eingabeart nicht aus einem veralteten lokalen Zustand stammen. Bestehende Ausdrucksentwürfe und Ergebnisanzeigen sollen beim Wechsel erhalten bleiben; ihre gespeicherten Anzeigewerte sind von dem aktuellen gemeinsamen Ans zu unterscheiden. Die konkrete Snapshot-/Injektionsschnittstelle wird vor dieser Änderung festgelegt.
 

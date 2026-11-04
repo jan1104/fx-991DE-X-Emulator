@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 04.11.2026 abends: gemeinsamer Speicher in Math und Linear
+
+Ausgangsbasis `91b2292`, Arbeitskopie vor Beginn sauber. Arbeitsregeln, README, Entwicklungsstand, Entwicklungsplan und Speichervertrag wurden gelesen. Das dokumentierte nächste Paket verbindet beide Core-Sitzungen mit einem injizierbaren `CalculatorMemory`; ein Appcontroller besitzt genau einen gemeinsamen Speicher. Ein Subagent bearbeitet die beiden Sitzungen und unabhängige Corefälle, der Hauptagent Controllerintegration, Appprüfungen, Vertrag und abschließenden Review. Keine wiederholte Quellenanalyse, keine Originaldateien verändert.
+
+Der [Speichervertrag](SPEICHER_M.md) legt vor der Integration fest: aktueller gemeinsamer Ans, unveränderte alte Snapshots, getrennte Entwürfe/Ergebnisanzeigen, atomare Speicheraktionen und vorhandene Fehlerkorrektur. Vier bisherige Tests zu getrenntem Ans werden gezielt an die neue gemeinsame Regel angepasst; ihre Entwurfs-, Cursor-, Fehler- und Ergebnisprüfungen bleiben erhalten. Elf neue Controllerfälle prüfen alle vier Eingabe-/Ausgabearten, getrennte Controller, AC, Setupwechsel, OFF/ON, ausdrücklichen Speicherreset und inaktive Fehlerzustände. `applyMemory` ist eine Sitzungs-API, noch keine neue sichtbare Tastenbelegung. Der tatsächliche GitHub-Prüfstand wird nach dem Lauf ergänzt. Keine bekannten blockierten lokalen Laufzeitteststarts und keine Änderung der Sicherheitsrichtlinien.
+
+### Nächster Schritt
+
+Im nächsten planmäßigen Paket M+/M− an die vorhandene physische M+-Taste beziehungsweise SHIFT-Belegung anbinden und einen M-Indikator aus dem gemeinsamen Register zeichnen. Dafür Bildschirm-/Tastaturaktionen, Handbuchfolge mit M = 35 bei Anzeige 15, Fehlerkorrektur, Math-/Linear-Wechsel und sichtbare Statuswechsel prüfen. STO/RECALL, Variable M im Parser und Resetmenü bleiben getrennt abzugrenzen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Zeitplan.
+
 ## 04.11.2026 nachmittags: unabhängiger Core-Speicher M
 
 Ausgangsbasis `33a4e2d`, Arbeitskopie vor Beginn sauber. AGENTS, README, Entwicklungsstand, Entwicklungsplan und Projektstruktur wurden gelesen. Der planmäßige Lauf greift das dokumentierte nächste Speicherpaket auf. [SPEICHER_M.md](SPEICHER_M.md) begrenzt die erste Umsetzung auf einen unabhängigen Core-Zustand mit exaktem Ans/M und atomarer Ergebnisübernahme. Die vorhandene Handbuchanalyse wird übernommen, keine Quellenanalyse wiederholt. Ein Subagent ergänzt Produktion und gezielte Zustands-/Grenztests; der Hauptagent verantwortet Vertrag, Integration ins Paket, Review und den tatsächlichen GitHub-Prüfstand.

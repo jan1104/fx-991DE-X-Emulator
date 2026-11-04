@@ -17,8 +17,8 @@ final class CalculatorMemorySnapshot {
 
 /// Exact memory transactions for one calculator, with no persistence or UI.
 ///
-/// This is not yet connected to either editor session. A future adapter must
-/// share one instance between its Math and Linear editors, and must not call
+/// An adapter shares one instance between its Math and Linear editors, and
+/// must not call
 /// [clearMemory] for AC, a display-format change or setup-only initialization.
 final class CalculatorMemory {
   CalculatorMemory()

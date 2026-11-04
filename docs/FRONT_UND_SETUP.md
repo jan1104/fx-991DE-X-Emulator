@@ -16,7 +16,7 @@ Bei schmaler Breite wird vertikal gescrollt. Die Tasten erhalten mindestens 44 l
 
 Im Display werden jeweils bis zu vier Menüzeilen angezeigt. Berührung und Zifferntasten 1–4 wählen dieselben sichtbaren Einträge. Auf/Ab bewegen die Markierung und blättern, `=` wählt die Markierung, Links geht zurück und AC schließt ohne Änderung der Rechnung. Die sichtbare Nummerierung ist eine eigene begrenzte Listenbedienung; sie behauptet keine vollständige Gleichheit sämtlicher Original-Menüseiten.
 
-Die vier Eingabe-/Ausgabearten, die drei Winkeleinheiten und alle 17 Setup-Bereiche aus dem vorhandenen Quelleninventar sind auswählbar. Vorgabe ist Math → Math. Die zusätzlichen Schalter Linear/Brüche unter dem Gerät verändern denselben Eingabe-/Ausgabewert. Beide Eingabearten behalten wie bisher ihre getrennten Entwürfe und Ans. Einstellungen gelten in der laufenden App; sie werden noch nicht über Neustarts hinweg gespeichert.
+Die vier Eingabe-/Ausgabearten, die drei Winkeleinheiten und alle 17 Setup-Bereiche aus dem vorhandenen Quelleninventar sind auswählbar. Vorgabe ist Math → Math. Die zusätzlichen Schalter Linear/Brüche unter dem Gerät verändern denselben Eingabe-/Ausgabewert. Beide Eingabearten behalten ihre getrennten Entwürfe und Ergebnisanzeigen. Ans und M sind seit dem Integrationspaket vom 04.11. abends gemeinsam; sichtbare M-Tasten folgen getrennt. Siehe [Speichervertrag](SPEICHER_M.md). Einstellungen gelten in der laufenden App; sie werden noch nicht über Neustarts hinweg gespeichert.
 
 | Einstellung | Aktuelle vorgesehene Wirkung |
 |---|---|

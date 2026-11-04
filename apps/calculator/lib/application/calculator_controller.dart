@@ -40,8 +40,16 @@ final class _MenuPosition {
 /// Synchronous, widget-independent application controller. The UI redraws after
 /// commands; there is no platform persistence or background timer here.
 final class CalculatorController {
-  final CalculatorSession session = CalculatorSession();
-  final StructuredCalculatorSession structured = StructuredCalculatorSession();
+  CalculatorController() : this._(CalculatorMemory());
+
+  CalculatorController._(this.memory)
+    : session = CalculatorSession(memory: memory),
+      structured = StructuredCalculatorSession(memory: memory);
+
+  /// One exact register state per controller, shared by both input modes.
+  final CalculatorMemory memory;
+  final CalculatorSession session;
+  final StructuredCalculatorSession structured;
   CalculatorSettings _settings = const CalculatorSettings();
   CalculatorSettings get settings => _settings;
   bool get fractions => settings.fractions;

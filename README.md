@@ -16,6 +16,7 @@ Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig ge
 
 ## Dokumentation
 
+- [Speicher M: Core-Zustand und geplante App-Anbindung](docs/SPEICHER_M.md)
 - [Bestandsaufnahme und Quellen](docs/BESTANDSAUFNAHME.md)
 - [Funktionsumfang und Modellgrenzen](docs/FUNKTIONSUMFANG.md)
 - [Tasten, Menüs und Bedienabläufe](docs/TASTEN_UND_BEDIENUNG.md)

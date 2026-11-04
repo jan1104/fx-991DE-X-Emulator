@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 04.11.2026 nachmittags: unabhängiger Core-Speicher M
+
+Ausgangsbasis `33a4e2d`, Arbeitskopie vor Beginn sauber. AGENTS, README, Entwicklungsstand, Entwicklungsplan und Projektstruktur wurden gelesen. Der planmäßige Lauf greift das dokumentierte nächste Speicherpaket auf. [SPEICHER_M.md](SPEICHER_M.md) begrenzt die erste Umsetzung auf einen unabhängigen Core-Zustand mit exaktem Ans/M und atomarer Ergebnisübernahme. Die vorhandene Handbuchanalyse wird übernommen, keine Quellenanalyse wiederholt. Ein Subagent ergänzt Produktion und gezielte Zustands-/Grenztests; der Hauptagent verantwortet Vertrag, Integration ins Paket, Review und den tatsächlichen GitHub-Prüfstand.
+
+Math-/Linear-Sitzungen und App bleiben in diesem Paket unverändert. Die gemeinsame Injektion, M-Tasten, Statusanzeige sowie STO/RECALL/RESET-Bedienung folgen getrennt. Eine Setupinitialisierung oder AC darf den neuen Speicherlöschaufruf nicht verwenden. Syntax-, Mathematik- und Ressourcenfehler dürfen weder Ans noch M teilweise schreiben. Der tatsächliche Teststatus wird nach dem unabhängigen GitHub-Test-/Web-Build ergänzt. Keine blockierten lokalen Teststarts, Werkzeugwechsel oder Änderungen an Sicherheitsrichtlinien; Originale bleiben unverändert.
+
+### Nächster Schritt
+
+Im nächsten planmäßigen Lauf eine gemeinsame Speicherinjektion in beide Eingabesitzungen konkret festlegen und implementieren. Aktueller Ans muss bei Math-/Linear-Wechsel gemeinsam sein, während frühere Ergebnisanzeigen und Eingabeentwürfe getrennt bleiben. Anschließend M+/M− mit beiden Eingabearten, Fehlerwiederaufnahme und Speicherindikator prüfen. STO/RECALL und Resetmenüs bleiben gesondert abzugrenzen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Zeitplan.
+
 ## 04.11.2026 vormittags: strukturiertes Betragsfeld und App-Belegung
 
 Ausgangsbasis `3a3c974`, Arbeitskopie vor Beginn sauber. Der planmäßige Lauf übernimmt [BETRAG_EDITOR.md](BETRAG_EDITOR.md) als konkreten Umsetzungsvertrag. Vorhandene Quellenanalysen werden nicht wiederholt. Ein Subagent ergänzte `EditorAbsolute`, Argumentpfade, Navigation, Projektion, Ressourcenprüfung, beide Sitzungsaktionen und 45 vorbereitete Corefälle. Ein zweiter ergänzte die natürliche Ansicht mit skalierenden Betragsstrichen und 24 unabhängige Widgetfälle. Der Hauptagent verband SHIFT → ( mit der Aktion und ergänzte 16 Controllerprüfungen sowie drei Vorschauen: Handbuchrechnung, Betrag eines negativen Bruchs und gezielter Fehler eines leeren Arguments.

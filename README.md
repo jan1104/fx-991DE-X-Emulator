@@ -2,13 +2,15 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 03.11.2026
+## Stand am 04.11.2026
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 
 Grundrechnen, Brüche und exaktes Ans sind mit Quadrat, Kubieren, Kehrwert, Prozent, Fakultät und jetzt nPr/nCr verbunden. SHIFT → ×/÷ berechnet Permutationen/Kombinationen mit den belegten Argument- und Zwischenwertgrenzen. Der Periodenschalter wirkt direkt; S⇔D wechselt bei Norm zwischen Bruch, exakter Periode mit Überstrich und gerundetem Dezimalwert.
 
-Der unabhängige GitHub-Lauf für `8527328` hat **869 Coretests und 398 App-/Bedientests bestanden**, die Browser-Version gebaut und **15 separate Vorschauszenarien** ausgeführt. Die neuen nPr-/nCr-Bilder wurden visuell geprüft. [Prüfstand und Grenzen](docs/ENTWICKLUNGSSTAND.md), [Browserdateien unter GitHub Actions](https://github.com/jan1104/fx-991DE-X-Emulator/actions). Native Builds und Originalvergleich bleiben offen; die lokale Windows-Testblockade bleibt bestehen. Bedienung: [Front und Setup](docs/FRONT_UND_SETUP.md), [Kombinatorik](docs/KOMBINATORIK.md).
+Im Core ist zusätzlich `Abs(...)` exakt ausgewertet und geprüft. Die sichtbare Betragsfunktion und ihr natürliches Argumentfeld sind noch geplant; [Core-Vertrag](docs/BETRAG.md) und [Editorentwurf](docs/BETRAG_EDITOR.md) trennen den Umfang.
+
+Der unabhängige GitHub-Lauf für `8c0c02c` hat **899 Coretests und 398 App-/Bedientests bestanden**, die Browser-Version gebaut und **15 separate Vorschauszenarien** ausgeführt. Die 15 Vorschauen prüfen weiterhin den bisherigen sichtbaren Umfang; eine Betragsansicht ist darin noch nicht enthalten. [Prüfstand und Grenzen](docs/ENTWICKLUNGSSTAND.md), [Browserdateien unter GitHub Actions](https://github.com/jan1104/fx-991DE-X-Emulator/actions). Native Builds und Originalvergleich bleiben offen; die lokale Windows-Testblockade bleibt bestehen. Bedienung: [Front und Setup](docs/FRONT_UND_SETUP.md), [Kombinatorik](docs/KOMBINATORIK.md).
 
 Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig gepusht werden; automatische neue Arbeitsläufe beginnen ausschließlich alle sechs Stunden. Die bereits veröffentlichten Originalreferenzen bleiben erhalten; neue fremde Originaldateien bleiben ohne gesonderte Freigabe lokal.
 
@@ -33,6 +35,8 @@ Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig ge
 - [Prozent über SHIFT → Ans](docs/PROZENT.md)
 - [Fakultät über SHIFT → x⁻¹](docs/FAKULTAET.md)
 - [Permutationen und Kombinationen über SHIFT → ×/÷](docs/KOMBINATORIK.md)
+- [Betragsfunktion im Core](docs/BETRAG.md)
+- [Geplanter Editor für das Betragsargument](docs/BETRAG_EDITOR.md)
 - [Exakte Bruch-/Dezimalausgabe und Grenzen](docs/EXAKTE_AUSGABE.md)
 - [Darstellungswahl in beiden Core-Sitzungen](docs/DARSTELLUNGSWAHL.md)
 - [Begrenzte exakte Periodendarstellung](docs/PERIODENDARSTELLUNG.md)

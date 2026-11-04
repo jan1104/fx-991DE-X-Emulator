@@ -4,6 +4,8 @@ Erster lauffähiger Prototyp als reines Dart-Paket, unabhängig von Flutter und 
 
 Implementiert sind gekürzte BigInt-Brüche, exakte Punkt-/Komma-Dezimaleingabe mit optionalem Dezimalexponenten, Ausdrucksbaum und lineare Auswertung von Grundoperatoren, Klammern und ganzzahligen Potenzen. Potenzen sind rechtsassoziativ und binden vor negativem Vorzeichen. Implizite Multiplikation ist zunächst nur vor einer öffnenden Klammer möglich und bindet vor expliziter Multiplikation/Division. Beispiele: `-2^2=-4`, `2/3+(1+1/2)=13/6`, `0,1+0,2=3/10`.
 
+`evaluate("Abs(2-7)*2")` ergänzt exakte rationale Beträge mit ausdrücklichen Argumentklammern. Parser und Evaluator unterstützen `Abs(...)`; Tastenaktion und natürliches Argumentfeld sind noch nicht implementiert. Vertrag und abgegrenzter Prüfstand: [BETRAG.md](../../docs/BETRAG.md), geplanter Editor: [BETRAG_EDITOR.md](../../docs/BETRAG_EDITOR.md).
+
 Das Paket hat keine externen Laufzeitabhängigkeiten; `package:test` ist nur Entwicklungsabhängigkeit. SDK und Testversion stehen in `../../tools/toolchain.json`, die konkrete Auflösung in `pubspec.lock`.
 
 `formatRational(value, format: RationalDisplayFormat.exactDecimal)` ergänzt eine reine exakte Ausgabe mit deutschem Komma. Endliche Dezimalbrüche werden ohne Gleitkomma und Rundung erzeugt; bei periodischer oder zu langer Entwicklung bleibt der gekürzte Bruch mit ausdrücklich gemeldetem Rückfallgrund erhalten. Das Zeichenlimit gilt auch für diesen Rückfall. Der Dienst verändert weder Werte noch Sitzungen und bindet noch keine S⇔D-Taste an. Vertrag und Beispiele: [EXAKTE_AUSGABE.md](../../docs/EXAKTE_AUSGABE.md).

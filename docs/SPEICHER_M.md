@@ -4,6 +4,8 @@
 
 Dieses Paket beginnt mit einem eigenen Core-Speicherzustand. Die bestehenden Math-/Linear-Sitzungen und App-Tasten verwenden ihn noch nicht. M+, M−, STO, RECALL und ein sichtbarer M-Indikator bleiben in der App offen. Der tatsächliche Prüfstand steht im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
+39 neue Speicherfälle sind im unabhängigen [GitHub-Lauf 41852962881](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41852962881) für `12b64e7` bestanden: insgesamt 984 Coretests, 438 Appfälle, Web-Build und 18 bestehende Vorschauszenarien. Dies bestätigt den Core-Dienst und die Regression des bisherigen Appumfangs, keine M-Bedienung in der App.
+
 Die vorhandene Quellenanalyse belegt: M+ addiert das gerade berechnete Ergebnis, M− subtrahiert es. Der angezeigte Wert ist der Summand, nicht der neue Speicherinhalt. Nach `10 × 5 M+` und `10 + 5 SHIFT M+` enthält M den Wert 35, während die zweite Rechnung 15 zeigt. M wird mit `0 STO M` gelöscht. Ans und M bleiben bei AC, Moduswechsel und Ausschalten erhalten; Speicherinitialisierung löscht beide. Eine reine Setupinitialisierung löscht sie nicht. Quellen: H, physische PDF-S. 17–18; Setup-/Resetabgrenzung H, PDF-S. 3 und 10. Die bereits dokumentierte Analyse wird hier übernommen, kein neuer Originalvergleich behauptet. Siehe [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md).
 
 ## Core-Vertrag

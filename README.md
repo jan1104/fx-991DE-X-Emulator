@@ -4,6 +4,8 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 04.11.2026
 
+Der neue Core-Speicher M verwaltet Ans und M exakt und übernimmt Ergebnisse atomar. 39 neue Speicherfälle sind bestanden; die gemeinsame Math-/Linear-Anbindung und sichtbare M-Tasten folgen als nächstes. Aktueller GitHub-Prüfstand für `12b64e7`: **984 Coretests, 438 Appfälle, Web-Build und 18 Vorschauen bestanden**. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
+
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 
 Grundrechnen, Brüche und exaktes Ans sind mit Quadrat, Kubieren, Kehrwert, Prozent, Fakultät und jetzt nPr/nCr verbunden. SHIFT → ×/÷ berechnet Permutationen/Kombinationen mit den belegten Argument- und Zwischenwertgrenzen. Der Periodenschalter wirkt direkt; S⇔D wechselt bei Norm zwischen Bruch, exakter Periode mit Überstrich und gerundetem Dezimalwert.

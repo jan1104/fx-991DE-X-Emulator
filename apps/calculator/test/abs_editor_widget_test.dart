@@ -316,13 +316,7 @@ void main() {
       ]);
       expect(keyed('formula-error'), findsOneWidget);
       expect(keyed('formula-error-field'), findsOneWidget);
-      await taps(tester, [
-        'KEY_LEFT',
-        'KEY_RIGHT',
-        'KEY_DEL',
-        'KEY_2',
-        'KEY_EQUALS',
-      ]);
+      await taps(tester, ['KEY_LEFT', 'KEY_DEL', 'KEY_2', 'KEY_EQUALS']);
       expect(result(tester), '1/2');
     },
   );
@@ -399,10 +393,10 @@ void main() {
     final right = tester.renderObject<RenderBox>(find.text('2'));
     final leftBaseline =
         left.localToGlobal(Offset.zero).dy +
-        left.getDistanceToBaseline(TextBaseline.alphabetic)!;
+        left.getDryBaseline(left.constraints, TextBaseline.alphabetic)!;
     final rightBaseline =
         right.localToGlobal(Offset.zero).dy +
-        right.getDistanceToBaseline(TextBaseline.alphabetic)!;
+        right.getDryBaseline(right.constraints, TextBaseline.alphabetic)!;
     expect(leftBaseline, closeTo(rightBaseline, .1));
     expect(keyed('formula-cursor'), findsNothing);
   });

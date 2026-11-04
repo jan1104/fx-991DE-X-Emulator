@@ -443,12 +443,16 @@ void main() {
         'empty ${field.name} is a structured syntax error without mutation',
         () {
           final editor = FractionEditor();
-          editor.insertFraction();
-          if (field == FractionField.numerator) {
-            editor.moveRight();
-            editor.insertText('2');
+          if (field == FractionField.argument) {
+            editor.insertAbsolute();
           } else {
-            editor.insertText('1');
+            editor.insertFraction();
+            if (field == FractionField.numerator) {
+              editor.moveRight();
+              editor.insertText('2');
+            } else {
+              editor.insertText('1');
+            }
           }
           final before = stateOf(editor.snapshot);
           expect(

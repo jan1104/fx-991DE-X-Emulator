@@ -149,7 +149,7 @@ void main() {
       expect(c.session.snapshot.expression, '');
       expect(c.structured.snapshot.editor.root.nodes, isEmpty);
       expect(c.session.snapshot.answer, Rational.fromInt(3));
-      expect(c.structured.snapshot.answer, Rational.fromInt(2));
+      expect(c.structured.snapshot.answer, Rational.fromInt(3));
     },
   );
 

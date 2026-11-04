@@ -319,7 +319,8 @@ void main() {
     expect(c.session.snapshot.answer, same(linear.answer));
     expect(c.session.snapshot.result, same(linear.result));
     expect(c.structured.snapshot.editor, same(math.editor));
-    expect(c.structured.snapshot.answer, same(math.answer));
+    expect(c.structured.snapshot.answer, same(linear.answer));
+    expect(math.answer, Rational(BigInt.one, BigInt.from(6)));
     expect(c.structured.snapshot.result, same(math.result));
     expect(c.resultText, '0,3333333333');
     _setting(c, ['period', 'on']);
@@ -415,25 +416,33 @@ void main() {
     expect(c.isKeyEnabled('KEY_SIN'), isFalse);
   });
 
-  test('S/D in one input mode leaves the other snapshot and old presentation untouched', () {
-    final c = CalculatorController();
-    _calculate(c, '1/6');
-    c.pressId('KEY_SD');
-    final math = c.structured.snapshot, presentation = c.resultPresentation;
-    c.selectInputOutput(CalculatorInputOutput.linearLinear);
-    _calculate(c, '1/7');
-    c.pressId('KEY_SD');
-    c.pressId('KEY_SD');
-    expect(c.structured.snapshot, same(math));
-    expect(presentation.text, '0,1(6)');
-    expect(presentation.expansion!.repeatingDigits, '6');
-    c.selectInputOutput(CalculatorInputOutput.mathMath);
-    expect(c.resultPresentation.text, '0,1(6)');
-    c.pressId('KEY_MULTIPLY');
-    c.pressId('KEY_6');
-    c.pressId('KEY_EQUALS');
-    expect(c.result, Rational.fromInt(1));
-    expect(c.resultText, '1');
-    expect(math.answer, Rational(BigInt.one, BigInt.from(6)));
-  });
+  test(
+    'S/D leaves the synchronized other snapshot and old presentation untouched',
+    () {
+      final c = CalculatorController();
+      _calculate(c, '1/6');
+      c.pressId('KEY_SD');
+      final math = c.structured.snapshot, presentation = c.resultPresentation;
+      c.selectInputOutput(CalculatorInputOutput.linearLinear);
+      _calculate(c, '1/7');
+      final synchronized = c.structured.snapshot;
+      expect(synchronized.answer, Rational(BigInt.one, BigInt.from(7)));
+      expect(synchronized.editor, same(math.editor));
+      expect(synchronized.result, same(math.result));
+      expect(synchronized.resultDisplayFormat, math.resultDisplayFormat);
+      c.pressId('KEY_SD');
+      c.pressId('KEY_SD');
+      expect(c.structured.snapshot, same(synchronized));
+      expect(presentation.text, '0,1(6)');
+      expect(presentation.expansion!.repeatingDigits, '6');
+      c.selectInputOutput(CalculatorInputOutput.mathMath);
+      expect(c.resultPresentation.text, '0,1(6)');
+      c.pressId('KEY_MULTIPLY');
+      c.pressId('KEY_6');
+      c.pressId('KEY_EQUALS');
+      expect(c.result, Rational(BigInt.from(6), BigInt.from(7)));
+      expect(c.resultText, '6/7');
+      expect(math.answer, Rational(BigInt.one, BigInt.from(6)));
+    },
+  );
 }

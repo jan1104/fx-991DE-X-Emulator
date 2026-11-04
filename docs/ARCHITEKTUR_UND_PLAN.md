@@ -48,6 +48,8 @@ Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig ge
 
 Fortschreibung 04.11.2026 nachmittags: Der Speichervertrag ist in [SPEICHER_M.md](SPEICHER_M.md) festgelegt. Das erste Paket ergänzt einen unabhängigen Core-Dienst für exaktes Ans/M und atomare Ergebnis-, Additions-, Subtraktions- und Speichertransaktionen. Beide Eingabesitzungen und die App sind noch nicht angebunden. Nächster Schritt ist die gemeinsame Speicherinjektion mit getrennten Eingabe-/Anzeigezuständen; sichtbare M-Tasten, STO/RECALL und Resetbedienung brauchen eigene Abnahmen. Tatsächlicher Prüfstand: [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
+Fortschreibung 04.11.2026 abends: Beide Eingabesitzungen akzeptieren den gemeinsamen Core-Speicher; der Appcontroller teilt genau eine Instanz zwischen Math und Linear. Snapshot-Ans folgt dem aktuellen Register, gespeicherte Ergebnisse und Entwürfe bleiben getrennt. Die Sitzungs-API `applyMemory` ergänzt atomare Speicheraktionen ohne erneute Auswertung eines angezeigten Ergebnisses. Als nächstes folgen die sichtbare M+/M−-Belegung und der M-Indikator mit eigener App-Abnahme. Vertrag und tatsächlicher Prüfstand: [SPEICHER_M.md](SPEICHER_M.md), [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
+
 ## Risiken und offene Entscheidungen
 
 - **Bestätigt:** H deckt zwei Modelle ab; unkritische Übernahme würde falsche Grenzen erzeugen. Nur fx-991DE X ist Zielmodell.

@@ -1,8 +1,8 @@
-# Entwurf: strukturiertes Argumentfeld für Betrag
+# Betragseditor: übernommener Umsetzungsvertrag
 
-Stand 04.11.2026, Architekturprüfung auf Basis `0cf9078`. **Dieses Dokument ist ein Umsetzungsentwurf, keine implementierte Editor-/Appfunktion und kein bestandener Bediennachweis.** Im aktuellen Arbeitspaket wird nur die getrennte Core-Auswertung von `Abs(...)` ergänzt. Die bestehende SHIFT-Belegung liefert bis zur späteren Anbindung weiterhin ihren Vorbereitungsstatus.
+Entworfen am 04.11.2026 auf Basis `0cf9078`, im Folgepaket auf Basis `3a3c974` als Umsetzungsvertrag übernommen. Die nachstehenden Entwurfsformulierungen und Quellanker dokumentieren die Grundlage der Implementierung. Den tatsächlich geprüften Umfang, die Revision und verbleibende Grenzen nennt der [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
-Quelle für den späteren Bedienfall ist H, physische PDF-S. 21: `|2−7| × 2 = 10`. Die vorhandene Extraktion zeigt in Math den Austritt per Rechtspfeil und in Linear eine schließende Klammer. Alle nachstehenden Cursor-/Löschdetails sind ausdrücklich eigene, noch zu prüfende Prototypentscheidungen. Quelle und bisheriger Umfang: [Tasteninventar](TASTEN_UND_BEDIENUNG.md), [strukturierte Sitzung](STRUKTURIERTE_SITZUNG.md), [vertikale Navigation](VERTIKALE_NAVIGATION.md).
+Quelle für den Bedienfall ist H, physische PDF-S. 21: `|2−7| × 2 = 10`. Die vorhandene Extraktion zeigt in Math den Austritt per Rechtspfeil und in Linear eine schließende Klammer. Alle nachstehenden Cursor-/Löschdetails sind ausdrücklich eigene, noch zu prüfende Prototypentscheidungen. Quelle und bisheriger Umfang: [Tasteninventar](TASTEN_UND_BEDIENUNG.md), [strukturierte Sitzung](STRUKTURIERTE_SITZUNG.md), [vertikale Navigation](VERTIKALE_NAVIGATION.md).
 
 ## Modellvorschlag und Kompatibilität
 
@@ -54,7 +54,7 @@ Die Sitzung soll weiterhin bei Fehlern Baum und aktuellen Cursor unverändert ha
 
 ## Aktionen, Ans und lineare Eingabe
 
-Für die spätere Anbindung wird eine sekundäre Aktion `ACTION_ABS` vorgeschlagen, die der Appcontroller aus SHIFT → `KEY_LPAREN` erzeugt. SHIFT wird wie bei den anderen Zusatzbelegungen verbraucht; Menü und OFF greifen vor der mathematischen Weiterleitung. Der physische Umfang bleibt 50 Tasten, die Primärbelegung `(` unverändert. Das Core-Enum bleibt in diesem reinen Parsepaket bei 32 Aktionen; die spätere Aktion würde es auf 33 erweitern.
+Für die spätere Anbindung wird eine sekundäre Aktion `ACTION_ABS` vorgeschlagen, die der Appcontroller aus SHIFT → `KEY_LPAREN` erzeugt. SHIFT wird wie bei den anderen Zusatzbelegungen verbraucht; Menü und OFF greifen vor der mathematischen Weiterleitung. Der physische Umfang bleibt 50 Tasten, die Primärbelegung `(` unverändert. Das Core-Enum umfasst mit der ergänzten Aktion 33 Werte.
 
 Math muss `ACTION_ABS` vor der allgemeinen `editor.insertText(key.text!)`-Stelle abfangen und `insertAbsolute()` aufrufen. `Abs(` wird nicht als Textknoten in den strukturierten Editor aufgenommen. Im Bearbeitungszustand entsteht ein leeres Argument. Als eigene Ergebnisfortsetzung wird vorgeschlagen: nach einem Ergebnis eine neue Betragsvorlage mit einem atomaren exakten `Ans` im Argument beginnen und den Cursor an dessen Ende stellen. Ein gerundeter Anzeigetext darf nicht eingesetzt werden. AC vor der Aktion beginnt dagegen ein leeres Argument. Diese Fortsetzung ist noch keine Originalbeobachtung und muss vor Implementierung als öffentliche Regel übernommen werden.
 
@@ -72,28 +72,28 @@ Einfügen, Ersetzen und Übernahme bauen zuerst einen Kandidaten. Erst nach Knot
 
 ## Konkrete Änderungsstellen
 
-Die Zeilen sind Anker des geprüften Ausgangsstands; vor Änderungen über die Methodennamen erneut auffinden.
+Dateien und Methodennamen benennen die auf dem Ausgangsstand geprüften und im Folgepaket ergänzten Bereiche; die frühere Zeilennummerierung wurde nach der Umsetzung entfernt.
 
 | Datei / Anker | Erforderliche spätere Änderung |
 |---|---|
-| [fraction_editor.dart:21](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L21), `EditorFraction`, `FractionField`, `EditorStep` | `EditorAbsolute(argument)` und expliziten Argumentpfad ergänzen; bestehende Bruchwerte erhalten. |
-| [fraction_editor.dart:126](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L126), `_field` | Jeden Vorfahrenschritt nach Knotenart/Feld auflösen; heutigen unbedingten `as EditorFraction` ersetzen. |
-| [fraction_editor.dart:144](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L144), `insertFraction`, neues `insertAbsolute`, `_insert` ab 296 | Gemeinsame Tiefe prüfen; Eintrittsfeld nicht weiterhin als Zähler fest verdrahten; Kandidat erst nach vollständiger Prüfung veröffentlichen. |
-| [fraction_editor.dart:161](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L161), `wrapPreviousAtomInFraction` | Betrag als vollständiges Atom zulassen; Gruppensuche überspringt weiterhin innere Unterbaumklammern; globale Tiefe vor Veröffentlichung prüfen. |
-| [fraction_editor.dart:280](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L280), `_fractionDepth` | Alle Bruch-/Betragsnachkommen berücksichtigen, statt Nicht-Brüche zu überspringen. |
-| [fraction_editor.dart:334](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L334), `moveTo` | Knotenart/Feld gemeinsam validieren; fremde Argumentpfade zu Text/Bruch zurückweisen. |
-| [fraction_editor.dart:354](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L354), `deleteBackward` | Sonderfall leeres Argument am Feldanfang; außerhalb des Knotens bestehendes atomares Entfernen fortführen. |
-| [fraction_editor.dart:364](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L364), `moveRight`, `moveLeft` | Eintritt, Wiedereintritt und Austritt des Arguments ergänzen; Fallunterscheidung für Zähler/Nenner/Argument vollständig machen. |
-| [fraction_editor.dart:423](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L423), `_moveVertically` | Argument als unmittelbares Feld ohne Vertikalziel erkennen; Vorfahren über gemeinsamen Feldhelfer auflösen, direkten Bruch-Cast entfernen. |
-| [fraction_editor.dart:481](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L481), `_project` | Neuen erschöpfenden Knotenfall, Argumentpfad, leere Feldfehler und alle generierten Zeichenpositionen ergänzen. `project`, `toExpression`, `evaluate` behalten ihre Ausnahmeverträge, erhalten aber gezielte Regressionsfälle. |
-| [fraction_editor.dart:550](../packages/calculator_core/lib/src/editor/fraction_editor.dart#L550), `_count`, `_replace` | Argument rekursiv zählen; unveränderlichen Betrag entlang eines Argumentpfads neu aufbauen. Heutigen unbedingten Bruch-Cast in `_replace` ersetzen. |
-| [structured_calculator_session.dart:84](../packages/calculator_core/lib/src/state/structured_calculator_session.dart#L84), `pressId`, `press`, `_apply` | Neue Aktion strukturell abfangen, Fehlerphase/Ans-Fortsetzung und atomaren Kandidatenfluss erhalten. `_recoverError` und `_execute` mit neuen Pfaden prüfen. |
-| [calculator_session.dart:8](../packages/calculator_core/lib/src/state/calculator_session.dart#L8), `CalculatorKey`, `press` ab 160 | Sekundäre Aktion und lineares atomisches Präfix mit ausdrücklicher Ergebnisfortsetzung ergänzen; nicht als binären/postfixen Operator klassifizieren. `_tokenIndexAt` für Positionen innerhalb von `Abs(` prüfen. |
-| [fraction_expression_view.dart:144](../apps/calculator/lib/presentation/editor/fraction_expression_view.dart#L144), `cursorPath` | Eindeutigen Argumentpfad, etwa `/a{index}`, statt pauschal `f…n/d` erzeugen. |
-| [fraction_expression_view.dart:190](../apps/calculator/lib/presentation/editor/fraction_expression_view.dart#L190), `_sequence` | Neuen Knotenfall und eigenes skalierbares Betragslayout mit rekursivem Argument ergänzen; Caret, Platzhalter und Fehlerrahmen in diesem Feld erhalten. |
-| [fraction_expression_view.dart:288](../apps/calculator/lib/presentation/editor/fraction_expression_view.dart#L288), `_location`, `_describe` | Betragspfad ohne Bruch-Cast durchlaufen; „im Argument des … Betrags“ und „Betrag … Ende Betrag“ ausgeben. |
-| [calculator_controller.dart:165](../apps/calculator/lib/application/calculator_controller.dart#L165), `pressId`, `isKeyEnabled` ab 116 | SHIFT → `(` routen; Menü/OFF und unveränderte Primärbelegung prüfen. Kein eigener Einstellungszustand nötig. |
-| [calculator_page.dart:170](../apps/calculator/lib/presentation/calculator/calculator_page.dart#L170), `_fractionTool`, `_display` ab 201 | Übernahmetext um vollständige Betragsknoten ergänzen; Ansicht/Fehlercursor weiterhin aus gemeinsamem Snapshot speisen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `EditorFraction`, `FractionField`, `EditorStep` | `EditorAbsolute(argument)` und expliziten Argumentpfad ergänzen; bestehende Bruchwerte erhalten. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `_field` | Jeden Vorfahrenschritt nach Knotenart/Feld auflösen; heutigen unbedingten `as EditorFraction` ersetzen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `insertFraction`, neues `insertAbsolute`, `_insert` ab 296 | Gemeinsame Tiefe prüfen; Eintrittsfeld nicht weiterhin als Zähler fest verdrahten; Kandidat erst nach vollständiger Prüfung veröffentlichen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `wrapPreviousAtomInFraction` | Betrag als vollständiges Atom zulassen; Gruppensuche überspringt weiterhin innere Unterbaumklammern; globale Tiefe vor Veröffentlichung prüfen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `_fractionDepth` | Alle Bruch-/Betragsnachkommen berücksichtigen, statt Nicht-Brüche zu überspringen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `moveTo` | Knotenart/Feld gemeinsam validieren; fremde Argumentpfade zu Text/Bruch zurückweisen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `deleteBackward` | Sonderfall leeres Argument am Feldanfang; außerhalb des Knotens bestehendes atomares Entfernen fortführen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `moveRight`, `moveLeft` | Eintritt, Wiedereintritt und Austritt des Arguments ergänzen; Fallunterscheidung für Zähler/Nenner/Argument vollständig machen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `_moveVertically` | Argument als unmittelbares Feld ohne Vertikalziel erkennen; Vorfahren über gemeinsamen Feldhelfer auflösen, direkten Bruch-Cast entfernen. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `_project` | Neuen erschöpfenden Knotenfall, Argumentpfad, leere Feldfehler und alle generierten Zeichenpositionen ergänzen. `project`, `toExpression`, `evaluate` behalten ihre Ausnahmeverträge, erhalten aber gezielte Regressionsfälle. |
+| [fraction_editor.dart](../packages/calculator_core/lib/src/editor/fraction_editor.dart), `_count`, `_replace` | Argument rekursiv zählen; unveränderlichen Betrag entlang eines Argumentpfads neu aufbauen. Heutigen unbedingten Bruch-Cast in `_replace` ersetzen. |
+| [structured_calculator_session.dart](../packages/calculator_core/lib/src/state/structured_calculator_session.dart), `pressId`, `press`, `_apply` | Neue Aktion strukturell abfangen, Fehlerphase/Ans-Fortsetzung und atomaren Kandidatenfluss erhalten. `_recoverError` und `_execute` mit neuen Pfaden prüfen. |
+| [calculator_session.dart](../packages/calculator_core/lib/src/state/calculator_session.dart), `CalculatorKey`, `press` ab 160 | Sekundäre Aktion und lineares atomisches Präfix mit ausdrücklicher Ergebnisfortsetzung ergänzen; nicht als binären/postfixen Operator klassifizieren. `_tokenIndexAt` für Positionen innerhalb von `Abs(` prüfen. |
+| [fraction_expression_view.dart](../apps/calculator/lib/presentation/editor/fraction_expression_view.dart), `cursorPath` | Eindeutigen Argumentpfad, etwa `/a{index}`, statt pauschal `f…n/d` erzeugen. |
+| [fraction_expression_view.dart](../apps/calculator/lib/presentation/editor/fraction_expression_view.dart), `_sequence` | Neuen Knotenfall und eigenes skalierbares Betragslayout mit rekursivem Argument ergänzen; Caret, Platzhalter und Fehlerrahmen in diesem Feld erhalten. |
+| [fraction_expression_view.dart](../apps/calculator/lib/presentation/editor/fraction_expression_view.dart), `_location`, `_describe` | Betragspfad ohne Bruch-Cast durchlaufen; „im Argument des … Betrags“ und „Betrag … Ende Betrag“ ausgeben. |
+| [calculator_controller.dart](../apps/calculator/lib/application/calculator_controller.dart), `pressId`, `isKeyEnabled` ab 116 | SHIFT → `(` routen; Menü/OFF und unveränderte Primärbelegung prüfen. Kein eigener Einstellungszustand nötig. |
+| [calculator_page.dart](../apps/calculator/lib/presentation/calculator/calculator_page.dart), `_fractionTool`, `_display` ab 201 | Übernahmetext um vollständige Betragsknoten ergänzen; Ansicht/Fehlercursor weiterhin aus gemeinsamem Snapshot speisen. |
 
 Die Exporte in `calculator_core.dart` exportieren bereits die gesamte Editordatei; ein neuer Editor-Knotentyp benötigt dort keine zusätzliche Einzel-Exportliste. Die bestehende Skin-Beschriftung `KEY_LPAREN: Abs` und die Hardwarepfeile können weiterverwendet werden. Neue Hardwarekürzel, ein neues Setupfeld und zusätzliche physische Tasten sind nicht erforderlich.
 
@@ -112,4 +112,4 @@ Vor der Implementierung sind diese vorgeschlagenen Regeln als Arbeitsvertrag zu 
 - Source-Map prüft Präfix, Argument, beide Abschlussbereiche und innere Bruchfehler; fremde/mismatched Pfade werden abgewiesen.
 - Widget-/Semantikfälle prüfen Betragsstriche, lange/mehrzeilige Argumente, Schrift-/Kontrastwechsel und 320-Pixel-Ansicht ohne Überlagerung; sichtbarer Fehlertext bleibt ein Ansichtstest.
 
-Dieser Audit hat nur Produktionsquellen und bestehende Dokumentation gelesen. Es wurden keine Produktionsdateien, Tests, Originale oder Werkzeuge verändert, keine Laufzeittests gestartet und kein CI-Lauf ausgelöst. Tatsächlicher Implementierungs- und Prüfstand bleibt im [Entwicklungsstand](ENTWICKLUNGSSTAND.md) dokumentiert.
+Der ursprüngliche Audit hat nur Produktionsquellen und bestehende Dokumentation gelesen. Es wurden keine Produktionsdateien, Tests, Originale oder Werkzeuge verändert, keine Laufzeittests gestartet und kein CI-Lauf ausgelöst. Tatsächlicher Implementierungs- und Prüfstand bleibt im [Entwicklungsstand](ENTWICKLUNGSSTAND.md) dokumentiert.

@@ -91,8 +91,8 @@ void main() {
   );
 
   test('percent is a secondary semantic postfix and not a physical key ID', () {
-    expect(CalculatorKey.values, hasLength(32));
-    expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(32));
+    expect(CalculatorKey.values, hasLength(33));
+    expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(33));
     expect(CalculatorKey.fromId('ACTION_PERCENT'), CalculatorKey.percent);
     expect(CalculatorKey.fromId('KEY_PERCENT'), isNull);
     expect(CalculatorKey.percent.text, '%');

@@ -137,6 +137,15 @@ final class StructuredCalculatorSession {
       });
     }
 
+    if (key == CalculatorKey.absolute) {
+      return _apply((editor) {
+        final continuing = _snapshot.phase == CalculatorPhase.result;
+        if (continuing) editor.clear();
+        editor.insertAbsolute();
+        if (continuing) editor.insertText('Ans');
+      });
+    }
+
     return _apply((editor) {
       if (_snapshot.phase == CalculatorPhase.result) {
         editor.clear();

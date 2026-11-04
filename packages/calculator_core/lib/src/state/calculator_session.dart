@@ -27,6 +27,7 @@ enum CalculatorKey {
   factorial('ACTION_FACTORIAL', '!'),
   permutation('ACTION_PERMUTATION', 'nPr'),
   combination('ACTION_COMBINATION', 'nCr'),
+  absolute('ACTION_ABS', 'Abs('),
   negate('KEY_NEGATE', '-'),
   decimal('KEY_DECIMAL', ','),
   leftParenthesis('KEY_LPAREN', '('),
@@ -200,6 +201,10 @@ final class CalculatorSession {
     var tokens = _snapshot.tokens.toList();
     var cursor = _snapshot.cursor;
     if (_snapshot.phase == CalculatorPhase.result) {
+      if (key == CalculatorKey.absolute) {
+        _edit(['Abs(', 'Ans'], 2);
+        return _snapshot;
+      }
       tokens = key.isBinaryOperator || key.isPostfixOperator ? ['Ans'] : [];
       cursor = tokens.length;
     }

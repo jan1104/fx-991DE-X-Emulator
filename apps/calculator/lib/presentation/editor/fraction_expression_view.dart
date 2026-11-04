@@ -143,9 +143,11 @@ class _FormulaContent extends StatelessWidget {
     final target = errorCursor ?? snapshot.cursor;
     final cursorPath = target.path.fold(
       'root',
-      (path, step) =>
-          '$path/f${step.nodeIndex}'
-          '${step.field == FractionField.numerator ? 'n' : 'd'}',
+      (path, step) => switch (step.field) {
+        FractionField.numerator => '$path/f${step.nodeIndex}n',
+        FractionField.denominator => '$path/f${step.nodeIndex}d',
+        FractionField.argument => '$path/a${step.nodeIndex}',
+      },
     );
     return Semantics(
       container: true,
@@ -227,6 +229,18 @@ class _FormulaContent extends StatelessWidget {
             _ => text,
           }),
         ),
+        EditorAbsolute(:final argument) => _AbsoluteLayout(
+          key: ValueKey('absolute-$path/$index'),
+          color: color,
+          gap: math.max(5, scaledSize * .22),
+          child: _sequence(
+            argument,
+            '$path/a$index',
+            cursorPath,
+            scaledSize,
+            color,
+          ),
+        ),
         EditorFraction(:final numerator, :final denominator) => _FractionLayout(
           key: ValueKey('fraction-$path/$index'),
           color: color,
@@ -292,16 +306,33 @@ class _FormulaContent extends StatelessWidget {
     var sequence = snapshot.root;
     final parts = <String>[];
     for (final step in cursor.path) {
-      final ordinal = sequence.nodes
-          .take(step.nodeIndex + 1)
-          .whereType<EditorFraction>()
-          .length;
-      final field = step.field == FractionField.numerator ? 'Zähler' : 'Nenner';
-      parts.add('im $field des $ordinal. Bruchs');
-      final fraction = sequence.nodes[step.nodeIndex] as EditorFraction;
-      sequence = step.field == FractionField.numerator
-          ? fraction.numerator
-          : fraction.denominator;
+      final node = sequence.nodes[step.nodeIndex];
+      switch ((node, step.field)) {
+        case (EditorAbsolute(:final argument), FractionField.argument):
+          final ordinal = sequence.nodes
+              .take(step.nodeIndex + 1)
+              .whereType<EditorAbsolute>()
+              .length;
+          parts.add('im Argument des $ordinal. Betrags');
+          sequence = argument;
+        case (
+          EditorFraction(:final numerator, :final denominator),
+          FractionField.numerator || FractionField.denominator,
+        ):
+          final ordinal = sequence.nodes
+              .take(step.nodeIndex + 1)
+              .whereType<EditorFraction>()
+              .length;
+          final field = step.field == FractionField.numerator
+              ? 'Zähler'
+              : 'Nenner';
+          parts.add('im $field des $ordinal. Bruchs');
+          sequence = step.field == FractionField.numerator
+              ? numerator
+              : denominator;
+        default:
+          throw StateError('Invalid structural formula cursor');
+      }
     }
     return '${parts.join(', darin ')}, Position ${cursor.offset + 1}';
   }
@@ -328,6 +359,8 @@ class _FormulaContent extends StatelessWidget {
             EditorFraction(:final numerator, :final denominator) =>
               'Bruch, Zähler ${_describe(numerator)}, '
                   'Nenner ${_describe(denominator)}, Ende Bruch',
+            EditorAbsolute(:final argument) =>
+              'Betrag ${_describe(argument)}, Ende Betrag',
           },
         )
         .join(' ');
@@ -373,6 +406,96 @@ class _RenderBaselineBox extends RenderProxyBox {
     BoxConstraints constraints,
     TextBaseline baseline,
   ) => _baseline;
+}
+
+// The argument is measured once and keeps its baseline; decorative bars follow
+// the complete field height, including nested fractions and error frames.
+class _AbsoluteLayout extends SingleChildRenderObjectWidget {
+  final Color color;
+  final double gap;
+  const _AbsoluteLayout({
+    super.key,
+    required this.color,
+    required this.gap,
+    required super.child,
+  });
+
+  @override
+  RenderObject createRenderObject(BuildContext context) =>
+      _RenderAbsolute(color, gap);
+
+  @override
+  void updateRenderObject(BuildContext context, _RenderAbsolute renderObject) {
+    renderObject
+      ..color = color
+      ..gap = gap;
+  }
+}
+
+class _RenderAbsolute extends RenderShiftedBox {
+  Color _color;
+  double _gap;
+  static const _verticalPadding = 3.0;
+  _RenderAbsolute(this._color, this._gap) : super(null);
+
+  set color(Color value) {
+    if (_color == value) return;
+    _color = value;
+    markNeedsPaint();
+  }
+
+  set gap(double value) {
+    if (_gap == value) return;
+    _gap = value;
+    markNeedsLayout();
+  }
+
+  Size _naturalSize(Size argument) =>
+      Size(argument.width + 2 * _gap, argument.height + 2 * _verticalPadding);
+
+  @override
+  Size computeDryLayout(BoxConstraints constraints) => constraints.constrain(
+    _naturalSize(child!.getDryLayout(const BoxConstraints())),
+  );
+
+  @override
+  double computeDistanceToActualBaseline(TextBaseline baseline) =>
+      (child!.getDistanceToBaseline(baseline) ?? child!.size.height * .8) +
+      _verticalPadding;
+
+  @override
+  double computeDryBaseline(
+    BoxConstraints constraints,
+    TextBaseline baseline,
+  ) =>
+      (child!.getDryBaseline(const BoxConstraints(), baseline) ??
+          child!.getDryLayout(const BoxConstraints()).height * .8) +
+      _verticalPadding;
+
+  @override
+  void performLayout() {
+    child!.layout(const BoxConstraints(), parentUsesSize: true);
+    size = constraints.constrain(_naturalSize(child!.size));
+    (child!.parentData as BoxParentData).offset = Offset(
+      _gap,
+      _verticalPadding,
+    );
+  }
+
+  @override
+  void paint(PaintingContext context, Offset offset) {
+    final paint = Paint()
+      ..color = _color
+      ..strokeWidth = 1.5;
+    for (final x in [1.0, size.width - 1.0]) {
+      context.canvas.drawLine(
+        offset + Offset(x, .75),
+        offset + Offset(x, size.height - .75),
+        paint,
+      );
+    }
+    super.paint(context, offset);
+  }
 }
 
 class _FractionLayout extends MultiChildRenderObjectWidget {

@@ -175,7 +175,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Tooltip(
-            message: 'Zahl, Ans, Bruch oder Klammergruppe links vom Cursor übernehmen',
+            message: 'Zahl, Ans, Bruch, Betrag oder Klammergruppe links vom Cursor übernehmen',
             child: TextButton.icon(
               key: const ValueKey('action-wrap-fraction'),
               onPressed:
@@ -190,7 +190,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             ),
           ),
           const Text(
-            'Zahl, Ans, Bruch oder Klammergruppe links vom Cursor übernehmen.',
+            'Zahl, Ans, Bruch, Betrag oder Klammergruppe links vom Cursor übernehmen.',
             style: TextStyle(fontSize: 11, color: Color(0xFF667078)),
           ),
         ],

@@ -214,6 +214,10 @@ final class CalculatorController {
     }
     notice = '';
     if (shifted) {
+      if (id == 'KEY_LPAREN') {
+        _pressCore('ACTION_ABS');
+        return;
+      }
       if (id == 'KEY_MULTIPLY') {
         _pressCore('ACTION_PERMUTATION');
         return;

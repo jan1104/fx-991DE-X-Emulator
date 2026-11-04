@@ -24,7 +24,13 @@ final class EditorFraction extends EditorNode {
   const EditorFraction._(this.numerator, this.denominator);
 }
 
-enum FractionField { numerator, denominator }
+final class EditorAbsolute extends EditorNode {
+  final EditorSequence argument;
+  const EditorAbsolute._(this.argument);
+}
+
+// The historical enum name remains compatible with existing fraction paths.
+enum FractionField { numerator, denominator, argument }
 
 final class EditorStep {
   final int nodeIndex;
@@ -126,19 +132,26 @@ final class FractionEditor {
   EditorSequence get _field {
     var sequence = _snapshot.root;
     for (final step in _snapshot.cursor.path) {
-      final fraction = sequence.nodes[step.nodeIndex] as EditorFraction;
-      sequence = step.field == FractionField.numerator
-          ? fraction.numerator
-          : fraction.denominator;
+      sequence = _child(sequence.nodes[step.nodeIndex], step.field);
     }
     return sequence;
   }
+
+  static EditorSequence _child(EditorNode node, FractionField field) =>
+      switch ((node, field)) {
+        (EditorFraction(:final numerator), FractionField.numerator) =>
+          numerator,
+        (EditorFraction(:final denominator), FractionField.denominator) =>
+          denominator,
+        (EditorAbsolute(:final argument), FractionField.argument) => argument,
+        _ => throw ArgumentError('Field does not belong to this template'),
+      };
 
   void insertText(String text) {
     if (!_tokens.contains(text)) {
       throw ArgumentError.value(text, 'text', 'Expected one supported token');
     }
-    _insert(EditorText._(text), enter: false);
+    _insert(EditorText._(text));
   }
 
   void insertFraction() {
@@ -150,7 +163,14 @@ final class FractionEditor {
     }
     _insert(
       EditorFraction._(EditorSequence._([]), EditorSequence._([])),
-      enter: true,
+      enter: FractionField.numerator,
+    );
+  }
+
+  void insertAbsolute() {
+    _insert(
+      EditorAbsolute._(EditorSequence._([])),
+      enter: FractionField.argument,
     );
   }
 
@@ -233,6 +253,7 @@ final class FractionEditor {
       }
       start = opening;
     } else if (previous is! EditorFraction &&
+        previous is! EditorAbsolute &&
         !(previous is EditorText && previous.text == 'Ans')) {
       throw const CalculatorException(
         CalculatorErrorCode.unsupported,
@@ -280,20 +301,20 @@ final class FractionEditor {
   static int _fractionDepth(EditorSequence sequence) {
     var deepest = 0;
     for (final node in sequence.nodes) {
-      if (node is! EditorFraction) continue;
-      final numeratorDepth = _fractionDepth(node.numerator);
-      final denominatorDepth = _fractionDepth(node.denominator);
-      final depth =
-          1 +
-          (numeratorDepth > denominatorDepth
-              ? numeratorDepth
-              : denominatorDepth);
+      final depth = switch (node) {
+        EditorText() => 0,
+        EditorAbsolute(:final argument) => 1 + _fractionDepth(argument),
+        EditorFraction(:final numerator, :final denominator) =>
+          1 + _max(_fractionDepth(numerator), _fractionDepth(denominator)),
+      };
       if (depth > deepest) deepest = depth;
     }
     return deepest;
   }
 
-  void _insert(EditorNode node, {required bool enter}) {
+  static int _max(int a, int b) => a > b ? a : b;
+
+  void _insert(EditorNode node, {FractionField? enter}) {
     if (_count(_snapshot.root) >= maxNodes) {
       throw const CalculatorException(
         CalculatorErrorCode.limit,
@@ -308,12 +329,18 @@ final class FractionEditor {
       0,
       EditorSequence._(nodes),
     );
+    if (_fractionDepth(root) > maxDepth) {
+      throw const CalculatorException(
+        CalculatorErrorCode.limit,
+        'Template nesting limit reached',
+      );
+    }
     _snapshot = FractionEditorSnapshot._(
       root,
-      enter
+      enter != null
           ? EditorCursor._([
               ...cursor.path,
-              EditorStep._(cursor.offset, FractionField.numerator),
+              EditorStep._(cursor.offset, enter),
             ], 0)
           : EditorCursor._(cursor.path, cursor.offset + 1),
     );
@@ -338,12 +365,7 @@ final class FractionEditor {
         throw ArgumentError.value(cursor, 'cursor', 'Invalid fraction path');
       }
       final node = sequence.nodes[step.nodeIndex];
-      if (node is! EditorFraction) {
-        throw ArgumentError.value(cursor, 'cursor', 'Path is not a fraction');
-      }
-      sequence = step.field == FractionField.numerator
-          ? node.numerator
-          : node.denominator;
+      sequence = _child(node, step.field);
     }
     if (cursor.offset < 0 || cursor.offset > sequence.nodes.length) {
       throw ArgumentError.value(cursor, 'cursor', 'Invalid field offset');
@@ -353,7 +375,24 @@ final class FractionEditor {
 
   void deleteBackward() {
     final cursor = _snapshot.cursor;
-    if (cursor.offset == 0) return;
+    if (cursor.offset == 0) {
+      if (_field.nodes.isNotEmpty ||
+          cursor.path.isEmpty ||
+          cursor.path.last.field != FractionField.argument)
+        return;
+      final parentPath = cursor.path.take(cursor.path.length - 1).toList();
+      final index = cursor.path.last.nodeIndex;
+      var parent = _snapshot.root;
+      for (final step in parentPath) {
+        parent = _child(parent.nodes[step.nodeIndex], step.field);
+      }
+      final nodes = parent.nodes.toList()..removeAt(index);
+      _snapshot = FractionEditorSnapshot._(
+        _replace(_snapshot.root, parentPath, 0, EditorSequence._(nodes)),
+        EditorCursor._(parentPath, index),
+      );
+      return;
+    }
     final nodes = _field.nodes.toList()..removeAt(cursor.offset - 1);
     _snapshot = FractionEditorSnapshot._(
       _replace(_snapshot.root, cursor.path, 0, EditorSequence._(nodes)),
@@ -364,10 +403,16 @@ final class FractionEditor {
   void moveRight() {
     final cursor = _snapshot.cursor;
     if (cursor.offset < _field.nodes.length) {
-      if (_field.nodes[cursor.offset] is EditorFraction) {
+      final next = _field.nodes[cursor.offset];
+      if (next is EditorFraction || next is EditorAbsolute) {
         _move([
           ...cursor.path,
-          EditorStep._(cursor.offset, FractionField.numerator),
+          EditorStep._(
+            cursor.offset,
+            next is EditorAbsolute
+                ? FractionField.argument
+                : FractionField.numerator,
+          ),
         ], 0);
       } else {
         _move(cursor.path, cursor.offset + 1);
@@ -395,6 +440,11 @@ final class FractionEditor {
           ...cursor.path,
           EditorStep._(cursor.offset - 1, FractionField.denominator),
         ], previous.denominator.nodes.length);
+      } else if (previous is EditorAbsolute) {
+        _move([
+          ...cursor.path,
+          EditorStep._(cursor.offset - 1, FractionField.argument),
+        ], previous.argument.nodes.length);
       } else {
         _move(cursor.path, cursor.offset - 1);
       }
@@ -422,20 +472,17 @@ final class FractionEditor {
 
   void _moveVertically(FractionField destination) {
     final cursor = _snapshot.cursor;
-    if (cursor.path.isEmpty || cursor.path.last.field == destination) return;
+    if (cursor.path.isEmpty ||
+        cursor.path.last.field == destination ||
+        cursor.path.last.field == FractionField.argument)
+      return;
     final parentPath = cursor.path.take(cursor.path.length - 1).toList();
     var parent = _snapshot.root;
     for (final step in parentPath) {
-      final fraction = parent.nodes[step.nodeIndex] as EditorFraction;
-      parent = step.field == FractionField.numerator
-          ? fraction.numerator
-          : fraction.denominator;
+      parent = _child(parent.nodes[step.nodeIndex], step.field);
     }
     final index = cursor.path.last.nodeIndex;
-    final fraction = parent.nodes[index] as EditorFraction;
-    final target = destination == FractionField.numerator
-        ? fraction.numerator
-        : fraction.denominator;
+    final target = _child(parent.nodes[index], destination);
     _move([
       ...parentPath,
       EditorStep._(index, destination),
@@ -517,6 +564,16 @@ final class FractionEditor {
       switch (sequence.nodes[index]) {
         case EditorText(:final text):
           write(text, EditorCursor._(path, index));
+        case EditorAbsolute(:final argument):
+          final argumentPath = [
+            ...path,
+            EditorStep._(index, FractionField.argument),
+          ];
+          write('(', EditorCursor._(path, index));
+          write('Abs(', EditorCursor._(argumentPath, 0));
+          _project(argument, argumentPath, output, cursors);
+          write(')', EditorCursor._(argumentPath, argument.nodes.length));
+          write(')', EditorCursor._(path, index + 1));
         case EditorFraction(:final numerator, :final denominator):
           final numeratorPath = [
             ...path,
@@ -552,9 +609,12 @@ final class FractionEditor {
     (total, node) =>
         total +
         1 +
-        (node is EditorFraction
-            ? _count(node.numerator) + _count(node.denominator)
-            : 0),
+        switch (node) {
+          EditorText() => 0,
+          EditorFraction(:final numerator, :final denominator) =>
+            _count(numerator) + _count(denominator),
+          EditorAbsolute(:final argument) => _count(argument),
+        },
   );
 
   static EditorSequence _replace(
@@ -565,15 +625,22 @@ final class FractionEditor {
   ) {
     if (depth == path.length) return replacement;
     final step = path[depth];
-    final fraction = sequence.nodes[step.nodeIndex] as EditorFraction;
-    final numerator = step.field == FractionField.numerator
-        ? _replace(fraction.numerator, path, depth + 1, replacement)
-        : fraction.numerator;
-    final denominator = step.field == FractionField.denominator
-        ? _replace(fraction.denominator, path, depth + 1, replacement)
-        : fraction.denominator;
+    final node = sequence.nodes[step.nodeIndex];
+    final child = _replace(
+      _child(node, step.field),
+      path,
+      depth + 1,
+      replacement,
+    );
     final nodes = sequence.nodes.toList();
-    nodes[step.nodeIndex] = EditorFraction._(numerator, denominator);
+    nodes[step.nodeIndex] = switch ((node, step.field)) {
+      (EditorFraction(:final denominator), FractionField.numerator) =>
+        EditorFraction._(child, denominator),
+      (EditorFraction(:final numerator), FractionField.denominator) =>
+        EditorFraction._(numerator, child),
+      (EditorAbsolute(), FractionField.argument) => EditorAbsolute._(child),
+      _ => throw ArgumentError('Field does not belong to this template'),
+    };
     return EditorSequence._(nodes);
   }
 }

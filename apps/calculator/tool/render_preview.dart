@@ -21,6 +21,9 @@ void main() {
     'factorial',
     'permutation',
     'combination',
+    'absolute',
+    'absolute-fraction',
+    'absolute-error',
     'front',
     'settings',
     'periodic',
@@ -36,6 +39,9 @@ void main() {
     final factorial = scenario == 'factorial';
     final permutation = scenario == 'permutation';
     final combinatorics = permutation || scenario == 'combination';
+    final absolute = scenario.startsWith('absolute');
+    final absoluteFraction = scenario == 'absolute-fraction';
+    final absoluteError = scenario == 'absolute-error';
     final periodic = scenario.startsWith('periodic');
     final negativePeriod = scenario == 'periodic-negative';
     testWidgets('render the calculator preview: $scenario', (tester) async {
@@ -78,7 +84,29 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in combinatorics
+          in absolute
+              ? [
+                  'KEY_SHIFT',
+                  'KEY_LPAREN',
+                  if (absoluteFraction) ...[
+                    'KEY_NEGATE',
+                    'KEY_FRACTION',
+                    'KEY_1',
+                    'KEY_DOWN',
+                    'KEY_2',
+                    'KEY_RIGHT',
+                    'KEY_RIGHT',
+                  ] else if (!absoluteError) ...[
+                    'KEY_2',
+                    'KEY_SUBTRACT',
+                    'KEY_7',
+                    'KEY_RIGHT',
+                    'KEY_MULTIPLY',
+                    'KEY_2',
+                  ],
+                  'KEY_EQUALS',
+                ]
+              : combinatorics
               ? [
                   'KEY_1',
                   'KEY_0',
@@ -201,7 +229,13 @@ void main() {
       );
       expect(
         output.data ?? output.textSpan!.toPlainText(),
-        combinatorics
+        absolute
+            ? absoluteError
+                  ? 'Syntaxfehler'
+                  : absoluteFraction
+                  ? '1/2'
+                  : '10'
+            : combinatorics
             ? permutation
                   ? '5040'
                   : '210'
@@ -230,7 +264,7 @@ void main() {
         final repeating = span.children!.last as TextSpan;
         expect(repeating.style!.decoration, TextDecoration.overline);
       }
-      if (error) {
+      if (error || absoluteError) {
         expect(find.byKey(const ValueKey('formula-error')), findsOneWidget);
         expect(
           find.byKey(const ValueKey('display-error-help')),
@@ -254,7 +288,9 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          combinatorics
+          absolute
+              ? '../../build/reports/calculator-$scenario.png'
+              : combinatorics
               ? '../../build/reports/calculator-$scenario.png'
               : factorial
               ? '../../build/reports/calculator-factorial.png'

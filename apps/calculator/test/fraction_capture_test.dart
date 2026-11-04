@@ -20,6 +20,7 @@ List<Object> tree(EditorSequence sequence) => [
   for (final node in sequence.nodes)
     switch (node) {
       EditorText(:final text) => text,
+      EditorAbsolute(:final argument) => {'argument': tree(argument)},
       EditorFraction(:final numerator, :final denominator) => {
         'numerator': tree(numerator),
         'denominator': tree(denominator),
@@ -98,7 +99,7 @@ void main() {
         isNull,
       );
       const explanation =
-          'Zahl, Ans, Bruch oder Klammergruppe links vom Cursor übernehmen';
+          'Zahl, Ans, Bruch, Betrag oder Klammergruppe links vom Cursor übernehmen';
       final tooltipExplains = tester
           .widgetList<Tooltip>(find.byType(Tooltip))
           .any((tooltip) => tooltip.message == explanation);

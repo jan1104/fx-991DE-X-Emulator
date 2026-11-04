@@ -1,5 +1,11 @@
 # Entwicklungsstand
 
+## 04.11.2026 vormittags: strukturiertes Betragsfeld und App-Belegung
+
+Ausgangsbasis `3a3c974`, Arbeitskopie vor Beginn sauber. Der planmäßige Lauf übernimmt [BETRAG_EDITOR.md](BETRAG_EDITOR.md) als konkreten Umsetzungsvertrag. Vorhandene Quellenanalysen werden nicht wiederholt. Ein Subagent ergänzte `EditorAbsolute`, Argumentpfade, Navigation, Projektion, Ressourcenprüfung, beide Sitzungsaktionen und 45 vorbereitete Corefälle. Ein zweiter ergänzte die natürliche Ansicht mit skalierenden Betragsstrichen und 24 unabhängige Widgetfälle. Der Hauptagent verband SHIFT → ( mit der Aktion und ergänzte 16 Controllerprüfungen sowie drei Vorschauen: Handbuchrechnung, Betrag eines negativen Bruchs und gezielter Fehler eines leeren Arguments.
+
+Die bisherigen Bruchwerte bleiben erhalten; `FractionField.argument` wird angehängt und alle Feldzugriffe prüfen Knotenart und Feld. Die gemischte Vorlagentiefe bleibt auf 16 begrenzt. Math verwendet ein eigenes Argumentfeld, Linear ein atomisches `Abs(`-Präfix und eine ausdrücklich eingegebene schließende Klammer. Nach Ergebnissen wird exaktes Ans übernommen. Einzelheiten und Abweichungen von nachgewiesenem Originalverhalten bleiben im Vertrag dokumentiert. Core-Formatierung und statische Analyse bestanden; die Appanalyse ergänzte zwei alte erschöpfende Testbaumhelfer um den neuen Knotenfall. Alte erwartete Bäume wurden dabei nicht geändert. Planungskatalogprüfer bestanden separat. Tatsächliche Prüfungen werden nach dem GitHub-Test-/Web-Build ergänzt. Keine bekannten blockierten lokalen Teststarts, Werkzeugwechsel oder Änderungen an Sicherheitsrichtlinien; Originale bleiben unverändert.
+
 ## 04.11.2026: Betragsauswertung im Core und Argumentfeldvertrag
 
 Ausgangsbasis `0cf9078`, Arbeitskopie vor Beginn sauber. Der planmäßige Lauf greift das dokumentierte nächste Präfixfunktionspaket auf. AGENTS, README, Entwicklungsstand und Entwicklungsplan wurden zuerst gelesen. Die vorhandenen Quellen belegen unterschiedliche Abschlüsse der Betragsfunktion in Math und Linear. Das bisherige Bruch-/Textmodell besitzt kein Funktionsargument; deshalb werden Core-Auswertung und der konkrete natürliche Editorentwurf als begrenztes erstes Paket getrennt umgesetzt. [BETRAG.md](BETRAG.md) hält diesen Umfang vor der Umsetzung fest.

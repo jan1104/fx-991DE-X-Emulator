@@ -113,6 +113,7 @@ void main() {
       CalculatorKey.factorial: 'ACTION_FACTORIAL',
       CalculatorKey.permutation: 'ACTION_PERMUTATION',
       CalculatorKey.combination: 'ACTION_COMBINATION',
+      CalculatorKey.absolute: 'ACTION_ABS',
       CalculatorKey.negate: 'KEY_NEGATE',
       CalculatorKey.decimal: 'KEY_DECIMAL',
       CalculatorKey.leftParenthesis: 'KEY_LPAREN',

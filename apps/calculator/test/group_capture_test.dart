@@ -18,6 +18,7 @@ List<Object> tree(EditorSequence sequence) => [
   for (final node in sequence.nodes)
     switch (node) {
       EditorText(:final text) => text,
+      EditorAbsolute(:final argument) => {'argument': tree(argument)},
       EditorFraction(:final numerator, :final denominator) => {
         'numerator': tree(numerator),
         'denominator': tree(denominator),

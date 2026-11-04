@@ -123,7 +123,7 @@ void main() {
         physical.where((key) => c.isKeyEnabled(key.id)),
         hasLength(fractions ? 34 : 31),
       );
-      expect(CalculatorKey.values, hasLength(32));
+      expect(CalculatorKey.values, hasLength(33));
       for (final (id, text) in [
         ('ACTION_PERMUTATION', 'nPr'),
         ('ACTION_COMBINATION', 'nCr'),

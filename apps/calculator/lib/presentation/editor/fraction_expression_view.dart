@@ -460,7 +460,8 @@ class _RenderAbsolute extends RenderShiftedBox {
 
   @override
   double computeDistanceToActualBaseline(TextBaseline baseline) =>
-      (child!.getDistanceToActualBaseline(baseline) ?? child!.size.height * .8) +
+      (child!.getDistanceToActualBaseline(baseline) ??
+          child!.size.height * .8) +
       _verticalPadding;
 
   @override

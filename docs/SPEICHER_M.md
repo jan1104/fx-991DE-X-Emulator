@@ -2,6 +2,8 @@
 
 ## Gemeinsame Sitzungsspeicher: Vertrag vom 04.11.2026 abends
 
+Abgeschlossen geprüft auf `2616bd9` im [GitHub-Lauf 41919856832](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41919856832): **1041 Coretests, 449 Appfälle, Web-Build und 18 bestehende Vorschauen bestanden**. Die 57 neuen Corefälle und elf neuen Controllerfälle sind darin enthalten. Die sichtbare M-Tastenbelegung ist weiterhin offen.
+
 Das Folgepaket bindet `CalculatorMemory` an beide Eingabesitzungen. Die Konstruktoren akzeptieren optional `memory:`; ohne Übergabe bleibt jede Sitzung unabhängig. Der Appcontroller erzeugt ein eigenes Speicherobjekt und übergibt es an Math und Linear. Jeder neue Controller beginnt unabhängig bei null. Eine Persistenz über einen Appneustart ist weiterhin nicht enthalten.
 
 Der Snapshotabruf und jeder öffentliche zustandsabhängige Sitzungsaufruf übernehmen den aktuellen Ans aus diesem Speicher. Nur bei abweichendem Ans wird dafür ein neuer Snapshot erzeugt. Vorher ausgegebene Snapshots bleiben unverändert. Eingabebaum beziehungsweise Tokens, Cursor, Fehler und Fehlerziel, gespeicherter Ergebniswert und dessen Darstellungswahl bleiben erhalten. Das ist eine gezielte Änderung der früheren Prototypregel mit getrennten Ans-Registern; alte Wechseltests werden entsprechend präzisiert. Ein Wechsel über die Werkzeugleiste und über das Setupmenü verwendet denselben gemeinsamen Speicher.

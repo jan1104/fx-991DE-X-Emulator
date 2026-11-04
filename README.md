@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 04.11.2026
 
-Der neue Core-Speicher M verwaltet Ans und M exakt und übernimmt Ergebnisse atomar. 39 neue Speicherfälle sind bestanden; die gemeinsame Math-/Linear-Anbindung und sichtbare M-Tasten folgen als nächstes. Aktueller GitHub-Prüfstand für `12b64e7`: **984 Coretests, 438 Appfälle, Web-Build und 18 Vorschauen bestanden**. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
+Math und Linear verwenden jetzt denselben exakten Ans-/M-Speicher pro Rechner. Beim Umschalten bleiben Entwürfe und frühere Ergebnisanzeigen erhalten; Ans folgt der letzten erfolgreichen Rechnung. Sichtbare M-Tasten folgen als nächstes. Aktueller GitHub-Prüfstand für `2616bd9`: **1041 Coretests, 449 Appfälle, Web-Build und 18 Vorschauen bestanden**. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 

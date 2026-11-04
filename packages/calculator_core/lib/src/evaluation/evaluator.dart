@@ -42,6 +42,7 @@ Rational _evaluate(Expression expression, int depth, _EvaluationBudget budget) {
       result = switch (operator) {
         UnaryOperator.plus => value,
         UnaryOperator.negate => -value,
+        UnaryOperator.absolute => value.numerator.isNegative ? -value : value,
         UnaryOperator.factorial => _factorial(
           value,
           expression.position,

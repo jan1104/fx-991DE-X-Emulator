@@ -9,6 +9,7 @@ Expression parseExpression(String source, {Rational? answer}) =>
 enum _Kind {
   number,
   answer,
+  absolute,
   plus,
   minus,
   times,
@@ -92,6 +93,11 @@ final class _Parser {
             position,
           ),
         );
+        position += 3;
+        continue;
+      }
+      if (source.startsWith('Abs', position)) {
+        tokens.add(_Token(_Kind.absolute, 'Abs', position));
         position += 3;
         continue;
       }
@@ -285,6 +291,19 @@ final class _Parser {
 
   Expression _primary() {
     final token = _current;
+    if (token.kind == _Kind.absolute) {
+      _take();
+      if (_current.kind != _Kind.left) {
+        throw _syntax('Abs requires an opening parenthesis', _current.position);
+      }
+      _take();
+      final operand = _sum();
+      if (_current.kind != _Kind.right) {
+        throw _syntax('Missing closing parenthesis', _current.position);
+      }
+      _take();
+      return UnaryExpression(UnaryOperator.absolute, operand, token.position);
+    }
     if (token.kind == _Kind.answer) {
       if (answer == null) {
         throw CalculatorException(

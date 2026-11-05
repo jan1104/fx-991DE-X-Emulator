@@ -325,7 +325,7 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          absolute
+          memory || absolute
               ? '../../build/reports/calculator-$scenario.png'
               : combinatorics
               ? '../../build/reports/calculator-$scenario.png'

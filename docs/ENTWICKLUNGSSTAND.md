@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 05.11.2026: M+/M− und Speicherindikator in der App
+
+Ausgangsbasis `fbfc710`, Arbeitskopie vor Beginn sauber. Arbeitsregeln, README, Entwicklungsstand und Entwicklungsplan wurden gelesen. Der dokumentierte nächste Schritt verbindet die bestehende M+-Taste und SHIFT-Belegung mit `applyMemory` sowie den gemeinsamen Registerzustand mit einem M-Statusindikator. [SPEICHER_M.md](SPEICHER_M.md) legt vor der Anbindung die Bereiche Eingabe/Ergebnis/Fehler, Dezimalwunsch, SHIFT-Verbrauch, Menü-/OFF-Sperren und die unveränderten Löschregeln fest. Der Hauptagent bearbeitet Controller, Statussemantik, drei Vorschauen, Vertrag und Review. Ein Subagent ergänzt unabhängige Controller-/Widgetfälle und passt ausschließlich die Primärbelegungszählungen bestehender Tests an. Core-API und 50 physische Plätze bleiben unverändert; jetzt sind 32/35 Primärbelegungen vorgesehen.
+
+Die drei neuen Vorschauszenarien zeigen die Handbuchrechnung (Anzeige 15, M gesetzt), einen negativen Speicher in Linear und die exakte Aufhebung mit entferntem M-Zeichen. Die sichtbare Textsemantik benennt den belegten unabhängigen Speicher. Tatsächliche Tests und visuelle QA werden nach dem GitHub-Test-/Web-Build ergänzt. Keine blockierten lokalen Laufzeitteststarts, Werkzeugwechsel oder Sicherheitsänderungen. Keine erneute Quellenanalyse oder Änderung der Originale.
+
+### Nächster Schritt
+
+Im nächsten planmäßigen Lauf STO/RECALL für die Variable M als begrenztes Paket spezifizieren. Bereits belegt sind `0 STO M` zum Löschen und die Auswahl über die Variablenübersicht. Vor Umsetzung Bereitschaftszustand, AC-Abbruch, Wertanzeige und Verhalten gegenüber Ans genau festlegen; weitere Variablen, ALPHA als Ausdrucksoperand und Resetmenüs getrennt halten. Bis dahin kann M über M+/M− aufgebaut beziehungsweise exakt aufgehoben werden. Originalvergleich und native Builds bleiben offen. Kein zusätzlicher automatischer Arbeitsbeginn vor dem Zeitplan.
+
 ## 04.11.2026 abends: gemeinsamer Speicher in Math und Linear
 
 Ausgangsbasis `91b2292`, Arbeitskopie vor Beginn sauber. Arbeitsregeln, README, Entwicklungsstand, Entwicklungsplan und Speichervertrag wurden gelesen. Das dokumentierte nächste Paket verbindet beide Core-Sitzungen mit einem injizierbaren `CalculatorMemory`; ein Appcontroller besitzt genau einen gemeinsamen Speicher. Ein Subagent bearbeitet die beiden Sitzungen und unabhängige Corefälle, der Hauptagent Controllerintegration, Appprüfungen, Vertrag und abschließenden Review. Keine wiederholte Quellenanalyse, keine Originaldateien verändert.

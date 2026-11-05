@@ -272,6 +272,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   Text(
                     _controller.displayStatus,
                     key: const ValueKey('display-status'),
+                    semanticsLabel: _controller.memory.snapshot.hasMemory
+                        ? '${_controller.displayStatus}, Unabhängiger Speicher M belegt'
+                        : _controller.displayStatus,
                     style: const TextStyle(
                       fontSize: 10,
                       fontWeight: FontWeight.w600,

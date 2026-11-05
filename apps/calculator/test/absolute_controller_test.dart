@@ -34,7 +34,7 @@ void main() {
       expect(keys, hasLength(50));
       expect(
         keys.where((key) => c.isKeyEnabled(key.id)),
-        hasLength(math ? 34 : 31),
+        hasLength(math ? 35 : 32),
       );
       expect(keys.where((key) => key.id == 'ACTION_ABS'), isEmpty);
       expect(CalculatorKey.values, hasLength(33));

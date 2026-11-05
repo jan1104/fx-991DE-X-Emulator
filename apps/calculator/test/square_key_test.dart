@@ -87,7 +87,7 @@ void main() {
               tester.widget<FilledButton>(keyed(definition.id)).onPressed !=
               null,
         ),
-        hasLength(structured ? 34 : 31),
+        hasLength(structured ? 35 : 32),
       );
       expect(
         tester.widget<FilledButton>(keyed('KEY_SQUARE')).onPressed,

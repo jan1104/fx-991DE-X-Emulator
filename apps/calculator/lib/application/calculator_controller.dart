@@ -120,7 +120,7 @@ final class CalculatorController {
   }
 
   /// Unsupported arithmetic remains visibly unavailable on the physical skin.
-  /// ALPHA and secondary functions have no implemented semantic latch yet.
+  /// ALPHA remains unavailable; supported SHIFT actions share this controller.
   bool isKeyEnabled(String id) {
     if (id == 'KEY_ON') return true;
     if (!poweredOn) return false;
@@ -140,7 +140,7 @@ final class CalculatorController {
       }
       return false;
     }
-    if (id == 'KEY_SD') return true;
+    if (id == 'KEY_SD' || id == 'KEY_M_PLUS') return true;
     if (fractions && const {'KEY_FRACTION', 'KEY_UP', 'KEY_DOWN'}.contains(id))
       return true;
     return CalculatorKey.fromId(id) != null;
@@ -221,6 +221,18 @@ final class CalculatorController {
       return;
     }
     notice = '';
+    if (id == 'KEY_M_PLUS') {
+      final operation = shifted
+          ? MemoryOperation.subtract
+          : MemoryOperation.add;
+      fractions
+          ? structured.applyMemory(operation)
+          : session.applyMemory(operation);
+      if (settings.decimalOutput) {
+        _selectDisplay(RationalDisplayFormat.exactDecimal);
+      }
+      return;
+    }
     if (shifted) {
       if (id == 'KEY_LPAREN') {
         _pressCore('ACTION_ABS');
@@ -358,6 +370,7 @@ final class CalculatorController {
       CalculatorAngleUnit.gradians => 'G',
     },
     if (shift) 'SHIFT',
+    if (memory.snapshot.hasMemory) 'M',
     if (fractions) 'Math',
     if (settings.numberFormat == CalculatorNumberFormat.fix) 'FIX',
     if (settings.numberFormat == CalculatorNumberFormat.sci) 'SCI',

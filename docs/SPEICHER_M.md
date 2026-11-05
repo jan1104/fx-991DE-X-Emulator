@@ -1,5 +1,15 @@
 # Unabhängiger Speicher M
 
+## App-Belegung: Vertrag vom 05.11.2026
+
+Dieses Paket verbindet die vorhandene physische Taste `KEY_M_PLUS` mit M+ und ihre SHIFT-Belegung mit M−. Beide Eingabearten verwenden dieselbe Sitzungs-API und denselben Speicher. Während einer nichtleeren Eingabe wird gerechnet und der Summand übernommen; nach einer Ergebnisanzeige wird der gespeicherte Wert verwendet. Leere Entwürfe und Fehlerphasen schreiben nichts. SHIFT wird auch bei einer solchen wirkungslosen Aktion verbraucht. Die bestehenden Menü- und OFF-Sperren gelten vor der Speicheraktion.
+
+Der Bildschirm zeigt weiterhin das berechnete Ergebnis, nicht den M-Gesamtwert. Bei Math → Dezimal und Linear → Dezimal wird der normale Dezimalwunsch auch nach M+/M− angewandt; in den anderen Eingabearten beginnt die neue Ergebnisanzeige mit Bruchwahl. Fix/Sci/Norm und S⇔D bleiben reine Ausgabe. Ans und M werden nicht gerundet. Die Handbuchfolge `10 × 5 M+`, dann `10 + 5 SHIFT M+` muss somit M = 35, Anzeige/Ans = 15 ergeben. Quelle aus dem vorhandenen Inventar: H, physische PDF-S. 18.
+
+Der Status erhält das Zeichen `M`, genau wenn der exakte Speicher ungleich null ist. Negative Werte setzen ihn ebenfalls; exakte Aufhebung entfernt ihn. Die zugängliche Beschriftung des Status ergänzt „Unabhängiger Speicher M belegt“. OFF blendet das Display aus und behält den Zustand innerhalb des Controllers; ON und AC erhalten die Register. Der Indikator ist keine zusätzliche Speicherwertanzeige und verändert keine Berechnung.
+
+Das physische Register bleibt bei 50 Plätzen, das Core-Tastenenum bei 33 Aktionen. Eine weitere Primärbelegung erhöht die aktiven Plätze von 31/34 auf 32 in Linear und 35 in Math. M− verwendet den bestehenden Bildschirm-SHIFT-Zustand; es wird kein neuer PC-Tastaturkurzbefehl erfunden. Die zugeordneten Ziffern-/Operator-/Enter-Ereignisse bleiben unverändert. Die noch deaktivierten ALPHA-/STO-/RECALL-/RESET-Funktionen werden dadurch nicht freigeschaltet. Originalvergleich, natives Gerät und Persistenz über einen Appneustart bleiben offen. Der tatsächliche Test- und Vorschauprüfstand steht im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
+
 ## Gemeinsame Sitzungsspeicher: Vertrag vom 04.11.2026 abends
 
 Abgeschlossen geprüft auf `2616bd9` im [GitHub-Lauf 41919856832](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/41919856832): **1041 Coretests, 449 Appfälle, Web-Build und 18 bestehende Vorschauen bestanden**. Die 57 neuen Corefälle und elf neuen Controllerfälle sind darin enthalten. Die sichtbare M-Tastenbelegung ist weiterhin offen.

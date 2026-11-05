@@ -24,12 +24,16 @@ void main() {
     'absolute',
     'absolute-fraction',
     'absolute-error',
+    'memory',
+    'memory-negative',
+    'memory-cleared',
     'front',
     'settings',
     'periodic',
     'periodic-negative',
   ]) {
-    final structured = scenario != 'linear';
+    final structured = scenario != 'linear' && scenario != 'memory-negative';
+    final memory = scenario.startsWith('memory');
     final error = scenario == 'error';
     final capture = scenario == 'capture';
     final group = scenario == 'group';
@@ -84,7 +88,25 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in absolute
+          in memory
+              ? scenario == 'memory'
+                    ? [
+                        'KEY_1',
+                        'KEY_0',
+                        'KEY_MULTIPLY',
+                        'KEY_5',
+                        'KEY_M_PLUS',
+                        'KEY_1',
+                        'KEY_0',
+                        'KEY_ADD',
+                        'KEY_5',
+                        'KEY_SHIFT',
+                        'KEY_M_PLUS',
+                      ]
+                    : scenario == 'memory-negative'
+                    ? ['KEY_2', 'KEY_SHIFT', 'KEY_M_PLUS']
+                    : ['KEY_7', 'KEY_M_PLUS', 'KEY_SHIFT', 'KEY_M_PLUS']
+              : absolute
               ? [
                   'KEY_SHIFT',
                   'KEY_LPAREN',
@@ -229,7 +251,13 @@ void main() {
       );
       expect(
         output.data ?? output.textSpan!.toPlainText(),
-        absolute
+        memory
+            ? scenario == 'memory'
+                  ? '15'
+                  : scenario == 'memory-negative'
+                  ? '2'
+                  : '7'
+            : absolute
             ? absoluteError
                   ? 'Syntaxfehler'
                   : absoluteFraction
@@ -259,6 +287,15 @@ void main() {
             ? 'Mathem. Fehler'
             : '1/2',
       );
+      if (memory) {
+        final status = tester.widget<Text>(
+          find.byKey(const ValueKey('display-status')),
+        );
+        expect(
+          status.data!.split(RegExp(r'\s+')).contains('M'),
+          scenario != 'memory-cleared',
+        );
+      }
       if (periodic) {
         final span = output.textSpan! as TextSpan;
         final repeating = span.children!.last as TextSpan;

@@ -50,6 +50,8 @@ Fortschreibung 04.11.2026 nachmittags: Der Speichervertrag ist in [SPEICHER_M.md
 
 Fortschreibung 04.11.2026 abends: Beide Eingabesitzungen akzeptieren den gemeinsamen Core-Speicher; der Appcontroller teilt genau eine Instanz zwischen Math und Linear. Snapshot-Ans folgt dem aktuellen Register, gespeicherte Ergebnisse und Entwürfe bleiben getrennt. Die Sitzungs-API `applyMemory` ergänzt atomare Speicheraktionen ohne erneute Auswertung eines angezeigten Ergebnisses. Der GitHub-Lauf auf `2616bd9` bestand 1041 Coretests, 449 Appfälle, Web-Build und 18 Vorschauen. Als nächstes folgen die sichtbare M+/M−-Belegung und der M-Indikator mit eigener App-Abnahme. Vertrag und tatsächlicher Prüfstand: [SPEICHER_M.md](SPEICHER_M.md), [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
 
+Fortschreibung 05.11.2026: M+ und SHIFT → M− sind in beiden Eingabearten angebunden, einschließlich M-Status und zugänglicher Beschriftung. Geprüft auf `db6bb60`: 1041 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen. Alle 21 Bilddateien wurden im Artefakt nachgewiesen; drei M-Ansichten sind visuell geprüft. Nächstes begrenztes Paket ist der STO-/RECALL-Vertrag für M; weitere Variablen und Resetmenüs bleiben offen. Umfang und Grenzen: [SPEICHER_M.md](SPEICHER_M.md), [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
+
 ## Risiken und offene Entscheidungen
 
 - **Bestätigt:** H deckt zwei Modelle ab; unkritische Übernahme würde falsche Grenzen erzeugen. Nur fx-991DE X ist Zielmodell.

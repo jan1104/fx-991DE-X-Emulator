@@ -2,6 +2,8 @@
 
 ## App-Belegung: Vertrag vom 05.11.2026
 
+Abgeschlossen geprüft auf `db6bb60` im [GitHub-Lauf 42081398723](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42081398723): **1041 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen bestanden**. 31 neue Appfälle sind enthalten. Drei getrennte M-Bilder wurden visuell geprüft; Bildbestand und Grenzen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md). STO/RECALL und das Resetmenü bleiben offen.
+
 Dieses Paket verbindet die vorhandene physische Taste `KEY_M_PLUS` mit M+ und ihre SHIFT-Belegung mit M−. Beide Eingabearten verwenden dieselbe Sitzungs-API und denselben Speicher. Während einer nichtleeren Eingabe wird gerechnet und der Summand übernommen; nach einer Ergebnisanzeige wird der gespeicherte Wert verwendet. Leere Entwürfe und Fehlerphasen schreiben nichts. SHIFT wird auch bei einer solchen wirkungslosen Aktion verbraucht. Die bestehenden Menü- und OFF-Sperren gelten vor der Speicheraktion.
 
 Der Bildschirm zeigt weiterhin das berechnete Ergebnis, nicht den M-Gesamtwert. Bei Math → Dezimal und Linear → Dezimal wird der normale Dezimalwunsch auch nach M+/M− angewandt; in den anderen Eingabearten beginnt die neue Ergebnisanzeige mit Bruchwahl. Fix/Sci/Norm und S⇔D bleiben reine Ausgabe. Ans und M werden nicht gerundet. Die Handbuchfolge `10 × 5 M+`, dann `10 + 5 SHIFT M+` muss somit M = 35, Anzeige/Ans = 15 ergeben. Quelle aus dem vorhandenen Inventar: H, physische PDF-S. 18.

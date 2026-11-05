@@ -2,9 +2,9 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 04.11.2026
+## Stand am 05.11.2026
 
-Math und Linear verwenden jetzt denselben exakten Ans-/M-Speicher pro Rechner. Beim Umschalten bleiben Entwürfe und frühere Ergebnisanzeigen erhalten; Ans folgt der letzten erfolgreichen Rechnung. Sichtbare M-Tasten folgen als nächstes. Aktueller GitHub-Prüfstand für `2616bd9`: **1041 Coretests, 449 Appfälle, Web-Build und 18 Vorschauen bestanden**. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
+M+ und SHIFT → M− sind jetzt in Math und Linear bedienbar. Beide verwenden denselben exakten Ans-/M-Speicher; die Anzeige zeigt den Summanden und kennzeichnet belegten Speicher mit M. AC und ON erhalten die Register. Aktueller GitHub-Prüfstand für `db6bb60`: **1041 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen bestanden**. Drei M-Ansichten wurden visuell geprüft. STO/RECALL folgen als nächstes. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 
@@ -12,13 +12,13 @@ Grundrechnen, Brüche und exaktes Ans sind mit Quadrat, Kubieren, Kehrwert, Proz
 
 SHIFT → ( berechnet jetzt auch in der App den Betrag. Math verwendet ein natürliches Argumentfeld mit skalierenden Betragsstrichen; Linear schließt das Funktionsargument ausdrücklich mit `)`. Navigation, exaktes Ans, Brüche im Argument und Fehlerkorrektur sind geprüft: [Betragsfunktion](docs/BETRAG.md), [Editorvertrag](docs/BETRAG_EDITOR.md).
 
-Der unabhängige GitHub-Lauf für `1d3eecb` hat **945 Coretests und 438 App-/Bedientests bestanden**, die Browser-Version gebaut und **18 separate Vorschauszenarien** ausgeführt. Drei neue Betragsansichten wurden visuell geprüft, einschließlich hohem Bruch und leerem Argument. [Prüfstand und Grenzen](docs/ENTWICKLUNGSSTAND.md), [Browserdateien unter GitHub Actions](https://github.com/jan1104/fx-991DE-X-Emulator/actions). Native Builds und Originalvergleich bleiben offen; die lokale Windows-Testblockade bleibt bestehen. Bedienung: [Front und Setup](docs/FRONT_UND_SETUP.md), [Kombinatorik](docs/KOMBINATORIK.md).
+Der frühere GitHub-Lauf für das Betragsfeld auf `1d3eecb` hat **945 Coretests und 438 App-/Bedientests bestanden**, die Browser-Version gebaut und **18 separate Vorschauszenarien** ausgeführt. Drei neue Betragsansichten wurden visuell geprüft, einschließlich hohem Bruch und leerem Argument. [Prüfstand und Grenzen](docs/ENTWICKLUNGSSTAND.md), [Browserdateien unter GitHub Actions](https://github.com/jan1104/fx-991DE-X-Emulator/actions). Native Builds und Originalvergleich bleiben offen; die lokale Windows-Testblockade bleibt bestehen. Bedienung: [Front und Setup](docs/FRONT_UND_SETUP.md), [Kombinatorik](docs/KOMBINATORIK.md).
 
 Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig gepusht werden; automatische neue Arbeitsläufe beginnen ausschließlich alle sechs Stunden. Die bereits veröffentlichten Originalreferenzen bleiben erhalten; neue fremde Originaldateien bleiben ohne gesonderte Freigabe lokal.
 
 ## Dokumentation
 
-- [Speicher M: Core-Zustand und geplante App-Anbindung](docs/SPEICHER_M.md)
+- [Speicher M: Core-Zustand, M+/M− und Anzeige](docs/SPEICHER_M.md)
 - [Bestandsaufnahme und Quellen](docs/BESTANDSAUFNAHME.md)
 - [Funktionsumfang und Modellgrenzen](docs/FUNKTIONSUMFANG.md)
 - [Tasten, Menüs und Bedienabläufe](docs/TASTEN_UND_BEDIENUNG.md)

@@ -252,35 +252,38 @@ void main() {
       '$mode screen M keys run the handbook sequence and announce M',
       (tester) async {
         final semantics = tester.ensureSemantics();
-        addTearDown(semantics.dispose);
-        await boot(tester, math);
-        await taps(tester, [
-          ...entry('10*5'),
-          'KEY_M_PLUS',
-          ...entry('10+5'),
-          'KEY_SHIFT',
-          'KEY_M_PLUS',
-        ]);
-        expect(text(tester, 'display-result'), '15');
-        expect(text(tester, 'display-answer'), 'Ans: 15');
-        expect(widgetIndicator(tester), isTrue);
-        expect(
-          tester.widget<Text>(keyed('display-status')).semanticsLabel,
-          contains('Unabhängiger Speicher M belegt'),
-        );
-        expect(
-          find.bySemanticsLabel(RegExp('Unabhängiger Speicher M belegt')),
-          findsOneWidget,
-        );
-        await taps(tester, [
-          'KEY_AC',
-          ...entry('35'),
-          'KEY_SHIFT',
-          'KEY_M_PLUS',
-        ]);
-        expect(widgetIndicator(tester), isFalse);
-        expect(text(tester, 'display-result'), '35');
-        expect(tester.takeException(), isNull);
+        try {
+          await boot(tester, math);
+          await taps(tester, [
+            ...entry('10*5'),
+            'KEY_M_PLUS',
+            ...entry('10+5'),
+            'KEY_SHIFT',
+            'KEY_M_PLUS',
+          ]);
+          expect(text(tester, 'display-result'), '15');
+          expect(text(tester, 'display-answer'), 'Ans: 15');
+          expect(widgetIndicator(tester), isTrue);
+          expect(
+            tester.widget<Text>(keyed('display-status')).semanticsLabel,
+            contains('Unabhängiger Speicher M belegt'),
+          );
+          expect(
+            find.bySemanticsLabel(RegExp('Unabhängiger Speicher M belegt')),
+            findsOneWidget,
+          );
+          await taps(tester, [
+            'KEY_AC',
+            ...entry('35'),
+            'KEY_SHIFT',
+            'KEY_M_PLUS',
+          ]);
+          expect(widgetIndicator(tester), isFalse);
+          expect(text(tester, 'display-result'), '35');
+          expect(tester.takeException(), isNull);
+        } finally {
+          semantics.dispose();
+        }
       },
     );
 

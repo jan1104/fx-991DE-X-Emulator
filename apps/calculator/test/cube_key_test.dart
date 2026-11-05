@@ -114,7 +114,7 @@ void main() {
     final mode = fractions ? 'Math' : 'Linear';
 
     test(
-      '$mode controller keeps 50 physical positions and 31/34 active primary keys',
+      '$mode controller keeps 50 physical positions and 32/35 active primary keys',
       () {
         final c = controller(fractions);
         final physical = calculatorRows.expand((row) => row).toList();

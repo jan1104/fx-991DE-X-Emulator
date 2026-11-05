@@ -83,9 +83,9 @@ void main() {
       await pumpCalculator(tester, structured: false);
       expect(keyed('action-wrap-fraction'), findsNothing);
       expect(calculatorRows.expand((row) => row), hasLength(50));
-      expect(physicalEnabledCount(tester), 31);
+      expect(physicalEnabledCount(tester), 32);
       await tap(tester, 'input-fractions');
-      expect(physicalEnabledCount(tester), 34);
+      expect(physicalEnabledCount(tester), 35);
       expect(keyed('action-wrap-fraction'), findsOneWidget);
       expect(
         find.descendant(
@@ -112,7 +112,7 @@ void main() {
         tester.widget<TextButton>(keyed('action-wrap-fraction')).onPressed,
         isNotNull,
       );
-      expect(physicalEnabledCount(tester), 34);
+      expect(physicalEnabledCount(tester), 35);
     },
   );
 
@@ -446,7 +446,7 @@ void main() {
         'KEY_EQUALS',
       ]);
       expect(result(tester), '4');
-      expect(physicalEnabledCount(tester), 34);
+      expect(physicalEnabledCount(tester), 35);
       expect(tester.takeException(), isNull);
       await tap(tester, 'input-linear');
       expect(keyed('action-wrap-fraction'), findsNothing);
@@ -457,7 +457,7 @@ void main() {
             .toPlainText(),
         '8+1│',
       );
-      expect(physicalEnabledCount(tester), 31);
+      expect(physicalEnabledCount(tester), 32);
       await tap(tester, 'KEY_EQUALS');
       expect(result(tester), '9');
       expect(tester.takeException(), isNull);

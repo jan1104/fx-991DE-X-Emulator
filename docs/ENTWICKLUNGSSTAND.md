@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 06.11.2026 morgens: exakter M-Operand im Core
+
+Ausgangsbasis `469205b`, Arbeitskopie vor Beginn sauber. Arbeitsregeln, README, Entwicklungsstand und Entwicklungsplan wurden gelesen. Das erste Umsetzungspaket aus [STO_RECALL_M.md](STO_RECALL_M.md) ergänzt ausschließlich den exakten M-Operanden. Ein Subagent bearbeitet Parser/Auswertung und unabhängige Rechenfälle, ein zweiter Editor, Navigation, Projektion und Editorfälle. Der Hauptagent verbindet die Registerkontexte mit `CalculatorMemory.calculate` und strukturierter Sitzung, ergänzt elf Transaktionsfälle und prüft Integration/Dokumentation/GitHub-Lauf. Quellenanalysen werden nicht wiederholt, Originale bleiben unverändert.
+
+`memoryValue:` ist ein optionaler expliziter Rational-Kontext neben Ans. M bindet einen Zahlenknoten ohne globalen Speicher oder neuen AST-Typ. Ein fehlender Kontext meldet Unsupported mit Quellposition; ein bereits geparster Ausdruck behält seinen gebundenen Wert. `EditorText('M')` bleibt ein einzelner Baustein unabhängig von der Größe des Speicherwerts und kann als Zähler übernommen werden. Die vorhandenen Ausdrucks-/Arbeits-/Wertebudgets gelten weiter. Explizites `2*M` und bisheriges `2(M)` sind vorgesehen; implizites `2M` wird nicht neu eingeführt. Keine neue Coretaste, keine ALPHA-/STO-/RECALL-Tastenbelegung und keine neue Appansicht in diesem Paket. Tatsächlicher Prüfstand wird nach dem unabhängigen GitHub-Test-/Web-Build ergänzt. Keine bekannten blockierten lokalen Laufzeitteststarts oder Änderungen an Werkzeug-/Sicherheitsversionen.
+
+### Nächster Schritt
+
+Im nächsten planmäßigen Lauf reine STO-Kandidatenvorbereitung und eine kohärente Recall-Ladeaktion in den Sitzungen als begrenztes Paket umsetzen. Der neue M-Baustein ermöglicht dabei einen passenden Ausdruck statt einer bloß geänderten Ergebnisanzeige. Kandidatenfrieren, Herkunftsprüfung und Abbruch ohne Rollback externer Änderungen müssen dem Vertrag folgen. Die Appanbindung benötigt anschließend den eigenen Dialogzustand, eine reine Norm-1-Vorschauformatierung und priorisiertes Eingaberouting mit getrennten Controller-/Widgetfällen. Keine neue automatische Arbeit außerhalb des Zeitplans starten.
+
 ## 06.11.2026: STO-/RECALL-Vertrag und nötiger M-Operand
 
 Ausgangsbasis `5c1d020`, Arbeitskopie vor Beginn sauber. Arbeitsregeln, README, Entwicklungsstand und Entwicklungsplan wurden gelesen. Das dokumentierte nächste Arbeitspaket war ausdrücklich die Spezifikation von STO/RECALL vor der Anbindung. [STO_RECALL_M.md](STO_RECALL_M.md) hält jetzt Quellenstatus, eigene Bedienentscheidungen, Schnittstellen, Routing und 16 geplante Abnahmegruppen fest. Der Hauptagent prüfte die bisher offene Frage zu Ans und die konkreten Tastensymbole auf H, physischen PDF-Seiten 17–18, mit dem PDF-Skill visuell. Ein Subagent prüfte ausschließlich lesend die vorhandenen Controller-/Session-/Speicherschnittstellen. Die bereits abgeschlossenen Gesamtanalysen wurden nicht wiederholt.

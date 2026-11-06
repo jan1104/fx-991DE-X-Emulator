@@ -254,9 +254,11 @@ final class StructuredCalculatorSession {
     EditorProjection? projection;
     try {
       projection = FractionEditor.fromSnapshot(_snapshot.editor).project();
+      final registers = memory.snapshot;
       final value = arithmetic.evaluate(
         projection.expression,
-        answer: _snapshot.answer,
+        answer: registers.answer,
+        memoryValue: registers.memory,
       );
       memory.acceptResult(value, operation: operation);
       return _publishResult(value);

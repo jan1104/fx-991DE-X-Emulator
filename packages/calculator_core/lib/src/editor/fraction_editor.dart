@@ -121,6 +121,7 @@ final class FractionEditor {
     ',',
     '.',
     'Ans',
+    'M',
   };
 
   FractionEditorSnapshot _snapshot = FractionEditorSnapshot._(
@@ -254,10 +255,11 @@ final class FractionEditor {
       start = opening;
     } else if (previous is! EditorFraction &&
         previous is! EditorAbsolute &&
-        !(previous is EditorText && previous.text == 'Ans')) {
+        !(previous is EditorText &&
+            (previous.text == 'Ans' || previous.text == 'M'))) {
       throw const CalculatorException(
         CalculatorErrorCode.unsupported,
-        'Only a preceding number, Ans, fraction or closed group can be wrapped',
+        'Only a preceding number, Ans, M, fraction or closed group can be wrapped',
       );
     }
     if (_count(_snapshot.root) >= maxNodes) {
@@ -507,8 +509,8 @@ final class FractionEditor {
     }
   }
 
-  Rational evaluate({Rational? answer}) =>
-      arithmetic.evaluate(toExpression(), answer: answer);
+  Rational evaluate({Rational? answer, Rational? memoryValue}) => arithmetic
+      .evaluate(toExpression(), answer: answer, memoryValue: memoryValue);
 
   EditorProjection project() {
     final output = StringBuffer();

@@ -31,13 +31,13 @@ final class CalculatorMemory {
 
   CalculatorMemorySnapshot get snapshot => _snapshot;
 
-  /// Evaluates with the previous exact Ans and commits only on full success.
+  /// Evaluates with the previous exact Ans/M and commits only on full success.
   /// The returned result is the operand, not the new M total.
   Rational calculate(
     String source, {
     MemoryOperation operation = MemoryOperation.result,
   }) => acceptResult(
-    evaluate(source, answer: _snapshot.answer),
+    evaluate(source, answer: _snapshot.answer, memoryValue: _snapshot.memory),
     operation: operation,
   );
 

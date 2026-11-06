@@ -3,12 +3,16 @@ import '../numbers/rational.dart';
 import 'expression.dart';
 
 /// Parses the prototype's limited linear grammar, without executing code.
-Expression parseExpression(String source, {Rational? answer}) =>
-    _Parser(source, answer).parse();
+Expression parseExpression(
+  String source, {
+  Rational? answer,
+  Rational? memoryValue,
+}) => _Parser(source, answer, memoryValue).parse();
 
 enum _Kind {
   number,
   answer,
+  memory,
   absolute,
   plus,
   minus,
@@ -37,6 +41,7 @@ final class _Token {
 final class _Parser {
   final String source;
   final Rational? answer;
+  final Rational? memoryValue;
   final List<_Token> tokens = [];
   int cursor = 0;
   int depth = 0;
@@ -44,7 +49,7 @@ final class _Parser {
     r'(?:[0-9]+(?:[.,][0-9]*)?|[.,][0-9]+)(?:[eE][+-]?[0-9]+)?',
   );
   static final _space = RegExp(r'\s');
-  _Parser(this.source, this.answer);
+  _Parser(this.source, this.answer, this.memoryValue);
 
   CalculatorException _syntax(String message, int position) =>
       CalculatorException(
@@ -125,6 +130,7 @@ final class _Parser {
         continue;
       }
       final kind = switch (char) {
+        'M' => _Kind.memory,
         '+' => _Kind.plus,
         '-' || '−' => _Kind.minus,
         '*' || '×' => _Kind.times,
@@ -314,6 +320,17 @@ final class _Parser {
       }
       _take();
       return NumberExpression(answer!, token.position);
+    }
+    if (token.kind == _Kind.memory) {
+      if (memoryValue == null) {
+        throw CalculatorException(
+          CalculatorErrorCode.unsupported,
+          'M requires an explicit memory context',
+          position: token.position,
+        );
+      }
+      _take();
+      return NumberExpression(memoryValue!, token.position);
     }
     if (token.kind == _Kind.number) {
       _take();

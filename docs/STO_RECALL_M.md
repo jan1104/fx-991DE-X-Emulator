@@ -1,6 +1,6 @@
 # STO und RECALL für M: Umsetzungsvertrag
 
-Stand 06.11.2026. Dies ist abgeschlossene Spezifikations- und Schnittstellenarbeit. Die nachfolgenden neuen APIs, Dialoge und Abnahmefälle sind **noch nicht implementiert oder ausgeführt**. Bestehender Speicherstand: [SPEICHER_M.md](SPEICHER_M.md), tatsächliche Prüfungen: [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
+Stand 06.11.2026. Dieser Vertrag trennt Quellenbelege, eigene Regeln und die Umsetzungsschritte. Die erste Voraussetzung, der exakte M-Operand im Core, ist inzwischen auf `ea35068` geprüft: 68 neue Corefälle, insgesamt 1109 Coretests, 480 Appfälle, Web-Build und 21 bestehende Vorschauen bestanden. Neue STO-/RECALL-Dialoge, Kandidatenvorbereitung und Recall-Ladeaktionen sind **noch nicht implementiert**. Die geplanten Abnahmegruppen werden dadurch nicht pauschal als bestanden gemeldet. Bestehender Speicherstand: [SPEICHER_M.md](SPEICHER_M.md), tatsächliche Prüfungen: [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
 
 ## Quellen und sichere Abgrenzung
 
@@ -21,7 +21,7 @@ Die App unterstützt zunächst ausschließlich M. A–F, x und y erhalten keine 
 
 ## Voraussetzung: ein exakter M-Operand
 
-Der Parser kennt bisher Ans, aber noch kein M. Der Editor lässt M ebenfalls noch nicht als atomaren Text zu. Ein bestätigter Abruf darf nicht einfach einen neuen Ergebniswert bei unverändertem altem Ausdruck veröffentlichen: Nach Links/DEL würde dann die falsche Rechnung erscheinen. Ein gerundeter Dezimalersatz wäre bei `1/3` falsch; ausgeschriebene Zähler-/Nennertexte können bei großen zulässigen Speicherwerten die Editorbudgets überschreiten.
+Bei der Vertragsausarbeitung kannte der Parser nur Ans und der Editor noch keinen M-Baustein. Diese Voraussetzung ist inzwischen implementiert und geprüft. Ein bestätigter Abruf darf nicht einfach einen neuen Ergebniswert bei unverändertem altem Ausdruck veröffentlichen: Nach Links/DEL würde dann die falsche Rechnung erscheinen. Ein gerundeter Dezimalersatz wäre bei `1/3` falsch; ausgeschriebene Zähler-/Nennertexte können bei großen zulässigen Speicherwerten die Editorbudgets überschreiten.
 
 Das erste Umsetzungsstück ergänzt deshalb optionalen, ausdrücklich gebundenen `Rational? memoryValue` an den Parser-/Auswertungsgrenzen. Ein Token `M` bindet analog zu Ans einen `NumberExpression` an den übergebenen exakten Wert. Kein globaler Speicher und kein neuer Zahlentyp sind nötig. Ohne Kontext liefert M einen strukturierten Unsupported-Fehler an seiner Quellposition, keinen stillen Nullwert. Die normalen Größen-/Arbeitsbudgets bleiben erhalten.
 

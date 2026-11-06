@@ -54,6 +54,8 @@ Fortschreibung 05.11.2026: M+ und SHIFT → M− sind in beiden Eingabearten ang
 
 Fortschreibung 06.11.2026: Der [STO-/RECALL-Vertrag](STO_RECALL_M.md) ist mit gezielter Quellenprüfung und unabhängigem Schnittstellenreview ausgearbeitet. Er trennt Originalbelege und eigene Ans-/Abbruchregeln. Nächste Implementierung ist der exakte M-Operand in Parser und Editor; erst danach folgen eingefrorene STO-Kandidaten, kohärente Recall-Ergebnisse und der Appdialog. Eine reine Ergebnisänderung bei altem Ausdruck oder sofortiges Speichern beim Öffnen würde die Abnahme verletzen. Neues Paket ausschließlich Dokumentation, unveränderter geprüfter Quellstand.
 
+Fortschreibung 06.11.2026 morgens: Der exakte M-Operand ist mit explizitem Kontext in Parser/Auswertung/Editor und Speicherverdrahtung umgesetzt und auf `ea35068` geprüft: 1109 Coretests, 480 Appfälle, Web-Build und 21 bestehende Vorschauszenarien. Appansicht und Tastenbelegung bleiben unverändert. Nächstes begrenztes Paket sind reine STO-Kandidaten und eine kohärente Recall-Ladeaktion, anschließend Dialogzustand und Norm-1-Vorschau. [Vertrag](STO_RECALL_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md).
+
 ## Risiken und offene Entscheidungen
 
 - **Bestätigt:** H deckt zwei Modelle ab; unkritische Übernahme würde falsche Grenzen erzeugen. Nur fx-991DE X ist Zielmodell.

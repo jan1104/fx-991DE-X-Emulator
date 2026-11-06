@@ -1,5 +1,7 @@
 # Unabhängiger Speicher M
 
+Fortschreibung 06.11.2026: Der konkrete [STO-/RECALL-Vertrag für M](STO_RECALL_M.md) ist ausgearbeitet. Vor der Dialoganbindung wird ein exakter M-Operand im Core benötigt, damit ein Abruf auch beim späteren Bearbeiten den richtigen Ausdruck behält. Quellenbelege, eigene Ans-Regeln und geplante Abnahmen sind dort getrennt ausgewiesen. Dies ergänzt die Planung; die folgenden bestandenen M+/M−-Prüfungen bleiben unverändert.
+
 ## App-Belegung: Vertrag vom 05.11.2026
 
 Abgeschlossen geprüft auf `db6bb60` im [GitHub-Lauf 42081398723](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42081398723): **1041 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen bestanden**. 31 neue Appfälle sind enthalten. Drei getrennte M-Bilder wurden visuell geprüft; Bildbestand und Grenzen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md). STO/RECALL und das Resetmenü bleiben offen.

@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 05.11.2026
 
-M+ und SHIFT → M− sind jetzt in Math und Linear bedienbar. Beide verwenden denselben exakten Ans-/M-Speicher; die Anzeige zeigt den Summanden und kennzeichnet belegten Speicher mit M. AC und ON erhalten die Register. Aktueller GitHub-Prüfstand für `db6bb60`: **1041 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen bestanden**. Drei M-Ansichten wurden visuell geprüft. STO/RECALL folgen als nächstes. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
+M+ und SHIFT → M− sind jetzt in Math und Linear bedienbar. Beide verwenden denselben exakten Ans-/M-Speicher; die Anzeige zeigt den Summanden und kennzeichnet belegten Speicher mit M. AC und ON erhalten die Register. Aktueller GitHub-Prüfstand für `db6bb60`: **1041 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen bestanden**. Drei M-Ansichten wurden visuell geprüft. Der STO/RECALL-Vertrag ist ausgearbeitet; als Voraussetzung folgt der exakte M-Operand im Core. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 
@@ -18,6 +18,7 @@ Eigene Projektänderungen dürfen seit der Freigabe vom 02.11. selbstständig ge
 
 ## Dokumentation
 
+- [STO/RECALL für M: Umsetzungsvertrag und geplante Abnahmen](docs/STO_RECALL_M.md)
 - [Speicher M: Core-Zustand, M+/M− und Anzeige](docs/SPEICHER_M.md)
 - [Bestandsaufnahme und Quellen](docs/BESTANDSAUFNAHME.md)
 - [Funktionsumfang und Modellgrenzen](docs/FUNKTIONSUMFANG.md)

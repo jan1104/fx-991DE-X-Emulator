@@ -1,6 +1,6 @@
 # Architekturvorschlag und Entwicklungsplan
 
-Entwurf vom 25.10.2026, fortgeschrieben bis 02.11.2026. Die folgende Architektur ist das Zielbild; tatsächliche Implementierung und Prüfungen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
+Entwurf vom 25.10.2026, fortgeschrieben bis 06.11.2026. Die folgende Architektur ist das Zielbild; tatsächliche Implementierung und Prüfungen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
 
 Der unabhängige Dart-Core und die Flutter-Hauptansicht mit linearer und strukturierter Brucheingabe sind inzwischen im Testengine geprüft. Native Builds und echte Zielsystemtests bleiben offen.
 
@@ -51,6 +51,8 @@ Fortschreibung 04.11.2026 nachmittags: Der Speichervertrag ist in [SPEICHER_M.md
 Fortschreibung 04.11.2026 abends: Beide Eingabesitzungen akzeptieren den gemeinsamen Core-Speicher; der Appcontroller teilt genau eine Instanz zwischen Math und Linear. Snapshot-Ans folgt dem aktuellen Register, gespeicherte Ergebnisse und Entwürfe bleiben getrennt. Die Sitzungs-API `applyMemory` ergänzt atomare Speicheraktionen ohne erneute Auswertung eines angezeigten Ergebnisses. Der GitHub-Lauf auf `2616bd9` bestand 1041 Coretests, 449 Appfälle, Web-Build und 18 Vorschauen. Als nächstes folgen die sichtbare M+/M−-Belegung und der M-Indikator mit eigener App-Abnahme. Vertrag und tatsächlicher Prüfstand: [SPEICHER_M.md](SPEICHER_M.md), [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
 
 Fortschreibung 05.11.2026: M+ und SHIFT → M− sind in beiden Eingabearten angebunden, einschließlich M-Status und zugänglicher Beschriftung. Geprüft auf `db6bb60`: 1041 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen. Alle 21 Bilddateien wurden im Artefakt nachgewiesen; drei M-Ansichten sind visuell geprüft. Nächstes begrenztes Paket ist der STO-/RECALL-Vertrag für M; weitere Variablen und Resetmenüs bleiben offen. Umfang und Grenzen: [SPEICHER_M.md](SPEICHER_M.md), [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
+
+Fortschreibung 06.11.2026: Der [STO-/RECALL-Vertrag](STO_RECALL_M.md) ist mit gezielter Quellenprüfung und unabhängigem Schnittstellenreview ausgearbeitet. Er trennt Originalbelege und eigene Ans-/Abbruchregeln. Nächste Implementierung ist der exakte M-Operand in Parser und Editor; erst danach folgen eingefrorene STO-Kandidaten, kohärente Recall-Ergebnisse und der Appdialog. Eine reine Ergebnisänderung bei altem Ausdruck oder sofortiges Speichern beim Öffnen würde die Abnahme verletzen. Neues Paket ausschließlich Dokumentation, unveränderter geprüfter Quellstand.
 
 ## Risiken und offene Entscheidungen
 

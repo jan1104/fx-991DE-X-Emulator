@@ -58,6 +58,8 @@ Fortschreibung 06.11.2026 morgens: Der exakte M-Operand ist mit explizitem Konte
 
 Fortschreibung 08.11.2026. Beide Eingabesitzungen bereiten exakte STO-Kandidaten vor und prüfen bei der Bestätigung ihre Herkunft. RECALL erzeugt einen bearbeitbaren M-Ausdruck. Das nächste Paket bindet die Sitzungsaktionen an die App an und ergänzt die Norm-1-Vorschau. [Vertrag](STO_RECALL_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
+Fortschreibung 08.11.2026 abends. STO und RECALL sind für M in der App bedienbar. Die Norm-1-Vorschau nutzt den Dezimalformatter mit eigenen Anzeigevorgaben. Die Tasteninventare und die Dialogbedienung sind auf `72c1c32` geprüft. Als nächstes folgt die Eingabe von M über ALPHA im Rechenausdruck. [Vertrag](STO_RECALL_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
+
 ## Risiken und offene Entscheidungen
 
 - **Bestätigt:** H deckt zwei Modelle ab; unkritische Übernahme würde falsche Grenzen erzeugen. Nur fx-991DE X ist Zielmodell.

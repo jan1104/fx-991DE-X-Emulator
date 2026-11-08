@@ -1,6 +1,6 @@
 # STO und RECALL für M: Umsetzungsvertrag
 
-Stand 08.11.2026. Dieser Vertrag trennt Quellenbelege, eigene Regeln und die Umsetzungsschritte. Der Rechenkern enthält den exakten M-Operanden und die Sitzungsaktionen für STO und RECALL. Das nächste Paket verbindet diese Aktionen mit den Appdialogen und der Norm-1-Vorschau. [Speicherstand](SPEICHER_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
+Stand 08.11.2026. Dieser Vertrag trennt Quellenbelege, eigene Regeln und die Umsetzungsschritte. Der Rechenkern enthält den exakten M-Operanden und die Sitzungsaktionen für STO und RECALL. Die Appdialoge mit Norm-1-Vorschau sind auf `72c1c32` geprüft. Die Auswahl per Tipp auf die M-Zeile ergänzt die physische M+-Taste. [Speicherstand](SPEICHER_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
 ## Quellen und sichere Abgrenzung
 
@@ -27,7 +27,7 @@ Das erste Umsetzungsstück ergänzt deshalb optionalen, ausdrücklich gebundenen
 
 `CalculatorMemory.calculate` bindet Ans und M aus seinem aktuellen Snapshot. Die strukturierte Sitzung und die eigenständigen Editor-Auswertungswege müssen den Kontext ebenfalls ausdrücklich durchreichen. `EditorText('M')` wird ein zulässiger atomarer Baustein; Projektion, Source-Map, DEL, Navigation und Bruchübernahme behandeln ihn wie den bestehenden Ans-Baustein. Das bedeutet keine Freischaltung von ALPHA oder einer neuen physischen Taste. Zunächst wird auch keine zusätzliche implizite Multiplikation vor M eingeführt: `2*M` ist ausdrücklich; das bisherige `2(M)` bleibt möglich.
 
-Eine spätere Sitzungsaktion für bestätigtes RECALL erzeugt einen neuen kohärenten Entwurf aus genau diesem M-Atom und veröffentlicht dessen exaktes Ergebnis. Links öffnet dann M; DEL löscht M. Bei späterer erneuter Auswertung wird M wie eine Variable an den dann aktuellen Speicher gebunden. Die frühere Ergebnisanzeige bleibt dagegen ein unveränderlicher Wert. Alte Snapshots werden nicht rückwirkend geändert.
+Die Sitzungsaktion `recallMemory()` erzeugt einen neuen kohärenten Entwurf aus genau diesem M-Atom und veröffentlicht dessen exaktes Ergebnis. Links öffnet dann M; DEL löscht M. Bei späterer erneuter Auswertung wird M wie eine Variable an den dann aktuellen Speicher gebunden. Die frühere Ergebnisanzeige bleibt dagegen ein unveränderlicher Wert. Alte Snapshots werden nicht rückwirkend geändert.
 
 ## STO-Bereitschaft
 

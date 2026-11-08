@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 08.11.2026
 
-M+ und SHIFT → M− sind in Math und Linear bedienbar. Beide Eingabearten teilen den exakten Ans-/M-Speicher. Die Sitzungen können einen STO-Wert vorbereiten und RECALL als bearbeitbaren M-Ausdruck laden. Als Nächstes folgt die Anbindung der Appdialoge. GitHub prüfte `672b9b3` mit 1177 Coretests, 480 App-Tests, Web-Build und 21 Vorschauen. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md).
+Math und Linear teilen den exakten Ans-/M-Speicher. `STO → M+` speichert einen Wert, `SHIFT → STO → M+ → =` ruft ihn ab. RECALL zeigt eine Norm-1-Vorschau. AC schließt den Dialog und erhält den Entwurf. GitHub prüfte `72c1c32` mit 1177 Coretests, 495 App-Tests, Web-Build und 23 Vorschauen. Als Nächstes folgt die Eingabe von M über ALPHA. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md)
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 

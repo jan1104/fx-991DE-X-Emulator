@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 08.11.2026 – STO und RECALL am Rechnerdisplay
+
+`STO → M+` speichert den vorbereiteten Wert. `SHIFT → STO → M+ → =` ruft M als bearbeitbaren Ausdruck ab. Die Übersicht zeigt M in Norm 1 unabhängig vom gewählten Zahlenformat. Ein Tipp auf die M-Zeile wählt den Eintrag ebenfalls aus. AC schließt beide Dialoge und führt zum Entwurf zurück. Nach einer Änderung von M während der Übersicht zeigt der Controller den neuen Wert und verlangt eine erneute Auswahl. Das Setzen von Ans bei Bestätigung folgt der dokumentierten Prototypregel. [Speichervertrag](STO_RECALL_M.md)
+
+Die Eingabeprüfung umfasst den Handbuchablauf mit M = 35, beide Eingabearten, alle vier IO-Formate und die Dialogbedienung per Enter und Escape bei 320 Pixeln Breite. Zwei Subagenten haben die Displayansicht mit Widgettests und die Anpassungen der bestehenden Tasteninventare übernommen. Das Tasteninventar zählt 33 aktive Primärbelegungen in Linear und 36 in Math.
+
+Formatprüfung und `flutter analyze --no-pub` waren lokal erfolgreich. GitHub prüfte `72c1c32b50ac37f72e2540903fcf503e3dbb0f38` mit 1177 Coretests, 495 App-Tests, Web-Build und 23 Vorschauen. Die App-Suite enthält elf neue Controller- und vier Widgettests. Das heruntergeladene Vorschauarchiv enthält 23 PNGs. Die Bilder `calculator-sto-ready.png` und `calculator-recall-m.png` zeigen bei 420 Pixeln Breite den STO-Hinweis am Entwurf und die ausgewählte M-Zeile mit `0,3333333333` in Norm 1. Die visuelle Prüfung umfasst die erzeugten Flutter-Vorschauen. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42511396107), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42511396107/artifacts/13629567788), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42511396107/artifacts/13629567782)
+
+Als Nächstes folgt `ALPHA → M+` für den Einsatz von M mitten im Rechenausdruck. Der bestehende M-Operand liefert dafür den Wert aus dem gemeinsamen Register. Cursor, Bruchübernahme und das Verbrauchen von ALPHA erhalten eigene Bedienprüfungen.
+
 ## 08.11.2026 – STO-Vorbereitung und RECALL im Rechenkern
 
 Auf Basis von `306fcfa` schließen wir die begonnenen Sitzungsaktionen für Linear und Math ab. Zwei Subagenten haben die Sitzungen und ihre jeweiligen Tests bearbeitet. Die gemeinsamen Tests prüfen den Wechsel zwischen beiden Sitzungen. Der Ablauf folgt dem vereinbarten Speichervertrag. [STO-/RECALL-Vertrag](STO_RECALL_M.md)

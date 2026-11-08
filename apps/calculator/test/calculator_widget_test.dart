@@ -73,7 +73,7 @@ void main() {
       expect(size.width, greaterThanOrEqualTo(44), reason: id);
     }
   });
-  testWidgets('renders exactly 50 unique keys, 32 enabled and 18 disabled', (
+  testWidgets('renders exactly 50 unique keys, 33 enabled and 17 disabled', (
     tester,
   ) async {
     await pumpCalculator(tester);
@@ -94,6 +94,7 @@ void main() {
             'KEY_ON',
             'KEY_SD',
             'KEY_M_PLUS',
+            'KEY_STO',
           }.contains(definition.id);
       expect(widget.onPressed != null, supported, reason: definition.id);
       if (widget.onPressed == null) {
@@ -102,8 +103,8 @@ void main() {
         enabled++;
       }
     }
-    expect(enabled, 32);
-    expect(disabled, 18);
+    expect(enabled, 33);
+    expect(disabled, 17);
     expect(find.byType(FilledButton), findsNWidgets(50));
     expect(expression(tester), '│');
     expect(result(tester), '');

@@ -114,7 +114,7 @@ void main() {
     final mode = fractions ? 'Math' : 'Linear';
 
     test(
-      '$mode controller keeps 50 physical positions and 32/35 active primary keys',
+      '$mode controller keeps 50 physical positions and 33/36 active primary keys',
       () {
         final c = controller(fractions);
         final physical = calculatorRows.expand((row) => row).toList();
@@ -122,7 +122,7 @@ void main() {
         expect(physical.map((key) => key.id).toSet(), hasLength(50));
         expect(
           physical.where((key) => c.isKeyEnabled(key.id)),
-          hasLength(fractions ? 35 : 32),
+          hasLength(fractions ? 36 : 33),
         );
         expect(physical.where((key) => key.id == 'ACTION_CUBE'), isEmpty);
         expect(CalculatorKey.values, hasLength(33));

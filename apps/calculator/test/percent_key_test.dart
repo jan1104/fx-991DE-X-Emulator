@@ -120,7 +120,7 @@ void main() {
         expect(physical.map((key) => key.id).toSet(), hasLength(50));
         expect(
           physical.where((key) => c.isKeyEnabled(key.id)),
-          hasLength(fractions ? 35 : 32),
+          hasLength(fractions ? 36 : 33),
         );
         expect(physical.where((key) => key.id == 'ACTION_PERCENT'), isEmpty);
         expect(CalculatorKey.values, hasLength(33));

@@ -27,6 +27,8 @@ void main() {
     'memory',
     'memory-negative',
     'memory-cleared',
+    'sto-ready',
+    'recall-m',
     'front',
     'settings',
     'periodic',
@@ -34,6 +36,8 @@ void main() {
   ]) {
     final structured = scenario != 'linear' && scenario != 'memory-negative';
     final memory = scenario.startsWith('memory');
+    final sto = scenario == 'sto-ready';
+    final recall = scenario == 'recall-m';
     final error = scenario == 'error';
     final capture = scenario == 'capture';
     final group = scenario == 'group';
@@ -88,7 +92,20 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in memory
+          in sto
+              ? ['KEY_7', 'KEY_STO']
+              : recall
+              ? [
+                  'KEY_1',
+                  'KEY_DIVIDE',
+                  'KEY_3',
+                  'KEY_STO',
+                  'KEY_M_PLUS',
+                  'KEY_SHIFT',
+                  'KEY_STO',
+                  'KEY_M_PLUS',
+                ]
+              : memory
               ? scenario == 'memory'
                     ? [
                         'KEY_1',
@@ -247,11 +264,17 @@ void main() {
       }
       await tester.pumpAndSettle();
       final output = tester.widget<Text>(
-        find.byKey(const ValueKey('display-result')),
+        find.byKey(
+          ValueKey(recall ? 'display-recall-value' : 'display-result'),
+        ),
       );
       expect(
         output.data ?? output.textSpan!.toPlainText(),
-        memory
+        sto
+            ? ''
+            : recall
+            ? '0,3333333333'
+            : memory
             ? scenario == 'memory'
                   ? '15'
                   : scenario == 'memory-negative'
@@ -287,6 +310,18 @@ void main() {
             ? 'Mathem. Fehler'
             : '1/2',
       );
+      if (sto) {
+        expect(
+          find.byKey(const ValueKey('display-store-prompt')),
+          findsOneWidget,
+        );
+      }
+      if (recall) {
+        expect(
+          find.byKey(const ValueKey('display-recall-select')),
+          findsOneWidget,
+        );
+      }
       if (memory) {
         final status = tester.widget<Text>(
           find.byKey(const ValueKey('display-status')),
@@ -325,7 +360,7 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          memory || absolute
+          memory || absolute || sto || recall
               ? '../../build/reports/calculator-$scenario.png'
               : combinatorics
               ? '../../build/reports/calculator-$scenario.png'

@@ -44,9 +44,17 @@ class _CalculatorPageState extends State<CalculatorPage> {
   }
 
   void _pressId(String id) {
-    final wasOpen = _controller.menuOpen;
+    final menuWasOpen = _controller.menuOpen;
+    final recallWasOpen = _controller.recallOpen;
+    final storeWasPending = _controller.storePending;
+    final recallWasSelected = _controller.recallSelected;
     setState(() => _controller.pressId(id));
-    if (!wasOpen && _controller.menuOpen) _revealDisplay();
+    if ((!menuWasOpen && _controller.menuOpen) ||
+        recallWasOpen != _controller.recallOpen ||
+        storeWasPending != _controller.storePending ||
+        recallWasSelected != _controller.recallSelected) {
+      _revealDisplay();
+    }
   }
 
   KeyEventResult _onKey(FocusNode node, KeyEvent event) {
@@ -180,6 +188,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
               key: const ValueKey('action-wrap-fraction'),
               onPressed:
                   !_controller.menuOpen &&
+                      !_controller.recallOpen &&
+                      !_controller.storePending &&
                       _controller.poweredOn &&
                       snapshot.phase == CalculatorPhase.editing &&
                       snapshot.editor.cursor.offset > 0
@@ -218,7 +228,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
     var resultText = '';
     CalculatorResultPresentation? presentation;
     String? outputError;
-    if (!_controller.menuOpen && _controller.poweredOn) {
+    if (!_controller.menuOpen &&
+        !_controller.recallOpen &&
+        _controller.poweredOn) {
       try {
         if (phase == CalculatorPhase.error) {
           resultText = switch (error!.code) {
@@ -283,7 +295,18 @@ class _CalculatorPageState extends State<CalculatorPage> {
                   const SizedBox(height: 5),
                   if (_controller.menuOpen)
                     _menu()
+                  else if (_controller.recallOpen)
+                    _recallOverview(ink)
                   else ...[
+                    if (_controller.storePending)
+                      Semantics(
+                        liveRegion: true,
+                        child: const Text(
+                          'M+ speichert · AC bricht ab',
+                          key: ValueKey('display-store-prompt'),
+                          style: TextStyle(fontSize: 12),
+                        ),
+                      ),
                     if (_controller.notice.isNotEmpty)
                       Text(
                         _controller.notice,
@@ -315,7 +338,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           ),
                           child: FractionExpressionView(
                             snapshot: structured.editor,
-                            showCursor: editing,
+                            showCursor: editing && !_controller.storePending,
                             followCursor: true,
                             errorCursor: structured.errorCursor,
                             fontSize: fontSize,
@@ -333,7 +356,8 @@ class _CalculatorPageState extends State<CalculatorPage> {
                             TextSpan(
                               children: [
                                 TextSpan(text: expression.substring(0, cursor)),
-                                if (editing) const TextSpan(text: '│'),
+                                if (editing && !_controller.storePending)
+                                  const TextSpan(text: '│'),
                                 TextSpan(text: expression.substring(cursor)),
                               ],
                             ),
@@ -390,6 +414,57 @@ class _CalculatorPageState extends State<CalculatorPage> {
                 ],
               ),
             ),
+    );
+  }
+
+  Widget _recallOverview(Color ink) {
+    final selected = _controller.recallSelected;
+    return Column(
+      key: const ValueKey('display-recall'),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text(
+          'RECALL · Norm 1',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+        const SizedBox(height: 5),
+        Semantics(
+          selected: selected,
+          child: TextButton(
+            key: const ValueKey('display-recall-select'),
+            onPressed: () => _pressId('KEY_M_PLUS'),
+            style: TextButton.styleFrom(
+              foregroundColor: ink,
+              backgroundColor: selected ? const Color(0xFFAFBFA7) : null,
+              alignment: Alignment.centerLeft,
+              minimumSize: const Size(44, 44),
+              padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+            ),
+            child: Row(
+              children: [
+                const Text('M = '),
+                Expanded(
+                  child: Text(
+                    _controller.recallPreviewText ?? 'Anzeige zu umfangreich',
+                    key: const ValueKey('display-recall-value'),
+                  ),
+                ),
+                if (selected) const Icon(Icons.check, size: 16),
+              ],
+            ),
+          ),
+        ),
+        Semantics(
+          liveRegion: true,
+          child: Text(
+            selected
+                ? '= ruft ab · AC schließt'
+                : 'M mit M+ wählen · AC schließt',
+            key: const ValueKey('display-recall-prompt'),
+            style: const TextStyle(fontSize: 12),
+          ),
+        ),
+      ],
     );
   }
 

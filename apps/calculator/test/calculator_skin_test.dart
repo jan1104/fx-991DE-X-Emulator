@@ -104,7 +104,7 @@ void main() {
         find.byType(FilledButton),
       );
       expect(buttons.length, 50);
-      expect(buttons.where((button) => button.onPressed != null).length, 35);
+      expect(buttons.where((button) => button.onPressed != null).length, 36);
       expect(tester.widget<FilledButton>(keyed('KEY_ALPHA')).onPressed, isNull);
     },
   );
@@ -139,7 +139,7 @@ void main() {
             .widgetList<FilledButton>(find.byType(FilledButton))
             .where((button) => button.onPressed != null)
             .length,
-        32,
+        33,
       );
       await tap(tester, 'input-fractions');
       await tap(tester, 'toolbar-settings');

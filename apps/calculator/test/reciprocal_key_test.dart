@@ -95,7 +95,7 @@ void main() {
               tester.widget<FilledButton>(keyed(definition.id)).onPressed !=
               null,
         ),
-        hasLength(structured ? 35 : 32),
+        hasLength(structured ? 36 : 33),
       );
       expect(
         tester.widget<FilledButton>(keyed('KEY_RECIPROCAL')).onPressed,

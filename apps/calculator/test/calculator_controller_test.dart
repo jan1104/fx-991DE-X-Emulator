@@ -182,15 +182,20 @@ void main() {
           .expand((row) => row)
           .where((k) => c.isKeyEnabled(k.id))
           .length;
-      expect(active(), 35);
+      expect(active(), 36);
+      expect(c.isKeyEnabled('KEY_STO'), isTrue);
       expect(c.isKeyEnabled('KEY_ALPHA'), isFalse);
       c.selectInputOutput(CalculatorInputOutput.linearLinear);
-      expect(active(), 32);
+      expect(active(), 33);
+      expect(c.isKeyEnabled('KEY_STO'), isTrue);
       expect(c.isKeyEnabled('KEY_UP'), isFalse);
       c.openSetup();
       expect(c.isKeyEnabled('KEY_UP'), isTrue);
       expect(c.isKeyEnabled('KEY_SQUARE'), isFalse);
       expect(c.isKeyEnabled('KEY_RIGHT'), isFalse);
+      expect(c.isKeyEnabled('KEY_STO'), isFalse);
+      c.openModeMenu();
+      expect(c.isKeyEnabled('KEY_STO'), isFalse);
     },
   );
 

@@ -56,6 +56,23 @@ final class CalculatorController {
   bool shift = false;
   bool poweredOn = true;
   String notice = '';
+  Object? _storeCandidate;
+  Rational? _recallValue;
+  bool _recallSelected = false;
+  bool get storePending => _storeCandidate != null;
+  bool get recallOpen => _recallValue != null;
+  bool get recallSelected => _recallSelected;
+
+  String? get recallPreviewText {
+    final value = _recallValue;
+    if (value == null) return null;
+    try {
+      return _decimal(value, const CalculatorSettings());
+    } on CalculatorException {
+      return 'Anzeige zu groß';
+    }
+  }
+
   final List<_MenuPosition> _menu = [];
   bool get menuOpen => _menu.isNotEmpty;
   String get _page => _menu.last.page;
@@ -95,6 +112,7 @@ final class CalculatorController {
   void openSetup() => _open('setup');
   void openModeMenu() => _open('mode');
   void _open(String page) {
+    _closeMemoryDialog();
     poweredOn = true;
     shift = false;
     notice = '';
@@ -116,7 +134,65 @@ final class CalculatorController {
   }
 
   void selectInputOutput(CalculatorInputOutput value) {
+    _closeMemoryDialog();
     _settings = settings.copyWith(inputOutput: value);
+  }
+
+  void _closeMemoryDialog() {
+    if (storePending || recallOpen) shift = false;
+    switch (_storeCandidate) {
+      case LinearMemoryAssignment():
+        session.cancelMemoryAssignment();
+      case StructuredMemoryAssignment():
+        structured.cancelMemoryAssignment();
+    }
+    _storeCandidate = null;
+    _recallValue = null;
+    _recallSelected = false;
+  }
+
+  void _pressMemoryDialog(String id) {
+    if (id == 'KEY_AC') {
+      _closeMemoryDialog();
+      return;
+    }
+    final candidate = _storeCandidate;
+    if (candidate != null) {
+      if (id != 'KEY_M_PLUS') return;
+      _storeCandidate = null;
+      final committed = switch (candidate) {
+        LinearMemoryAssignment() => session.commitMemoryAssignment(candidate),
+        StructuredMemoryAssignment() => structured.commitMemoryAssignment(
+          candidate,
+        ),
+        _ => false,
+      };
+      if (committed && settings.decimalOutput) {
+        _selectDisplay(RationalDisplayFormat.exactDecimal);
+      } else if (!committed && phase != CalculatorPhase.error) {
+        notice = 'Wert erneut mit STO vorbereiten';
+      }
+      return;
+    }
+    if (id == 'KEY_M_PLUS') {
+      _recallSelected = true;
+    } else if (id == 'KEY_EQUALS' && recallSelected) {
+      final current = memory.snapshot.memory;
+      if (current != _recallValue) {
+        _recallValue = current;
+        _recallSelected = false;
+        return;
+      }
+      _closeMemoryDialog();
+      if (fractions) {
+        structured.recallMemory();
+      } else {
+        session.recallMemory();
+      }
+      if (settings.decimalOutput) {
+        _selectDisplay(RationalDisplayFormat.exactDecimal);
+      }
+    }
   }
 
   /// Unsupported arithmetic remains visibly unavailable on the physical skin.
@@ -125,6 +201,12 @@ final class CalculatorController {
     if (id == 'KEY_ON') return true;
     if (!poweredOn) return false;
     if (id == 'KEY_SHIFT' || id == 'KEY_MENU') return true;
+    if (storePending || recallOpen) {
+      return id == 'KEY_AC' ||
+          id == 'KEY_M_PLUS' ||
+          (storePending && id == 'KEY_STO') ||
+          (recallOpen && id == 'KEY_EQUALS');
+    }
     if (menuOpen) {
       if (const {
         'KEY_AC',
@@ -140,7 +222,7 @@ final class CalculatorController {
       }
       return false;
     }
-    if (id == 'KEY_SD' || id == 'KEY_M_PLUS') return true;
+    if (id == 'KEY_SD' || id == 'KEY_M_PLUS' || id == 'KEY_STO') return true;
     if (fractions && const {'KEY_FRACTION', 'KEY_UP', 'KEY_DOWN'}.contains(id))
       return true;
     return CalculatorKey.fromId(id) != null;
@@ -172,6 +254,7 @@ final class CalculatorController {
 
   void pressId(String id) {
     if (id == 'KEY_ON') {
+      _closeMemoryDialog();
       poweredOn = true;
       shift = false;
       _menu.clear();
@@ -188,6 +271,7 @@ final class CalculatorController {
     final shifted = shift;
     shift = false;
     if (shifted && id == 'KEY_AC') {
+      _closeMemoryDialog();
       poweredOn = false;
       _menu.clear();
       return;
@@ -221,6 +305,20 @@ final class CalculatorController {
       return;
     }
     notice = '';
+    if (storePending || recallOpen) {
+      _pressMemoryDialog(id);
+      return;
+    }
+    if (id == 'KEY_STO') {
+      if (shifted) {
+        _recallValue = memory.snapshot.memory;
+      } else {
+        _storeCandidate = fractions
+            ? structured.prepareMemoryAssignment()
+            : session.prepareMemoryAssignment();
+      }
+      return;
+    }
     if (id == 'KEY_M_PLUS') {
       final operation = shifted
           ? MemoryOperation.subtract
@@ -370,6 +468,7 @@ final class CalculatorController {
       CalculatorAngleUnit.gradians => 'G',
     },
     if (shift) 'SHIFT',
+    if (storePending) 'STO',
     if (memory.snapshot.hasMemory) 'M',
     if (fractions) 'Math',
     if (settings.numberFormat == CalculatorNumberFormat.fix) 'FIX',
@@ -414,7 +513,7 @@ final class CalculatorController {
         periodPrefix = '$grouped,${expansion.nonRepeatingDigits}';
       }
     } else {
-      text = _decimal(value);
+      text = _decimal(value, settings);
     }
     if (settings.thousandsSeparator) text = _group(text);
     if (text.length > 2048)
@@ -430,7 +529,7 @@ final class CalculatorController {
     );
   }
 
-  String _decimal(Rational value) {
+  static String _decimal(Rational value, CalculatorSettings settings) {
     final n = value.numerator.abs(), d = value.denominator;
     if (n.bitLength + d.bitLength > 100000)
       throw const CalculatorException(

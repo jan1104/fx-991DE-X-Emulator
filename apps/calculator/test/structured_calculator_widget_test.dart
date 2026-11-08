@@ -111,7 +111,7 @@ void main() {
       expect(find.text('Berechnungen · Linear'), findsOneWidget);
       expect(keyed('input-linear'), findsOneWidget);
       expect(keyed('input-fractions'), findsOneWidget);
-      expectEnabledCount(tester, 32);
+      expectEnabledCount(tester, 33);
       expect(
         tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
         isNull,
@@ -120,7 +120,7 @@ void main() {
       expect(find.text('Berechnungen · Brüche'), findsOneWidget);
       expect(keyed('display-structured'), findsOneWidget);
       expect(find.byType(FractionExpressionView), findsOneWidget);
-      expectEnabledCount(tester, 35);
+      expectEnabledCount(tester, 36);
       for (final definition in calculatorRows.expand((row) => row)) {
         final expected =
             CalculatorKey.fromId(definition.id) != null ||
@@ -130,6 +130,7 @@ void main() {
               'KEY_ON',
               'KEY_SD',
               'KEY_M_PLUS',
+              'KEY_STO',
             }.contains(definition.id) ||
             {'KEY_FRACTION', 'KEY_UP', 'KEY_DOWN'}.contains(definition.id);
         expect(
@@ -141,7 +142,7 @@ void main() {
       expect(keyed('placeholder-root'), findsOneWidget);
       expectCursor(tester, 0, []);
       await tap(tester, 'input-linear');
-      expectEnabledCount(tester, 32);
+      expectEnabledCount(tester, 33);
       expect(
         tester.widget<FilledButton>(keyed('KEY_FRACTION')).onPressed,
         isNull,
@@ -420,7 +421,7 @@ void main() {
       expect(tester.takeException(), isNull);
       await tap(tester, 'input-linear');
       expect(linearExpression(tester), '│');
-      expectEnabledCount(tester, 32);
+      expectEnabledCount(tester, 33);
       expect(tester.takeException(), isNull);
     },
   );

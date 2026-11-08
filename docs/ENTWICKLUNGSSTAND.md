@@ -6,7 +6,9 @@ Auf Basis von `306fcfa` schließen wir die begonnenen Sitzungsaktionen für Line
 
 `prepareMemoryAssignment()` hält den exakten Wert und seinen Herkunftsentwurf fest. `commitMemoryAssignment()` akzeptiert den aktuellen Kandidaten genau einmal. Änderungen am gemeinsamen Ans oder M lassen den vorbereiteten Wert gültig. Ein geänderter Entwurf oder eine neue Ausführung derselben Sitzung erfordert eine neue Vorbereitung. `cancelMemoryAssignment()` verwirft die Vorbereitung. `recallMemory()` lädt den aktuellen M-Wert in einen eigenen Ausdruck `M` und setzt Ans gemäß der dokumentierten Prototypregel. Links und DEL bearbeiten anschließend diesen Ausdruck.
 
-Als nächstes folgen der Appdialog und die Norm-1-Vorschau mit Controller- und Widgettests. Die Sitzungsaktionen bilden dafür die geprüfte Schnittstelle, sobald der unten festgehaltene GitHub-Lauf abgeschlossen ist.
+Die lokale Format- und Coreanalyse war erfolgreich. GitHub Actions prüfte `672b9b3a6fc8768e8c7867d86e1bddf575467a3e` mit 1177 Coretests, 480 App-Tests, dem Web-Build und 21 Vorschauen. Die 68 neuen Corefälle verteilen sich auf 30 Linear-, 33 Math- und fünf sitzungsübergreifende Fälle. Die Vorschauen decken die bisherige Oberfläche ab. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42481332983), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42481332983/artifacts/13617488056), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42481332983/artifacts/13617772412)
+
+Als nächstes folgen der Appdialog und die Norm-1-Vorschau mit Controller- und Widgettests. Der Controller soll die Speicheraktionen vor der normalen M+/M−-Belegung behandeln, AC als Dialogabbruch abfangen und bei geänderter RECALL-Vorschau eine neue Auswahl verlangen.
 
 ## 06.11.2026 morgens: exakter M-Operand im Core
 

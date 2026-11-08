@@ -2,9 +2,9 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 06.11.2026
+## Stand am 08.11.2026
 
-M+ und SHIFT → M− sind jetzt in Math und Linear bedienbar. Beide verwenden denselben exakten Ans-/M-Speicher; die Anzeige zeigt den Summanden und kennzeichnet belegten Speicher mit M. AC und ON erhalten die Register. Aktueller GitHub-Prüfstand für `ea35068`: **1109 Coretests, 480 Appfälle, Web-Build und 21 Vorschauen bestanden**. Drei M-Ansichten wurden visuell geprüft. Der exakte M-Operand ist jetzt in Parser und Editor geprüft. Als Nächstes folgen die STO-Kandidatenvorbereitung und eine kohärente Recall-Ladeaktion; die neuen Dialoge bleiben offen. [Speichervertrag und Grenzen](docs/SPEICHER_M.md).
+M+ und SHIFT → M− sind in Math und Linear bedienbar. Beide Eingabearten teilen den exakten Ans-/M-Speicher. Die Sitzungen können einen STO-Wert vorbereiten und RECALL als bearbeitbaren M-Ausdruck laden. Als Nächstes folgt die Anbindung der Appdialoge. GitHub prüfte `672b9b3` mit 1177 Coretests, 480 App-Tests, Web-Build und 21 Vorschauen. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md).
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 

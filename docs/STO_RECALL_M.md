@@ -1,6 +1,6 @@
 # STO und RECALL für M: Umsetzungsvertrag
 
-Stand 06.11.2026. Dieser Vertrag trennt Quellenbelege, eigene Regeln und die Umsetzungsschritte. Die erste Voraussetzung, der exakte M-Operand im Core, ist inzwischen auf `ea35068` geprüft: 68 neue Corefälle, insgesamt 1109 Coretests, 480 Appfälle, Web-Build und 21 bestehende Vorschauen bestanden. Neue STO-/RECALL-Dialoge, Kandidatenvorbereitung und Recall-Ladeaktionen sind **noch nicht implementiert**. Die geplanten Abnahmegruppen werden dadurch nicht pauschal als bestanden gemeldet. Bestehender Speicherstand: [SPEICHER_M.md](SPEICHER_M.md), tatsächliche Prüfungen: [ENTWICKLUNGSSTAND.md](ENTWICKLUNGSSTAND.md).
+Stand 08.11.2026. Dieser Vertrag trennt Quellenbelege, eigene Regeln und die Umsetzungsschritte. Der Rechenkern enthält den exakten M-Operanden und die Sitzungsaktionen für STO und RECALL. Das nächste Paket verbindet diese Aktionen mit den Appdialogen und der Norm-1-Vorschau. [Speicherstand](SPEICHER_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
 ## Quellen und sichere Abgrenzung
 
@@ -93,9 +93,10 @@ Diese Liste ist ein Umsetzungsauftrag, keine bestandene Testsuite.
 | CM03 | M-Token: fehlender Kontext, Vorzeichen, Klammern, Postfix, Bruchübernahme, Source-Map und Größenbudget gezielt prüfen. | Neue Core-Abnahme. |
 | CM04 | Dialogtext, STO-/M-Indikator, Semantik, 320-Pixel-Breite, Hardware-Ereignisse und klare Trennung noch fehlender Variablen prüfen. | Neue App-Abnahme. |
 
-## Umsetzung in zwei begrenzten Paketen
+## Umsetzungsreihenfolge
 
 1. **M-Operand im Core:** expliziter Kontext in Parser/Auswertung, Weitergabe in Speicher und strukturierten APIs, atomarer Editorbaustein samt Capture/Source-Map; unabhängige Tests. Noch keine neue ALPHA-/STO-Tastenfreischaltung.
-2. **Zuweisung und Abruf in der App:** reine Kandidatenvorbereitung und kohärente Recall-Ladeaktion, reine Norm-1-Vorschauformatierung, eigener Dialogzustand und priorisiertes Eingaberouting; Controller-/Widgettests und eigenständige Vorschauen mit eindeutigen Dateinamen. Erst nach bestandenem GitHub-Test-/Web-Build und visueller Prüfung als bedienbar melden.
+2. **Sitzungsaktionen für STO und RECALL.** `prepareMemoryAssignment()` liefert bei gültiger Eingabe einen sitzungseigenen Kandidaten mit exaktem Wert. `commitMemoryAssignment()` übernimmt einen gültigen Kandidaten einmalig und meldet Erfolg als `bool`. `cancelMemoryAssignment()` verwirft den Kandidaten. Eine neue Ausführung derselben Sitzung verbraucht die Vorbereitung auch bei gleichem Ergebnis. `recallMemory()` lädt M als eigenen Ausdruck und aktualisiert Ans gemäß der Prototypregel.
+3. **Zuweisung und Abruf in der App.** Eigener Dialogzustand, Norm-1-Vorschauformatierung und priorisiertes Eingaberouting. Controller- und Widgettests prüfen die Tastenfolgen. Eigene Vorschauen dokumentieren die Dialoge.
 
 Eine bloße Verwendung von `applyMemory(store)` beim Öffnen oder eine Recall-Anzeige mit dem alten Ausdruck erfüllt diesen Vertrag nicht. Fehlende Originalsoftware blockiert diese eigene Implementierung nicht; offene Kompatibilitätsfragen bleiben als solche dokumentiert.

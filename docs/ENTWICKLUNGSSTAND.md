@@ -1,5 +1,13 @@
 # Entwicklungsstand
 
+## 08.11.2026 – STO-Vorbereitung und RECALL im Rechenkern
+
+Auf Basis von `306fcfa` schließen wir die begonnenen Sitzungsaktionen für Linear und Math ab. Zwei Subagenten haben die Sitzungen und ihre jeweiligen Tests bearbeitet. Die gemeinsamen Tests prüfen den Wechsel zwischen beiden Sitzungen. Der Ablauf folgt dem vereinbarten Speichervertrag. [STO-/RECALL-Vertrag](STO_RECALL_M.md)
+
+`prepareMemoryAssignment()` hält den exakten Wert und seinen Herkunftsentwurf fest. `commitMemoryAssignment()` akzeptiert den aktuellen Kandidaten genau einmal. Änderungen am gemeinsamen Ans oder M lassen den vorbereiteten Wert gültig. Ein geänderter Entwurf oder eine neue Ausführung derselben Sitzung erfordert eine neue Vorbereitung. `cancelMemoryAssignment()` verwirft die Vorbereitung. `recallMemory()` lädt den aktuellen M-Wert in einen eigenen Ausdruck `M` und setzt Ans gemäß der dokumentierten Prototypregel. Links und DEL bearbeiten anschließend diesen Ausdruck.
+
+Als nächstes folgen der Appdialog und die Norm-1-Vorschau mit Controller- und Widgettests. Die Sitzungsaktionen bilden dafür die geprüfte Schnittstelle, sobald der unten festgehaltene GitHub-Lauf abgeschlossen ist.
+
 ## 06.11.2026 morgens: exakter M-Operand im Core
 
 Ausgangsbasis `469205b`, Arbeitskopie vor Beginn sauber. Arbeitsregeln, README, Entwicklungsstand und Entwicklungsplan wurden gelesen. Das erste Umsetzungspaket aus [STO_RECALL_M.md](STO_RECALL_M.md) ergänzt ausschließlich den exakten M-Operanden. Ein Subagent bearbeitet Parser/Auswertung und unabhängige Rechenfälle, ein zweiter Editor, Navigation, Projektion und Editorfälle. Der Hauptagent verbindet die Registerkontexte mit `CalculatorMemory.calculate` und strukturierter Sitzung, ergänzt elf Transaktionsfälle und prüft Integration/Dokumentation/GitHub-Lauf. Quellenanalysen werden nicht wiederholt, Originale bleiben unverändert.

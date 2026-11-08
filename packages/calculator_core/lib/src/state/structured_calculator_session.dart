@@ -47,6 +47,16 @@ final class StructuredCalculatorSnapshot {
   }
 }
 
+/// A prepared exact value, usable only by its originating session.
+/// Preparation does not publish a result or modify the memory registers.
+final class StructuredMemoryAssignment {
+  const StructuredMemoryAssignment._(this.value, this._owner, this._origin);
+
+  final Rational value;
+  final StructuredCalculatorSession _owner;
+  final StructuredCalculatorSnapshot _origin;
+}
+
 /// Prototype controller for structured fractions, with exact Ans continuation.
 ///
 /// The editor is private. All public state is immutable, and failed commands
@@ -59,6 +69,7 @@ final class StructuredCalculatorSession {
   }
 
   final CalculatorMemory memory;
+  StructuredMemoryAssignment? _preparedAssignment;
 
   StructuredCalculatorSnapshot _snapshot = StructuredCalculatorSnapshot._(
     editor: FractionEditor().snapshot,
@@ -225,6 +236,107 @@ final class StructuredCalculatorSession {
     }
   }
 
+  bool _assignmentOriginMatches(StructuredMemoryAssignment candidate) =>
+      identical(candidate._owner, this) &&
+      candidate._origin.phase == _snapshot.phase &&
+      identical(candidate._origin.editor, _snapshot.editor) &&
+      candidate._origin.result == _snapshot.result;
+
+  /// Freezes an operand without assigning M or updating Ans. Repeated calls
+  /// reuse the candidate while its source is unchanged. Shared-register or
+  /// display-choice changes alone do not invalidate an already frozen value.
+  StructuredMemoryAssignment? prepareMemoryAssignment() {
+    _synchronizeAnswer();
+    final prepared = _preparedAssignment;
+    if (prepared != null && _assignmentOriginMatches(prepared)) {
+      return prepared;
+    }
+    _preparedAssignment = null;
+    if (_snapshot.phase == CalculatorPhase.error ||
+        (_snapshot.phase == CalculatorPhase.editing &&
+            _snapshot.editor.root.nodes.isEmpty)) {
+      return null;
+    }
+    EditorProjection? projection;
+    try {
+      final Rational value;
+      if (_snapshot.phase == CalculatorPhase.result) {
+        value = _snapshot.result!;
+      } else {
+        projection = FractionEditor.fromSnapshot(_snapshot.editor).project();
+        final registers = memory.snapshot;
+        value = arithmetic.evaluate(
+          projection.expression,
+          answer: registers.answer,
+          memoryValue: registers.memory,
+        );
+      }
+      return _preparedAssignment = StructuredMemoryAssignment._(
+        value,
+        this,
+        _snapshot,
+      );
+    } on EditorProjectionException catch (diagnostic) {
+      _fail(diagnostic.error, cursor: diagnostic.cursor);
+    } on CalculatorException catch (error) {
+      final position = error.position;
+      _fail(
+        error,
+        cursor: position == null
+            ? _snapshot.editor.cursor
+            : projection!.cursorAt(position),
+      );
+    }
+    return null;
+  }
+
+  /// Commits only this session's current candidate. Stale or foreign values
+  /// never restore an old editor or undo direct register changes.
+  bool commitMemoryAssignment(StructuredMemoryAssignment candidate) {
+    _synchronizeAnswer();
+    if (!identical(candidate._owner, this) ||
+        !identical(candidate, _preparedAssignment)) {
+      return false;
+    }
+    _preparedAssignment = null;
+    if (!_assignmentOriginMatches(candidate)) return false;
+    try {
+      memory.acceptResult(candidate.value, operation: MemoryOperation.store);
+      _publishResult(candidate.value);
+      return true;
+    } on CalculatorException catch (error) {
+      _fail(error);
+      return false;
+    }
+  }
+
+  /// Aborts preparation only; it does not roll back any session or register.
+  void cancelMemoryAssignment() => _preparedAssignment = null;
+
+  /// Loads the current exact M as a fresh coherent M expression. The shown
+  /// result is frozen, while later editing binds M to its then-current value.
+  StructuredCalculatorSnapshot recallMemory() {
+    _synchronizeAnswer();
+    _preparedAssignment = null;
+    try {
+      final editor = FractionEditor()..insertText('M');
+      final registers = memory.snapshot;
+      final value = editor.evaluate(
+        answer: registers.answer,
+        memoryValue: registers.memory,
+      );
+      memory.acceptResult(value);
+      return _snapshot = StructuredCalculatorSnapshot._(
+        editor: editor.snapshot,
+        phase: CalculatorPhase.result,
+        answer: value,
+        result: value,
+      );
+    } on CalculatorException catch (error) {
+      return _fail(error);
+    }
+  }
+
   /// Commits the current operand while preserving error recovery and drafts.
   /// A displayed result is reused exactly, even if shared Ans has since changed.
   StructuredCalculatorSnapshot applyMemory(MemoryOperation operation) {
@@ -275,13 +387,15 @@ final class StructuredCalculatorSession {
     }
   }
 
-  StructuredCalculatorSnapshot _publishResult(Rational value) =>
-      _snapshot = StructuredCalculatorSnapshot._(
-        editor: _snapshot.editor,
-        phase: CalculatorPhase.result,
-        answer: value,
-        result: value,
-      );
+  StructuredCalculatorSnapshot _publishResult(Rational value) {
+    _preparedAssignment = null;
+    return _snapshot = StructuredCalculatorSnapshot._(
+      editor: _snapshot.editor,
+      phase: CalculatorPhase.result,
+      answer: value,
+      result: value,
+    );
+  }
 
   StructuredCalculatorSnapshot _edit(FractionEditorSnapshot editor) =>
       _snapshot = StructuredCalculatorSnapshot._(
@@ -293,11 +407,14 @@ final class StructuredCalculatorSession {
   StructuredCalculatorSnapshot _fail(
     CalculatorException error, {
     EditorCursor? cursor,
-  }) => _snapshot = StructuredCalculatorSnapshot._(
-    editor: _snapshot.editor,
-    phase: CalculatorPhase.error,
-    answer: _snapshot.answer,
-    error: error,
-    errorCursor: cursor ?? _snapshot.editor.cursor,
-  );
+  }) {
+    _preparedAssignment = null;
+    return _snapshot = StructuredCalculatorSnapshot._(
+      editor: _snapshot.editor,
+      phase: CalculatorPhase.error,
+      answer: _snapshot.answer,
+      error: error,
+      errorCursor: cursor ?? _snapshot.editor.cursor,
+    );
+  }
 }

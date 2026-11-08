@@ -1,4 +1,5 @@
 import '../errors.dart';
+import '../evaluation/evaluator.dart' as arithmetic;
 import '../formatting/rational_display.dart';
 import '../numbers/rational.dart';
 import 'calculator_memory.dart';
@@ -132,6 +133,16 @@ final class CalculatorSnapshot {
       tokens.take(cursor).fold(0, (sum, token) => sum + token.length);
 }
 
+/// A frozen, session-owned value awaiting an explicit memory assignment.
+/// Preparing it does not execute a memory transaction or alter its origin.
+final class LinearMemoryAssignment {
+  const LinearMemoryAssignment._(this.value, this._owner, this._origin);
+
+  final Rational value;
+  final CalculatorSession _owner;
+  final CalculatorSnapshot _origin;
+}
+
 /// A small, synchronous linear editor/controller for the general calculation
 /// mode. It has no Flutter, platform, modifier, menu or persistence dependency.
 final class CalculatorSession {
@@ -141,6 +152,7 @@ final class CalculatorSession {
   }
 
   final CalculatorMemory memory;
+  LinearMemoryAssignment? _pendingAssignment;
 
   CalculatorSnapshot _snapshot = CalculatorSnapshot._(
     phase: CalculatorPhase.editing,
@@ -262,6 +274,95 @@ final class CalculatorSession {
     );
   }
 
+  /// Prepares one exact operand without writing Ans or M. Repeated preparation
+  /// preserves a valid candidate, including after a shared-register change.
+  LinearMemoryAssignment? prepareMemoryAssignment() {
+    _synchronizeAnswer();
+    final pending = _pendingAssignment;
+    if (pending != null && _assignmentOriginMatches(pending)) return pending;
+    _pendingAssignment = null;
+    if (_snapshot.phase == CalculatorPhase.error ||
+        (_snapshot.phase == CalculatorPhase.editing &&
+            _snapshot.tokens.isEmpty)) {
+      return null;
+    }
+    try {
+      final registers = memory.snapshot;
+      final value = _snapshot.phase == CalculatorPhase.result
+          ? _snapshot.result!
+          : arithmetic.evaluate(
+              _snapshot.expression,
+              answer: registers.answer,
+              memoryValue: registers.memory,
+            );
+      return _pendingAssignment = LinearMemoryAssignment._(
+        value,
+        this,
+        _snapshot,
+      );
+    } on CalculatorException catch (error) {
+      _fail(error);
+      return null;
+    }
+  }
+
+  bool _assignmentOriginMatches(LinearMemoryAssignment candidate) {
+    final origin = candidate._origin;
+    return identical(candidate._owner, this) &&
+        origin.phase == _snapshot.phase &&
+        identical(origin.tokens, _snapshot.tokens) &&
+        origin.cursor == _snapshot.cursor &&
+        origin.result == _snapshot.result;
+  }
+
+  /// Assigns only the current candidate from this unchanged session origin.
+  /// Rejection never restores an old editor or rolls back shared registers.
+  bool commitMemoryAssignment(LinearMemoryAssignment candidate) {
+    _synchronizeAnswer();
+    if (!identical(candidate._owner, this) ||
+        !identical(candidate, _pendingAssignment)) {
+      return false;
+    }
+    if (!_assignmentOriginMatches(candidate)) {
+      _pendingAssignment = null;
+      return false;
+    }
+    try {
+      final value = memory.acceptResult(
+        candidate.value,
+        operation: MemoryOperation.store,
+      );
+      _publishResult(value);
+      return true;
+    } on CalculatorException catch (error) {
+      _fail(error);
+      return false;
+    }
+  }
+
+  /// Cancels only the prepared action; neither editor nor registers are restored.
+  void cancelMemoryAssignment() => _pendingAssignment = null;
+
+  /// Loads the current exact M as a fresh, coherent expression and result.
+  /// Later editing opens M, rather than the expression preceding the recall.
+  CalculatorSnapshot recallMemory() {
+    _synchronizeAnswer();
+    _pendingAssignment = null;
+    try {
+      final value = memory.calculate('M');
+      return _snapshot = CalculatorSnapshot._(
+        phase: CalculatorPhase.result,
+        tokens: const ['M'],
+        cursor: 1,
+        answer: value,
+        result: value,
+      );
+    } on CalculatorException catch (error) {
+      _fail(error);
+      return _snapshot;
+    }
+  }
+
   /// Commits the current operand, not a reevaluation of a displayed result.
   /// Empty editors and error phases are unchanged; AC remains editor-only.
   CalculatorSnapshot applyMemory(MemoryOperation operation) {
@@ -300,6 +401,7 @@ final class CalculatorSession {
   }
 
   void _publishResult(Rational value) {
+    _pendingAssignment = null;
     _snapshot = CalculatorSnapshot._(
       phase: CalculatorPhase.result,
       tokens: _snapshot.tokens,
@@ -310,6 +412,7 @@ final class CalculatorSession {
   }
 
   void _fail(CalculatorException error) {
+    _pendingAssignment = null;
     _snapshot = CalculatorSnapshot._(
       phase: CalculatorPhase.error,
       tokens: _snapshot.tokens,

@@ -17,7 +17,7 @@ H bezeichnet `reference/originals/fx-87_991DEX_DE.pdf`. Für die neu offenen STO
 | STO oder bestätigtes RECALL ändern Ans. | Auf H 17–18 nicht ausdrücklich beschrieben. Die allgemeine Aussage zum letzten Rechenergebnis beweist diese Einzelfälle nicht. |
 | Zeitpunkt der STO-Auswertung, unpassende Folgetasten, leere Eingaben, Wiederholung und Dialogabbruch über Setup/ON/OFF. | Im geprüften Ausschnitt nicht vollständig festgelegt; eigene Regeln unten. |
 
-Die App unterstützt zunächst ausschließlich M. A–F, x und y erhalten keine erfundenen Nullwerte. ALPHA → M+ fügt M an der Cursorposition ein. Der Speicherreset erhält ein eigenes Menüpaket. Originalsoftware und Gerät wurden nicht beobachtet.
+Die App unterstützt zunächst ausschließlich M. A–F, x und y erhalten keine erfundenen Nullwerte. ALPHA → M+ fügt M an der Cursorposition ein. Der bestätigte Speicherreset setzt Ans und M auf null. Originalsoftware und Gerät wurden nicht beobachtet.
 
 ## Voraussetzung: ein exakter M-Operand
 

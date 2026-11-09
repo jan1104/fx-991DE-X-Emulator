@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 09.11.2026 – Bestätigter Speicherreset
+
+`SHIFT → 9 → 2 → =` setzt M und Ans auf null. Die Auswahl `2 Speicher` öffnet zuerst die Bestätigung. AC oder Escape schließt das Menü, Links kehrt zur Auswahl zurück. Ein Tipp auf „= Löschen“ oder Enter entspricht dem unmodifizierten `=`. Die Menüfolge folgt H, physische PDF-Seiten 3, 10 und 18, sowie K, PDF-Seite 5. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)
+
+Der Speicherreset erhält Setup, Entwürfe und die zuvor berechneten Ergebnisse in Math und Linear. Bei der nächsten Berechnung bindet die Sitzung Ans und M an die zurückgesetzten Register. Der Controller verwirft vorbereitete STO-Zuweisungen aus beiden Sitzungen, damit sie den Reset nicht rückgängig machen. Das RESET-Menü kennzeichnet „Setupdaten“ und „Alle initialis.“ als in Vorbereitung. Ein Subagent hat die LCD-Bestätigung und die beiden Widgettests beigesteuert.
+
+Formatprüfung und statische App-Analyse waren lokal erfolgreich. GitHub prüfte `44a5006dbaa64b79d57715a9eef7e22040da0b65` mit 1183 Coretests, 510 App-Tests, Web-Build und 27 Vorschauen. Das Paket ergänzt fünf Controller- und zwei Widgettests bei 320 Pixeln Breite. Das heruntergeladene Archiv enthält 27 PNGs. Die beiden neuen Vorschauen zeigen die Bestätigung und nach dem Reset `Ans: 0` bei weiterhin sichtbarem Ergebnis `7`. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42609215941), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42609215941/artifacts/13669073612), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42609215941/artifacts/13669477141)
+
+Als Nächstes folgt `SHIFT → 9 → 1 → =` für die Setupinitialisierung. Das Paket prüft Standardwerte, Kontrast sowie den Erhalt von Ans und M getrennt vom Speicherreset. [Entwicklungsplan](ARCHITEKTUR_UND_PLAN.md)
+
 ## 09.11.2026 – M als Operand über ALPHA
 
 `ALPHA → M+` fügt M an der Cursorposition ein. Math kann M als einzelnen Baustein in einen Bruch übernehmen. DEL entfernt das Token in einem Schritt. Die Auswertung liest den aktuellen exakten M-Wert. Das Einfügen selbst schreibt weder M noch Ans. Die Belegung folgt dem vorhandenen Tasteninventar. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)

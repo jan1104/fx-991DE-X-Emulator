@@ -62,6 +62,8 @@ Fortschreibung 08.11.2026 abends. STO und RECALL sind für M in der App bedienba
 
 Fortschreibung 09.11.2026. ALPHA → M+ setzt M als Operand ein. Der Lauf auf `6983fb2` prüft beide Eingabearten, die ALPHA-Ebene und die Bruchübernahme. Als nächstes folgt der bestätigte Speicherreset. [Prüfstand](ENTWICKLUNGSSTAND.md)
 
+Fortschreibung 09.11.2026. Das RESET-Menü bietet die bestätigte Speicherinitialisierung für Ans und M. Die anderen beiden Einträge sind als in Vorbereitung gekennzeichnet. Als Nächstes folgt die getrennte Setupinitialisierung mit Kontrasterhalt. [Speichervertrag](SPEICHER_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
+
 ## Risiken und offene Entscheidungen
 
 - **Bestätigt:** H deckt zwei Modelle ab; unkritische Übernahme würde falsche Grenzen erzeugen. Nur fx-991DE X ist Zielmodell.

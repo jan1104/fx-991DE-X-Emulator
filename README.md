@@ -4,7 +4,7 @@ Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-9
 
 ## Stand am 09.11.2026
 
-Math und Linear teilen den exakten Ans-/M-Speicher. `STO → M+` speichert einen Wert, `SHIFT → STO → M+ → =` ruft ihn ab. RECALL zeigt eine Norm-1-Vorschau. AC schließt den Dialog und erhält den Entwurf. `ALPHA → M+` setzt M direkt in den Rechenausdruck ein. GitHub prüfte `6983fb2` mit 1183 Coretests, 503 App-Tests, Web-Build und 25 Vorschauen. Als Nächstes folgt der Speicherreset. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md)
+Math und Linear teilen den exakten Ans-/M-Speicher. `STO → M+` speichert einen Wert, `SHIFT → STO → M+ → =` ruft ihn ab. RECALL zeigt eine Norm-1-Vorschau. AC schließt den Dialog und erhält den Entwurf. `ALPHA → M+` setzt M direkt in den Rechenausdruck ein. `SHIFT → 9 → 2 → =` setzt Ans und M nach Bestätigung auf null. GitHub prüfte `44a5006` mit 1183 Coretests, 510 App-Tests, Web-Build und 27 Vorschauen. Als Nächstes folgt die Setupinitialisierung. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md)
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 

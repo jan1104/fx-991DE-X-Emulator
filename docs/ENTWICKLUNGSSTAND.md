@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 09.11.2026 – Bestätigte Setupinitialisierung
+
+`SHIFT → 9 → 1 → =` stellt die dokumentierten Setup-Standardwerte einschließlich Math → Math, Gradmaß und Norm 1 wieder her. Die Bestätigung erhält Kontrast, Ans und M. AC oder Escape schließt den Dialog, Links führt zur RESET-Auswahl. Die Vorgaben und die Ausnahme für den Kontrast stammen aus H, physischen PDF-Seiten 3, 4 und 7–10. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)
+
+Die App erhält in beiden Sitzungen die Entwürfe und die exakten Ergebniswerte. Sie stellt die Darstellung erhaltener Ergebnisse auf Bruchdarstellung zurück, damit sie zur Standard-Ein-/Ausgabe passt. Die Setupinitialisierung verwendet dieselbe Bestätigung wie der Speicherreset. Ein Subagent hat die Anzeige und den Widgettest für 320 Pixel Breite ergänzt.
+
+Formatierung und statische App-Analyse waren erfolgreich. GitHub prüfte `410ecaa7f903b9cad61fc03be28986be4f4ae2b7` mit 1183 Coretests, 514 App-Tests, Web-Build und 28 Vorschauen. Das Paket ergänzt drei Controller- und einen Widgettest. Die neue Vorschau `calculator-reset-setup-confirm.png` zeigt die Bestätigung bei 420 Pixeln Breite. Das heruntergeladene Archiv enthält 28 PNGs. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42665620245), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42665620245/artifacts/13696297236), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42665620245/artifacts/13695878377)
+
+Das nächste Paket ergänzt die bestätigte Auswahl „Alle initialis.“. Die Abnahme prüft gemeinsam Setup-Standardwerte, Kontrasterhalt, Speicherleerung und den Abbruch vor der Bestätigung. [Entwicklungsplan](ARCHITEKTUR_UND_PLAN.md)
+
 ## 09.11.2026 – Bestätigter Speicherreset
 
 `SHIFT → 9 → 2 → =` setzt M und Ans auf null. Die Auswahl `2 Speicher` öffnet zuerst die Bestätigung. AC oder Escape schließt das Menü, Links kehrt zur Auswahl zurück. Ein Tipp auf „= Löschen“ oder Enter entspricht dem unmodifizierten `=`. Die Menüfolge folgt H, physische PDF-Seiten 3, 10 und 18, sowie K, PDF-Seite 5. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)

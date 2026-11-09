@@ -64,6 +64,8 @@ Fortschreibung 09.11.2026. ALPHA → M+ setzt M als Operand ein. Der Lauf auf `6
 
 Fortschreibung 09.11.2026. Das RESET-Menü bietet die bestätigte Speicherinitialisierung für Ans und M. Die anderen beiden Einträge sind als in Vorbereitung gekennzeichnet. Als Nächstes folgt die getrennte Setupinitialisierung mit Kontrasterhalt. [Speichervertrag](SPEICHER_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
+Fortschreibung 09.11.2026 abends. Die Setupinitialisierung ergänzt den RESET-Eintrag „Setupdaten“. Sie stellt die dokumentierten Standardwerte wieder her und erhält Kontrast und Speicher. Das nächste Paket schließt das RESET-Menü mit „Alle initialis.“ ab. [Prüfstand](ENTWICKLUNGSSTAND.md)
+
 ## Risiken und offene Entscheidungen
 
 - **Bestätigt:** H deckt zwei Modelle ab; unkritische Übernahme würde falsche Grenzen erzeugen. Nur fx-991DE X ist Zielmodell.

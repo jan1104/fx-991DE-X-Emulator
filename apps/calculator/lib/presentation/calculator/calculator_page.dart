@@ -48,13 +48,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
     final recallWasOpen = _controller.recallOpen;
     final storeWasPending = _controller.storePending;
     final recallWasSelected = _controller.recallSelected;
-    final resetWasPending = _controller.memoryResetPending;
+    final resetWasPending = _controller.resetPending;
     setState(() => _controller.pressId(id));
     if ((!menuWasOpen && _controller.menuOpen) ||
         recallWasOpen != _controller.recallOpen ||
         storeWasPending != _controller.storePending ||
         recallWasSelected != _controller.recallSelected ||
-        resetWasPending != _controller.memoryResetPending) {
+        resetWasPending != _controller.resetPending) {
       _revealDisplay();
     }
   }
@@ -502,14 +502,25 @@ class _CalculatorPageState extends State<CalculatorPage> {
           ),
         ],
       ),
-      if (_controller.memoryResetPending) ...[
-        const Text(
-          'Ans und M werden auf 0 gesetzt.',
-          key: ValueKey('memory-reset-prompt'),
-          style: TextStyle(fontSize: 12),
+      if (_controller.resetPending) ...[
+        Text(
+          _controller.setupResetPending
+              ? 'Die Setupdaten werden auf Standardwerte gesetzt. '
+                    'Kontrast, Ans und M bleiben erhalten.'
+              : 'Ans und M werden auf 0 gesetzt.',
+          key: ValueKey(
+            _controller.setupResetPending
+                ? 'setup-reset-prompt'
+                : 'memory-reset-prompt',
+          ),
+          style: const TextStyle(fontSize: 12),
         ),
         TextButton(
-          key: const ValueKey('memory-reset-confirm'),
+          key: ValueKey(
+            _controller.setupResetPending
+                ? 'setup-reset-confirm'
+                : 'memory-reset-confirm',
+          ),
           onPressed: () => _pressId('KEY_EQUALS'),
           style: TextButton.styleFrom(
             minimumSize: const Size(44, 44),
@@ -517,7 +528,9 @@ class _CalculatorPageState extends State<CalculatorPage> {
             backgroundColor: const Color(0xFFAFBFA7),
             shape: const RoundedRectangleBorder(),
           ),
-          child: const Text('= Löschen'),
+          child: Text(
+            _controller.setupResetPending ? '= Zurücksetzen' : '= Löschen',
+          ),
         ),
       ],
       for (final (index, item) in _controller.menuItems.indexed)
@@ -567,7 +580,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
             ),
           ),
         ),
-      if (!_controller.memoryResetPending)
+      if (!_controller.resetPending)
         Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [

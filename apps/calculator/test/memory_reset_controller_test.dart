@@ -11,7 +11,7 @@ void press(CalculatorController c, List<String> keys) {
 }
 
 void main() {
-  test('RESET lists the three handbook choices and stages memory only', () {
+  test('RESET lists the three handbook choices and stages memory', () {
     final c = CalculatorController();
     c.memory.calculate('5', operation: MemoryOperation.store);
     final before = c.memory.snapshot;
@@ -22,7 +22,7 @@ void main() {
       'Speicher',
       'Alle initialis.',
     ]);
-    press(c, ['1', '3']);
+    press(c, ['3']);
     expect(c.menuTitle, 'RESET');
     expect(c.memory.snapshot, same(before));
     press(c, ['2']);

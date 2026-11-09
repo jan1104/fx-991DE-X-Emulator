@@ -33,6 +33,7 @@ void main() {
     'alpha-memory',
     'reset-memory-confirm',
     'reset-memory-done',
+    'reset-setup-confirm',
     'front',
     'settings',
     'periodic',
@@ -44,7 +45,8 @@ void main() {
     final recall = scenario == 'recall-m';
     final alphaReady = scenario == 'alpha-ready';
     final alphaMemory = scenario == 'alpha-memory';
-    final resetConfirm = scenario == 'reset-memory-confirm';
+    final setupReset = scenario == 'reset-setup-confirm';
+    final resetConfirm = scenario == 'reset-memory-confirm' || setupReset;
     final resetDone = scenario == 'reset-memory-done';
     final reset = resetConfirm || resetDone;
     final error = scenario == 'error';
@@ -107,7 +109,7 @@ void main() {
                   'KEY_M_PLUS',
                   'KEY_SHIFT',
                   'KEY_9',
-                  'KEY_2',
+                  setupReset ? 'KEY_1' : 'KEY_2',
                   if (resetDone) 'KEY_EQUALS',
                 ]
               : alphaReady
@@ -300,7 +302,9 @@ void main() {
         find.byKey(
           ValueKey(
             resetConfirm
-                ? 'memory-reset-prompt'
+                ? setupReset
+                      ? 'setup-reset-prompt'
+                      : 'memory-reset-prompt'
                 : recall
                 ? 'display-recall-value'
                 : 'display-result',
@@ -310,7 +314,9 @@ void main() {
       expect(
         output.data ?? output.textSpan!.toPlainText(),
         resetConfirm
-            ? 'Ans und M werden auf 0 gesetzt.'
+            ? setupReset
+                  ? 'Die Setupdaten werden auf Standardwerte gesetzt. Kontrast, Ans und M bleiben erhalten.'
+                  : 'Ans und M werden auf 0 gesetzt.'
             : resetDone
             ? '7'
             : alphaReady

@@ -79,6 +79,8 @@ final class CalculatorController {
   bool get menuOpen => _menu.isNotEmpty;
   String get _page => _menu.last.page;
   bool get memoryResetPending => menuOpen && _page == 'reset-memory';
+  bool get setupResetPending => menuOpen && _page == 'reset-settings';
+  bool get resetPending => memoryResetPending || setupResetPending;
   int get menuOffset => menuOpen ? (_menu.last.selection ~/ 4) * 4 : 0;
   int get menuSelection => menuOpen ? _menu.last.selection - menuOffset : 0;
   String get menuTitle => !menuOpen
@@ -87,6 +89,7 @@ final class CalculatorController {
           'setup' => 'Einstellungen',
           'mode' => 'Rechenmodus',
           'reset' => 'RESET',
+          'reset-settings' => 'Setupdaten zurücksetzen?',
           'reset-memory' => 'Speicher löschen?',
           'io' => 'Eingabe/Ausgabe',
           'angle' => 'Winkeleinheit',
@@ -132,7 +135,7 @@ final class CalculatorController {
   }
 
   void menuMove(int delta) {
-    if (!menuOpen || memoryResetPending) return;
+    if (!menuOpen || resetPending) return;
     _menu.last.selection = (_menu.last.selection + delta).clamp(
       0,
       _allItems.length - 1,
@@ -215,7 +218,7 @@ final class CalculatorController {
           (recallOpen && id == 'KEY_EQUALS');
     }
     if (menuOpen) {
-      if (memoryResetPending) {
+      if (resetPending) {
         return const {'KEY_AC', 'KEY_LEFT', 'KEY_EQUALS'}.contains(id);
       }
       if (const {
@@ -246,7 +249,9 @@ final class CalculatorController {
       throw RangeError.index(index, visible);
     final id = visible[index].id;
     if (_page == 'reset') {
-      if (id == 'reset-memory') _menu.add(_MenuPosition(id));
+      if (id == 'reset-memory' || id == 'reset-settings') {
+        _menu.add(_MenuPosition(id));
+      }
       return;
     }
     if (_page == 'setup') {
@@ -312,13 +317,9 @@ final class CalculatorController {
         _menu.clear();
         return;
       }
-      if (memoryResetPending && id != 'KEY_LEFT') {
+      if (resetPending && id != 'KEY_LEFT') {
         if (id == 'KEY_EQUALS' && !shifted) {
-          session.cancelMemoryAssignment();
-          structured.cancelMemoryAssignment();
-          memory.clearMemory();
-          _menu.clear();
-          notice = 'Speicher gelöscht';
+          _confirmReset();
         }
         return;
       }
@@ -441,6 +442,21 @@ final class CalculatorController {
         settings.decimalOutput) {
       _selectDisplay(RationalDisplayFormat.exactDecimal);
     }
+  }
+
+  void _confirmReset() {
+    if (setupResetPending) {
+      _settings = CalculatorSettings(contrast: settings.contrast);
+      session.selectResultDisplayFormat(RationalDisplayFormat.fraction);
+      structured.selectResultDisplayFormat(RationalDisplayFormat.fraction);
+      notice = 'Setupdaten zurückgesetzt';
+    } else {
+      session.cancelMemoryAssignment();
+      structured.cancelMemoryAssignment();
+      memory.clearMemory();
+      notice = 'Speicher gelöscht';
+    }
+    _menu.clear();
   }
 
   void _pressCore(String id) =>
@@ -720,10 +736,11 @@ final class CalculatorController {
     switch (_page) {
       case 'reset':
         return [
-          item('reset-settings', 'Setupdaten', false, true),
+          item('reset-settings', 'Setupdaten'),
           item('reset-memory', 'Speicher'),
           item('reset-all', 'Alle initialis.', false, true),
         ];
+      case 'reset-settings':
       case 'reset-memory':
         return const [];
       case 'setup':

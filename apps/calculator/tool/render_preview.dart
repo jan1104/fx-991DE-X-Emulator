@@ -29,6 +29,8 @@ void main() {
     'memory-cleared',
     'sto-ready',
     'recall-m',
+    'alpha-ready',
+    'alpha-memory',
     'front',
     'settings',
     'periodic',
@@ -38,6 +40,8 @@ void main() {
     final memory = scenario.startsWith('memory');
     final sto = scenario == 'sto-ready';
     final recall = scenario == 'recall-m';
+    final alphaReady = scenario == 'alpha-ready';
+    final alphaMemory = scenario == 'alpha-memory';
     final error = scenario == 'error';
     final capture = scenario == 'capture';
     final group = scenario == 'group';
@@ -92,7 +96,22 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in sto
+          in alphaReady
+              ? ['KEY_ALPHA']
+              : alphaMemory
+              ? [
+                  'KEY_1',
+                  'KEY_DIVIDE',
+                  'KEY_3',
+                  'KEY_STO',
+                  'KEY_M_PLUS',
+                  'KEY_ALPHA',
+                  'KEY_M_PLUS',
+                  'action-wrap-fraction',
+                  'KEY_2',
+                  'KEY_EQUALS',
+                ]
+              : sto
               ? ['KEY_7', 'KEY_STO']
               : recall
               ? [
@@ -270,7 +289,11 @@ void main() {
       );
       expect(
         output.data ?? output.textSpan!.toPlainText(),
-        sto
+        alphaReady
+            ? ''
+            : alphaMemory
+            ? '1/6'
+            : sto
             ? ''
             : recall
             ? '0,3333333333'
@@ -316,6 +339,12 @@ void main() {
           findsOneWidget,
         );
       }
+      if (alphaReady || alphaMemory) {
+        final status = tester.widget<Text>(
+          find.byKey(const ValueKey('display-status')),
+        );
+        expect(status.data!.contains('ALPHA'), alphaReady);
+      }
       if (recall) {
         expect(
           find.byKey(const ValueKey('display-recall-select')),
@@ -360,7 +389,7 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          memory || absolute || sto || recall
+          memory || absolute || sto || recall || alphaReady || alphaMemory
               ? '../../build/reports/calculator-$scenario.png'
               : combinatorics
               ? '../../build/reports/calculator-$scenario.png'

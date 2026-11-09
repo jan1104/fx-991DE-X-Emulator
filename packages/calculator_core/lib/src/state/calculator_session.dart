@@ -38,7 +38,8 @@ enum CalculatorKey {
   delete('KEY_DEL'),
   clear('KEY_AC'),
   equals('KEY_EQUALS'),
-  answer('KEY_ANS', 'Ans');
+  answer('KEY_ANS', 'Ans'),
+  memory('ACTION_MEMORY', 'M');
 
   final String id;
   final String? text;

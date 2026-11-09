@@ -54,6 +54,8 @@ final class CalculatorController {
   CalculatorSettings get settings => _settings;
   bool get fractions => settings.fractions;
   bool shift = false;
+  bool _alpha = false;
+  bool get alpha => _alpha;
   bool poweredOn = true;
   String notice = '';
   Object? _storeCandidate;
@@ -115,6 +117,7 @@ final class CalculatorController {
     _closeMemoryDialog();
     poweredOn = true;
     shift = false;
+    _alpha = false;
     notice = '';
     _menu
       ..clear()
@@ -135,6 +138,7 @@ final class CalculatorController {
 
   void selectInputOutput(CalculatorInputOutput value) {
     _closeMemoryDialog();
+    _alpha = false;
     _settings = settings.copyWith(inputOutput: value);
   }
 
@@ -196,7 +200,7 @@ final class CalculatorController {
   }
 
   /// Unsupported arithmetic remains visibly unavailable on the physical skin.
-  /// ALPHA remains unavailable; supported SHIFT actions share this controller.
+  /// The modifier keys share the calculation and dialog routing below.
   bool isKeyEnabled(String id) {
     if (id == 'KEY_ON') return true;
     if (!poweredOn) return false;
@@ -222,6 +226,7 @@ final class CalculatorController {
       }
       return false;
     }
+    if (id == 'KEY_ALPHA') return true;
     if (id == 'KEY_SD' || id == 'KEY_M_PLUS' || id == 'KEY_STO') return true;
     if (fractions && const {'KEY_FRACTION', 'KEY_UP', 'KEY_DOWN'}.contains(id))
       return true;
@@ -257,6 +262,7 @@ final class CalculatorController {
       _closeMemoryDialog();
       poweredOn = true;
       shift = false;
+      _alpha = false;
       _menu.clear();
       session.pressId('KEY_AC');
       structured.pressId('KEY_AC');
@@ -265,11 +271,22 @@ final class CalculatorController {
     }
     if (!poweredOn) return;
     if (id == 'KEY_SHIFT') {
+      _alpha = false;
       shift = !shift;
       return;
     }
+    if (id == 'KEY_ALPHA') {
+      if (isKeyEnabled(id)) {
+        shift = false;
+        _alpha = !_alpha;
+        notice = '';
+      }
+      return;
+    }
     final shifted = shift;
+    final alphaWasActive = alpha;
     shift = false;
+    _alpha = false;
     if (shifted && id == 'KEY_AC') {
       _closeMemoryDialog();
       poweredOn = false;
@@ -307,6 +324,14 @@ final class CalculatorController {
     notice = '';
     if (storePending || recallOpen) {
       _pressMemoryDialog(id);
+      return;
+    }
+    if (alphaWasActive && id != 'KEY_AC') {
+      if (id == 'KEY_M_PLUS') {
+        _pressCore('ACTION_MEMORY');
+      } else {
+        notice = 'Diese ALPHA-Belegung ist noch in Vorbereitung';
+      }
       return;
     }
     if (id == 'KEY_STO') {
@@ -468,6 +493,7 @@ final class CalculatorController {
       CalculatorAngleUnit.gradians => 'G',
     },
     if (shift) 'SHIFT',
+    if (alpha) 'ALPHA',
     if (storePending) 'STO',
     if (memory.snapshot.hasMemory) 'M',
     if (fractions) 'Math',

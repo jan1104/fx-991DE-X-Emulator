@@ -119,6 +119,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
                       enabled: _controller.isKeyEnabled,
                       onPressed: _pressId,
                       shift: _controller.shift,
+                      alpha: _controller.alpha,
                     ),
                   ),
                   Padding(

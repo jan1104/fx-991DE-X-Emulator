@@ -34,10 +34,10 @@ void main() {
       expect(keys, hasLength(50));
       expect(
         keys.where((key) => c.isKeyEnabled(key.id)),
-        hasLength(math ? 36 : 33),
+        hasLength(math ? 37 : 34),
       );
       expect(keys.where((key) => key.id == 'ACTION_ABS'), isEmpty);
-      expect(CalculatorKey.values, hasLength(33));
+      expect(CalculatorKey.values, hasLength(34));
     });
 
     test('$mode SHIFT left parenthesis executes the handbook expression', () {

@@ -73,7 +73,7 @@ void main() {
       expect(size.width, greaterThanOrEqualTo(44), reason: id);
     }
   });
-  testWidgets('renders exactly 50 unique keys, 33 enabled and 17 disabled', (
+  testWidgets('renders exactly 50 unique keys, 34 enabled and 16 disabled', (
     tester,
   ) async {
     await pumpCalculator(tester);
@@ -90,6 +90,7 @@ void main() {
           CalculatorKey.fromId(definition.id) != null ||
           const {
             'KEY_SHIFT',
+            'KEY_ALPHA',
             'KEY_MENU',
             'KEY_ON',
             'KEY_SD',
@@ -103,8 +104,8 @@ void main() {
         enabled++;
       }
     }
-    expect(enabled, 33);
-    expect(disabled, 17);
+    expect(enabled, 34);
+    expect(disabled, 16);
     expect(find.byType(FilledButton), findsNWidgets(50));
     expect(expression(tester), '│');
     expect(result(tester), '');
@@ -224,13 +225,20 @@ void main() {
     expect(expression(tester), '│');
   });
 
-  testWidgets('disabled ALPHA remains visible and has no effect', (
+  testWidgets('ALPHA arms the next key and preserves the draft', (
     tester,
   ) async {
     await pumpCalculator(tester);
     await tapKeys(tester, ['KEY_1', 'KEY_2']);
-    expect(tester.widget<FilledButton>(button('KEY_ALPHA')).onPressed, isNull);
+    expect(
+      tester.widget<FilledButton>(button('KEY_ALPHA')).onPressed,
+      isNotNull,
+    );
     await tapKey(tester, 'KEY_ALPHA');
+    expect(
+      tester.widget<Text>(button('display-status')).data,
+      contains('ALPHA'),
+    );
     expect(expression(tester), '12│');
     expect(result(tester), '');
     expect(answer(tester), 'Ans: 0');

@@ -174,30 +174,29 @@ void main() {
     expect(c.poweredOn, isTrue);
   });
 
-  test(
-    'physical capability inventory is contextual, ALPHA remains unavailable',
-    () {
-      final c = CalculatorController();
-      int active() => calculatorRows
-          .expand((row) => row)
-          .where((k) => c.isKeyEnabled(k.id))
-          .length;
-      expect(active(), 36);
-      expect(c.isKeyEnabled('KEY_STO'), isTrue);
-      expect(c.isKeyEnabled('KEY_ALPHA'), isFalse);
-      c.selectInputOutput(CalculatorInputOutput.linearLinear);
-      expect(active(), 33);
-      expect(c.isKeyEnabled('KEY_STO'), isTrue);
-      expect(c.isKeyEnabled('KEY_UP'), isFalse);
-      c.openSetup();
-      expect(c.isKeyEnabled('KEY_UP'), isTrue);
-      expect(c.isKeyEnabled('KEY_SQUARE'), isFalse);
-      expect(c.isKeyEnabled('KEY_RIGHT'), isFalse);
-      expect(c.isKeyEnabled('KEY_STO'), isFalse);
-      c.openModeMenu();
-      expect(c.isKeyEnabled('KEY_STO'), isFalse);
-    },
-  );
+  test('physical capability inventory enables ALPHA during calculation', () {
+    final c = CalculatorController();
+    int active() => calculatorRows
+        .expand((row) => row)
+        .where((k) => c.isKeyEnabled(k.id))
+        .length;
+    expect(active(), 37);
+    expect(c.isKeyEnabled('KEY_STO'), isTrue);
+    expect(c.isKeyEnabled('KEY_ALPHA'), isTrue);
+    c.selectInputOutput(CalculatorInputOutput.linearLinear);
+    expect(active(), 34);
+    expect(c.isKeyEnabled('KEY_STO'), isTrue);
+    expect(c.isKeyEnabled('KEY_UP'), isFalse);
+    c.openSetup();
+    expect(c.isKeyEnabled('KEY_UP'), isTrue);
+    expect(c.isKeyEnabled('KEY_SQUARE'), isFalse);
+    expect(c.isKeyEnabled('KEY_RIGHT'), isFalse);
+    expect(c.isKeyEnabled('KEY_STO'), isFalse);
+    expect(c.isKeyEnabled('KEY_ALPHA'), isFalse);
+    c.openModeMenu();
+    expect(c.isKeyEnabled('KEY_STO'), isFalse);
+    expect(c.isKeyEnabled('KEY_ALPHA'), isFalse);
+  });
 
   test(
     'unknown ID remains explicitly unsupported without session mutation',

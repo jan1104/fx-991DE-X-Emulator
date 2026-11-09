@@ -140,8 +140,8 @@ void main() {
   test(
     'registry distinguishes binary actions from physical and postfix keys',
     () {
-      expect(CalculatorKey.values, hasLength(33));
-      expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(33));
+      expect(CalculatorKey.values, hasLength(34));
+      expect(CalculatorKey.values.map((key) => key.id).toSet(), hasLength(34));
       expect(
         CalculatorKey.fromId('ACTION_PERMUTATION'),
         CalculatorKey.permutation,

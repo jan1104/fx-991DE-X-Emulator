@@ -124,6 +124,7 @@ void main() {
       CalculatorKey.clear: 'KEY_AC',
       CalculatorKey.equals: 'KEY_EQUALS',
       CalculatorKey.answer: 'KEY_ANS',
+      CalculatorKey.memory: 'ACTION_MEMORY',
     };
     test('all supported enum values have unique inventory IDs', () {
       expect(ids.keys.toSet(), CalculatorKey.values.toSet());
@@ -331,6 +332,7 @@ void main() {
       CalculatorKey.rightParenthesis,
       CalculatorKey.negate,
       CalculatorKey.answer,
+      CalculatorKey.memory,
     ]) {
       test('${key.name} after result starts a fresh one-token expression', () {
         final session = CalculatorSession();

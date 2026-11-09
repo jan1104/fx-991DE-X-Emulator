@@ -80,9 +80,9 @@ void main() {
         expect(physical.map((key) => key.id).toSet(), hasLength(50));
         expect(
           physical.where((key) => c.isKeyEnabled(key.id)),
-          hasLength(math ? 36 : 33),
+          hasLength(math ? 37 : 34),
         );
-        expect(CalculatorKey.values, hasLength(33));
+        expect(CalculatorKey.values, hasLength(34));
         expect(c.isKeyEnabled('KEY_M_PLUS'), isTrue);
         expect(hasIndicator(c), isFalse);
       },

@@ -41,7 +41,7 @@ void main() {
   test(
     'new secondary action is neither binary nor postfix and has atomic text',
     () {
-      expect(CalculatorKey.values, hasLength(33));
+      expect(CalculatorKey.values, hasLength(34));
       expect(CalculatorKey.fromId('ACTION_ABS'), CalculatorKey.absolute);
       expect(CalculatorKey.absolute.text, 'Abs(');
       expect(CalculatorKey.absolute.isBinaryOperator, isFalse);

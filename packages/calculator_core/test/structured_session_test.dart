@@ -99,7 +99,7 @@ void main() {
     });
 
     test('fraction command does not extend the linear enum or session', () {
-      expect(CalculatorKey.values, hasLength(33));
+      expect(CalculatorKey.values, hasLength(34));
       expect(CalculatorKey.fromId('KEY_FRACTION'), isNull);
       final linear = CalculatorSession();
       expect(
@@ -238,6 +238,7 @@ void main() {
       CalculatorKey.rightParenthesis,
       CalculatorKey.negate,
       CalculatorKey.answer,
+      CalculatorKey.memory,
     ]) {
       test('${key.name} starts a fresh root after a result', () {
         final session = StructuredCalculatorSession();

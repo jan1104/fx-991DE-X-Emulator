@@ -121,9 +121,9 @@ void main() {
       expect(physical.map((key) => key.id).toSet(), hasLength(50));
       expect(
         physical.where((key) => c.isKeyEnabled(key.id)),
-        hasLength(fractions ? 36 : 33),
+        hasLength(fractions ? 37 : 34),
       );
-      expect(CalculatorKey.values, hasLength(33));
+      expect(CalculatorKey.values, hasLength(34));
       for (final (id, text) in [
         ('ACTION_PERMUTATION', 'nPr'),
         ('ACTION_COMBINATION', 'nCr'),

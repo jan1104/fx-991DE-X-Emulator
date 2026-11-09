@@ -120,10 +120,10 @@ void main() {
         expect(physical.map((key) => key.id).toSet(), hasLength(50));
         expect(
           physical.where((key) => c.isKeyEnabled(key.id)),
-          hasLength(fractions ? 36 : 33),
+          hasLength(fractions ? 37 : 34),
         );
         expect(physical.where((key) => key.id == 'ACTION_PERCENT'), isEmpty);
-        expect(CalculatorKey.values, hasLength(33));
+        expect(CalculatorKey.values, hasLength(34));
         expect(CalculatorKey.fromId('ACTION_PERCENT')!.text, '%');
         expect(CalculatorKey.fromId('KEY_PERCENT'), isNull);
       },

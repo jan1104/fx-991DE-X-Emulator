@@ -17,7 +17,7 @@ H bezeichnet `reference/originals/fx-87_991DEX_DE.pdf`. Für die neu offenen STO
 | STO oder bestätigtes RECALL ändern Ans. | Auf H 17–18 nicht ausdrücklich beschrieben. Die allgemeine Aussage zum letzten Rechenergebnis beweist diese Einzelfälle nicht. |
 | Zeitpunkt der STO-Auswertung, unpassende Folgetasten, leere Eingaben, Wiederholung und Dialogabbruch über Setup/ON/OFF. | Im geprüften Ausschnitt nicht vollständig festgelegt; eigene Regeln unten. |
 
-Die App unterstützt zunächst ausschließlich M. A–F, x und y erhalten keine erfundenen Nullwerte. ALPHA als Ausdruckseingabe und Resetmenüs bleiben getrennte Pakete. Originalsoftware und Gerät wurden nicht beobachtet.
+Die App unterstützt zunächst ausschließlich M. A–F, x und y erhalten keine erfundenen Nullwerte. ALPHA → M+ fügt M an der Cursorposition ein. Der Speicherreset erhält ein eigenes Menüpaket. Originalsoftware und Gerät wurden nicht beobachtet.
 
 ## Voraussetzung: ein exakter M-Operand
 
@@ -25,7 +25,7 @@ Bei der Vertragsausarbeitung kannte der Parser nur Ans und der Editor noch keine
 
 Das erste Umsetzungsstück ergänzt deshalb optionalen, ausdrücklich gebundenen `Rational? memoryValue` an den Parser-/Auswertungsgrenzen. Ein Token `M` bindet analog zu Ans einen `NumberExpression` an den übergebenen exakten Wert. Kein globaler Speicher und kein neuer Zahlentyp sind nötig. Ohne Kontext liefert M einen strukturierten Unsupported-Fehler an seiner Quellposition, keinen stillen Nullwert. Die normalen Größen-/Arbeitsbudgets bleiben erhalten.
 
-`CalculatorMemory.calculate` bindet Ans und M aus seinem aktuellen Snapshot. Die strukturierte Sitzung und die eigenständigen Editor-Auswertungswege müssen den Kontext ebenfalls ausdrücklich durchreichen. `EditorText('M')` wird ein zulässiger atomarer Baustein; Projektion, Source-Map, DEL, Navigation und Bruchübernahme behandeln ihn wie den bestehenden Ans-Baustein. Das bedeutet keine Freischaltung von ALPHA oder einer neuen physischen Taste. Zunächst wird auch keine zusätzliche implizite Multiplikation vor M eingeführt: `2*M` ist ausdrücklich; das bisherige `2(M)` bleibt möglich.
+`CalculatorMemory.calculate` bindet Ans und M aus seinem aktuellen Snapshot. Die strukturierte Sitzung und die eigenständigen Editor-Auswertungswege müssen den Kontext ebenfalls ausdrücklich durchreichen. `EditorText('M')` wird ein zulässiger atomarer Baustein; Projektion, Source-Map, DEL, Navigation und Bruchübernahme behandeln ihn wie den bestehenden Ans-Baustein. Die App verwendet dafür `ACTION_MEMORY` hinter ALPHA → M+. Für Multiplikation mit M eignen sich `2*M` und `2(M)`.
 
 Die Sitzungsaktion `recallMemory()` erzeugt einen neuen kohärenten Entwurf aus genau diesem M-Atom und veröffentlicht dessen exaktes Ergebnis. Links öffnet dann M; DEL löscht M. Bei späterer erneuter Auswertung wird M wie eine Variable an den dann aktuellen Speicher gebunden. Die frühere Ergebnisanzeige bleibt dagegen ein unveränderlicher Wert. Alte Snapshots werden nicht rückwirkend geändert.
 

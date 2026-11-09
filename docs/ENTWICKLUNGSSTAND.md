@@ -1,5 +1,15 @@
 # Entwicklungsstand
 
+## 09.11.2026 – M als Operand über ALPHA
+
+`ALPHA → M+` fügt M an der Cursorposition ein. Math kann M als einzelnen Baustein in einen Bruch übernehmen. DEL entfernt das Token in einem Schritt. Die Auswertung liest den aktuellen exakten M-Wert. Das Einfügen selbst schreibt weder M noch Ans. Die Belegung folgt dem vorhandenen Tasteninventar. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)
+
+Die App zeigt die aktive ALPHA-Ebene an Taste und Display. SHIFT und ALPHA lösen einander ab. Ein erneuter Druck auf ALPHA schaltet die Ebene aus. Eine noch unbelegte ALPHA-Kombination verbraucht die Ebene und zeigt einen Hinweis. STO und RECALL verwenden M+ weiterhin zur Auswahl. Die beiden Subagenten haben die Core-Aktion mit Tests und die bestehenden App-Inventarprüfungen bearbeitet. Die App zählt 34 aktive Primärbelegungen in Linear und 37 in Math. Der Core kennt 34 semantische Tastenaktionen.
+
+Formatprüfung und statische Analyse waren erfolgreich. GitHub prüfte `6983fb2448013a90b39b10c8392ad1074cbe49e2` mit 1183 Coretests, 503 App-Tests, Web-Build und 25 Vorschauen. Das Paket ergänzt sechs Core- und acht App-Fälle. Die visuelle Prüfung der beiden neuen 420-Pixel-Vorschauen zeigt die markierte ALPHA-Taste mit Displayindikator und den Bruch `M/2` mit Ergebnis `1/6`. Das Archiv enthält 25 PNGs. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42541615136), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42541615136/artifacts/13641383764), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42541615136/artifacts/13642195086)
+
+Als Nächstes folgt der bestätigte Speicherreset aus dem RESET-Menü. Der vorhandene Core-Aufruf `clearMemory()` setzt M und Ans zurück. App-Tests sollen den Abbruch, die Bestätigung und den Erhalt der Setup-Einstellungen prüfen. [Speichervertrag](SPEICHER_M.md)
+
 ## 08.11.2026 – STO und RECALL am Rechnerdisplay
 
 `STO → M+` speichert den vorbereiteten Wert. `SHIFT → STO → M+ → =` ruft M als bearbeitbaren Ausdruck ab. Die Übersicht zeigt M in Norm 1 unabhängig vom gewählten Zahlenformat. Ein Tipp auf die M-Zeile wählt den Eintrag ebenfalls aus. AC schließt beide Dialoge und führt zum Entwurf zurück. Nach einer Änderung von M während der Übersicht zeigt der Controller den neuen Wert und verlangt eine erneute Auswahl. Das Setzen von Ans bei Bestätigung folgt der dokumentierten Prototypregel. [Speichervertrag](STO_RECALL_M.md)

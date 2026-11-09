@@ -1,6 +1,6 @@
 # Unabhängiger Speicher M
 
-Stand 08.11.2026. Die App unterstützt M+, SHIFT → M−, STO und RECALL für M. Die Bedienfolge und der Prüfstand stehen im aktuellen Vertrag. Die folgenden Fortschreibungen dokumentieren die früheren Pakete. [STO-/RECALL-Vertrag](STO_RECALL_M.md)
+Stand 09.11.2026. Die App unterstützt M+, SHIFT → M−, STO und RECALL für M. ALPHA → M+ setzt M als Operand ein. Die Bedienfolge und der Prüfstand stehen im aktuellen Vertrag. Die folgenden Fortschreibungen dokumentieren die früheren Pakete. [STO-/RECALL-Vertrag](STO_RECALL_M.md)
 
 Fortschreibung 06.11.2026 morgens: Der exakte M-Operand in Parser und Editor ist auf `ea35068` geprüft (1109 Coretests, 480 Appfälle, Web-Build, 21 bestehende Vorschauen). `memoryValue:` bindet M unabhängig von Ans; Speichertransaktionen bleiben atomar. Die neue STO-/RECALL-Oberfläche und ihre Kandidaten-/Ladeaktionen bleiben das folgende Paket. [Prüfstand](ENTWICKLUNGSSTAND.md), [Vertrag](STO_RECALL_M.md).
 

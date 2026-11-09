@@ -31,6 +31,8 @@ void main() {
     'recall-m',
     'alpha-ready',
     'alpha-memory',
+    'reset-memory-confirm',
+    'reset-memory-done',
     'front',
     'settings',
     'periodic',
@@ -42,6 +44,9 @@ void main() {
     final recall = scenario == 'recall-m';
     final alphaReady = scenario == 'alpha-ready';
     final alphaMemory = scenario == 'alpha-memory';
+    final resetConfirm = scenario == 'reset-memory-confirm';
+    final resetDone = scenario == 'reset-memory-done';
+    final reset = resetConfirm || resetDone;
     final error = scenario == 'error';
     final capture = scenario == 'capture';
     final group = scenario == 'group';
@@ -96,7 +101,16 @@ void main() {
         await tester.pumpAndSettle();
       }
       for (final id
-          in alphaReady
+          in reset
+              ? [
+                  'KEY_7',
+                  'KEY_M_PLUS',
+                  'KEY_SHIFT',
+                  'KEY_9',
+                  'KEY_2',
+                  if (resetDone) 'KEY_EQUALS',
+                ]
+              : alphaReady
               ? ['KEY_ALPHA']
               : alphaMemory
               ? [
@@ -284,12 +298,22 @@ void main() {
       await tester.pumpAndSettle();
       final output = tester.widget<Text>(
         find.byKey(
-          ValueKey(recall ? 'display-recall-value' : 'display-result'),
+          ValueKey(
+            resetConfirm
+                ? 'memory-reset-prompt'
+                : recall
+                ? 'display-recall-value'
+                : 'display-result',
+          ),
         ),
       );
       expect(
         output.data ?? output.textSpan!.toPlainText(),
-        alphaReady
+        resetConfirm
+            ? 'Ans und M werden auf 0 gesetzt.'
+            : resetDone
+            ? '7'
+            : alphaReady
             ? ''
             : alphaMemory
             ? '1/6'
@@ -345,6 +369,13 @@ void main() {
         );
         expect(status.data!.contains('ALPHA'), alphaReady);
       }
+      if (resetDone) {
+        final answer = tester.widget<Text>(
+          find.byKey(const ValueKey('display-answer')),
+        );
+        expect(answer.data, 'Ans: 0');
+        expect(find.text('Speicher gelöscht'), findsOneWidget);
+      }
       if (recall) {
         expect(
           find.byKey(const ValueKey('display-recall-select')),
@@ -389,7 +420,13 @@ void main() {
         final image = await boundary.toImage(pixelRatio: 1);
         final data = await image.toByteData(format: ui.ImageByteFormat.png);
         final file = File(
-          memory || absolute || sto || recall || alphaReady || alphaMemory
+          memory ||
+                  absolute ||
+                  sto ||
+                  recall ||
+                  alphaReady ||
+                  alphaMemory ||
+                  reset
               ? '../../build/reports/calculator-$scenario.png'
               : combinatorics
               ? '../../build/reports/calculator-$scenario.png'

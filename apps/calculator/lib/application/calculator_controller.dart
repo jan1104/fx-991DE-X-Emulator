@@ -78,6 +78,7 @@ final class CalculatorController {
   final List<_MenuPosition> _menu = [];
   bool get menuOpen => _menu.isNotEmpty;
   String get _page => _menu.last.page;
+  bool get memoryResetPending => menuOpen && _page == 'reset-memory';
   int get menuOffset => menuOpen ? (_menu.last.selection ~/ 4) * 4 : 0;
   int get menuSelection => menuOpen ? _menu.last.selection - menuOffset : 0;
   String get menuTitle => !menuOpen
@@ -85,6 +86,8 @@ final class CalculatorController {
       : switch (_page) {
           'setup' => 'Einstellungen',
           'mode' => 'Rechenmodus',
+          'reset' => 'RESET',
+          'reset-memory' => 'Speicher löschen?',
           'io' => 'Eingabe/Ausgabe',
           'angle' => 'Winkeleinheit',
           'number' => 'Zahlenformat',
@@ -129,7 +132,7 @@ final class CalculatorController {
   }
 
   void menuMove(int delta) {
-    if (!menuOpen) return;
+    if (!menuOpen || memoryResetPending) return;
     _menu.last.selection = (_menu.last.selection + delta).clamp(
       0,
       _allItems.length - 1,
@@ -212,6 +215,9 @@ final class CalculatorController {
           (recallOpen && id == 'KEY_EQUALS');
     }
     if (menuOpen) {
+      if (memoryResetPending) {
+        return const {'KEY_AC', 'KEY_LEFT', 'KEY_EQUALS'}.contains(id);
+      }
       if (const {
         'KEY_AC',
         'KEY_LEFT',
@@ -239,6 +245,10 @@ final class CalculatorController {
     if (index < 0 || index >= visible.length)
       throw RangeError.index(index, visible);
     final id = visible[index].id;
+    if (_page == 'reset') {
+      if (id == 'reset-memory') _menu.add(_MenuPosition(id));
+      return;
+    }
     if (_page == 'setup') {
       _menu.add(_MenuPosition(id));
       return;
@@ -302,6 +312,16 @@ final class CalculatorController {
         _menu.clear();
         return;
       }
+      if (memoryResetPending && id != 'KEY_LEFT') {
+        if (id == 'KEY_EQUALS' && !shifted) {
+          session.cancelMemoryAssignment();
+          structured.cancelMemoryAssignment();
+          memory.clearMemory();
+          _menu.clear();
+          notice = 'Speicher gelöscht';
+        }
+        return;
+      }
       if (_page == 'contrast' && (id == 'KEY_LEFT' || id == 'KEY_RIGHT')) {
         _settings = settings.copyWith(
           contrast: (settings.contrast + (id == 'KEY_RIGHT' ? 1 : -1)).clamp(
@@ -357,6 +377,10 @@ final class CalculatorController {
       return;
     }
     if (shifted) {
+      if (id == 'KEY_9') {
+        _open('reset');
+        return;
+      }
       if (id == 'KEY_LPAREN') {
         _pressCore('ACTION_ABS');
         return;
@@ -694,6 +718,14 @@ final class CalculatorController {
       item('off', 'Aus', !value, pending),
     ];
     switch (_page) {
+      case 'reset':
+        return [
+          item('reset-settings', 'Setupdaten', false, true),
+          item('reset-memory', 'Speicher'),
+          item('reset-all', 'Alle initialis.', false, true),
+        ];
+      case 'reset-memory':
+        return const [];
       case 'setup':
         return [
           for (final pair in const [

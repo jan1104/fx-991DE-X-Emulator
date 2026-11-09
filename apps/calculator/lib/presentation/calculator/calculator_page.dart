@@ -48,11 +48,13 @@ class _CalculatorPageState extends State<CalculatorPage> {
     final recallWasOpen = _controller.recallOpen;
     final storeWasPending = _controller.storePending;
     final recallWasSelected = _controller.recallSelected;
+    final resetWasPending = _controller.memoryResetPending;
     setState(() => _controller.pressId(id));
     if ((!menuWasOpen && _controller.menuOpen) ||
         recallWasOpen != _controller.recallOpen ||
         storeWasPending != _controller.storePending ||
-        recallWasSelected != _controller.recallSelected) {
+        recallWasSelected != _controller.recallSelected ||
+        resetWasPending != _controller.memoryResetPending) {
       _revealDisplay();
     }
   }
@@ -500,6 +502,24 @@ class _CalculatorPageState extends State<CalculatorPage> {
           ),
         ],
       ),
+      if (_controller.memoryResetPending) ...[
+        const Text(
+          'Ans und M werden auf 0 gesetzt.',
+          key: ValueKey('memory-reset-prompt'),
+          style: TextStyle(fontSize: 12),
+        ),
+        TextButton(
+          key: const ValueKey('memory-reset-confirm'),
+          onPressed: () => _pressId('KEY_EQUALS'),
+          style: TextButton.styleFrom(
+            minimumSize: const Size(44, 44),
+            foregroundColor: const Color(0xFF172318),
+            backgroundColor: const Color(0xFFAFBFA7),
+            shape: const RoundedRectangleBorder(),
+          ),
+          child: const Text('= Löschen'),
+        ),
+      ],
       for (final (index, item) in _controller.menuItems.indexed)
         Semantics(
           selected: index == _controller.menuSelection,
@@ -547,27 +567,28 @@ class _CalculatorPageState extends State<CalculatorPage> {
             ),
           ),
         ),
-      Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          IconButton(
-            key: const ValueKey('menu-page-up'),
-            tooltip: 'Vorherige Einträge',
-            onPressed: () => setState(() => _controller.menuMove(-1)),
-            icon: const Icon(Icons.keyboard_arrow_up),
-          ),
-          Text(
-            '${_controller.menuOffset + 1}–${_controller.menuOffset + _controller.menuItems.length}',
-            style: const TextStyle(fontSize: 10),
-          ),
-          IconButton(
-            key: const ValueKey('menu-page-down'),
-            tooltip: 'Weitere Einträge',
-            onPressed: () => setState(() => _controller.menuMove(1)),
-            icon: const Icon(Icons.keyboard_arrow_down),
-          ),
-        ],
-      ),
+      if (!_controller.memoryResetPending)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              key: const ValueKey('menu-page-up'),
+              tooltip: 'Vorherige Einträge',
+              onPressed: () => setState(() => _controller.menuMove(-1)),
+              icon: const Icon(Icons.keyboard_arrow_up),
+            ),
+            Text(
+              '${_controller.menuOffset + 1}–${_controller.menuOffset + _controller.menuItems.length}',
+              style: const TextStyle(fontSize: 10),
+            ),
+            IconButton(
+              key: const ValueKey('menu-page-down'),
+              tooltip: 'Weitere Einträge',
+              onPressed: () => setState(() => _controller.menuMove(1)),
+              icon: const Icon(Icons.keyboard_arrow_down),
+            ),
+          ],
+        ),
     ],
   );
 }

@@ -34,6 +34,7 @@ void main() {
     'reset-memory-confirm',
     'reset-memory-done',
     'reset-setup-confirm',
+    'reset-full-confirm',
     'front',
     'settings',
     'periodic',
@@ -46,7 +47,9 @@ void main() {
     final alphaReady = scenario == 'alpha-ready';
     final alphaMemory = scenario == 'alpha-memory';
     final setupReset = scenario == 'reset-setup-confirm';
-    final resetConfirm = scenario == 'reset-memory-confirm' || setupReset;
+    final fullReset = scenario == 'reset-full-confirm';
+    final resetConfirm =
+        scenario == 'reset-memory-confirm' || setupReset || fullReset;
     final resetDone = scenario == 'reset-memory-done';
     final reset = resetConfirm || resetDone;
     final error = scenario == 'error';
@@ -109,7 +112,11 @@ void main() {
                   'KEY_M_PLUS',
                   'KEY_SHIFT',
                   'KEY_9',
-                  setupReset ? 'KEY_1' : 'KEY_2',
+                  fullReset
+                      ? 'KEY_3'
+                      : setupReset
+                      ? 'KEY_1'
+                      : 'KEY_2',
                   if (resetDone) 'KEY_EQUALS',
                 ]
               : alphaReady
@@ -302,7 +309,9 @@ void main() {
         find.byKey(
           ValueKey(
             resetConfirm
-                ? setupReset
+                ? fullReset
+                      ? 'full-reset-prompt'
+                      : setupReset
                       ? 'setup-reset-prompt'
                       : 'memory-reset-prompt'
                 : recall
@@ -314,7 +323,9 @@ void main() {
       expect(
         output.data ?? output.textSpan!.toPlainText(),
         resetConfirm
-            ? setupReset
+            ? fullReset
+                  ? 'Setupdaten werden auf Standardwerte gesetzt. Ans, M und beide Eingaben werden gelöscht. Der Kontrast bleibt erhalten.'
+                  : setupReset
                   ? 'Die Setupdaten werden auf Standardwerte gesetzt. Kontrast, Ans und M bleiben erhalten.'
                   : 'Ans und M werden auf 0 gesetzt.'
             : resetDone

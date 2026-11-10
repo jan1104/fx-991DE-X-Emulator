@@ -22,8 +22,6 @@ void main() {
       'Speicher',
       'Alle initialis.',
     ]);
-    press(c, ['3']);
-    expect(c.menuTitle, 'RESET');
     expect(c.memory.snapshot, same(before));
     press(c, ['2']);
     expect(c.memoryResetPending, isTrue);

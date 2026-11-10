@@ -80,7 +80,9 @@ final class CalculatorController {
   String get _page => _menu.last.page;
   bool get memoryResetPending => menuOpen && _page == 'reset-memory';
   bool get setupResetPending => menuOpen && _page == 'reset-settings';
-  bool get resetPending => memoryResetPending || setupResetPending;
+  bool get fullResetPending => menuOpen && _page == 'reset-all';
+  bool get resetPending =>
+      memoryResetPending || setupResetPending || fullResetPending;
   int get menuOffset => menuOpen ? (_menu.last.selection ~/ 4) * 4 : 0;
   int get menuSelection => menuOpen ? _menu.last.selection - menuOffset : 0;
   String get menuTitle => !menuOpen
@@ -91,6 +93,7 @@ final class CalculatorController {
           'reset' => 'RESET',
           'reset-settings' => 'Setupdaten zurücksetzen?',
           'reset-memory' => 'Speicher löschen?',
+          'reset-all' => 'Alles initialisieren?',
           'io' => 'Eingabe/Ausgabe',
           'angle' => 'Winkeleinheit',
           'number' => 'Zahlenformat',
@@ -249,9 +252,7 @@ final class CalculatorController {
       throw RangeError.index(index, visible);
     final id = visible[index].id;
     if (_page == 'reset') {
-      if (id == 'reset-memory' || id == 'reset-settings') {
-        _menu.add(_MenuPosition(id));
-      }
+      _menu.add(_MenuPosition(id));
       return;
     }
     if (_page == 'setup') {
@@ -445,17 +446,28 @@ final class CalculatorController {
   }
 
   void _confirmReset() {
-    if (setupResetPending) {
+    final full = fullResetPending;
+    if (setupResetPending || full) {
       _settings = CalculatorSettings(contrast: settings.contrast);
+    }
+    if (setupResetPending) {
       session.selectResultDisplayFormat(RationalDisplayFormat.fraction);
       structured.selectResultDisplayFormat(RationalDisplayFormat.fraction);
-      notice = 'Setupdaten zurückgesetzt';
-    } else {
+    }
+    if (memoryResetPending || full) {
       session.cancelMemoryAssignment();
       structured.cancelMemoryAssignment();
       memory.clearMemory();
-      notice = 'Speicher gelöscht';
     }
+    if (full) {
+      session.pressId('KEY_AC');
+      structured.pressId('KEY_AC');
+    }
+    notice = switch (_page) {
+      'reset-all' => 'Initialisierung abgeschlossen',
+      'reset-settings' => 'Setupdaten zurückgesetzt',
+      _ => 'Speicher gelöscht',
+    };
     _menu.clear();
   }
 
@@ -738,10 +750,11 @@ final class CalculatorController {
         return [
           item('reset-settings', 'Setupdaten'),
           item('reset-memory', 'Speicher'),
-          item('reset-all', 'Alle initialis.', false, true),
+          item('reset-all', 'Alle initialis.'),
         ];
       case 'reset-settings':
       case 'reset-memory':
+      case 'reset-all':
         return const [];
       case 'setup':
         return [

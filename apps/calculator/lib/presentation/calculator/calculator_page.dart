@@ -471,6 +471,43 @@ class _CalculatorPageState extends State<CalculatorPage> {
     );
   }
 
+  List<Widget> _resetConfirmation() {
+    final (keyPrefix, prompt, label) = _controller.fullResetPending
+        ? (
+            'full-reset',
+            'Setupdaten werden auf Standardwerte gesetzt. '
+                'Ans, M und beide Eingaben werden gelöscht. '
+                'Der Kontrast bleibt erhalten.',
+            '= Initialisieren',
+          )
+        : _controller.setupResetPending
+        ? (
+            'setup-reset',
+            'Die Setupdaten werden auf Standardwerte gesetzt. '
+                'Kontrast, Ans und M bleiben erhalten.',
+            '= Zurücksetzen',
+          )
+        : ('memory-reset', 'Ans und M werden auf 0 gesetzt.', '= Löschen');
+    return [
+      Text(
+        prompt,
+        key: ValueKey('$keyPrefix-prompt'),
+        style: const TextStyle(fontSize: 12),
+      ),
+      TextButton(
+        key: ValueKey('$keyPrefix-confirm'),
+        onPressed: () => _pressId('KEY_EQUALS'),
+        style: TextButton.styleFrom(
+          minimumSize: const Size(44, 44),
+          foregroundColor: const Color(0xFF172318),
+          backgroundColor: const Color(0xFFAFBFA7),
+          shape: const RoundedRectangleBorder(),
+        ),
+        child: Text(label),
+      ),
+    ];
+  }
+
   Widget _menu() => Column(
     key: const ValueKey('calculator-menu'),
     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -502,37 +539,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
           ),
         ],
       ),
-      if (_controller.resetPending) ...[
-        Text(
-          _controller.setupResetPending
-              ? 'Die Setupdaten werden auf Standardwerte gesetzt. '
-                    'Kontrast, Ans und M bleiben erhalten.'
-              : 'Ans und M werden auf 0 gesetzt.',
-          key: ValueKey(
-            _controller.setupResetPending
-                ? 'setup-reset-prompt'
-                : 'memory-reset-prompt',
-          ),
-          style: const TextStyle(fontSize: 12),
-        ),
-        TextButton(
-          key: ValueKey(
-            _controller.setupResetPending
-                ? 'setup-reset-confirm'
-                : 'memory-reset-confirm',
-          ),
-          onPressed: () => _pressId('KEY_EQUALS'),
-          style: TextButton.styleFrom(
-            minimumSize: const Size(44, 44),
-            foregroundColor: const Color(0xFF172318),
-            backgroundColor: const Color(0xFFAFBFA7),
-            shape: const RoundedRectangleBorder(),
-          ),
-          child: Text(
-            _controller.setupResetPending ? '= Zurücksetzen' : '= Löschen',
-          ),
-        ),
-      ],
+      if (_controller.resetPending) ..._resetConfirmation(),
       for (final (index, item) in _controller.menuItems.indexed)
         Semantics(
           selected: index == _controller.menuSelection,

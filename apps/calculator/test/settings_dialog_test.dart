@@ -55,7 +55,13 @@ void main() {
     tester,
   ) async {
     await boot(tester);
-    await sequence(tester, ['KEY_1', 'KEY_DIVIDE', 'KEY_3', 'KEY_EQUALS']);
+    await sequence(tester, [
+      'KEY_1',
+      'KEY_DIVIDE',
+      'KEY_3',
+      'KEY_SHIFT',
+      'KEY_EQUALS',
+    ]);
     await tap(tester, 'toolbar-settings');
     await choose(tester, 'number', 'norm', 'FIX');
     await choose(tester, 'fix', '3', '2');
@@ -82,7 +88,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(keyed('settings-dialog'), findsNothing);
     expect(text(tester, 'display-result'), '0,3333');
-    await sequence(tester, ['KEY_AC', 'KEY_2', 'KEY_EQUALS']);
+    await sequence(tester, ['KEY_AC', 'KEY_2', 'KEY_SHIFT', 'KEY_EQUALS']);
     expect(text(tester, 'display-result'), '2,0000');
   });
 

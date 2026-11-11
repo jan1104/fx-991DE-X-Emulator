@@ -134,7 +134,10 @@ final class _Parser {
       }
       final kind = switch (char) {
         'M' => _Kind.memory,
-        'A' => _Kind.variableA,
+        'A'
+            when position + 1 == source.length ||
+                !RegExp(r'[A-Za-z]').hasMatch(source[position + 1]) =>
+          _Kind.variableA,
         '+' => _Kind.plus,
         '-' || '−' => _Kind.minus,
         '*' || '×' => _Kind.times,

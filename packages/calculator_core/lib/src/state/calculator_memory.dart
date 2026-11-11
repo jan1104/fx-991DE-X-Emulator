@@ -5,12 +5,13 @@ import '../numbers/rational.dart';
 /// Result handling, independent of physical keys and editor state.
 enum MemoryOperation { result, add, subtract, store }
 
-/// An immutable view of Ans and the independent memory M.
+/// An immutable view of Ans, independent memory M and variable A.
 final class CalculatorMemorySnapshot {
-  const CalculatorMemorySnapshot._(this.answer, this.memory);
+  const CalculatorMemorySnapshot._(this.answer, this.memory, this.variableA);
 
   final Rational answer;
   final Rational memory;
+  final Rational variableA;
 
   bool get hasMemory => memory.numerator != BigInt.zero;
 }
@@ -25,19 +26,25 @@ final class CalculatorMemory {
     : _snapshot = CalculatorMemorySnapshot._(
         Rational.fromInt(0),
         Rational.fromInt(0),
+        Rational.fromInt(0),
       );
 
   CalculatorMemorySnapshot _snapshot;
 
   CalculatorMemorySnapshot get snapshot => _snapshot;
 
-  /// Evaluates with the previous exact Ans/M and commits only on full success.
+  /// Evaluates with the previous exact Ans/M/A and commits only on full success.
   /// The returned result is the operand, not the new M total.
   Rational calculate(
     String source, {
     MemoryOperation operation = MemoryOperation.result,
   }) => acceptResult(
-    evaluate(source, answer: _snapshot.answer, memoryValue: _snapshot.memory),
+    evaluate(
+      source,
+      answer: _snapshot.answer,
+      memoryValue: _snapshot.memory,
+      variableA: _snapshot.variableA,
+    ),
     operation: operation,
   );
 
@@ -57,14 +64,25 @@ final class CalculatorMemory {
       MemoryOperation.store => value,
     };
     _checkSize(memory);
-    _snapshot = CalculatorMemorySnapshot._(value, memory);
+    _snapshot = CalculatorMemorySnapshot._(value, memory, _snapshot.variableA);
     return value;
   }
 
-  /// Clears Ans and M together, without touching any editor or setup state.
-  /// Other variables will need inclusion when they are implemented.
+  /// Assigns an already evaluated value to A without changing Ans or M.
+  /// UI adapters choose when to evaluate an expression and update Ans.
+  void storeVariableA(Rational value) {
+    _checkSize(value);
+    _snapshot = CalculatorMemorySnapshot._(
+      _snapshot.answer,
+      _snapshot.memory,
+      value,
+    );
+  }
+
+  /// Clears Ans, M and A without touching any editor or setup state.
   void clearMemory() {
     _snapshot = CalculatorMemorySnapshot._(
+      Rational.fromInt(0),
       Rational.fromInt(0),
       Rational.fromInt(0),
     );

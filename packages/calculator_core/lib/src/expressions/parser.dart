@@ -7,12 +7,14 @@ Expression parseExpression(
   String source, {
   Rational? answer,
   Rational? memoryValue,
-}) => _Parser(source, answer, memoryValue).parse();
+  Rational? variableA,
+}) => _Parser(source, answer, memoryValue, variableA).parse();
 
 enum _Kind {
   number,
   answer,
   memory,
+  variableA,
   absolute,
   plus,
   minus,
@@ -42,6 +44,7 @@ final class _Parser {
   final String source;
   final Rational? answer;
   final Rational? memoryValue;
+  final Rational? variableA;
   final List<_Token> tokens = [];
   int cursor = 0;
   int depth = 0;
@@ -49,7 +52,7 @@ final class _Parser {
     r'(?:[0-9]+(?:[.,][0-9]*)?|[.,][0-9]+)(?:[eE][+-]?[0-9]+)?',
   );
   static final _space = RegExp(r'\s');
-  _Parser(this.source, this.answer, this.memoryValue);
+  _Parser(this.source, this.answer, this.memoryValue, this.variableA);
 
   CalculatorException _syntax(String message, int position) =>
       CalculatorException(
@@ -131,6 +134,7 @@ final class _Parser {
       }
       final kind = switch (char) {
         'M' => _Kind.memory,
+        'A' => _Kind.variableA,
         '+' => _Kind.plus,
         '-' || '−' => _Kind.minus,
         '*' || '×' => _Kind.times,
@@ -331,6 +335,17 @@ final class _Parser {
       }
       _take();
       return NumberExpression(memoryValue!, token.position);
+    }
+    if (token.kind == _Kind.variableA) {
+      if (variableA == null) {
+        throw CalculatorException(
+          CalculatorErrorCode.unsupported,
+          'A requires an explicit variable context',
+          position: token.position,
+        );
+      }
+      _take();
+      return NumberExpression(variableA!, token.position);
     }
     if (token.kind == _Kind.number) {
       _take();

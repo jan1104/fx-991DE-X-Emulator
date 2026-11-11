@@ -15,6 +15,7 @@ void main() {
     'setup reset restores the documented defaults and preserves contrast',
     () {
       final c = CalculatorController();
+      c.memory.storeVariableA(Rational.fromInt(11));
       for (final path in const [
         ['angle', 'radians'],
         ['number', 'fix', '2'],
@@ -49,6 +50,7 @@ void main() {
       expect(c.menuOpen, isFalse);
       expect(c.notice, 'Setupdaten zurückgesetzt');
       expect(s.inputOutput, CalculatorInputOutput.mathMath);
+      expect(c.memory.snapshot.variableA, Rational.fromInt(11));
       expect(s.angleUnit, CalculatorAngleUnit.degrees);
       expect(s.numberFormat, CalculatorNumberFormat.norm);
       expect(s.norm, 1);

@@ -13,6 +13,7 @@ void press(CalculatorController c, List<String> keys) {
 void main() {
   test('full reset restores setup and clears registers and both sessions', () {
     final c = CalculatorController();
+    c.memory.storeVariableA(Rational.fromInt(11));
     setting(c, ['number', 'fix', '2']);
     c.openSetup();
     chooseVisible(c, 'contrast');
@@ -37,6 +38,7 @@ void main() {
     expect(c.settings.norm, 1);
     expect(c.settings.fixDigits, 3);
     expect(c.settings.contrast, 7);
+    expect(c.memory.snapshot.variableA, Rational.fromInt(0));
     expect(c.memory.snapshot.answer, Rational.fromInt(0));
     expect(c.memory.snapshot.memory, Rational.fromInt(0));
     expect(c.structured.snapshot.editor.root.nodes, isEmpty);

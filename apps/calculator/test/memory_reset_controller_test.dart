@@ -49,6 +49,7 @@ void main() {
     'confirmation resets both registers and preserves setup and editors',
     () {
       final c = CalculatorController();
+      c.memory.storeVariableA(Rational.fromInt(11));
       setting(c, ['number', 'fix', '2']);
       press(c, ['6', 'EQUALS']);
       final mathDraft = c.structured.snapshot.editor;
@@ -58,6 +59,7 @@ void main() {
       final setup = c.settings;
       c.memory.calculate('1/3', operation: MemoryOperation.store);
       press(c, ['SHIFT', '9', '2', 'EQUALS']);
+      expect(c.memory.snapshot.variableA, Rational.fromInt(0));
       expect(c.menuOpen, isFalse);
       expect(c.notice, 'Speicher gelöscht');
       expect(c.memory.snapshot.memory, Rational.fromInt(0));

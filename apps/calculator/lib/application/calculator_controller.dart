@@ -120,6 +120,41 @@ final class CalculatorController {
       ? List.unmodifiable(_allItems.skip(menuOffset).take(4))
       : const [];
 
+  List<CalculatorMenuItem> get setupSections =>
+      List.unmodifiable(_itemsFor('setup'));
+
+  List<CalculatorMenuItem> setupOptions(String page) {
+    if (!setupSections.any((section) => section.id == page) &&
+        !const {'fix', 'sci', 'norm'}.contains(page)) {
+      throw ArgumentError.value(page, 'page');
+    }
+    return List.unmodifiable(_itemsFor(page));
+  }
+
+  void selectSetupOption(String page, String id) {
+    if (page == 'contrast' ||
+        !setupOptions(page).any((option) => option.id == id)) {
+      throw ArgumentError.value(id, 'id');
+    }
+    if (page == 'number') {
+      final digits = switch (id) {
+        'fix' => settings.fixDigits,
+        'sci' => settings.sciDigits,
+        _ => settings.norm,
+      };
+      _choose(id, '$digits');
+    } else {
+      _choose(page, id);
+    }
+  }
+
+  void setContrast(int value) {
+    if (value < 0 || value > 10) {
+      throw RangeError.range(value, 0, 10, 'value');
+    }
+    _settings = settings.copyWith(contrast: value);
+  }
+
   void openSetup() => _open('setup');
   void openModeMenu() => _open('mode');
   void _open(String page) {
@@ -269,7 +304,7 @@ final class CalculatorController {
       return;
     }
     if (_page == 'contrast') return;
-    _choose(id);
+    _choose(_page, id);
     menuBack();
   }
 
@@ -729,7 +764,9 @@ final class CalculatorController {
   });
 
   static const _pending = 'Für diesen Modus noch in Vorbereitung';
-  List<CalculatorMenuItem> get _allItems {
+  List<CalculatorMenuItem> get _allItems => _itemsFor(_page);
+
+  List<CalculatorMenuItem> _itemsFor(String page) {
     CalculatorMenuItem item(
       String id,
       String label, [
@@ -745,7 +782,7 @@ final class CalculatorController {
       item('on', 'Ein', value, pending),
       item('off', 'Aus', !value, pending),
     ];
-    switch (_page) {
+    switch (page) {
       case 'reset':
         return [
           item('reset-settings', 'Setupdaten'),
@@ -858,8 +895,8 @@ final class CalculatorController {
           for (var i = 0; i <= 9; i++)
             item(
               '$i',
-              _page == 'sci' && i == 0 ? '0 (10 signifikante Stellen)' : '$i',
-              _page == 'fix'
+              page == 'sci' && i == 0 ? '0 (10 signifikante Stellen)' : '$i',
+              page == 'fix'
                   ? settings.numberFormat == CalculatorNumberFormat.fix &&
                         settings.fixDigits == i
                   : settings.numberFormat == CalculatorNumberFormat.sci &&
@@ -953,8 +990,8 @@ final class CalculatorController {
     }
   }
 
-  void _choose(String id) {
-    _settings = switch (_page) {
+  void _choose(String page, String id) {
+    _settings = switch (page) {
       'io' => settings.copyWith(
         inputOutput: CalculatorInputOutput.values.byName(id),
       ),

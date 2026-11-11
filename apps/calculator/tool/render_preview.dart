@@ -423,11 +423,13 @@ void main() {
       if (scenario == 'settings') {
         await tester.tap(find.byKey(const ValueKey('toolbar-settings')));
         await tester.pumpAndSettle();
-        expect(find.byKey(const ValueKey('calculator-menu')), findsOneWidget);
+        expect(find.byKey(const ValueKey('settings-dialog')), findsOneWidget);
       }
-      await tester.ensureVisible(
-        find.byKey(const ValueKey('calculator-display')),
-      );
+      if (scenario != 'settings') {
+        await tester.ensureVisible(
+          find.byKey(const ValueKey('calculator-display')),
+        );
+      }
       await tester.pumpAndSettle();
       expect(tester.takeException(), isNull);
       final boundary = tester.renderObject<RenderRepaintBoundary>(

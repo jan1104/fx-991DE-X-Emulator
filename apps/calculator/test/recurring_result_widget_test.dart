@@ -51,7 +51,7 @@ Future<void> calculate(
 }
 
 Future<void> openSetting(WidgetTester tester, String id) async {
-  await tap(tester, 'toolbar-settings');
+  await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
   for (
     var step = 0;
     keyed('setup-item-$id').evaluate().isEmpty && step < 17;

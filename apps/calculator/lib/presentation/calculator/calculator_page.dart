@@ -7,6 +7,7 @@ import '../../application/keyboard_mapping.dart';
 import '../editor/fraction_expression_view.dart';
 import 'calculator_skin.dart';
 import 'recurring_result_view.dart';
+import 'settings_dialog.dart';
 
 class CalculatorPage extends StatefulWidget {
   const CalculatorPage({super.key});
@@ -38,9 +39,15 @@ class _CalculatorPageState extends State<CalculatorPage> {
     });
   }
 
-  void _openSetup() {
-    setState(_controller.openSetup);
-    _revealDisplay();
+  Future<void> _openSetup() async {
+    await showDialog<void>(
+      context: context,
+      builder: (context) => SettingsDialog(
+        controller: _controller,
+        onChanged: () => setState(() {}),
+      ),
+    );
+    if (mounted) _focus.requestFocus();
   }
 
   void _pressId(String id) {
@@ -97,7 +104,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
         actions: [
           IconButton(
             key: const ValueKey('toolbar-settings'),
-            tooltip: 'Einstellungen · SHIFT MENU',
+            tooltip: 'Einstellungen',
             onPressed: _openSetup,
             icon: const Icon(Icons.tune),
           ),

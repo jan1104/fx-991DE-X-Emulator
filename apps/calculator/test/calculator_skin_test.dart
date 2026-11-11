@@ -58,7 +58,7 @@ void main() {
             .colorScheme
             .onSurface;
     final before = formulaInk();
-    await tap(tester, 'toolbar-settings');
+    await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
     for (var step = 0; step < 16; step++) {
       await tap(tester, 'menu-page-down');
     }
@@ -70,15 +70,15 @@ void main() {
     expect(text(tester, 'display-result'), '1');
   });
 
-  testWidgets('toolbar reveals settings after scrolling to the bottom keys', (
+  testWidgets('toolbar opens the GUI after scrolling to the bottom keys', (
     tester,
   ) async {
     await boot(tester, size: const Size(320, 568));
     await tester.ensureVisible(keyed('KEY_EQUALS'));
     await tester.pumpAndSettle();
     await tap(tester, 'toolbar-settings');
-    expect(keyed('menu-title').hitTestable(), findsOneWidget);
-    expect(keyed('setup-item-io').hitTestable(), findsOneWidget);
+    expect(keyed('settings-dialog'), findsOneWidget);
+    expect(keyed('settings-section-io').hitTestable(), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -112,26 +112,11 @@ void main() {
     },
   );
 
-  testWidgets('toolbar and SHIFT MENU open exactly the same LCD menu', (
-    tester,
-  ) async {
-    await boot(tester);
-    await tap(tester, 'toolbar-settings');
-    final toolbarItems = visibleMenuLabels(tester);
-    expect(text(tester, 'menu-title'), 'Einstellungen');
-    expect(toolbarItems.length, 4);
-    await tap(tester, 'menu-close');
-    await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
-    expect(text(tester, 'menu-title'), 'Einstellungen');
-    expect(visibleMenuLabels(tester), toolbarItems);
-    expect(text(tester, 'display-status'), isNot(contains('SHIFT')));
-  });
-
   testWidgets(
     'touch setup input choice updates the same state as the input segments',
     (tester) async {
       await boot(tester);
-      await tap(tester, 'toolbar-settings');
+      await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
       await tap(tester, 'setup-item-io');
       await tap(tester, 'setup-item-linearLinear');
       await tap(tester, 'menu-close');
@@ -145,7 +130,7 @@ void main() {
         34,
       );
       await tap(tester, 'input-fractions');
-      await tap(tester, 'toolbar-settings');
+      await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
       await tap(tester, 'setup-item-io');
       expect(
         find.descendant(
@@ -161,7 +146,7 @@ void main() {
     'all setup pages are reachable without presenting pending modes as implemented',
     (tester) async {
       await boot(tester);
-      await tap(tester, 'toolbar-settings');
+      await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
       final visited = <String>{};
       for (var step = 0; step < 17; step++) {
         visited.addAll(visibleMenuLabels(tester));
@@ -197,7 +182,7 @@ void main() {
     await boot(tester);
     await sequence(tester, ['KEY_1', 'KEY_ADD', 'KEY_2', 'KEY_EQUALS']);
     expect(text(tester, 'display-result'), '3');
-    await tap(tester, 'toolbar-settings');
+    await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
     await tap(tester, 'setup-item-angle');
     await tap(tester, 'menu-back');
     await tap(tester, 'menu-close');
@@ -211,7 +196,7 @@ void main() {
     'hardware navigation and Enter operate the same menu and consume repeats',
     (tester) async {
       await boot(tester);
-      await tap(tester, 'toolbar-settings');
+      await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
       await tester.sendKeyEvent(LogicalKeyboardKey.arrowDown);
       await tester.pumpAndSettle();
       await tester.sendKeyDownEvent(LogicalKeyboardKey.enter);
@@ -255,7 +240,7 @@ void main() {
       }
       await sequence(tester, ['KEY_1', 'KEY_ADD', 'KEY_2', 'KEY_EQUALS']);
       expect(text(tester, 'display-result'), '3');
-      await tap(tester, 'toolbar-settings');
+      await sequence(tester, ['KEY_SHIFT', 'KEY_MENU']);
       await tap(tester, 'setup-item-io');
       expect(tester.takeException(), isNull);
     });

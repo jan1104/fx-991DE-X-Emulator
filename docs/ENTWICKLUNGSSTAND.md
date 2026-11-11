@@ -1,5 +1,13 @@
 # Entwicklungsstand
 
+## 10.11.2026 – Vollständige Initialisierung
+
+`SHIFT → 9 → 3 → =` stellt die Setup-Standardwerte wieder her und setzt Ans und M auf null. Der Kontrast bleibt erhalten. Die App leert bei der vollständigen Initialisierung beide Eingabesitzungen einschließlich Entwürfen, Ergebnisanzeigen, Fehlern und vorbereiteten STO-Zuweisungen. Der Bestätigungsdialog nennt die Auswirkungen. AC oder Escape schließt ihn, Links kehrt zur RESET-Auswahl zurück. Die Menüfolge und der Kontrasterhalt sind in H, physischen PDF-Seiten 3 und 10, dokumentiert. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)
+
+Formatierung und statische App-Analyse waren erfolgreich. GitHub prüfte `c523fffdff941e7872461af651863c97c50934bc` mit 1183 Coretests, 518 App-Tests, Web-Build und 29 Vorschauszenarien. Drei neue Controllertests prüfen Speicher und Setup, Abbruch und Bestätigung sowie eine neue Rechnung nach einem Fehler. Ein Subagent ergänzte die Bestätigungsansicht und den Widgettest bei 320 Pixeln Breite. Die heruntergeladene Vorschau `calculator-reset-full-confirm.png` wurde bei 420 Pixeln Breite visuell geprüft. Text und Bestätigung sind vollständig sichtbar. Das Archiv enthält 29 PNGs. Die Laufzeittests erfolgten wegen der dokumentierten Windows-Testblockade auf GitHub. Der Prüfstand wurde am 11.11.2026 abgeschlossen. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42842632845), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42842632845/artifacts/13777102398), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42842632845/artifacts/13776238242)
+
+Als nächstes folgt die Variable A als erster weiterer Speicherwert im Rechenkern. Das Paket soll die exakte Bindung in Ausdrücken und die Speicherinitialisierung abdecken. Die anschließende Bedienung nutzt die vorhandenen STO-, RECALL- und ALPHA-Wege. [Entwicklungsplan](ARCHITEKTUR_UND_PLAN.md)
+
 ## 09.11.2026 – Bestätigte Setupinitialisierung
 
 `SHIFT → 9 → 1 → =` stellt die dokumentierten Setup-Standardwerte einschließlich Math → Math, Gradmaß und Norm 1 wieder her. Die Bestätigung erhält Kontrast, Ans und M. AC oder Escape schließt den Dialog, Links führt zur RESET-Auswahl. Die Vorgaben und die Ausnahme für den Kontrast stammen aus H, physischen PDF-Seiten 3, 4 und 7–10. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)

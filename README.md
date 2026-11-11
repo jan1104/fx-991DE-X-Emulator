@@ -2,9 +2,9 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 09.11.2026
+## Stand am 10.11.2026
 
-Math und Linear teilen den exakten Ans-/M-Speicher. `STO → M+` speichert einen Wert, `SHIFT → STO → M+ → =` ruft ihn ab. RECALL zeigt eine Norm-1-Vorschau. AC schließt den Dialog und erhält den Entwurf. `ALPHA → M+` setzt M direkt in den Rechenausdruck ein. `SHIFT → 9 → 2 → =` setzt Ans und M nach Bestätigung auf null. `SHIFT → 9 → 1 → =` stellt die Setup-Standardwerte wieder her und erhält Kontrast, Ans und M. GitHub prüfte `410ecaa` mit 1183 Coretests, 514 App-Tests, Web-Build und 28 Vorschauen. Als Nächstes folgt „Alle initialis.“. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md)
+Math und Linear teilen den exakten Ans-/M-Speicher. `STO → M+` speichert einen Wert, `SHIFT → STO → M+ → =` ruft ihn ab. RECALL zeigt eine Norm-1-Vorschau. AC schließt den Dialog und erhält den Entwurf. `ALPHA → M+` setzt M direkt in den Rechenausdruck ein. Im RESET-Menü stellt `SHIFT → 9 → 1 → =` die Setup-Standardwerte wieder her. `SHIFT → 9 → 2 → =` setzt Ans und M auf null. `SHIFT → 9 → 3 → =` kombiniert beide Vorgänge und leert die Eingaben und Ergebnisanzeigen in Math und Linear. Der Kontrast bleibt erhalten. GitHub prüfte `c523fff` mit 1183 Coretests, 518 App-Tests, Web-Build und 29 Vorschauen. Als Nächstes folgt die Variable A im Rechenkern. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md)
 
 Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 

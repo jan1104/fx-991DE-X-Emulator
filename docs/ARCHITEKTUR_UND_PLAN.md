@@ -1,6 +1,6 @@
 # Architekturvorschlag und Entwicklungsplan
 
-Entwurf vom 25.10.2026, fortgeschrieben bis 09.11.2026. Die folgende Architektur ist das Zielbild; tatsächliche Implementierung und Prüfungen stehen im [Entwicklungsstand](ENTWICKLUNGSSTAND.md).
+Entwurf vom 25.10.2026, fortgeschrieben bis 10.11.2026. Die Architektur beschreibt das Zielbild. [Entwicklungsstand und Prüfungen](ENTWICKLUNGSSTAND.md)
 
 Der unabhängige Dart-Core und die Flutter-Hauptansicht mit linearer und strukturierter Brucheingabe sind inzwischen im Testengine geprüft. Native Builds und echte Zielsystemtests bleiben offen.
 
@@ -65,6 +65,8 @@ Fortschreibung 09.11.2026. ALPHA → M+ setzt M als Operand ein. Der Lauf auf `6
 Fortschreibung 09.11.2026. Das RESET-Menü bietet die bestätigte Speicherinitialisierung für Ans und M. Die anderen beiden Einträge sind als in Vorbereitung gekennzeichnet. Als Nächstes folgt die getrennte Setupinitialisierung mit Kontrasterhalt. [Speichervertrag](SPEICHER_M.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
 Fortschreibung 09.11.2026 abends. Die Setupinitialisierung ergänzt den RESET-Eintrag „Setupdaten“. Sie stellt die dokumentierten Standardwerte wieder her und erhält Kontrast und Speicher. Das nächste Paket schließt das RESET-Menü mit „Alle initialis.“ ab. [Prüfstand](ENTWICKLUNGSSTAND.md)
+
+Fortschreibung 10.11.2026. „Alle initialis.“ ist der dritte bestätigte RESET-Eintrag. Er stellt die Setup-Standardwerte wieder her und leert Ans, M und beide Eingabesitzungen. Der Kontrast bleibt erhalten. Das nächste Paket ergänzt Variable A im unabhängigen Rechenkern. Die exakte Bindung in Ausdrücken und die Speicherinitialisierung werden vor der App-Bedienung geprüft. [Prüfstand](ENTWICKLUNGSSTAND.md)
 
 ## Risiken und offene Entscheidungen
 

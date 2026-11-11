@@ -1,8 +1,8 @@
 # Unabhängiger Speicher M
 
-Stand 09.11.2026. Die App unterstützt M+, SHIFT → M−, STO und RECALL für M. ALPHA → M+ setzt M als Operand ein. Die Bedienfolge und der Prüfstand stehen im aktuellen Vertrag. Die folgenden Fortschreibungen dokumentieren die früheren Pakete. [STO-/RECALL-Vertrag](STO_RECALL_M.md)
+Stand 10.11.2026. Die App unterstützt M+, SHIFT → M−, STO und RECALL für M. ALPHA → M+ setzt M als Operand ein. Die Bedienfolge und der Prüfstand stehen im aktuellen Vertrag. Die folgenden Fortschreibungen dokumentieren die früheren Pakete. [STO-/RECALL-Vertrag](STO_RECALL_M.md)
 
-`SHIFT → 9 → 2 → =` setzt Ans und M auf null. Die Bestätigung nennt beide Register. AC schließt den Dialog, Links kehrt zur RESET-Auswahl zurück. Der Controller verwirft vorbereitete STO-Zuweisungen und erhält Setup, Entwürfe und bereits angezeigte Ergebnisse. „Setupdaten“ stellt die Setup-Standardwerte wieder her und erhält Kontrast, Ans und M. „Alle initialis.“ ist im Menü als in Vorbereitung gekennzeichnet. [Tastenbelege](TASTEN_UND_BEDIENUNG.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
+`SHIFT → 9 → 2 → =` setzt Ans und M auf null. Die Bestätigung nennt beide Register. AC schließt den Dialog, Links kehrt zur RESET-Auswahl zurück. Der Controller verwirft vorbereitete STO-Zuweisungen und erhält Setup, Entwürfe und bereits angezeigte Ergebnisse. „Setupdaten“ stellt die Setup-Standardwerte wieder her und erhält Kontrast, Ans und M. „Alle initialis.“ stellt die Setup-Standardwerte wieder her, setzt Ans und M auf null und leert beide Eingabesitzungen. Der Kontrast bleibt erhalten. [Tastenbelege](TASTEN_UND_BEDIENUNG.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
 Fortschreibung 06.11.2026 morgens: Der exakte M-Operand in Parser und Editor ist auf `ea35068` geprüft (1109 Coretests, 480 Appfälle, Web-Build, 21 bestehende Vorschauen). `memoryValue:` bindet M unabhängig von Ans; Speichertransaktionen bleiben atomar. Die neue STO-/RECALL-Oberfläche und ihre Kandidaten-/Ladeaktionen bleiben das folgende Paket. [Prüfstand](ENTWICKLUNGSSTAND.md), [Vertrag](STO_RECALL_M.md).
 

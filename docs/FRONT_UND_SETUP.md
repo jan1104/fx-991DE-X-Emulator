@@ -1,6 +1,6 @@
 # Rechnerfront und gemeinsames Setup
 
-Stand 02.11.2026. Der Nutzer beauftragt ausdrücklich weitere Produktarbeit trotz der bekannten lokalen Testblockade: eine Front nach Webreferenz sowie ein Einstellungsmenü in der Werkzeugleiste mit denselben Einstellungen wie über die Rechnertasten. Die frühere interne Arbeitsreihenfolge, bis zur Testfreigabe keine weiteren Produktänderungen anzuhäufen, wird für dieses beauftragte Paket entsprechend angepasst. Prüfgrenzen bleiben ausdrücklich dokumentiert.
+Stand 11.11.2026. Der Nutzer beauftragt ausdrücklich weitere Produktarbeit trotz der bekannten lokalen Testblockade: eine Front nach Webreferenz sowie ein Einstellungsmenü in der Werkzeugleiste mit denselben Einstellungen wie über die Rechnertasten. Die frühere interne Arbeitsreihenfolge, bis zur Testfreigabe keine weiteren Produktänderungen anzuhäufen, wird für dieses beauftragte Paket entsprechend angepasst. Prüfgrenzen bleiben ausdrücklich dokumentiert.
 
 ## Visuelle Referenz
 
@@ -8,11 +8,13 @@ Verwendet wurde die [Vorderansicht des fx-991DE X bei Conrad](https://www.conrad
 
 Die Front wird mit eigenen Flutter-Widgets gezeichnet: dunkler Körper mit silbernem Rand, Solarfeld, grünliches LCD, zentrale vier Richtungstasten, runde obere Tasten, helle Zifferntasten und blaue DEL/AC. Alle 50 vorhandenen Tasten-IDs bleiben erhalten. Goldene und magentafarbene Zweitbelegungen orientieren die Bedienung; ihre Beschriftung bedeutet keine vollständige Implementierung dieser Funktionen. Die Ansichten enthalten den Hinweis „Eigenständiger Emulator · in Entwicklung“.
 
-Bei schmaler Breite wird vertikal gescrollt. Die Tasten erhalten mindestens 44 logische Pixel je Richtung, statt das ganze Gerät unbedienbar klein zu skalieren. Ein Öffnen des Setup über die Werkzeugleiste oder Tasten führt zum Display zurück, auch wenn vorher unten auf der Tastatur gearbeitet wurde. Aktuelle Vorschaubilder werden inzwischen durch den GitHub-Lauf erzeugt; die erste Bildprüfung fand eine separate Schriftzuordnungs-Lücke des Vorschauhelfers. Nach Korrektur wurden Front und Setup bei 420×1600 mit lesbaren Beschriftungen visuell geprüft. Die genaue Revision und Grenzen sind im [Entwicklungsstand](ENTWICKLUNGSSTAND.md) dokumentiert.
+Bei schmaler Breite wird vertikal gescrollt. Die Tasten erhalten mindestens 44 logische Pixel je Richtung, statt das ganze Gerät unbedienbar klein zu skalieren. SHIFT → MENU führt zum Setup im Rechnerdisplay zurück. Der Werkzeugleistenknopf öffnet einen eigenen, scrollbar aufgebauten Einstellungsdialog, auch wenn zuvor unten auf der Tastatur gearbeitet wurde. Aktuelle Vorschaubilder werden inzwischen durch den GitHub-Lauf erzeugt; die erste Bildprüfung fand eine separate Schriftzuordnungs-Lücke des Vorschauhelfers. Nach Korrektur wurden Front und Setup bei 420×1600 mit lesbaren Beschriftungen visuell geprüft. Die genaue Revision und Grenzen sind im [Entwicklungsstand](ENTWICKLUNGSSTAND.md) dokumentiert.
 
 ## Eine Steuerung für beide Wege
 
-`CalculatorController` besitzt beide bestehenden Rechensitzungen und einen unveränderlichen `CalculatorSettings`-Wert. Werkzeugleistenknopf **Einstellungen** und **SHIFT → MENU** rufen denselben Menüzustand auf. Es gibt keine voneinander unabhängigen Einstellungen im Gerät und in der Werkzeugleiste.
+`CalculatorController` besitzt beide bestehenden Rechensitzungen und einen unveränderlichen `CalculatorSettings`-Wert. Der Werkzeugleistenknopf **Einstellungen** öffnet einen eigenen GUI-Dialog. **SHIFT → MENU** öffnet weiterhin das Setup im Rechnerdisplay. Beide Oberflächen verwenden dieselben Optionen und dieselbe Änderungslogik im Controller.
+
+Der GUI-Dialog erklärt jeden Setup-Bereich und bietet Auswahlfelder sowie einen Kontrastregler. Änderungen gelten sofort. FIX und SCI erhalten ein zusätzliches Feld für die Stellenzahl, NORM bietet Norm 1/2. Die sieben bereits wirksamen Bereiche stehen direkt im Dialog. Weitere zehn Setup-Vorgaben sind unter „Weitere Setup-Vorgaben“ erreichbar und ausdrücklich als Funktionen in Vorbereitung gekennzeichnet. Der Dialog lässt sich mit dem Schließknopf, „Fertig“, Escape oder einem Klick außerhalb schließen. Beim Schließen bleiben die bereits vorgenommenen Änderungen wirksam.
 
 Im Display werden jeweils bis zu vier Menüzeilen angezeigt. Berührung und Zifferntasten 1–4 wählen dieselben sichtbaren Einträge. Auf/Ab bewegen die Markierung und blättern, `=` wählt die Markierung, Links geht zurück und AC schließt ohne Änderung der Rechnung. Die sichtbare Nummerierung ist eine eigene begrenzte Listenbedienung; sie behauptet keine vollständige Gleichheit sämtlicher Original-Menüseiten.
 

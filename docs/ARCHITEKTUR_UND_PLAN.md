@@ -1,6 +1,6 @@
 # Architekturvorschlag und Entwicklungsplan
 
-Entwurf vom 25.10.2026, fortgeschrieben bis 10.11.2026. Die Architektur beschreibt das Zielbild. [Entwicklungsstand und Prüfungen](ENTWICKLUNGSSTAND.md)
+Entwurf vom 25.10.2026, fortgeschrieben bis 11.11.2026. Die Architektur beschreibt das Zielbild. [Entwicklungsstand und Prüfungen](ENTWICKLUNGSSTAND.md)
 
 Der unabhängige Dart-Core und die Flutter-Hauptansicht mit linearer und strukturierter Brucheingabe sind inzwischen im Testengine geprüft. Native Builds und echte Zielsystemtests bleiben offen.
 
@@ -67,6 +67,8 @@ Fortschreibung 09.11.2026. Das RESET-Menü bietet die bestätigte Speicherinitia
 Fortschreibung 09.11.2026 abends. Die Setupinitialisierung ergänzt den RESET-Eintrag „Setupdaten“. Sie stellt die dokumentierten Standardwerte wieder her und erhält Kontrast und Speicher. Das nächste Paket schließt das RESET-Menü mit „Alle initialis.“ ab. [Prüfstand](ENTWICKLUNGSSTAND.md)
 
 Fortschreibung 10.11.2026. „Alle initialis.“ ist der dritte bestätigte RESET-Eintrag. Er stellt die Setup-Standardwerte wieder her und leert Ans, M und beide Eingabesitzungen. Der Kontrast bleibt erhalten. Das nächste Paket ergänzt Variable A im unabhängigen Rechenkern. Die exakte Bindung in Ausdrücken und die Speicherinitialisierung werden vor der App-Bedienung geprüft. [Prüfstand](ENTWICKLUNGSSTAND.md)
+
+Fortschreibung 11.11.2026. Der manuelle Nutzerauftrag ergänzt den GUI-Einstellungsdialog in der Werkzeugleiste mit Erklärungen und demselben Zustand wie das Tasten-Setup. Das nächste fachliche Paket bleibt Variable A im Rechenkern. [Bedienvertrag](FRONT_UND_SETUP.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
 ## Risiken und offene Entscheidungen
 

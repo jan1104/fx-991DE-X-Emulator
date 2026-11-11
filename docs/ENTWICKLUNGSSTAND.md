@@ -1,5 +1,13 @@
 # Entwicklungsstand
 
+## 11.11.2026 – Einstellungsdialog in der Werkzeugleiste
+
+Der manuelle Nutzerauftrag ergänzt einen eigenen GUI-Dialog mit Beschreibungen, Auswahlfeldern und Kontrastregler. Er verwendet dieselben 17 Setup-Bereiche und dieselbe Änderungslogik wie SHIFT → MENU. Die sieben wirksamen Bereiche sind direkt sichtbar, zehn noch ausstehende Funktionsbereiche stehen in einer aufklappbaren Gruppe. Änderungen gelten sofort und werden beim erneuten Öffnen aus dem Controller gelesen. Eine Speicherung über App-Neustarts bleibt offen. [Bedienvertrag](FRONT_UND_SETUP.md)
+
+Formatierung und lokale statische Analyse waren erfolgreich. Der erste Cloud-Lauf auf `af551d0` fand eine falsche Erwartung im neuen Widgettest. Der Test verlangte eine Dezimalrundung nach einer Bruchausgabe. Die Korrektur fordert vor der Prüfung ausdrücklich Dezimalausgabe über SHIFT → = an. GitHub prüfte danach `93ecce4cdbdbf22db64de8f2ff5129afd020fb77` erfolgreich mit 1183 Coretests, 521 App-Tests, Web-Build und 29 Vorschauszenarien. Die neuen Tests prüfen alle Setup-Optionen im Controller, Synchronisation in beide Richtungen, Erhalt der Ergebnisse, Escape und die Bedienung bei 320×568 sowie 1000×700. Bestehende LCD-Tests verwenden jetzt SHIFT → MENU. Die Vorschau `calculator-settings.png` wurde bei 420×1600 visuell geprüft. Das Archiv enthält 29 PNGs. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42932233397), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42932233397/artifacts/13817182057), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/42932233397/artifacts/13817086051)
+
+Der manuelle Auftrag wurde vorgezogen. Das nächste fachliche Paket bleibt Variable A im unabhängigen Rechenkern. [Entwicklungsplan](ARCHITEKTUR_UND_PLAN.md)
+
 ## 10.11.2026 – Vollständige Initialisierung
 
 `SHIFT → 9 → 3 → =` stellt die Setup-Standardwerte wieder her und setzt Ans und M auf null. Der Kontrast bleibt erhalten. Die App leert bei der vollständigen Initialisierung beide Eingabesitzungen einschließlich Entwürfen, Ergebnisanzeigen, Fehlern und vorbereiteten STO-Zuweisungen. Der Bestätigungsdialog nennt die Auswirkungen. AC oder Escape schließt ihn, Links kehrt zur RESET-Auswahl zurück. Die Menüfolge und der Kontrasterhalt sind in H, physischen PDF-Seiten 3 und 10, dokumentiert. [Tasten und Bedienung](TASTEN_UND_BEDIENUNG.md)

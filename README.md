@@ -2,11 +2,11 @@
 
 Eigenständiger, inoffizieller Nachbau des Bedien- und Rechenverhaltens des fx-991DE X. Die Originalsoftware soll zunächst technisch untersucht werden; eigene Implementierung und Referenzmaterial bleiben getrennt.
 
-## Stand am 10.11.2026
+## Stand am 11.11.2026
 
-Math und Linear teilen den exakten Ans-/M-Speicher. `STO → M+` speichert einen Wert, `SHIFT → STO → M+ → =` ruft ihn ab. RECALL zeigt eine Norm-1-Vorschau. AC schließt den Dialog und erhält den Entwurf. `ALPHA → M+` setzt M direkt in den Rechenausdruck ein. Im RESET-Menü stellt `SHIFT → 9 → 1 → =` die Setup-Standardwerte wieder her. `SHIFT → 9 → 2 → =` setzt Ans und M auf null. `SHIFT → 9 → 3 → =` kombiniert beide Vorgänge und leert die Eingaben und Ergebnisanzeigen in Math und Linear. Der Kontrast bleibt erhalten. GitHub prüfte `c523fff` mit 1183 Coretests, 518 App-Tests, Web-Build und 29 Vorschauen. Als Nächstes folgt die Variable A im Rechenkern. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md)
+Math und Linear teilen den exakten Ans-/M-Speicher. `STO → M+` speichert einen Wert, `SHIFT → STO → M+ → =` ruft ihn ab. RECALL zeigt eine Norm-1-Vorschau. AC schließt den Dialog und erhält den Entwurf. `ALPHA → M+` setzt M direkt in den Rechenausdruck ein. Im RESET-Menü stellt `SHIFT → 9 → 1 → =` die Setup-Standardwerte wieder her. `SHIFT → 9 → 2 → =` setzt Ans und M auf null. `SHIFT → 9 → 3 → =` kombiniert beide Vorgänge und leert die Eingaben und Ergebnisanzeigen in Math und Linear. Der Kontrast bleibt erhalten. GitHub prüfte `93ecce4` mit 1183 Coretests, 521 App-Tests, Web-Build und 29 Vorschauen. Als Nächstes folgt die Variable A im Rechenkern. [Speichervertrag](docs/STO_RECALL_M.md), [Prüfstand](docs/ENTWICKLUNGSSTAND.md)
 
-Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Einstellungsmenü und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
+Die Rechnerfront wurde anhand einer Web-Vorderansicht neu mit eigenen Widgets aufgebaut. Der Einstellungsknopf in der Werkzeugleiste öffnet einen GUI-Dialog mit Beschreibungen, Auswahlfeldern und Kontrastregler. Der Dialog und SHIFT → MENU verwenden denselben Controller und dieselben 17 Setup-Bereiche. Änderungen gelten sofort in beiden Oberflächen. Math/Linear, Anzeigeformat, Bruchform, Trennung, Schriftgröße und Kontrast sind angebunden; noch fehlende Modusfunktionen werden gekennzeichnet.
 
 Grundrechnen, Brüche und exaktes Ans sind mit Quadrat, Kubieren, Kehrwert, Prozent, Fakultät und jetzt nPr/nCr verbunden. SHIFT → ×/÷ berechnet Permutationen/Kombinationen mit den belegten Argument- und Zwischenwertgrenzen. Der Periodenschalter wirkt direkt; S⇔D wechselt bei Norm zwischen Bruch, exakter Periode mit Überstrich und gerundetem Dezimalwert.
 

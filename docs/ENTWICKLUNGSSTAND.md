@@ -1,5 +1,13 @@
 # Entwicklungsstand
 
+## 11.11.2026 – Variable A im unabhängigen Rechenkern
+
+A ist als exakter Rationalwert im gemeinsamen Speicherdienst angelegt. Parser und Evaluator nehmen einen ausdrücklichen A-Kontext entgegen. Der Speicherdienst bindet Ans, M und A aus demselben Snapshot und erhält A bei den bisherigen Ergebnis-/M-Operationen. Direkte Zuweisung eines bereits ausgewerteten A-Werts erhält Ans und M. Fehler lassen den vorherigen Snapshot bestehen. Speicherreset und vollständige Initialisierung löschen A, Setupinitialisierung erhält A. [Vertrag und Quellen](VARIABLE_A.md)
+
+Ein Subagent ergänzte die 31 Core-Abnahmen. Die bestehenden drei Controller-Abnahmen für die Resetvarianten wurden um A erweitert. Formatierung, Core-Analyse und App-Analyse waren lokal erfolgreich. Der erste Lauf auf `4c42e48` bestand die 31 neuen A-Tests und fand eine Regression bei der Fehlerposition unbekannter Namen wie `ABS`. Die Abgrenzung des einzelnen Variablennamens wurde korrigiert. GitHub prüfte danach `81cedb5496348784eea48d09c168c55cf26dd64b` erfolgreich mit 1214 Coretests, 521 App-Tests, Web-Build und 29 Vorschauszenarien. [GitHub-Lauf](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/43017116409), [Browser-Build](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/43017116409/artifacts/13852574237), [Vorschauen](https://github.com/jan1104/fx-991DE-X-Emulator/actions/runs/43017116409/artifacts/13853770690)
+
+Als Nächstes folgen der atomare A-Operand im Editor und die Kontextübergabe in beiden Eingabesitzungen. Die App-Belegung über STO, RECALL und ALPHA folgt danach. [Entwicklungsplan](ARCHITEKTUR_UND_PLAN.md)
+
 ## 11.11.2026 – Einstellungsdialog in der Werkzeugleiste
 
 Der manuelle Nutzerauftrag ergänzt einen eigenen GUI-Dialog mit Beschreibungen, Auswahlfeldern und Kontrastregler. Er verwendet dieselben 17 Setup-Bereiche und dieselbe Änderungslogik wie SHIFT → MENU. Die sieben wirksamen Bereiche sind direkt sichtbar, zehn noch ausstehende Funktionsbereiche stehen in einer aufklappbaren Gruppe. Änderungen gelten sofort und werden beim erneuten Öffnen aus dem Controller gelesen. Eine Speicherung über App-Neustarts bleibt offen. [Bedienvertrag](FRONT_UND_SETUP.md)

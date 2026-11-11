@@ -70,6 +70,8 @@ Fortschreibung 10.11.2026. „Alle initialis.“ ist der dritte bestätigte RESE
 
 Fortschreibung 11.11.2026. Der manuelle Nutzerauftrag ergänzt den GUI-Einstellungsdialog in der Werkzeugleiste mit Erklärungen und demselben Zustand wie das Tasten-Setup. Das nächste fachliche Paket bleibt Variable A im Rechenkern. [Bedienvertrag](FRONT_UND_SETUP.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
 
+Fortschreibung 11.11.2026 mittags. Variable A ist als exaktes Register mit Parserbindung und gemeinsamer Speicherinitialisierung im Core angelegt. Das nächste Paket ergänzt A als atomaren Editoroperanden und reicht den A-Kontext in beiden Sitzungen weiter. Die App-Bedienung über STO, RECALL und ALPHA folgt anschließend. [Variablenvertrag](VARIABLE_A.md), [Prüfstand](ENTWICKLUNGSSTAND.md)
+
 ## Risiken und offene Entscheidungen
 
 - **Bestätigt:** H deckt zwei Modelle ab; unkritische Übernahme würde falsche Grenzen erzeugen. Nur fx-991DE X ist Zielmodell.
